@@ -1,0 +1,221 @@
+// handlers/articleService.js
+
+const API_BASE_URL = "https://doa-backend.my.id/api/v3";
+const AUTH_TOKEN =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInRlbmFudF9pZCI6IkFlbWxBZG1pbiIsImlhdCI6MTc1NzA2NjM5NSwiZXhwIjoxNzU3MDczNTk1fQ.h2p8uL_GVDIeShyftXHOJlK5nDYR4JeariKDi79Hbkc";
+
+/**
+ * Generic API fetch function
+ * @param {string} endpoint - API endpoint
+ * @returns {Promise<Object>} API response
+ */
+const fetchFromAPI = async (endpoint) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${AUTH_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(`Error fetching from ${endpoint}:`, error);
+    throw error;
+  }
+};
+
+/**
+ * Fetch articles from the API
+ * @returns {Promise<Object>} API response with articles data
+ */
+export const fetchArticles = async () => {
+  return await fetchFromAPI("/articles");
+};
+
+/**
+ * Fetch publications from the API
+ * @returns {Promise<Object>} API response with publications data
+ */
+export const fetchPublications = async () => {
+  return await fetchFromAPI("/publications");
+};
+
+/**
+ * Transform API article data to match component structure
+ * @param {Array} apiArticles - Raw articles from API
+ * @returns {Array} Transformed articles for component use
+ */
+export const transformArticleData = (apiArticles) => {
+  return apiArticles.map((article, index) => ({
+    id: article.id,
+    title: article.title,
+    preview: article.subtitle || article.body?.substring(0, 100) + "...",
+    date: formatDate(article.createdAt),
+    image:
+      article.images && article.images.length > 0
+        ? article.images[0]
+        : `https://picsum.photos/id/${1011 + index}/800/500`, // fallback image
+    featured: index === 0, // First item is featured
+    body: article.body,
+    type: article.type,
+    linkDownload: article.linkDownload,
+  }));
+};
+
+/**
+ * Transform API publication data to match component structure
+ * @param {Array} apiPublications - Raw publications from API
+ * @returns {Array} Transformed publications for component use
+ */
+export const transformPublicationData = (apiPublications) => {
+  return apiPublications.map((publication, index) => ({
+    id: publication.id,
+    title: publication.title,
+    subtitle: publication.subtitle,
+    image:
+      publication.images && publication.images.length > 0
+        ? publication.images[0]
+        : `https://picsum.photos/id/${1011 + index}/800/500`, // fallback image
+    readText: "Baca Publikasi",
+    body: publication.body,
+    type: publication.type,
+    linkDownload: publication.linkDownload,
+    createdAt: publication.createdAt,
+    updatedAt: publication.updatedAt,
+  }));
+};
+
+/**
+ * Format date string to Indonesian format
+ * @param {string} dateString - ISO date string
+ * @returns {string} Formatted date
+ */
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  const months = [
+    "Januari",
+    "Februari",
+    "Maret",
+    "April",
+    "Mei",
+    "Juni",
+    "Juli",
+    "Agustus",
+    "September",
+    "Oktober",
+    "November",
+    "Desember",
+  ];
+
+  const day = date.getDate();
+  const month = months[date.getMonth()];
+  const year = date.getFullYear();
+
+  return `${day} ${month} ${year}`;
+};
+
+/**
+ * Get articles with error handling and data transformation
+ * @returns {Promise<Array>} Transformed articles array
+ */
+export const getArticles = async () => {
+  try {
+    const response = await fetchArticles();
+
+    if (response.statusCode === 200 && response.data) {
+      return transformArticleData(response.data);
+    } else {
+      throw new Error("Invalid response format");
+    }
+  } catch (error) {
+    console.error("Error getting articles:", error);
+    // Return fallback data in case of error
+    return getFallbackArticles();
+  }
+};
+
+/**
+ * Get publications with error handling and data transformation
+ * @returns {Promise<Array>} Transformed publications array
+ */
+export const getPublications = async () => {
+  try {
+    const response = await fetchPublications();
+
+    if (response.statusCode === 200 && response.data) {
+      return transformPublicationData(response.data);
+    } else {
+      throw new Error("Invalid response format");
+    }
+  } catch (error) {
+    console.error("Error getting publications:", error);
+    // Return fallback data in case of error
+    return getFallbackPublications();
+  }
+};
+
+/**
+ * Fallback articles data in case API fails
+ * @returns {Array} Fallback articles
+ */
+const getFallbackArticles = () => [
+  {
+    id: 1,
+    title: "Insert teks judul disini maks. 2 baris.",
+    preview:
+      "Preview kalimat awal dari artikelnya, bisa maksimal 2 baris aja, tidak lebih.",
+    date: "5 Juli 2023",
+    image: "https://picsum.photos/id/1011/800/500",
+    featured: true,
+  },
+  {
+    id: 2,
+    title: "Insert teks judul disini maks. 2 baris",
+    date: "5 Juli 2023",
+    image: "https://picsum.photos/id/1015/800/500",
+  },
+  {
+    id: 3,
+    title: "Insert teks judul disini maks. 2 baris",
+    date: "5 Juli 2023",
+    image: "https://picsum.photos/id/1016/800/500",
+  },
+  {
+    id: 4,
+    title: "Insert teks judul disini maks. 2 baris",
+    date: "5 Juli 2023",
+    image: "https://picsum.photos/id/1025/800/500",
+  },
+];
+
+/**
+ * Fallback publications data in case API fails
+ * @returns {Array} Fallback publications
+ */
+const getFallbackPublications = () => [
+  {
+    id: 1,
+    image: "https://picsum.photos/id/1011/800/500",
+    title: "Indonesia's electric vehicle outlook maksimum 3 line.",
+    readText: "Baca Publikasi",
+  },
+  {
+    id: 2,
+    image: "https://picsum.photos/id/1015/800/500",
+    title: "Electrifying Indonesia's Two-Wheeler Industry",
+    readText: "Baca Publikasi",
+  },
+  {
+    id: 3,
+    image: "https://picsum.photos/id/1016/800/500",
+    title: "Transforming Indonesia's Transportation",
+    readText: "Baca Publikasi",
+  },
+];

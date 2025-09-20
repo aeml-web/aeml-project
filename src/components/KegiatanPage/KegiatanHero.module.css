@@ -1,0 +1,78 @@
+.kegiatanHero {
+  display: flex;
+  height: 622px; /* Figma size */
+  max-width: 1440px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* Left Side: Gradient + Text */
+.heroContent {
+  width: 50%; /* ✅ exact half */
+  background: linear-gradient(to bottom, #ffffff 0%, #d6e5ff 100%);
+  padding: 0 80px; /* align with navbar, no top padding */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.breadcrumbInfo {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.dateBadge {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.categoryBadge {
+  background-color: #eaf0ff;
+  color: #3b82f6;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.heroTitle {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #1f2937;
+  margin-bottom: 24px;
+  max-width: 520px;
+}
+
+/* Button fixed size (231x52) */
+.heroCta {
+  background-color: #a3e221;
+  border: none;
+  color: black;
+  font-weight: 600;
+  width: 231px;
+  height: 52px;
+  border-radius: 9999px; /* <-- fully rounded pill style */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+  font-family: "Instrument Sans", sans-serif;
+}
+
+.heroCta:hover {
+  background-color: #3b82f6;
+  color: white; /* optional to match hover from btnPrimary */
+}
+
+/* Right Side: Image */
+.heroImageCol {
+  width: 50%; /* ✅ exact half */
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+

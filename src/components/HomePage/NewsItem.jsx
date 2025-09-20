@@ -1,42 +1,68 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./homepage.module.css";
+import { getArticles } from "../../helpers/apiService";
 
 const NewsItem = () => {
-  const newsItems = [
-    {
-      id: 1,
-      title: "Insert teks judul disini maks. 2 baris.",
-      preview:
-        "Preview kalimat awal dari artikelnya, bisa maksimal 2 baris aja, tidak lebih.",
-      date: "5 Juli 2023",
-      image: "https://picsum.photos/id/1011/800/500",
-      featured: true,
-    },
-    {
-      id: 2,
-      title: "Insert teks judul disini maks. 2 baris",
-      date: "5 Juli 2023",
-      image: "https://picsum.photos/id/1015/800/500",
-    },
-    {
-      id: 3,
-      title: "Insert teks judul disini maks. 2 baris",
-      date: "5 Juli 2023",
-      image: "https://picsum.photos/id/1016/800/500",
-    },
-    {
-      id: 4,
-      title: "Insert teks judul disini maks. 2 baris",
-      date: "5 Juli 2023",
-      image: "https://picsum.photos/id/1025/800/500",
-    },
-    {
-      id: 5,
-      title: "Insert teks judul disini maks. 2 baris",
-      date: "5 Juli 2023",
-      image: "https://picsum.photos/id/1016/800/500",
-    },
-  ];
+  const [newsItems, setNewsItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const loadArticles = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const articles = await getArticles();
+        setNewsItems(articles);
+      } catch (err) {
+        setError("Failed to load articles");
+        console.error("Error loading articles:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadArticles();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className={styles.containerNews}>
+        <div className={styles.header}>
+          <h1 className={styles.titleNews}>Kegiatan</h1>
+        </div>
+        <div className={styles.loadingContainer}>
+          <p>Memuat artikel...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className={styles.containerNews}>
+        <div className={styles.header}>
+          <h1 className={styles.titleNews}>Kegiatan</h1>
+        </div>
+        <div className={styles.errorContainer}>
+          <p>Gagal memuat artikel. Silakan coba lagi nanti.</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!newsItems.length) {
+    return (
+      <div className={styles.containerNews}>
+        <div className={styles.header}>
+          <h1 className={styles.titleNews}>Kegiatan</h1>
+        </div>
+        <div className={styles.emptyContainer}>
+          <p>Belum ada artikel tersedia.</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.containerNews}>
@@ -48,6 +74,7 @@ const NewsItem = () => {
       </div>
 
       <div className={styles.newsGrid}>
+        {/* Featured Article */}
         <div className={styles.featuredArticle}>
           <div className={styles.featuredCard}>
             <div className={styles.featuredImageContainer}>
@@ -55,6 +82,9 @@ const NewsItem = () => {
                 src={newsItems[0].image}
                 alt={newsItems[0].title}
                 className={styles.featuredImage}
+                onError={(e) => {
+                  e.target.src = "https://picsum.photos/id/1011/800/500";
+                }}
               />
             </div>
             <div className={styles.featuredContent}>
@@ -65,6 +95,7 @@ const NewsItem = () => {
           </div>
         </div>
 
+        {/* Regular Articles Grid */}
         <div className={styles.regularGrid}>
           {newsItems.slice(1).map((item) => (
             <div key={item.id} className={styles.regularCard}>
@@ -73,6 +104,11 @@ const NewsItem = () => {
                   src={item.image}
                   alt={item.title}
                   className={styles.regularImage}
+                  onError={(e) => {
+                    e.target.src = `https://picsum.photos/id/${
+                      1015 + item.id
+                    }/800/500`;
+                  }}
                 />
               </div>
               <div className={styles.regularContent}>

@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import styles from "./homepage.module.css";
 
 export default function HeaderHome() {
+  const navigate = useNavigate();
+
   return (
     <div className={styles.heroWrapper}>
       <div className={styles.heroContainer}>
@@ -17,8 +20,18 @@ export default function HeaderHome() {
 
       {/* Bagian tombol */}
       <div className={styles.heroButtons}>
-        <button className={styles.btnPrimary}>Tentang AEML</button>
-        <button className={styles.btnSecondary}>Kegiatan</button>
+        <button
+          className={styles.btnPrimary}
+          onClick={() => navigate("/about")}
+        >
+          Tentang AEML
+        </button>
+        <button
+          className={styles.btnSecondary}
+          onClick={() => navigate("/kegiatan")}
+        >
+          Kegiatan
+        </button>
       </div>
     </div>
   );

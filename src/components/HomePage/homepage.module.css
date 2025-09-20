@@ -1147,3 +1147,61 @@
     transform: translateY(0);
   }
 }
+/* Add these styles to your homepage.module.css file */
+
+.loadingContainer,
+.errorContainer,
+.emptyContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  min-height: 200px;
+  color: #666;
+  font-size: 1rem;
+}
+
+.loadingContainer {
+  background: linear-gradient(270deg, #f8f9fa, #e9ecef);
+  background-size: 400% 400%;
+  animation: loadingGradient 2s ease infinite;
+  border-radius: 8px;
+}
+
+@keyframes loadingGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.errorContainer {
+  background-color: #fee;
+  border: 1px solid #fcc;
+  border-radius: 8px;
+  color: #c33;
+}
+
+.emptyContainer {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  color: #6c757d;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .loadingContainer,
+  .errorContainer,
+  .emptyContainer {
+    padding: 1rem;
+    min-height: 120px;
+    font-size: 0.9rem;
+  }
+}

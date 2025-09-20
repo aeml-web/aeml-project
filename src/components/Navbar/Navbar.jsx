@@ -50,12 +50,12 @@ const Navbar = () => {
           <li>
             {/* Replace with a route instead of hash anchor if you have pages */}
             <Link
-              to="/artikel"
+              to="/kegiatan"
               className={`${
-                location.pathname === "/artikel" ? styles.active : ""
+                location.pathname === "/kegiatan" ? styles.active : ""
               }`}
             >
-              Artikel
+              Kegiatan
             </Link>
           </li>
           <li>
