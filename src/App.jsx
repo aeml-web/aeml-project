@@ -9,6 +9,23 @@ import "./index.css";
 import ScrollNavigation from "./components/About/ScrollNavigation";
 import About from "./components/About/About";
 import GabungPage from "./components/Gabung/GabungPage";
+import NewsDetailPage from "./components/KegiatanPage/NewsDetailComponent";
+
+const articles = [
+  {
+    id: 1,
+    title: "Sample Article Title 1",
+    date: "2024-01-15",
+    image: "/images/article1.jpg",
+  },
+  {
+    id: 2,
+    title: "Sample Article Title 2",
+    date: "2024-01-16",
+    image: "/images/article2.jpg",
+  },
+  // ... more articles
+];
 
 function App() {
   return (
@@ -21,6 +38,12 @@ function App() {
           {/* <Route path="/publikasi" element={ />} /> */}
           <Route path="/about" element={<ScrollNavigation />} />
           <Route path="/gabung" element={<GabungPage />} />
+
+          {/* News Detail Page */}
+          <Route
+            path="/kegiatan/:id"
+            element={<NewsDetailPage allArticles={articles} />}
+          />
         </Routes>
       </main>
       <Footer />

@@ -8,15 +8,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 60px;
 }
 
 .titleNews {
   font-size: 32px;
-  font-weight: 600;
+  font-weight: 700;
   color: #181818;
   margin: 0;
-  font-family: "Epilogue", sans-serif;
+  font-family: "Instrument Sans", sans-serif;
 }
 
 /* Grid: 4 columns per row */
