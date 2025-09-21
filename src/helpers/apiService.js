@@ -249,3 +249,42 @@ export const getArticleById = async (id) => {
     return null;
   }
 };
+
+export const getPublicationById = async (id) => {
+  try {
+    const response = await fetchFromAPI(`/publications/${id}`);
+
+    if (response.statusCode === 200 && response.data) {
+      const publication = response.data;
+      return {
+        id: publication.id,
+        title: publication.title,
+        subtitle: publication.subtitle,
+        body: publication.body,
+        image:
+          publication.images && publication.images.length > 0
+            ? publication.images[0]
+            : null,
+        images: publication.images || [],
+        type: publication.type,
+        linkDownload: publication.linkDownload,
+        isDeleted: publication.isDeleted,
+        isShowed: publication.isShowed,
+        tenantId: publication.tenant_id,
+        createdAt: publication.createdAt,
+        updatedAt: publication.updatedAt,
+        // Format date for display
+        date: new Date(publication.createdAt).toLocaleDateString("id-ID", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        }),
+      };
+    } else {
+      throw new Error("Invalid response format");
+    }
+  } catch (error) {
+    console.error("Error fetching publication by ID:", error);
+    return null;
+  }
+};

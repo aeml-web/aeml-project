@@ -184,3 +184,81 @@
     padding: 16px;
   }
 }
+
+/* Add these styles to your existing publikasi.module.css */
+
+.loading,
+.error,
+.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.error {
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.error p {
+  color: #e74c3c;
+  margin: 0;
+}
+
+.retryBtn {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.retryBtn:hover {
+  background-color: #2980b9;
+}
+
+.loading {
+  color: #3498db;
+}
+
+.empty {
+  color: #95a5a6;
+}
+
+/* Clickable card styles */
+.clickable {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.clickable:focus {
+  outline: 2px solid #3498db;
+  outline-offset: 2px;
+}
+
+.clickable:active {
+  transform: translateY(0);
+}
+
+/* Ensure download button stays clickable */
+.downloadBtn {
+  position: relative;
+  z-index: 2;
+  transition: all 0.2s ease;
+}
+
+.downloadBtn:hover {
+  transform: scale(1.05);
+}

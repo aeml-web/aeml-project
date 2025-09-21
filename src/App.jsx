@@ -9,6 +9,7 @@ import About from "./components/About/About";
 import GabungPage from "./components/Gabung/GabungPage";
 import NewsDetailPage from "./components/KegiatanPage/NewsDetailComponent";
 import PublikasiPage from "./components/Publikasi/PublikasiPage";
+import PublikasiDetail from "./components/Publikasi/PublikasiDetail";
 import "./index.css";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
 
           {/* News Detail Page without static data */}
           <Route path="/kegiatan/:id" element={<NewsDetailPage />} />
+          <Route path="/publikasi/:id" element={<PublikasiDetail />} />
         </Routes>
       </main>
       <Footer />
