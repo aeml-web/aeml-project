@@ -10,6 +10,7 @@ import ScrollNavigation from "./components/About/ScrollNavigation";
 import About from "./components/About/About";
 import GabungPage from "./components/Gabung/GabungPage";
 import NewsDetailPage from "./components/KegiatanPage/NewsDetailComponent";
+import PublikasiPage from "./components/Publikasi/PublikasiPage";
 
 const articles = [
   {
@@ -38,6 +39,7 @@ function App() {
           {/* <Route path="/publikasi" element={ />} /> */}
           <Route path="/about" element={<ScrollNavigation />} />
           <Route path="/gabung" element={<GabungPage />} />
+          <Route path="/publikasi" element={<PublikasiPage />} />
 
           {/* News Detail Page */}
           <Route
