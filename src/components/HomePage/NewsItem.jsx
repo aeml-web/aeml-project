@@ -68,7 +68,7 @@ const NewsItem = () => {
     <div className={styles.containerNews}>
       <div className={styles.header}>
         <h1 className={styles.titleNews}>Kegiatan</h1>
-        <a href="#" className={styles.readMore}>
+        <a href="/kegiatan" className={styles.readMore}>
           Baca selengkapnya →
         </a>
       </div>

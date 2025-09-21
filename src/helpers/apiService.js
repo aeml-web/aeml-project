@@ -219,3 +219,33 @@ const getFallbackPublications = () => [
     readText: "Baca Publikasi",
   },
 ];
+
+/**
+ * Fetch a single article by ID
+ * @param {number|string} id - Article ID
+ * @returns {Promise<Object>} Transformed article
+ */
+export const getArticleById = async (id) => {
+  try {
+    const response = await fetchFromAPI(`/articles/${id}`);
+
+    if (response.statusCode === 200 && response.data) {
+      return {
+        id: response.data.id,
+        title: response.data.title,
+        subtitle: response.data.subtitle,
+        body: response.data.body,
+        images: response.data.images,
+        type: response.data.type,
+        linkDownload: response.data.linkDownload,
+        createdAt: response.data.createdAt,
+        updatedAt: response.data.updatedAt,
+      };
+    } else {
+      throw new Error("Invalid response format");
+    }
+  } catch (error) {
+    console.error("Error fetching article by ID:", error);
+    return null;
+  }
+};
