@@ -8,6 +8,7 @@ import KegiatanPages from "./components/KegiatanPage/KegiatanPages";
 import "./index.css";
 import ScrollNavigation from "./components/About/ScrollNavigation";
 import About from "./components/About/About";
+import GabungPage from "./components/Gabung/GabungPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/kegiatan" element={<KegiatanPages />} />
           {/* <Route path="/publikasi" element={ />} /> */}
           <Route path="/about" element={<ScrollNavigation />} />
+          <Route path="/gabung" element={<GabungPage />} />
         </Routes>
       </main>
       <Footer />

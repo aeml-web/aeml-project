@@ -83,7 +83,7 @@ const Navbar = () => {
             <img src={logobrowse} alt="" className={styles.icon} />
             Infomolis.id
           </button>
-          <Link to="/join">
+          <Link to="/gabung">
             <button className={styles.buttonLang}>Gabung AEML</button>
           </Link>
           <button className={styles.buttonId}>

@@ -33,11 +33,11 @@ body {
 .container {
   width: 100vw;
   max-width: 1440px; /* batasi lebar */
-  margin: 20px auto; /* center horizontal */
-  padding: 1rem; /* kasih ruang kiri-kanan */
+  margin: 0 auto;
   align-items: center;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 /* Untuk halaman full center (opsional) */
