@@ -15,13 +15,8 @@ export default function PublicationDetail() {
     email: "",
   });
 
-  // React Router v6
   const { id } = useParams();
   const navigate = useNavigate();
-
-  // Alternative for Next.js:
-  // const router = useRouter();
-  // const { id } = router.query;
 
   useEffect(() => {
     const loadPublication = async () => {
@@ -132,68 +127,59 @@ export default function PublicationDetail() {
 
         {/* Right side - Details */}
         <div className={styles.detailSection}>
-          <h1 className={styles.title}>{publication.title}</h1>
+          <div className={styles.top}>
+            <h1 className={styles.title}>{publication.title}</h1>
 
-          <div className={styles.meta}>
-            <span
-              className={`${styles.category} ${
-                publication.type === "Research"
-                  ? styles.categoryResearch
-                  : styles.categoryDefault
-              }`}
-            >
-              {publication.type}
-            </span>
-            <span className={styles.date}>{publication.date}</span>
+            <div className={styles.meta}>
+              <span
+                className={`${styles.category} ${
+                  publication.type === "Research"
+                    ? styles.categoryResearch
+                    : styles.categoryDefault
+                }`}
+              >
+                {publication.type}
+              </span>
+              <span className={styles.date}>{publication.date}</span>
+            </div>
+
+            {publication.subtitle && (
+              <p className={styles.subtitle}>{publication.subtitle}</p>
+            )}
           </div>
 
-          {publication.subtitle && (
-            <p className={styles.subtitle}>{publication.subtitle}</p>
-          )}
+          <div className={styles.bottom}>
+            <p className={styles.downloadText}>
+              Mohon mengisi data diri terlebih dahulu untuk mengunduh publikasi
+              ini.
+            </p>
 
-          {publication.description && (
-            <p className={styles.subtitle}>{publication.description}</p>
-          )}
+            <div className={styles.form}>
+              <input
+                type="text"
+                name="company"
+                placeholder="Ketik perusahaan atau instansimu"
+                value={formData.company}
+                onChange={handleInputChange}
+                className={styles.formInput}
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Alamat email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className={styles.formInput}
+              />
 
-          {publication.author && (
-            <div className={styles.authorSection}>
-              <strong>Author:</strong> {publication.author}
+              <button
+                onClick={handleDownload}
+                className={styles.downloadButton}
+              >
+                <Download size={14} />
+                Download File
+              </button>
             </div>
-          )}
-
-          {publication.tags && publication.tags.length > 0 && (
-            <div className={styles.tagsSection}>
-              <strong>Tags:</strong> {publication.tags.join(", ")}
-            </div>
-          )}
-
-          <p className={styles.downloadText}>
-            Mohon mengisi data diri terlebih dahulu untuk mengunduh publikasi
-            ini.
-          </p>
-
-          <div className={styles.form}>
-            <input
-              type="text"
-              name="company"
-              placeholder="Ketik perusahaan atau instansimu"
-              value={formData.company}
-              onChange={handleInputChange}
-              className={styles.input}
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Alamat email"
-              value={formData.email}
-              onChange={handleInputChange}
-              className={styles.input}
-            />
-
-            <button onClick={handleDownload} className={styles.downloadButton}>
-              <Download size={14} />
-              Download File
-            </button>
           </div>
         </div>
       </div>

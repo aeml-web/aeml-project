@@ -1,23 +1,15 @@
 .container {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #e8f4fd 0%, #d1e7ff 50%, #c9ddff 100%);
-  padding: 3rem;
+  height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
+  padding-top: 44px;
 }
 
 .content {
   display: flex;
   gap: 2rem;
-  max-width: 900px;
-  width: 100%;
+  width: fit-content;
   align-items: flex-start;
-  background: white;
-  border-radius: 8px;
-  padding: 2rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  border: 3px solid #4A90E2;
 }
 
 .imageSection {
@@ -25,11 +17,10 @@
 }
 
 .publicationImage {
-  width: 100%;
-  height: 350px;
-  border-radius: 8px;
+  width: 410px;
+  height: 540px;
+  border-radius: 16px;
   object-fit: cover;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,10 +32,10 @@
 }
 
 .publicationImage img {
-  width: 100%;
-  height: 100%;
+  width: 410px;
+  height: 540px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 16px;
 }
 
 .imagePlaceholder {
@@ -61,49 +52,74 @@
 .detailSection {
   flex: 1;
   padding-left: 1rem;
+  height: 540px;
+}
+
+.detailSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.top {
+  /* otomatis di atas */
+}
+
+.bottom {
+  margin-top: auto; /* ini yang mendorong ke bawah */
 }
 
 .title {
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: #333;
-  margin: 0 0 0.5rem 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: #181818;
   line-height: 1.3;
+  font-family: "Instrument Sans", sans-serif;
+  margin: 0;
+  line-height: 150%;
+  margin-bottom: 16px;
 }
 
 .meta {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin-bottom: 1rem;
+  margin-bottom: 25px;
 }
 
 .category {
-  color: white;
+  color: #639201;
   padding: 0.25rem 0.75rem;
   border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Instrument Sans", sans-serif;
+  margin: 0;
+  line-height: 150%;
 }
 
 .categoryResearch {
-  background: #8BC34A;
+  background: #e4fab4;
 }
 
 .categoryDefault {
-  background: #4A90E2;
+  background: #e4fab4;
 }
 
 .date {
-  color: #666;
-  font-size: 0.85rem;
+  color: #4e4e4e;
+  font-size: 16px;
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 400;
+  line-height: 150%;
 }
 
 .subtitle {
-  color: #666;
-  font-size: 0.9rem;
+  color: #181818;
+  font-size: 16px;
   line-height: 1.5;
-  margin-bottom: 1.5rem;
+  width: 440px;
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 400;
 }
 
 .authorSection {
@@ -122,10 +138,13 @@
 }
 
 .downloadText {
-  color: #333;
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-  line-height: 1.4;
+  color: #181818;
+  font-size: 16px;
+  margin-bottom: 16px;
+  line-height: 150%;
+  font-weight: 700;
+  font-family: "Instrument Sans", sans-serif;
+  width: 435px;
 }
 
 .form {
@@ -185,9 +204,9 @@
   left: 2rem;
   padding: 0.5rem 1rem;
   background: white;
-  border: 2px solid #4A90E2;
+  border: 2px solid #4a90e2;
   border-radius: 4px;
-  color: #4A90E2;
+  color: #4a90e2;
   cursor: pointer;
   font-size: 0.9rem;
   font-weight: 500;
@@ -195,6 +214,74 @@
 }
 
 .backBtn:hover {
-  background: #4A90E2;
+  background: #4a90e2;
   color: white;
+}
+
+.formLabel {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  color: black;
+  line-height: 150%;
+  margin-bottom: 8px;
+  font-style: italic;
+  font-family: "Epilogue", sans-serif;
+}
+
+.formInput {
+  width: 470px;
+  height: 40px;
+  padding: 1rem;
+  font-size: 1rem;
+  border: 1px solid #adadad;
+  background-color: #dedede;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  font-family: "Epilogue", sans-serif;
+  color: black;
+}
+
+.formInput:focus {
+  transform: translateY(-1px);
+}
+
+.formInput::placeholder {
+  color: #a6a6a6;
+  font-style: italic;
+  font-size: 12px;
+  font-weight: 300;
+  font-family: "Epilogue", sans-serif;
+}
+
+.downloadButton {
+  width: 180px;
+  height: 40px;
+  padding: 1rem;
+  font-size: 16px;
+  font-weight: 700;
+  color: black;
+  background: #b3b3b3;
+  border: none;
+  border-radius: 26px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  font-family: "Instrument Sans", sans-serif;
+}
+
+.downloadButton:hover {
+  padding: 1rem;
+  font-size: 16px;
+  font-weight: 600;
+  color: black;
+  background: #a3e221;
+  border: none;
+  border-radius: 26px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  font-family: "Instrument Sans", sans-serif;
 }
