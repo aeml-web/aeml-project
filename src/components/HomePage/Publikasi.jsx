@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./homepage.module.css";
 import { getPublications } from "../../helpers/apiService";
 
@@ -6,6 +7,7 @@ const Publikasi = () => {
   const [publications, setPublications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadPublications = async () => {
@@ -25,14 +27,8 @@ const Publikasi = () => {
     loadPublications();
   }, []);
 
-  const handleReadPublication = (publication) => {
-    if (publication.linkDownload) {
-      // Open download link in new tab
-      window.open(publication.linkDownload, "_blank");
-    } else {
-      // If no download link, could navigate to detail page or show message
-      console.log("No download link available for:", publication.title);
-    }
+  const handleGoToDetail = (id) => {
+    navigate(`/publikasi/${id}`);
   };
 
   if (loading) {
@@ -85,7 +81,11 @@ const Publikasi = () => {
 
       <div className={styles.publicationsGrid}>
         {publications.map((pub) => (
-          <div key={pub.id} className={styles.publicationCard}>
+          <div
+            key={pub.id}
+            className={styles.publicationCard}
+            onClick={() => handleGoToDetail(pub.id)}
+          >
             <div className={styles.cardContain}>
               <div className={styles.cardImage}>
                 <img
@@ -105,17 +105,16 @@ const Publikasi = () => {
                 )}
               </div>
             </div>
+
             <button
               className={styles.btnRead}
-              onClick={() => handleReadPublication(pub)}
-              disabled={!pub.linkDownload}
-              title={
-                pub.linkDownload
-                  ? "Klik untuk membaca publikasi"
-                  : "Publikasi tidak tersedia"
-              }
+              onClick={(e) => {
+                e.stopPropagation(); // biar gak trigger card click
+                handleGoToDetail(pub.id);
+              }}
+              title="Klik untuk membaca detail publikasi"
             >
-              {pub.readText || "Baca Publikasi"}
+              Baca Publikasi
             </button>
           </div>
         ))}
