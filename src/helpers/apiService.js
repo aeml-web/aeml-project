@@ -288,3 +288,60 @@ export const getPublicationById = async (id) => {
     return null;
   }
 };
+
+// Add this function to your apiService.js file
+
+export const getActiveQuestion = async () => {
+  try {
+    const response = await fetchFromAPI("/questions/active");
+
+    if (response.statusCode === 200 && response.data) {
+      const question = response.data;
+      return {
+        id: question.id,
+        question: question.question,
+        isActive: question.isActive,
+        createdAt: question.createdAt,
+        updatedAt: question.updatedAt,
+      };
+    } else {
+      throw new Error("Invalid response format");
+    }
+  } catch (error) {
+    console.error("Error fetching active question:", error);
+    return null;
+  }
+};
+
+export const submitAnswer = async (answer, questionId) => {
+  try {
+    const payload = {
+      answer: answer,
+      aemlAdminQuestionId: questionId,
+    };
+
+    const response = await fetch(`${API_BASE_URL}/answers`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${AUTH_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (data.statusCode === 201) {
+      return data.data;
+    } else {
+      throw new Error(data.message || "Failed to submit answer");
+    }
+  } catch (error) {
+    console.error("Error submitting answer:", error);
+    throw error;
+  }
+};
