@@ -4,7 +4,7 @@ import styles from "./NewsDetail.module.css";
 import { getArticleById } from "../../helpers/apiService"; // adjust path if needed
 import ReadAnother from "./ReadAnother";
 
-const NewsDetailPage = () => {
+const NewsDetailComponent = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
