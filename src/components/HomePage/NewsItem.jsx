@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./homepage.module.css";
 import { getArticles } from "../../helpers/apiService";
 
@@ -6,6 +7,7 @@ const NewsItem = () => {
   const [newsItems, setNewsItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadArticles = async () => {
@@ -24,6 +26,10 @@ const NewsItem = () => {
 
     loadArticles();
   }, []);
+
+  const handleCardClick = (itemId) => {
+    navigate(`/kegiatan/${itemId}`);
+  };
 
   if (loading) {
     return (
@@ -75,7 +81,11 @@ const NewsItem = () => {
 
       <div className={styles.newsGrid}>
         {/* Featured Article */}
-        <div className={styles.featuredArticle}>
+        <div
+          className={styles.featuredArticle}
+          onClick={() => handleCardClick(newsItems[0].id)}
+          style={{ cursor: "pointer" }}
+        >
           <div className={styles.featuredCard}>
             <div className={styles.featuredImageContainer}>
               <img
@@ -98,7 +108,12 @@ const NewsItem = () => {
         {/* Regular Articles Grid */}
         <div className={styles.regularGrid}>
           {newsItems.slice(1).map((item) => (
-            <div key={item.id} className={styles.regularCard}>
+            <div
+              key={item.id}
+              className={styles.regularCard}
+              onClick={() => handleCardClick(item.id)}
+              style={{ cursor: "pointer" }}
+            >
               <div className={styles.regularImageContainer}>
                 <img
                   src={item.image}
