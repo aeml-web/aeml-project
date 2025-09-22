@@ -20,12 +20,12 @@ const Footer = () => {
         { label: "Anggota", href: "/tentang/anggota" },
       ],
       Berita: [
-        { label: "Artikel", href: "/berita/artikel" },
-        { label: "Kegiatan", href: "/berita/kegiatan" },
+        { label: "Artikel", href: "/kegiatan" },
+        { label: "Kegiatan", href: "/kegiatan" },
       ],
       Publikasi: [
-        { label: "Edaran", href: "/publikasi/edaran" },
-        { label: "Aturan", href: "/publikasi/aturan" },
+        { label: "Edaran", href: "/publikasi" },
+        { label: "Aturan", href: "/publikasi" },
       ],
       Kontak: [{ label: "Media Sosial", href: "/kontak/media-sosial" }],
     },

@@ -74,7 +74,7 @@ const NewsDetailComponent = () => {
           </div>
         </div>
       </div>
-      <ReadAnother />
+      <ReadAnother excludeId={id} />
     </div>
   );
 };

@@ -4,6 +4,7 @@ import { Download } from "lucide-react";
 // Alternative: import { useRouter } from "next/router"; // Next.js
 
 import { getPublicationById } from "../../helpers/apiService"; // adjust path if needed
+import styles from "./publikasiDetail.module.css";
 
 export default function PublicationDetail() {
   const [publication, setPublication] = useState(null);
@@ -68,159 +69,21 @@ export default function PublicationDetail() {
     });
   };
 
-  const styles = {
-    container: {
-      minHeight: "100vh",
-      background:
-        "linear-gradient(135deg, #e8f4fd 0%, #d1e7ff 50%, #c9ddff 100%)",
-      padding: "3rem",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-    },
-    content: {
-      display: "flex",
-      gap: "2rem",
-      maxWidth: "900px",
-      width: "100%",
-      alignItems: "flex-start",
-      background: "white",
-      borderRadius: "8px",
-      padding: "2rem",
-      boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
-      border: "3px solid #4A90E2",
-    },
-    imageSection: {
-      flex: "0 0 280px",
-    },
-    publicationImage: {
-      width: "100%",
-      height: "350px",
-      borderRadius: "8px",
-      objectFit: "cover",
-      background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      color: "white",
-      fontSize: "14px",
-      fontWeight: "600",
-      textAlign: "center",
-      position: "relative",
-    },
-    detailSection: {
-      flex: 1,
-      paddingLeft: "1rem",
-    },
-    title: {
-      fontSize: "1.8rem",
-      fontWeight: "600",
-      color: "#333",
-      margin: "0 0 0.5rem 0",
-      lineHeight: "1.3",
-    },
-    meta: {
-      display: "flex",
-      alignItems: "center",
-      gap: "0.75rem",
-      marginBottom: "1rem",
-    },
-    category: {
-      background: publication?.type === "Research" ? "#8BC34A" : "#4A90E2",
-      color: "white",
-      padding: "0.25rem 0.75rem",
-      borderRadius: "12px",
-      fontSize: "0.8rem",
-      fontWeight: "500",
-    },
-    date: {
-      color: "#666",
-      fontSize: "0.85rem",
-    },
-    subtitle: {
-      color: "#666",
-      fontSize: "0.9rem",
-      lineHeight: "1.5",
-      marginBottom: "1.5rem",
-    },
-    downloadText: {
-      color: "#333",
-      fontSize: "0.9rem",
-      marginBottom: "1rem",
-      lineHeight: "1.4",
-    },
-    form: {
-      display: "flex",
-      flexDirection: "column",
-      gap: "0.75rem",
-    },
-    input: {
-      padding: "0.75rem",
-      border: "1px solid #ddd",
-      borderRadius: "4px",
-      fontSize: "0.85rem",
-      background: "#f8f9fa",
-      outline: "none",
-      color: "#333",
-    },
-    downloadButton: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      gap: "0.5rem",
-      padding: "0.75rem 1.25rem",
-      background: "#f8f9fa",
-      color: "#666",
-      border: "1px solid #ddd",
-      borderRadius: "4px",
-      fontSize: "0.85rem",
-      fontWeight: "500",
-      cursor: "pointer",
-      transition: "all 0.2s ease",
-      marginTop: "0.5rem",
-    },
-    loading: {
-      textAlign: "center",
-      padding: "2rem",
-      fontSize: "1.1rem",
-      color: "#666",
-    },
-    error: {
-      textAlign: "center",
-      padding: "2rem",
-      color: "#d32f2f",
-    },
-    backBtn: {
-      position: "absolute",
-      top: "2rem",
-      left: "2rem",
-      padding: "0.5rem 1rem",
-      background: "white",
-      border: "2px solid #4A90E2",
-      borderRadius: "4px",
-      color: "#4A90E2",
-      cursor: "pointer",
-      fontSize: "0.9rem",
-      fontWeight: "500",
-      transition: "all 0.2s ease",
-    },
-  };
-
   if (loading) {
     return (
-      <div style={styles.container}>
-        <div style={styles.loading}>Loading publication details...</div>
+      <div className={styles.container}>
+        <div className={styles.loading}>Loading publication details...</div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div style={styles.container}>
-        <button onClick={handleBack} style={styles.backBtn}>
+      <div className={styles.container}>
+        <button onClick={handleBack} className={styles.backBtn}>
           ← Back
         </button>
-        <div style={styles.error}>
+        <div className={styles.error}>
           <p>{error}</p>
         </div>
       </div>
@@ -229,11 +92,11 @@ export default function PublicationDetail() {
 
   if (!publication) {
     return (
-      <div style={styles.container}>
-        <button onClick={handleBack} style={styles.backBtn}>
+      <div className={styles.container}>
+        <button onClick={handleBack} className={styles.backBtn}>
           ← Back
         </button>
-        <div style={styles.error}>
+        <div className={styles.error}>
           <p>Publication not found.</p>
         </div>
       </div>
@@ -241,50 +104,24 @@ export default function PublicationDetail() {
   }
 
   return (
-    <div style={styles.container}>
-      <button
-        onClick={handleBack}
-        style={styles.backBtn}
-        onMouseEnter={(e) => {
-          e.target.style.background = "#4A90E2";
-          e.target.style.color = "white";
-        }}
-        onMouseLeave={(e) => {
-          e.target.style.background = "white";
-          e.target.style.color = "#4A90E2";
-        }}
-      >
+    <div className={styles.container}>
+      <button onClick={handleBack} className={styles.backBtn}>
         ← Back to Publications
       </button>
 
-      <div style={styles.content}>
+      <div className={styles.content}>
         {/* Left side - Publication Image */}
-        <div style={styles.imageSection}>
-          <div style={styles.publicationImage}>
+        <div className={styles.imageSection}>
+          <div className={styles.publicationImage}>
             {publication.image ? (
-              <img
-                src={publication.image}
-                alt={publication.title}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  borderRadius: "8px",
-                }}
-              />
+              <img src={publication.image} alt={publication.title} />
             ) : (
               <div>
-                <div
-                  style={{
-                    fontSize: "18px",
-                    fontWeight: "bold",
-                    marginBottom: "10px",
-                  }}
-                >
+                <div className={styles.imagePlaceholder}>
                   {publication.title}
                 </div>
                 {publication.subtitle && (
-                  <div style={{ fontSize: "10px", opacity: "0.9" }}>
+                  <div className={styles.imageSubtitle}>
                     {publication.subtitle}
                   </div>
                 )}
@@ -294,47 +131,55 @@ export default function PublicationDetail() {
         </div>
 
         {/* Right side - Details */}
-        <div style={styles.detailSection}>
-          <h1 style={styles.title}>{publication.title}</h1>
+        <div className={styles.detailSection}>
+          <h1 className={styles.title}>{publication.title}</h1>
 
-          <div style={styles.meta}>
-            <span style={styles.category}>{publication.type}</span>
-            <span style={styles.date}>{publication.date}</span>
+          <div className={styles.meta}>
+            <span
+              className={`${styles.category} ${
+                publication.type === "Research"
+                  ? styles.categoryResearch
+                  : styles.categoryDefault
+              }`}
+            >
+              {publication.type}
+            </span>
+            <span className={styles.date}>{publication.date}</span>
           </div>
 
           {publication.subtitle && (
-            <p style={styles.subtitle}>{publication.subtitle}</p>
+            <p className={styles.subtitle}>{publication.subtitle}</p>
           )}
 
           {publication.description && (
-            <p style={styles.subtitle}>{publication.description}</p>
+            <p className={styles.subtitle}>{publication.description}</p>
           )}
 
           {publication.author && (
-            <div style={{ ...styles.subtitle, fontWeight: "500" }}>
+            <div className={styles.authorSection}>
               <strong>Author:</strong> {publication.author}
             </div>
           )}
 
           {publication.tags && publication.tags.length > 0 && (
-            <div style={{ ...styles.subtitle, marginBottom: "1rem" }}>
+            <div className={styles.tagsSection}>
               <strong>Tags:</strong> {publication.tags.join(", ")}
             </div>
           )}
 
-          <p style={styles.downloadText}>
+          <p className={styles.downloadText}>
             Mohon mengisi data diri terlebih dahulu untuk mengunduh publikasi
             ini.
           </p>
 
-          <div style={styles.form}>
+          <div className={styles.form}>
             <input
               type="text"
               name="company"
               placeholder="Ketik perusahaan atau instansimu"
               value={formData.company}
               onChange={handleInputChange}
-              style={styles.input}
+              className={styles.input}
             />
             <input
               type="email"
@@ -342,21 +187,10 @@ export default function PublicationDetail() {
               placeholder="Alamat email"
               value={formData.email}
               onChange={handleInputChange}
-              style={styles.input}
+              className={styles.input}
             />
 
-            <button
-              onClick={handleDownload}
-              style={styles.downloadButton}
-              onMouseEnter={(e) => {
-                e.target.style.background = "#e9ecef";
-                e.target.style.borderColor = "#ccc";
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = "#f8f9fa";
-                e.target.style.borderColor = "#ddd";
-              }}
-            >
+            <button onClick={handleDownload} className={styles.downloadButton}>
               <Download size={14} />
               Download File
             </button>
