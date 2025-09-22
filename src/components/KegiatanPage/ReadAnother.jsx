@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./read.module.css";
 import styleGrid from "./read.module.css";
 import { getPublications } from "../../helpers/apiService";
 
-const ReadAnother = () => {
+const ReadAnother = ({ excludeId }) => {
   const [publications, setPublications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadPublications = async () => {
@@ -14,7 +16,13 @@ const ReadAnother = () => {
         setLoading(true);
         setError(null);
         const publicationsData = await getPublications();
-        setPublications(publicationsData);
+
+        // Filter out the one that's currently opened
+        const filtered = publicationsData.filter(
+          (item) => String(item.id) !== String(excludeId)
+        );
+
+        setPublications(filtered);
       } catch (err) {
         setError("Failed to load publications");
         console.error("Error loading publications:", err);
@@ -24,16 +32,10 @@ const ReadAnother = () => {
     };
 
     loadPublications();
-  }, []);
+  }, [excludeId]);
 
-  const handleReadPublication = (publication) => {
-    if (publication.linkDownload) {
-      // Open download link in new tab
-      window.open(publication.linkDownload, "_blank");
-    } else {
-      // If no download link, could navigate to detail page or show message
-      console.log("No download link available for:", publication.title);
-    }
+  const handleCardClick = (itemId) => {
+    navigate(`/kegiatan/${itemId}`);
   };
 
   if (loading) {
@@ -63,16 +65,7 @@ const ReadAnother = () => {
   }
 
   if (!publications.length) {
-    return (
-      <div className={styles.publicationsSection}>
-        <div className={styles.publicationsHeader}>
-          <h2 className={styles.publicationsTitle}>Baca juga:</h2>
-        </div>
-        <div className={styles.emptyContainer}>
-          <p>Belum ada publikasi tersedia.</p>
-        </div>
-      </div>
-    );
+    return null; // hide section if no other publications
   }
 
   return (
@@ -98,7 +91,13 @@ const ReadAnother = () => {
             </div>
             <div className={styleGrid.regularContent}>
               <h3 className={styleGrid.regularTitle}>{item.title}</h3>
-              <p className={styleGrid.regularDate}>13 Juli 2025</p>
+              <p className={styleGrid.regularDate}>
+                {new Date(item.createdAt).toLocaleDateString("id-ID", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </p>
             </div>
           </div>
         ))}
