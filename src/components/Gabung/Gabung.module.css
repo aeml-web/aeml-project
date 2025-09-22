@@ -10,7 +10,7 @@
 }
 
 .containerAll {
-  width: 1440px;
+  width: 100vw;
   height: fit-content;
   background: linear-gradient(145.78deg, #0c4fd3 -4.84%, #a3e221 160.38%);
 }
@@ -25,7 +25,7 @@
 }
 
 .backgroundImage {
-  width: 1440px;
+  width: 100vw;
   height: 407px;
   object-fit: cover;
 }

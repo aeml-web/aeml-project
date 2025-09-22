@@ -1,4 +1,4 @@
-/* ScrollNavigation.module.css */
+/* about.module.css */
 
 .container {
   display: flex;
@@ -81,13 +81,6 @@
   padding: 24px;
 }
 
-.title {
-  font-size: 20px;
-  font-weight: 700;
-  color: #1f2937;
-  margin-bottom: 24px;
-}
-
 .menu {
   display: flex;
   flex-direction: column;
@@ -96,7 +89,7 @@
 
 /* Menu Item Styles */
 .menuItem {
-  width: 100%;
+  width: 193px;
   text-align: right;
   transition: all 0.2s ease;
   border: none;
@@ -106,7 +99,6 @@
   font-weight: 400;
   font-size: 16px;
   font-family: "Instrument Sans", sans-serif;
-  width: 193px;
 }
 
 .menuItem:hover {
@@ -134,11 +126,14 @@
   color: #181818;
 }
 
-/* Main Content Styles */
+/* Main Content Styles - scrollable */
 .content {
   margin-left: 40px;
   width: 800px;
   text-align: justify;
+  overflow-y: auto;
+  height: 100vh;
+  padding-right: 20px;
 }
 
 /* Header Styles */
@@ -168,7 +163,7 @@
 /* Section Styles */
 .section {
   margin-bottom: 64px;
-  scroll-margin-top: 96px;
+  scroll-margin-top: 20px;
 }
 
 .sectionCard {
@@ -184,16 +179,12 @@
   font-family: "Instrument Sans", sans-serif;
 }
 
-.sectionIcon {
-  font-size: 28px;
-}
-
 .text {
   color: #181818;
   line-height: 150%;
   margin-bottom: 16px;
   font-family: "Instrument Sans", sans-serif;
-  font-family: 16px;
+  font-size: 16px;
 }
 
 /* Visi Misi Grid Styles */
@@ -203,85 +194,11 @@
   gap: 32px;
 }
 
-.card {
+.cardGreen {
   padding: 24px;
   border-radius: 8px;
-}
-
-.cardBlue {
-  composes: card;
-  background-color: #eff6ff;
-}
-
-.cardTitle {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.cardTitleGreen {
-  composes: cardTitle;
-  color: #166534;
-}
-
-.cardTitleBlue {
-  composes: cardTitle;
-  color: #1e40af;
-}
-
-/* Feature Cards */
-.features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-  margin-top: 24px;
-}
-
-.featureCard {
-  background-color: #f9fafb;
-  padding: 16px;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-}
-
-.featureIcon {
-  width: 48px;
-  height: 48px;
-  background-color: #dbeafe;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 12px;
-}
-
-.featureNumber {
-  color: #2563eb;
-  font-weight: 700;
-}
-
-.featureTitle {
-  font-weight: 500;
-  color: #1f2937;
-  margin-bottom: 8px;
-}
-
-.featureDesc {
-  font-size: 14px;
-  color: #6b7280;
-}
-
-/* Footer Spacer */
-.footer {
-  height: 384px;
-}
-
-.iconVisi {
-  width: 259px;
-  height: 194px;
+  background: linear-gradient(to right, #22c55e, #10b981);
+  color: white;
 }
 
 .visi {
@@ -291,8 +208,50 @@
   margin-right: 220px;
 }
 
+.leftVisi {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.rightVisi {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.iconVisi {
+  width: 259px;
+  height: 194px;
+}
+
 .way {
   margin-right: 220px;
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.photoWay {
+  width: 300px;
+  height: 200px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* Leadership section */
+.lead {
+  margin-right: 220px;
+}
+
+.titleBoard {
+  color: #181818;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+  margin-bottom: 16px;
 }
 
 .containerPhotos {
@@ -329,15 +288,6 @@
   margin: 0;
 }
 
-.titleBoard {
-  color: #181818;
-  font-family: "Instrument Sans", sans-serif;
-  font-size: 32px;
-  font-weight: 700;
-  margin: 0;
-  margin-bottom: 16px;
-}
-
 .logoContainer {
   display: flex;
   align-items: center;
@@ -345,6 +295,7 @@
   position: relative;
 }
 
+/* Swiper navigation styles */
 .swiper-button-next,
 .swiper-button-prev {
   z-index: 999 !important;
@@ -364,6 +315,7 @@
   visibility: hidden !important;
 }
 
+/* Logo styles */
 .partnerLogo {
   max-width: 204px;
   max-height: 122px;
@@ -392,6 +344,7 @@
   margin-right: 0px !important;
 }
 
+/* Partners grid styles */
 .partnersGrid {
   display: flex;
   flex-wrap: wrap;
@@ -417,6 +370,17 @@
   justify-content: left;
   padding-top: 40px;
   align-items: center;
+}
+
+.partnerCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Footer Spacer */
+.footer {
+  height: 384px;
 }
 
 /* Responsive Design */
@@ -452,10 +416,6 @@
   .grid {
     grid-template-columns: 1fr;
   }
-
-  .features {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  }
 }
 
 /* Smooth Scrolling */
@@ -463,20 +423,20 @@
   scroll-behavior: smooth;
 }
 
-/* Custom Scrollbar */
-.sidebar::-webkit-scrollbar {
+/* Custom Scrollbar for content area */
+.content::-webkit-scrollbar {
   width: 6px;
 }
 
-.sidebar::-webkit-scrollbar-track {
+.content::-webkit-scrollbar-track {
   background: #f1f5f9;
 }
 
-.sidebar::-webkit-scrollbar-thumb {
+.content::-webkit-scrollbar-thumb {
   background: #cbd5e1;
   border-radius: 3px;
 }
 
-.sidebar::-webkit-scrollbar-thumb:hover {
+.content::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }

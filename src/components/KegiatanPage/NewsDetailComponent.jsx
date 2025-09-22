@@ -79,4 +79,4 @@ const NewsDetailPage = () => {
   );
 };
 
-export default NewsDetailPage;
+export default NewsDetailComponent;
