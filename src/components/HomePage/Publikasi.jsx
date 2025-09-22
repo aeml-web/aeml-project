@@ -78,7 +78,7 @@ const Publikasi = () => {
     <div className={styles.publicationsSection}>
       <div className={styles.publicationsHeader}>
         <h2 className={styles.publicationsTitle}>Publikasi</h2>
-        <a href="#" className={styles.viewAllLink}>
+        <a href="/publikasi" className={styles.viewAllLink}>
           Baca selengkapnya →
         </a>
       </div>

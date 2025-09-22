@@ -219,3 +219,72 @@ const getFallbackPublications = () => [
     readText: "Baca Publikasi",
   },
 ];
+
+/**
+ * Fetch a single article by ID
+ * @param {number|string} id - Article ID
+ * @returns {Promise<Object>} Transformed article
+ */
+export const getArticleById = async (id) => {
+  try {
+    const response = await fetchFromAPI(`/articles/${id}`);
+
+    if (response.statusCode === 200 && response.data) {
+      return {
+        id: response.data.id,
+        title: response.data.title,
+        subtitle: response.data.subtitle,
+        body: response.data.body,
+        images: response.data.images,
+        type: response.data.type,
+        linkDownload: response.data.linkDownload,
+        createdAt: response.data.createdAt,
+        updatedAt: response.data.updatedAt,
+      };
+    } else {
+      throw new Error("Invalid response format");
+    }
+  } catch (error) {
+    console.error("Error fetching article by ID:", error);
+    return null;
+  }
+};
+
+export const getPublicationById = async (id) => {
+  try {
+    const response = await fetchFromAPI(`/publications/${id}`);
+
+    if (response.statusCode === 200 && response.data) {
+      const publication = response.data;
+      return {
+        id: publication.id,
+        title: publication.title,
+        subtitle: publication.subtitle,
+        body: publication.body,
+        image:
+          publication.images && publication.images.length > 0
+            ? publication.images[0]
+            : null,
+        images: publication.images || [],
+        type: publication.type,
+        linkDownload: publication.linkDownload,
+        isDeleted: publication.isDeleted,
+        isShowed: publication.isShowed,
+        tenantId: publication.tenant_id,
+        createdAt: publication.createdAt,
+        updatedAt: publication.updatedAt,
+        // Format date for display
+        date: new Date(publication.createdAt).toLocaleDateString("id-ID", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        }),
+      };
+    } else {
+      throw new Error("Invalid response format");
+    }
+  } catch (error) {
+    console.error("Error fetching publication by ID:", error);
+    return null;
+  }
+};

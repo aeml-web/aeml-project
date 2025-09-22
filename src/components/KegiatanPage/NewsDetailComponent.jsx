@@ -1,57 +1,126 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useLocation, useNavigate } from "react-router-dom"; // For React Router
-// Or use: import { useRouter } from "next/router"; // For Next.js
-import NewsDetailComponent from "./NewsDetailComponent";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import styles from "./NewsDetail.module.css";
+import { getArticleById } from "../../helpers/apiService"; // adjust path if needed
 
-const NewsDetailPage = ({ allArticles }) => {
-  const { id } = useParams(); // Get article ID from URL
-  const location = useLocation(); // Get passed state data
-  const navigate = useNavigate(); // For navigation
-  // Or for Next.js: const router = useRouter();
+const NewsDetailPage = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   const [article, setArticle] = useState(null);
-  const [relatedArticles, setRelatedArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Try to get article from passed state first
-    if (location.state && location.state.article) {
-      setArticle(location.state.article);
-    }
-    // Otherwise, find article by ID from allArticles prop
-    else if (allArticles && id) {
-      const foundArticle = allArticles.find(
-        (item) => item.id.toString() === id
-      );
-      setArticle(foundArticle);
-    }
-  }, [id, location.state, allArticles]);
+    const fetchArticle = async () => {
+      setLoading(true);
+      const result = await getArticleById(id);
+      setArticle(result);
+      setLoading(false);
+    };
+    fetchArticle();
+  }, [id]);
 
-  useEffect(() => {
-    // Generate related articles when article is loaded
-    if (article && allArticles) {
-      const otherArticles = allArticles.filter(
-        (item) => item.id !== article.id
-      );
-      const shuffled = otherArticles.sort(() => 0.5 - Math.random());
-      setRelatedArticles(shuffled.slice(0, 4));
-    }
-  }, [article, allArticles]);
-
-  const handleBack = () => {
-    navigate(-1); // Go back to previous page
-    // Or navigate to specific route: navigate("/news");
+  const handleBackClick = () => {
+    navigate("/kegiatan");
   };
 
+  const formatDate = (dateString) => {
+    return new Date(dateString).toLocaleDateString("id-ID", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
+
+  if (loading) {
+    return <div className={styles.loading}>Loading article...</div>;
+  }
+
   if (!article) {
-    return <div>Loading article...</div>;
+    return <div className={styles.error}>Artikel tidak ditemukan.</div>;
   }
 
   return (
-    <NewsDetailComponent
-      article={article}
-      relatedArticles={relatedArticles}
-      onBack={handleBack}
-    />
+    <div className={styles.newsDetailContainer}>
+      {/* Header Section */}
+      <div className={styles.headerSection}>
+        <div className={styles.navigation}>
+          <div className={styles.navLeft}>
+            <button className={styles.backButton} onClick={handleBackClick}>
+              ← Kembali ke Kegiatan
+            </button>
+          </div>
+          <div className={styles.navCenter}>
+            <img src="/logo.png" alt="AEML Logo" className={styles.logo} />
+          </div>
+          <div className={styles.navRight}>
+            <button className={styles.navBtn}>Share</button>
+            {article.linkDownload && (
+              <a
+                href={article.linkDownload}
+                className={styles.navBtnPrimary}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Download
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className={styles.mainContent}>
+        <div className={styles.contentWrapper}>
+          {/* Hero Image */}
+          {article.images && article.images.length > 0 && (
+            <div className={styles.heroImageContainer}>
+              <img
+                src={article.images[0]}
+                alt={article.title}
+                className={styles.heroImage}
+                onError={(e) => (e.target.style.display = "none")}
+              />
+            </div>
+          )}
+
+          {/* Article Header */}
+          <div className={styles.articleHeader}>
+            <h1 className={styles.articleTitle}>{article.title}</h1>
+            <div className={styles.articleMeta}>
+              <span className={styles.articleDate}>
+                {formatDate(article.createdAt)}
+              </span>
+              <span className={styles.articleCategory}>{article.type}</span>
+            </div>
+          </div>
+
+          {/* Article Content */}
+          <div className={styles.articleContent}>
+            {article.subtitle && (
+              <p>
+                <strong>{article.subtitle}</strong>
+              </p>
+            )}
+            {article.body?.split("\n").map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Debug Info */}
+      <div
+        style={{
+          padding: "1rem",
+          textAlign: "center",
+          fontSize: "0.875rem",
+          color: "#6c757d",
+        }}
+      >
+        <small>Article ID from route: {id}</small>
+      </div>
+    </div>
   );
 };
 

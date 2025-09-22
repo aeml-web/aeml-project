@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // For React Router
-// Or use: import { useRouter } from "next/router"; // For Next.js
+import { useNavigate } from "react-router-dom";
 import styles from "./NewsGrid.module.css";
 
 const NewsGrid = ({ items }) => {
   const itemsPerPage = 8;
   const [currentPage, setCurrentPage] = useState(1);
-  const navigate = useNavigate(); // For React Router
-  // Or use: const router = useRouter(); // For Next.js
+  const navigate = useNavigate();
 
   const totalPages = Math.ceil(items.length / itemsPerPage);
 
@@ -15,16 +13,8 @@ const NewsGrid = ({ items }) => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentItems = items.slice(startIndex, startIndex + itemsPerPage);
 
-  // Handle article click - navigate to detail page
-  const handleArticleClick = (article) => {
-    // For React Router:
-    navigate(`/news/${article.id}`, { state: { article } });
-
-    // Or for Next.js:
-    // router.push(`/news/${article.id}`);
-
-    // Or if you want to pass article data through URL params:
-    // navigate(`/news/${article.id}?title=${encodeURIComponent(article.title)}&date=${article.date}`);
+  const handleCardClick = (itemId) => {
+    navigate(`/kegiatan/${itemId}`);
   };
 
   return (
@@ -39,7 +29,7 @@ const NewsGrid = ({ items }) => {
           <div
             key={item.id}
             className={styles.regularCard}
-            onClick={() => handleArticleClick(item)}
+            onClick={() => handleCardClick(item.id)}
             style={{ cursor: "pointer" }}
           >
             <div className={styles.regularImageContainer}>
