@@ -381,11 +381,17 @@ const ScrollNavigation = () => {
                   {lead.map((src, index) => (
                     <SwiperSlide key={index}>
                       <div className={styles.containerPhotos}>
-                        <img
-                          src={src.image}
-                          alt={`Event ${index + 1}`}
-                          className={styles.carouselImage}
-                        />
+                        <div className={styles.containerImage}>
+                          <img
+                            src={src.image}
+                            alt={`Event ${index + 1}`}
+                            className={styles.carouselImage}
+                          />
+
+                          <h4 className={styles.titleHover}>
+                            {src.description}
+                          </h4>
+                        </div>
                         <h2 className={styles.name}>{src.name}</h2>
                         <h4 className={styles.title}>{src.title}</h4>
                       </div>
@@ -405,15 +411,23 @@ const ScrollNavigation = () => {
                 >
                   {lead.map((src, index) => (
                     <SwiperSlide key={index}>
-                      <div className={styles.containerPhotos}>
-                        <img
-                          src={src.image}
-                          alt={`Event ${index + 1}`}
-                          className={styles.carouselImage}
-                        />
-                        <h2 className={styles.name}>{src.name}</h2>
-                        <h4 className={styles.title}>{src.title}</h4>
-                      </div>
+                      <SwiperSlide key={index}>
+                        <div className={styles.containerPhotos}>
+                          <div className={styles.containerImage}>
+                            <img
+                              src={src.image}
+                              alt={`Event ${index + 1}`}
+                              className={styles.carouselImage}
+                            />
+
+                            <h4 className={styles.titleHover}>
+                              {src.description}
+                            </h4>
+                          </div>
+                          <h2 className={styles.name}>{src.name}</h2>
+                          <h4 className={styles.title}>{src.title}</h4>
+                        </div>
+                      </SwiperSlide>
                     </SwiperSlide>
                   ))}
                 </Swiper>
@@ -431,11 +445,16 @@ const ScrollNavigation = () => {
                   {lead.map((src, index) => (
                     <SwiperSlide key={index}>
                       <div className={styles.containerPhotos}>
-                        <img
-                          src={src.image}
-                          alt={`Event ${index + 1}`}
-                          className={styles.carouselImage}
-                        />
+                        <div className={styles.containerImage}>
+                          <img
+                            src={src.image}
+                            alt={`Event ${index + 1}`}
+                            className={styles.carouselImage}
+                          />
+                          <h4 className={styles.titleHover}>
+                            {src.description}
+                          </h4>
+                        </div>
                         <h2 className={styles.name}>{src.name}</h2>
                         <h4 className={styles.title}>{src.title}</h4>
                       </div>
