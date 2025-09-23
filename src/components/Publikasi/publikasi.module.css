@@ -16,6 +16,7 @@
   max-height: 400px;
   overflow: hidden;
   margin: 0 auto; /* center */
+  margin-top: 32px;
 }
 
 .bannerImage {
@@ -69,19 +70,37 @@
 }
 
 .container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  display: flex;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   padding: 24px;
-  max-width: 1083px;
+  width: 1440px;
+  height: fit-content;
   margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 80px;
+  background: url("../../assets/bgpublikasidetail.png") no-repeat center bottom /
+    contain;
+}
+
+.containerContent {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 24px;
+  width: 1028px;
+  height: fit-content;
+  margin: 0 auto;
+  margin-bottom: 80px;
 }
 
 .card {
-  background: #fff;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  width: 341px;
+  height: 380px;
 }
 
 .image {
@@ -134,22 +153,6 @@
 .date {
   font-size: 13px;
   color: #888;
-}
-
-.downloadBtn {
-  margin-top: auto;
-  padding: 8px 12px;
-  background: #f3f3f3;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  width: fit-content;
-}
-
-.downloadBtn:hover {
-  background: #e0e0e0;
 }
 
 .bottomCard {
@@ -235,9 +238,8 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.clickable:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+.clickable:hover .downloadButton {
+  display: block;
 }
 
 .clickable:focus {
@@ -249,13 +251,29 @@
   transform: translateY(0);
 }
 
-/* Ensure download button stays clickable */
-.downloadBtn {
-  position: relative;
-  z-index: 2;
-  transition: all 0.2s ease;
+.downloadButton {
+  width: 173px;
+  height: 32px;
+  font-size: 16px;
+  font-weight: 600;
+  color: black;
+  background: #ffffff;
+  border: 1px solid #181818;
+  border-radius: 32px;
+  cursor: pointer;
+  margin-top: 1rem;
+  gap: 12px;
+  font-family: "Instrument Sans", sans-serif;
+  display: none;
 }
 
-.downloadBtn:hover {
-  transform: scale(1.05);
+.downloadButton:hover {
+  font-size: 16px;
+  font-weight: 600;
+  color: black;
+  background: #a3e221;
+  cursor: pointer;
+  margin-top: 1rem;
+  border: none;
+  font-family: "Instrument Sans", sans-serif;
 }

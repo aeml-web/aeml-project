@@ -100,85 +100,87 @@ export default function PublicationDetail() {
 
   return (
     <div className={styles.container}>
-      <button onClick={handleBack} className={styles.backBtn}>
-        ← Back to Publications
-      </button>
+      <div className={styles.containerContent}>
+        <button onClick={handleBack} className={styles.backBtn}>
+          ← Back to Publications
+        </button>
 
-      <div className={styles.content}>
-        {/* Left side - Publication Image */}
-        <div className={styles.imageSection}>
-          <div className={styles.publicationImage}>
-            {publication.image ? (
-              <img src={publication.image} alt={publication.title} />
-            ) : (
-              <div>
-                <div className={styles.imagePlaceholder}>
-                  {publication.title}
-                </div>
-                {publication.subtitle && (
-                  <div className={styles.imageSubtitle}>
-                    {publication.subtitle}
+        <div className={styles.content}>
+          {/* Left side - Publication Image */}
+          <div className={styles.imageSection}>
+            <div className={styles.publicationImage}>
+              {publication.image ? (
+                <img src={publication.image} alt={publication.title} />
+              ) : (
+                <div>
+                  <div className={styles.imagePlaceholder}>
+                    {publication.title}
                   </div>
-                )}
-              </div>
-            )}
+                  {publication.subtitle && (
+                    <div className={styles.imageSubtitle}>
+                      {publication.subtitle}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
-        </div>
 
-        {/* Right side - Details */}
-        <div className={styles.detailSection}>
-          <div className={styles.top}>
-            <h1 className={styles.title}>{publication.title}</h1>
+          {/* Right side - Details */}
+          <div className={styles.detailSection}>
+            <div className={styles.top}>
+              <h1 className={styles.title}>{publication.title}</h1>
 
-            <div className={styles.meta}>
-              <span
-                className={`${styles.category} ${
-                  publication.type === "Research"
-                    ? styles.categoryResearch
-                    : styles.categoryDefault
-                }`}
-              >
-                {publication.type}
-              </span>
-              <span className={styles.date}>{publication.date}</span>
+              <div className={styles.meta}>
+                <span
+                  className={`${styles.category} ${
+                    publication.type === "Research"
+                      ? styles.categoryResearch
+                      : styles.categoryDefault
+                  }`}
+                >
+                  {publication.type}
+                </span>
+                <span className={styles.date}>{publication.date}</span>
+              </div>
+
+              {publication.subtitle && (
+                <p className={styles.subtitle}>{publication.subtitle}</p>
+              )}
             </div>
 
-            {publication.subtitle && (
-              <p className={styles.subtitle}>{publication.subtitle}</p>
-            )}
-          </div>
+            <div className={styles.bottom}>
+              <p className={styles.downloadText}>
+                Mohon mengisi data diri terlebih dahulu untuk mengunduh
+                publikasi ini.
+              </p>
 
-          <div className={styles.bottom}>
-            <p className={styles.downloadText}>
-              Mohon mengisi data diri terlebih dahulu untuk mengunduh publikasi
-              ini.
-            </p>
+              <div className={styles.form}>
+                <input
+                  type="text"
+                  name="company"
+                  placeholder="Ketik perusahaan atau instansimu"
+                  value={formData.company}
+                  onChange={handleInputChange}
+                  className={styles.formInput}
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Alamat email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className={styles.formInput}
+                />
 
-            <div className={styles.form}>
-              <input
-                type="text"
-                name="company"
-                placeholder="Ketik perusahaan atau instansimu"
-                value={formData.company}
-                onChange={handleInputChange}
-                className={styles.formInput}
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Alamat email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className={styles.formInput}
-              />
-
-              <button
-                onClick={handleDownload}
-                className={styles.downloadButton}
-              >
-                <Download size={14} />
-                Download File
-              </button>
+                <button
+                  onClick={handleDownload}
+                  className={styles.downloadButton}
+                >
+                  <Download size={14} />
+                  Download File
+                </button>
+              </div>
             </div>
           </div>
         </div>

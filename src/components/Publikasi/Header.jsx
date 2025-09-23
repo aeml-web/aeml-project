@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./publikasi.module.css";
-import cover from "../../assets/publication_cover.png";
+import cover from "../../assets/bgpublikasi.png";
 
 export default function Header() {
   return (
@@ -14,15 +14,8 @@ export default function Header() {
       </div>
 
       <div className={styles.content}>
-        <div className={styles.badges}>
-          <span className={styles.dot}></span>
-          Diperbaharui 5 hari yang lalu
-        </div>
         <h2 className={styles.title}>Publikasi</h2>
-        <p className={styles.desc}>
-          Lorem ipsum dolor sit amet. Disini ada sedikit penjelasan atau brief
-          sebelum masuk publikasi, max 2 line
-        </p>
+        <p className={styles.desc}>Edaran, riset, dan booklet dari AEML.</p>
       </div>
     </div>
   );
