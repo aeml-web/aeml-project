@@ -273,21 +273,6 @@ const ScrollNavigation = () => {
 
   const renderSectionContent = (item) => {
     switch (item.id) {
-      case "tentang-aeml":
-        return (
-          <div>
-            <p className={styles.text}>
-              AEML berperan sebagai wadah industri, pusat pemikiran, serta
-              advokat kebijakan publik yang mendorong terciptanya ekosistem
-              mobilitas listrik yang berdaya saing global. Melalui sinergi
-              lintas sektor, asosiasi ini berkomitmen untuk mempercepat adopsi
-              kendaraan listrik, memperkuat rantai pasok domestik, serta
-              mendukung transisi menuju energi bersih dan transportasi
-              berkelanjutan di Indonesia.
-            </p>
-          </div>
-        );
-
       case "visi":
         return (
           <div className={styles.grid}>
