@@ -53,8 +53,6 @@ const ScrollNavigation = () => {
     { id: "misi", label: "Misi AEML", icon: "🎯" },
     { id: "perjalanan-bersama", label: "Perjalanan Bersama", icon: "🤝" },
     { id: "pimpinan-aeml", label: "Struktur AEML", icon: "👥" },
-
-    // { id: "tentang-aeml", label: "Tentang AEML", icon: "📋" },
     { id: "perusahaan-anggota", label: "Perusahaan Anggota", icon: "🏢" },
     { id: "mitra-pemerintahan", label: "Mitra Pemerintahan", icon: "🏛️" },
     { id: "mitra-pembangunan", label: "Mitra Pembangunan", icon: "🔧" },
@@ -293,23 +291,21 @@ const ScrollNavigation = () => {
       case "visi":
         return (
           <div className={styles.grid}>
-            <div className={styles.cardGreen}>
-              <div className={styles.visi}>
-                <div className={styles.leftVisi}>
-                  <img src={visi2} className={styles.iconVisi}></img>
-                  <p className={styles.text}>
-                    Mendukung adopsi kendaraan listrik dan mendorong terciptanya
-                    ekosistem kendaraan listrik yang berdaya saing global
-                  </p>
-                </div>
-                <div className={styles.rightVisi}>
-                  <img src={visi1} className={styles.iconVisi}></img>
-                  <p className={styles.text}>
-                    Memberikan suara kepada anggota dan membina kemitraan yang
-                    membangun rantai nilai domestik yang kuat, serta kolaborasi
-                    dengan semua pemangku kepentingan.
-                  </p>
-                </div>
+            <div className={styles.visi}>
+              <div className={styles.leftVisi}>
+                <img src={visi2} className={styles.iconVisi}></img>
+                <p className={styles.text}>
+                  Mendukung adopsi kendaraan listrik dan mendorong terciptanya
+                  ekosistem kendaraan listrik yang berdaya saing global
+                </p>
+              </div>
+              <div className={styles.rightVisi}>
+                <img src={visi1} className={styles.iconVisi}></img>
+                <p className={styles.text}>
+                  Memberikan suara kepada anggota dan membina kemitraan yang
+                  membangun rantai nilai domestik yang kuat, serta kolaborasi
+                  dengan semua pemangku kepentingan.
+                </p>
               </div>
             </div>
           </div>
