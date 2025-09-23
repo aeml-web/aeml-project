@@ -53,9 +53,9 @@ const ScrollNavigation = () => {
     { id: "misi", label: "Misi AEML", icon: "🎯" },
     { id: "perjalanan-bersama", label: "Perjalanan Bersama", icon: "🤝" },
     { id: "pimpinan-aeml", label: "Struktur AEML", icon: "👥" },
-    { id: "perusahaan-anggota", label: "Perusahaan Anggota", icon: "🏢" },
-    { id: "mitra-pemerintahan", label: "Mitra Pemerintahan", icon: "🏛️" },
-    { id: "mitra-pembangunan", label: "Mitra Pembangunan", icon: "🔧" },
+    { id: "perusahaan-anggota", label: "Perusahaan Anggota AEML", icon: "🏢" },
+    { id: "mitra-pemerintahan", label: "Mitra Pemerintahan AEML", icon: "🏛️" },
+    { id: "mitra-pembangunan", label: "Mitra Pembangunan AEML", icon: "🔧" },
   ];
 
   const logos = [
