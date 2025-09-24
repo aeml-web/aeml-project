@@ -81,6 +81,7 @@
 .btnSecondary:hover {
   background-color: white;
   font-weight: 700;
+  border: 2px solid black;
 }
 
 .containerCarousel {
@@ -907,6 +908,10 @@
   margin-left: 4px;
 }
 
+.playIcon:hover {
+  color: black;
+}
+
 .videoPlayer {
   aspect-ratio: 16/9;
 }
@@ -922,6 +927,7 @@
   border: 2px solid #000000;
   color: #181818;
   padding: 16px 32px;
+  padding-left: 90px;
   border-radius: 26px;
   font-size: 16px;
   font-weight: 400;
@@ -933,7 +939,7 @@
   text-decoration: none;
   width: 360px;
   justify-items: center;
-  justify-content: center;
+  justify-content: space-between;
   font-family: "Instrument Sans", sans-serif;
 }
 
