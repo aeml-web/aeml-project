@@ -84,7 +84,10 @@ const Publikasi = () => {
           <div
             key={pub.id}
             className={styles.publicationCard}
-            onClick={() => handleGoToDetail(pub.id)}
+            onClick={(e) => {
+              e.stopPropagation(); // biar gak trigger card click
+              handleGoToDetail(pub.id);
+            }}
           >
             <div className={styles.cardContain}>
               <div className={styles.cardImage}>

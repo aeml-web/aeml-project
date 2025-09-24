@@ -1,10 +1,21 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+// Di main.jsx atau index.js
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import "./index.css";
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
+// Disable browser scroll restoration
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+
+// Force scroll to top on page load
+window.addEventListener("beforeunload", () => {
+  window.scrollTo(0, 0);
+});
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
     <App />
-  </StrictMode>,
-)
+  </React.StrictMode>
+);
