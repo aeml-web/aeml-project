@@ -84,14 +84,34 @@
 }
 
 .containerCarousel {
+  position: relative; /* penting biar ::after bisa absolute */
   display: flex;
   gap: 24px;
   align-items: center;
-  width: 1440px;
+  width: 100vw;
   padding-top: 70px;
   padding-bottom: 138px;
   padding-left: 100px;
   justify-content: center;
+  background: none; /* pindahkan gradient ke ::after */
+  z-index: 1;
+}
+
+.containerCarousel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: -30px; /* extend background ke bawah 30px */
+  background: linear-gradient(
+    360deg,
+    #ffffff 8.55%,
+    #c4d8ff 45.46%,
+    #e1ebff 66.61%,
+    #ffffff 94.81%
+  );
+  z-index: -1; /* biar background di belakang konten */
 }
 
 .left {
@@ -702,6 +722,10 @@
   width: 192px;
   font-family: "Instrument Sans", sans-serif;
   margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .readButton {
@@ -764,7 +788,8 @@
   min-height: 600px;
   overflow: hidden;
   width: 1440px;
-  background: url("../../assets/newframe.png") no-repeat center bottom / contain;
+  background: url("../../assets/lingkaran.png") no-repeat center bottom /
+    contain;
   background-size: 102%; /* 100% = default contain width, 150% = 1.5x lebih besar */
 }
 
@@ -989,6 +1014,8 @@
   padding: 80px 40px;
   width: 1440px;
   margin: 0 auto;
+  background: transparent;
+  z-index: 20;
 }
 
 .partnerCategory {

@@ -4,11 +4,14 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import foto1 from "../../assets/foto1.png";
+import foto2 from "../../assets/foto2new.png";
+import foto3 from "../../assets/foto3new.png";
 
 const photos = [
-  "https://picsum.photos/id/1011/800/500",
-  "https://picsum.photos/id/1015/800/500",
-  "https://picsum.photos/id/1016/800/500",
+  foto1,
+  "https://picsum.photos/id/1025/800/500",
+  foto3,
   "https://picsum.photos/id/1025/800/500",
 ];
 

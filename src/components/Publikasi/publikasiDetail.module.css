@@ -3,8 +3,8 @@
   display: flex;
   justify-content: center;
   padding-top: 44px;
-  width: 1440px;
-  background: url("../../assets/bgpublikasidetail.png") no-repeat center bottom /
+  width: 100vw;
+  background: url("../../assets/bgkegiatanew.png") no-repeat center bottom /
     contain;
 }
 

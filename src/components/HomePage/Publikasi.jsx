@@ -100,9 +100,9 @@ const Publikasi = () => {
               </div>
               <div className={styles.cardContent}>
                 <h3 className={styles.cardTitle}>{pub.title}</h3>
-                {pub.subtitle && (
+                {/* {pub.subtitle && (
                   <p className={styles.cardSubtitle}>{pub.subtitle}</p>
-                )}
+                )} */}
               </div>
             </div>
 
