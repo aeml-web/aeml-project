@@ -1,6 +1,7 @@
 .heroWrapper {
   max-width: 1440px;
   align-items: center;
+  margin-top: 30px;
 }
 
 .heroContainer {

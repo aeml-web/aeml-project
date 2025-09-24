@@ -7,6 +7,7 @@ import logobrowse from "../../assets/image-rils.png";
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation(); // ✅ get current path for active state
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,7 +26,11 @@ const Navbar = () => {
     <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ""}`}>
       <div className={styles.containerMargin}>
         <ul className={styles.navLinks}>
-          <li>
+          <li
+            className={styles.dropdownContainer}
+            onMouseEnter={() => setIsDropdownOpen(true)}
+            onMouseLeave={() => setIsDropdownOpen(false)}
+          >
             <Link
               to="/about"
               className={`${styles.navLink} ${
@@ -39,6 +44,9 @@ const Navbar = () => {
                 viewBox="0 0 8 6"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                className={`${styles.dropdownArrow} ${
+                  isDropdownOpen ? styles.arrowRotated : ""
+                }`}
               >
                 <path
                   d="M7.06 0.530273L4 3.58361L0.94 0.530273L0 1.47027L4 5.47027L8 1.47027L7.06 0.530273Z"
@@ -46,6 +54,24 @@ const Navbar = () => {
                 />
               </svg>
             </Link>
+
+            {/* Dropdown Menu */}
+            {isDropdownOpen && (
+              <div className={styles.dropdownMenu}>
+                <Link to="/about/sejarah" className={styles.dropdownItem}>
+                  Visi & Misi
+                </Link>
+                <Link to="/about/visi-misi" className={styles.dropdownItem}>
+                  Perjalanan Bersama
+                </Link>
+                <Link to="/about/struktur" className={styles.dropdownItem}>
+                  Pimpinan AEML
+                </Link>
+                <Link to="/about/prestasi" className={styles.dropdownItem}>
+                  Perusahaan Anggota
+                </Link>
+              </div>
+            )}
           </li>
           <li>
             {/* Replace with a route instead of hash anchor if you have pages */}
@@ -79,7 +105,7 @@ const Navbar = () => {
         </div>
 
         <div className={styles.end}>
-          <button className={styles.button}>
+          <button className={styles.buttonInfomolis}>
             <img src={logobrowse} alt="" className={styles.icon} />
             Infomolis.id
           </button>
