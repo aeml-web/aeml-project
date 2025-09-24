@@ -47,6 +47,7 @@ import HeaderAbout from "./HeaderAbout";
 const ScrollNavigation = () => {
   const [activeSection, setActiveSection] = useState("tentang-aeml");
   const sectionsRef = useRef({});
+  const contentRef = useRef(null);
 
   const menuItems = [
     { id: "visi", label: "Visi AEML", icon: "🎯" },
@@ -233,42 +234,57 @@ const ScrollNavigation = () => {
     "https://picsum.photos/id/1025/800/500",
   ];
 
-  // Handle scroll to section
   const scrollToSection = (sectionId) => {
     const element = sectionsRef.current[sectionId];
-    if (element) {
-      element.scrollIntoView({
+    const container = contentRef.current;
+
+    if (element && container) {
+      const containerTop = container.getBoundingClientRect().top;
+      const elementTop = element.getBoundingClientRect().top;
+
+      const scrollOffset = elementTop - containerTop + container.scrollTop;
+
+      container.scrollTo({
+        top: scrollOffset,
         behavior: "smooth",
-        block: "start",
-        inline: "nearest",
       });
+
       setActiveSection(sectionId);
     }
   };
 
   // Handle scroll spy
   useEffect(() => {
+    const contentEl = contentRef.current;
+    if (!contentEl) return;
+
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100;
+      const containerTop = contentEl.getBoundingClientRect().top;
+
+      let currentSection = null;
 
       for (const item of menuItems) {
         const element = sectionsRef.current[item.id];
         if (element) {
-          const elementTop = element.offsetTop;
-          const elementBottom = elementTop + element.offsetHeight;
+          const rect = element.getBoundingClientRect();
+          const elementTop = rect.top - containerTop;
 
-          if (scrollPosition >= elementTop && scrollPosition < elementBottom) {
-            setActiveSection(item.id);
-            break;
+          if (elementTop <= 120) {
+            // 120px buffer biar lebih natural
+            currentSection = item.id;
           }
         }
       }
+
+      if (currentSection) {
+        setActiveSection(currentSection);
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Check initial position
+    contentEl.addEventListener("scroll", handleScroll);
+    handleScroll(); // run once on mount
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => contentEl.removeEventListener("scroll", handleScroll);
   }, [menuItems]);
 
   const renderSectionContent = (item) => {
@@ -582,7 +598,7 @@ const ScrollNavigation = () => {
         </div>
 
         {/* Main Content */}
-        <div className={styles.content}>
+        <div className={styles.content} ref={contentRef}>
           {/* Header */}
           <header className={styles.header}>
             <h1 className={styles.mainTitle}>

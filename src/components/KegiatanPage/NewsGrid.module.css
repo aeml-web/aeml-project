@@ -11,6 +11,31 @@
   margin-bottom: 60px;
 }
 
+.tag {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.tagItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background-color: #0c4fd3;
+  gap: 16px;
+  padding: 10px 12px;
+}
+
+.textTag {
+  margin: 0;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+}
+
 .titleNews {
   font-size: 32px;
   font-weight: 700;
@@ -84,14 +109,29 @@
 }
 
 .pageBtn {
-  border: 1px solid #ddd;
-  background: white;
+  background: #e4e4e4;
   color: #181818;
-  padding: 6px 12px;
-  border-radius: 6px;
+  border-radius: 50px;
+  width: 40px;
+  height: 40px;
+  border: none;
   cursor: pointer;
+  justify-content: center;
+  align-items: center;
   transition: all 0.2s ease;
 }
+
+.total {
+  font-size: 16px;
+  color: #000000;
+  margin: 0;
+  font-family: "Instrument Sans", sans-serif;
+  margin-left: 35px;
+  margin-right: 35px;
+  background-color: transparent;
+  font-weight: 400;
+}
+
 /* 
 .pageBtn:hover:not(:disabled) {
   background: #f0f0f0;
@@ -103,6 +143,5 @@
 }
 
 .activePage {
-  background: #181818;
-  color: white;
+  color: black;
 }
