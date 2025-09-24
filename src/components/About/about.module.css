@@ -466,6 +466,7 @@
 /* Smooth Scrolling */
 :global(html) {
   scroll-behavior: smooth;
+  scroll-padding-top: 120px;
 }
 
 /* Custom Scrollbar for content area */
