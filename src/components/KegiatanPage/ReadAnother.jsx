@@ -22,7 +22,8 @@ const ReadAnother = ({ excludeId }) => {
           (item) => String(item.id) !== String(excludeId)
         );
 
-        setPublications(filtered);
+        // Limit to maximum 3 articles
+        setPublications(filtered.slice(0, 3));
       } catch (err) {
         setError("Failed to load publications");
         console.error("Error loading publications:", err);
