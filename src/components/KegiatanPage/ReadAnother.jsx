@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./read.module.css";
 import styleGrid from "./read.module.css";
-import { getPublications } from "../../helpers/apiService";
+import { getArticles } from "../../helpers/apiService";
 
 const ReadAnother = ({ excludeId }) => {
   const [publications, setPublications] = useState([]);
@@ -15,7 +15,7 @@ const ReadAnother = ({ excludeId }) => {
       try {
         setLoading(true);
         setError(null);
-        const publicationsData = await getPublications();
+        const publicationsData = await getArticles();
 
         // Filter out the one that's currently opened
         const filtered = publicationsData.filter(
@@ -92,13 +92,7 @@ const ReadAnother = ({ excludeId }) => {
             </div>
             <div className={styleGrid.regularContent}>
               <h3 className={styleGrid.regularTitle}>{item.title}</h3>
-              <p className={styleGrid.regularDate}>
-                {new Date(item.createdAt).toLocaleDateString("id-ID", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </p>
+              <p className={styleGrid.regularDate}>{item.date}</p>
             </div>
           </div>
         ))}

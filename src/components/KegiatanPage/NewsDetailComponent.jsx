@@ -68,7 +68,11 @@ const NewsDetailComponent = () => {
           </div>
 
           <div className={styles.articleContent}>
-            <div dangerouslySetInnerHTML={{ __html: article.body }} />
+            {article.body ? (
+              <div dangerouslySetInnerHTML={{ __html: article.body }} />
+            ) : (
+              <p>Tidak ada konten</p>
+            )}
           </div>
         </div>
       </div>

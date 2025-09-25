@@ -11,29 +11,9 @@ export default function Content() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("Pilih kategori");
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const categories = [
-    "Semua Kategori",
-    "Artikel",
-    "Berita",
-    "Laporan",
-    "Panduan",
-    "Penelitian",
-  ];
-
-  const handleCategorySelect = (category) => {
-    setSelectedCategory(category);
-    setIsDropdownOpen(false);
-  };
-
-  const handleSearch = () => {
-    console.log(
-      "Searching for:",
-      searchQuery,
-      "in category:",
-      selectedCategory
-    );
-  };
+  const itemsPerPage = 6;
 
   const navigate = useNavigate();
 
@@ -42,13 +22,10 @@ export default function Content() {
   };
 
   const handleDownloadClick = (e, pub) => {
-    e.stopPropagation(); // Prevent card click when download button is clicked
-
-    // Handle download logic here
+    e.stopPropagation();
     if (pub.downloadUrl) {
       window.open(pub.downloadUrl, "_blank");
     } else {
-      // If you have a download API endpoint
       window.open(`/api/publications/${pub.id}/download`, "_blank");
     }
   };
@@ -62,12 +39,10 @@ export default function Content() {
         setPublications(data);
       } catch (err) {
         setError("Failed to load publications. Please try again later.");
-        console.error("Error fetching publications:", err);
       } finally {
         setLoading(false);
       }
     };
-
     loadPublications();
   }, []);
 
@@ -103,82 +78,19 @@ export default function Content() {
     );
   }
 
+  // Pagination logic
+  const totalPages = Math.ceil(publications.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentPublications = publications.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+
   return (
     <div className={styles.container}>
       <div className={styles.containerContentPublikasi}>
-        <div className={styles.navigation}>
-          <div className={styles.searchFilterContainer}>
-            {/* Category Dropdown */}
-            <div
-              className={styles.categoryDropdown}
-              onMouseEnter={() => setIsDropdownOpen(true)}
-              onMouseLeave={() => setIsDropdownOpen(false)}
-            >
-              <button className={styles.categoryButton}>
-                {selectedCategory}
-                <svg
-                  width="8"
-                  height="6"
-                  viewBox="0 0 8 6"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className={`${styles.dropdownArrow} ${
-                    isDropdownOpen ? styles.rotated : ""
-                  }`}
-                >
-                  <path
-                    d="M7.06 0.530273L4 3.58361L0.94 0.530273L0 1.47027L4 5.47027L8 1.47027L7.06 0.530273Z"
-                    fill="#9ca3af"
-                  />
-                </svg>
-              </button>
-
-              {isDropdownOpen && (
-                <div className={styles.dropdownMenu}>
-                  {categories.map((category, index) => (
-                    <button
-                      key={index}
-                      className={`${styles.dropdownItem} ${
-                        selectedCategory === category ? styles.active : ""
-                      }`}
-                      onClick={() => handleCategorySelect(category)}
-                    >
-                      {category}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Search Input */}
-            <div className={styles.searchContainer}>
-              <input
-                type="text"
-                placeholder="Cari publikasi"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className={styles.searchInput}
-                onKeyPress={(e) => e.key === "Enter" && handleSearch()}
-              />
-              <button className={styles.searchButton} onClick={handleSearch}>
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 12 12"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M8.50326 7.50326H7.97659L7.78992 7.32326C8.44326 6.56326 8.83659 5.57659 8.83659 4.50326C8.83659 2.10992 6.89659 0.169922 4.50326 0.169922C2.10992 0.169922 0.169922 2.10992 0.169922 4.50326C0.169922 6.89659 2.10992 8.83659 4.50326 8.83659C5.57659 8.83659 6.56326 8.44326 7.32326 7.78992L7.50326 7.97659V8.50326L10.8366 11.8299L11.8299 10.8366L8.50326 7.50326ZM4.50326 7.50326C2.84326 7.50326 1.50326 6.16326 1.50326 4.50326C1.50326 2.84326 2.84326 1.50326 4.50326 1.50326C6.16326 1.50326 7.50326 2.84326 7.50326 4.50326C7.50326 6.16326 6.16326 7.50326 4.50326 7.50326Z"
-                    fill="black"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
         <div className={styles.containerContent}>
-          {publications.map((pub) => (
+          {currentPublications.map((pub) => (
             <div
               key={pub.id}
               className={`${styles.card} ${styles.clickable}`}
@@ -196,7 +108,7 @@ export default function Content() {
                 alt={pub.title}
                 className={styles.image}
                 onError={(e) => {
-                  e.target.src = "/placeholder-image.jpg"; // Fallback image
+                  e.target.src = "/placeholder-image.jpg";
                 }}
               />
               <div className={styles.meta}>
@@ -220,7 +132,7 @@ export default function Content() {
                     })}
                   </p>
                   <button
-                    onClick={handleDownloadClick}
+                    onClick={(e) => handleDownloadClick(e, pub)}
                     className={styles.downloadButton}
                   >
                     <Download size={14} style={{ marginRight: "8px" }} />
@@ -232,12 +144,13 @@ export default function Content() {
           ))}
         </div>
       </div>
-      {/* Pagination */}
+
+      {/* Pagination (UI unchanged, just wired up) */}
       <div className={styles.pagination}>
         <button
           className={styles.pageBtn}
-          // onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-          // disabled={currentPage === 1}
+          onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+          disabled={currentPage === 1}
         >
           <svg
             width="12"
@@ -253,13 +166,14 @@ export default function Content() {
           </svg>
         </button>
 
-        {/* {[...Array(totalPages)].map((_, i) => ( */}
-        <h4 className={styles.total}> 1 dari 5 </h4>
+        <h4 className={styles.total}>
+          {currentPage} dari {totalPages}
+        </h4>
 
         <button
           className={styles.pageBtn}
-          // onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
-          // disabled={currentPage === totalPages}
+          onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+          disabled={currentPage === totalPages}
         >
           <svg
             width="12"

@@ -73,7 +73,7 @@ const KegiatanPages = () => {
         setLoading(true);
         setError(null);
         const articlesData = await getArticles();
-
+        console.log("Fetched articles data:", articlesData);
         // Transform articles data to match the expected format for NewsGrid
         const transformedActivities = articlesData.map((article) => ({
           id: article.id,
@@ -84,6 +84,7 @@ const KegiatanPages = () => {
           body: article.body,
           type: article.type,
           linkDownload: article.linkDownload,
+          tags: article.tags,
         }));
 
         setActivities(transformedActivities);
@@ -99,6 +100,17 @@ const KegiatanPages = () => {
 
     loadActivities();
   }, []);
+
+  // Get the data to pass to components
+  const currentActivities =
+    activities.length > 0 ? activities : sampleActivities;
+
+  // Helper function to get the newest activities (you might want to sort by date)
+  const getNewestActivities = (items, count = 3) => {
+    // If your data has proper date format, you can sort by date
+    // For now, we'll just take the first few items
+    return items.slice(0, count);
+  };
 
   const renderContent = () => {
     if (loading) {
@@ -137,14 +149,16 @@ const KegiatanPages = () => {
 
   return (
     <div className={styles.kegiatanPages}>
-      <KegiatanHero />
+      <KegiatanHero
+        activities={currentActivities}
+        newestActivities={getNewestActivities(currentActivities)}
+        loading={loading}
+        error={error}
+      />
 
       {renderContent()}
 
-      <NewsGrid
-        items={activities.length > 0 ? activities : sampleActivities}
-        loading={loading}
-      />
+      <NewsGrid items={currentActivities} loading={loading} />
     </div>
   );
 };

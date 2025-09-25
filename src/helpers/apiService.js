@@ -66,6 +66,7 @@ export const transformArticleData = (apiArticles) => {
     body: article.body,
     type: article.type,
     linkDownload: article.linkDownload,
+    tags: article.tags,
   }));
 };
 
