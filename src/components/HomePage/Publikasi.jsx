@@ -80,7 +80,7 @@ const Publikasi = () => {
       </div>
 
       <div className={styles.publicationsGrid}>
-        {publications.map((pub) => (
+        {publications.slice(0, 3).map((pub) => (
           <div
             key={pub.id}
             className={styles.publicationCard}

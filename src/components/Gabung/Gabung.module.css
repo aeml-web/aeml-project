@@ -133,6 +133,7 @@
   width: 360px;
   font-family: "Instrument Sans", sans-serif;
   color: black;
+  height: 48px;
 }
 
 .primaryBtn:hover {
@@ -145,7 +146,6 @@
   color: white;
   border: none;
   border-radius: 26px;
-  padding: 1rem 2.5rem;
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
@@ -154,10 +154,14 @@
   border: 2px solid white;
   font-family: "Instrument Sans", sans-serif;
   color: white;
+  box-sizing: border-box; /* Border masuk ke dalam */
+  height: 48px;
 }
 
 .secondaryBtn:hover {
-  border: 3px solid white;
+  border: 3px solid black;
+  background: white;
+  color: black;
 }
 
 /* FeaturesSection.module.css */

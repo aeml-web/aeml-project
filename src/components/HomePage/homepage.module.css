@@ -77,6 +77,7 @@
   width: 360px;
   font-size: 16px;
   height: 48px;
+  box-sizing: border-box;
 }
 
 .btnSecondary:hover {
@@ -1015,15 +1016,19 @@
 /* PartnersSection.module.css */
 
 .partnersSection {
-  padding: 80px 40px;
-  width: 1440px;
-  margin: 0 auto;
-  background: transparent;
+  padding: 80px 0;
+  width: 100vw;
+  background: linear-gradient(180deg, #c0d5ff -42.17%, #ffffff 100%);
   z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .partnerCategory {
   margin-bottom: 80px;
+  width: 1440px;
 }
 
 .partnerCategory:last-child {

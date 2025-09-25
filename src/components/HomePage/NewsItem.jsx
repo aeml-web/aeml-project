@@ -107,7 +107,7 @@ const NewsItem = () => {
 
         {/* Regular Articles Grid */}
         <div className={styles.regularGrid}>
-          {newsItems.slice(1).map((item) => (
+          {newsItems.slice(1, 5).map((item) => (
             <div
               key={item.id}
               className={styles.regularCard}
