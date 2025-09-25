@@ -48,6 +48,7 @@
 .regularGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  height: 654px;
   gap: 24px;
 }
 

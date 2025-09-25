@@ -14,7 +14,7 @@ export default function Header() {
       </div>
 
       <div className={styles.content}>
-        <h2 className={styles.title}>Publikasi</h2>
+        <h2 className={styles.titlePub}>Publikasi</h2>
         <p className={styles.desc}>Edaran, riset, dan booklet dari AEML.</p>
       </div>
     </div>

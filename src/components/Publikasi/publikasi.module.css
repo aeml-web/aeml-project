@@ -52,8 +52,8 @@
   margin-right: 6px;
 }
 
-.title {
-  font-size: 32px;
+.titlePub {
+  font-size: 48px;
   font-weight: bold;
   margin: 8px 0;
   color: #222;
@@ -87,11 +87,12 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  padding: 24px;
-  width: 1028px;
+  width: 1080px;
   height: fit-content;
   margin: 0 auto;
   margin-bottom: 80px;
+  justify-content: center;
+  align-items: center;
 }
 
 .containerContentPublikasi {
@@ -164,8 +165,13 @@
   color: #111;
   margin: 0;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 110%;
+  height: 47px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   overflow: hidden;
 }
 
@@ -175,15 +181,19 @@
 }
 
 .date {
-  font-size: 13px;
-  color: #888;
+  font-size: 16px;
+  color: #4e4e4e;
+  font-family: "Instrument Sans", sans-serif;
+  line-height: 100%;
+  margin: 0;
 }
 
 .bottomCard {
   display: flex;
   flex-direction: row;
   justify-content: space-between; /* kiri - kanan */
-  align-items: center; /* biar rata tengah secara vertikal */
+  align-items: flex-end; /* dorong ke bawah */
+  height: 36px;
 }
 
 /* -------------------- */
@@ -308,8 +318,7 @@
   display: flex;
   gap: 20px;
   align-items: center;
-  max-width: 1028px;
-  margin: 0 auto;
+  max-width: 1075px;
   width: 100%;
 }
 

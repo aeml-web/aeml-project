@@ -68,9 +68,7 @@ const NewsDetailComponent = () => {
           </div>
 
           <div className={styles.articleContent}>
-            {article.body?.split("\n").map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
-            ))}
+            <div dangerouslySetInnerHTML={{ __html: article.body }} />
           </div>
         </div>
       </div>

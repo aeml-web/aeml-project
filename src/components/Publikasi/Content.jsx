@@ -211,7 +211,14 @@ export default function Content() {
                 </span>
                 <h3 className={styles.title}>{pub.title}</h3>
                 <div className={styles.bottomCard}>
-                  <p className={styles.date}>{pub.date}</p>
+                  <p className={styles.date}>
+                    {" "}
+                    {new Date(pub.createdAt).toLocaleDateString("id-ID", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </p>
                   <button
                     onClick={handleDownloadClick}
                     className={styles.downloadButton}
