@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styles from "./navbar.module.css";
 import logo from "../../assets/logoaemlfix.png";
@@ -9,6 +9,27 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const [selectedLang, setSelectedLang] = useState("ID");
+  const [open, setOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  // Klik di luar → tutup dropdown
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const toggleDropdown = () => setOpen(!open);
+  const changeLang = (lang) => {
+    setSelectedLang(lang);
+    setOpen(false);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -142,21 +163,48 @@ const Navbar = () => {
           <Link to="/gabung">
             <button className={styles.buttonLang}>Gabung AEML</button>
           </Link>
-          <button className={styles.buttonId}>
-            ID
-            <svg
-              width="8"
-              height="6"
-              viewBox="0 0 8 6"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M7.06 0.530273L4 3.58361L0.94 0.530273L0 1.47027L4 5.47027L8 1.47027L7.06 0.530273Z"
-                fill="#181818"
-              />
-            </svg>
-          </button>
+          <div ref={dropdownRef} className={styles.langDropdownWrapper}>
+            {/* Tombol utama */}
+            <button onClick={toggleDropdown} className={styles.buttonId}>
+              {selectedLang}
+              <svg
+                width="10"
+                height="6"
+                viewBox="0 0 10 6"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className={`${styles.langDropdownIcon} ${
+                  open ? styles.langDropdownRotate : ""
+                }`}
+              >
+                <path
+                  d="M9 1L5 5L1 1"
+                  stroke="#181818"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+
+            {/* Dropdown */}
+            {open && (
+              <div className={styles.langDropdownMenu}>
+                <button
+                  onClick={() => changeLang("ID")}
+                  className={styles.langDropdownItem}
+                >
+                  ID
+                </button>
+                <button
+                  onClick={() => changeLang("EN")}
+                  className={styles.langDropdownItem}
+                >
+                  EN
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </nav>

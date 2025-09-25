@@ -326,3 +326,52 @@
 .active svg path {
   fill: black;
 }
+
+.buttonId:hover {
+  background-color: #f2f2f2;
+}
+
+/* ===== Language Dropdown Styles ===== */
+.langDropdownWrapper {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+}
+
+.langDropdownMenu {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  background: white;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  min-width: 80px;
+  z-index: 10;
+  padding: 4px 0;
+}
+
+.langDropdownItem {
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: none;
+  text-align: left;
+  font-size: 14px;
+  font-family: "Instrument Sans", sans-serif;
+  cursor: pointer;
+  color: #181818;
+}
+
+.langDropdownItem:hover {
+  background-color: #f2f2f2;
+}
+
+.langDropdownIcon {
+  transition: transform 0.3s ease;
+}
+
+.langDropdownRotate {
+  transform: rotate(180deg);
+}

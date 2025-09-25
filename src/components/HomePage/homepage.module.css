@@ -446,6 +446,7 @@
   width: 448px;
   height: 709px;
   align-items: center;
+  cursor: pointer;
 }
 
 .featuredImageContainer {
@@ -511,6 +512,7 @@
   background: white;
   height: 303px;
   width: 302px;
+  cursor: pointer;
 }
 
 .regularImageContainer {
@@ -523,6 +525,7 @@
   border-radius: 16px;
   object-fit: cover;
   transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
 .regularImage:hover {
@@ -683,6 +686,7 @@
   padding: 7px 29px;
   align-items: end;
   margin-left: 100px;
+  cursor: pointer;
 }
 
 .cardContain {
