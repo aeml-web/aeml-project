@@ -33,16 +33,6 @@ const Footer = () => {
 
   return (
     <footer className={styles.footer}>
-      {/* Decorative curved background */}
-      {/* <div className={styles.curvedBackground}>
-        <svg viewBox="0 0 1400 200" className={styles.curveSvg}>
-          <path
-            d="M0,100 Q350,20 700,100 T1400,100 L1400,200 L0,200 Z"
-            fill="rgba(76, 175, 80, 0.3)"
-          />
-        </svg>
-      </div> */}
-
       <div className={styles.footerContent}>
         {/* Left Section - Logo and Contact */}
         <div className={styles.leftSection}>
@@ -96,6 +86,11 @@ const Footer = () => {
             ))}
           </div>
         </div>
+      </div>
+
+      <div className={styles.view}>
+        <div className={styles.viewContent}></div>
+        <p className={styles.text}>©2025 AEML</p>
       </div>
     </footer>
   );

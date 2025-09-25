@@ -7,14 +7,15 @@
   justify-content: center;
 }
 .aboutContainer {
-  width: 1440px;
+  width: 100vw;
   height: 711px;
-  background: url("../../assets/bgkegiatan.png") no-repeat center bottom /
-      contain,
-    linear-gradient(180deg, #ffffff 6.54%, #c4d8ff 70.6%);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  background: url(/src/assets/lingkaran.png) center bottom no-repeat,
+    linear-gradient(rgb(255, 255, 255) 6.54%, rgb(196, 216, 255) 70.6%);
+  background-size: 1700px auto, 100vw 100%; /* Fixed value dulu */
 }
 
 .aboutContainer .swiper {
@@ -25,12 +26,14 @@
 .carouselImageHead {
   width: 1062px !important;
   height: 505px !important;
+  object-fit: cover;
 }
 
 .aboutPage {
   display: flex;
   flex-direction: column;
   gap: 44px;
+  margin-bottom: 100px;
 }
 
 .titleAbout {
@@ -39,6 +42,9 @@
   line-height: 150%;
   color: #181818;
   max-width: 1062px;
+  margin: 0;
+  margin-bottom: 8px;
+  margin-top: 46px;
 }
 
 .containerImageHead {
@@ -133,7 +139,7 @@
   width: 800px;
   text-align: justify;
   overflow-y: auto;
-  height: 100vh;
+  height: 95vh;
   padding-right: 20px;
 }
 
@@ -207,6 +213,12 @@
   flex-direction: row;
   gap: 67px;
   margin-right: 220px;
+}
+
+.misi {
+  display: flex;
+  flex-direction: row;
+  gap: 67px;
 }
 
 .leftVisi {
@@ -386,7 +398,7 @@
 }
 
 .aboutContainer :global(.swiper-slide) {
-  margin-right: 0px !important;
+  margin-right: 0;
 }
 
 /* Partners grid styles */

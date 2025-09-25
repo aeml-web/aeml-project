@@ -44,20 +44,67 @@ import gesitsLogo from "../../assets/logos/gesits-logo.png";
 import alvaLogo from "../../assets/logos/alva-logo.png";
 import HeaderAbout from "./HeaderAbout";
 
+import { useLocation } from "react-router-dom";
+
+// Export menu items untuk digunakan di navbar atau komponen lain
+export const aboutMenuItems = [
+  {
+    id: "tentang",
+    label: "Tentang AEML",
+    icon: "🎯",
+    showTitle: false,
+    showSidebar: true,
+  },
+  {
+    id: "visi",
+    label: "Visi dan Misi",
+    icon: "🎯",
+    showTitle: false,
+    showSidebar: true,
+  },
+  {
+    id: "perjalanan-bersama",
+    label: "Perjalanan Bersama",
+    icon: "🤝",
+    showTitle: true,
+    showSidebar: true,
+  },
+  {
+    id: "pimpinan-aeml",
+    label: "Struktur AEML",
+    icon: "👥",
+    showTitle: true,
+    showSidebar: true,
+  },
+  {
+    id: "perusahaan-anggota",
+    label: "Perusahaan Anggota AEML",
+    icon: "🏢",
+    showTitle: true,
+    showSidebar: true,
+  },
+  {
+    id: "mitra-pemerintahan",
+    label: "Mitra Pemerintahan AEML",
+    icon: "🏛️",
+    showTitle: true,
+    showSidebar: true,
+  },
+  {
+    id: "mitra-pembangunan",
+    label: "Mitra Pembangunan AEML",
+    icon: "🔧",
+    showTitle: true,
+    showSidebar: true,
+  },
+];
+
 const ScrollNavigation = () => {
-  const [activeSection, setActiveSection] = useState("tentang-aeml");
+  const [activeSection, setActiveSection] = useState("visi");
   const sectionsRef = useRef({});
   const contentRef = useRef(null);
 
-  const menuItems = [
-    { id: "visi", label: "Visi AEML", icon: "🎯" },
-    { id: "misi", label: "Misi AEML", icon: "🎯" },
-    { id: "perjalanan-bersama", label: "Perjalanan Bersama", icon: "🤝" },
-    { id: "pimpinan-aeml", label: "Struktur AEML", icon: "👥" },
-    { id: "perusahaan-anggota", label: "Perusahaan Anggota AEML", icon: "🏢" },
-    { id: "mitra-pemerintahan", label: "Mitra Pemerintahan AEML", icon: "🏛️" },
-    { id: "mitra-pembangunan", label: "Mitra Pembangunan AEML", icon: "🔧" },
-  ];
+  const menuItems = aboutMenuItems;
 
   const logos = [
     {
@@ -97,45 +144,42 @@ const ScrollNavigation = () => {
       image: defaultPhoto,
     },
     {
-      id: "1",
+      id: "3",
       name: "Pandu Sjahrir",
       title: "Lead",
       description: "asdfh kfjfnfjjf dkkeoeow",
       image: defaultPhoto,
     },
     {
-      id: "1",
+      id: "4",
       name: "Pandu Sjahrir",
       title: "Lead",
       description: "asdfh kfjfnfjjf dkkeoeow",
       image: defaultPhoto,
     },
     {
-      id: "1",
+      id: "5",
       name: "Pandu Sjahrir",
       title: "Lead",
       description: "asdfh kfjfnfjjf dkkeoeow",
       image: defaultPhoto,
     },
-
     {
-      id: "1",
+      id: "6",
       name: "Pandu Sjahrir",
       title: "Lead",
       description: "asdfh kfjfnfjjf dkkeoeow",
       image: defaultPhoto,
     },
-
     {
-      id: "1",
+      id: "7",
       name: "Pandu Sjahrir",
       title: "Lead",
       description: "asdfh kfjfnfjjf dkkeoeow",
       image: defaultPhoto,
     },
-
     {
-      id: "1",
+      id: "8",
       name: "Pandu Sjahrir",
       title: "Lead",
       description: "asdfh kfjfnfjjf dkkeoeow",
@@ -234,6 +278,7 @@ const ScrollNavigation = () => {
     "https://picsum.photos/id/1025/800/500",
   ];
 
+  // Fungsi untuk scroll ke section
   const scrollToSection = (sectionId) => {
     const element = sectionsRef.current[sectionId];
     const container = contentRef.current;
@@ -250,6 +295,11 @@ const ScrollNavigation = () => {
       });
 
       setActiveSection(sectionId);
+
+      // Update URL hash tanpa reload page
+      if (window.location.hash !== `#${sectionId}`) {
+        window.history.pushState(null, null, `#${sectionId}`);
+      }
     }
   };
 
@@ -287,11 +337,95 @@ const ScrollNavigation = () => {
     return () => contentEl.removeEventListener("scroll", handleScroll);
   }, [menuItems]);
 
+  const location = useLocation();
+
+  useEffect(() => {
+    // Cek apakah ada hash di URL dan halaman sudah loaded
+    if (location.hash) {
+      const timer = setTimeout(() => {
+        const contentContainer = document.getElementById("content");
+        if (contentContainer) {
+          // Gunakan kalkulasi manual yang sama seperti handleDropdownClick
+          const rect = contentContainer.getBoundingClientRect();
+          const containerTop = window.pageYOffset + rect.top;
+          const containerHeight = rect.height;
+          const windowHeight = window.innerHeight;
+
+          // Scroll ke posisi tengah tapi dinaikkan sedikit
+          const offset = 100; // Sama seperti di handleDropdownClick
+          const scrollTo =
+            containerTop + containerHeight / 2 - windowHeight / 2 - offset;
+
+          window.scrollTo({
+            top: scrollTo,
+            behavior: "smooth",
+          });
+
+          // Setelah scroll ke content, lanjutkan ke section jika ada
+          setTimeout(() => {
+            if (window.navigateToAboutSection) {
+              const sectionId = location.hash.replace("#", "");
+              window.navigateToAboutSection(sectionId);
+            }
+          }, 300);
+        }
+      }, 500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [location]);
+
+  // Handle hash navigation dari URL atau navbar
+  useEffect(() => {
+    // Fungsi untuk scroll ke section berdasarkan hash
+    const handleHashChange = () => {
+      const hash = window.location.hash.substring(1); // Remove # dari hash
+      if (hash && sectionsRef.current[hash]) {
+        // Delay sedikit untuk memastikan komponen sudah render
+        setTimeout(() => scrollToSection(hash), 100);
+      }
+    };
+
+    // Check hash saat komponen mount
+    handleHashChange();
+
+    // Listen untuk perubahan hash
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
+
+  // Expose function untuk external navigation
+  useEffect(() => {
+    // Fungsi global untuk navigasi dari luar komponen
+    window.navigateToAboutSection = (sectionId) => {
+      if (menuItems.find((item) => item.id === sectionId)) {
+        scrollToSection(sectionId);
+      }
+    };
+
+    // Fungsi untuk mendapatkan daftar section yang tersedia
+    window.getAboutSections = () => {
+      return menuItems.map((item) => ({
+        id: item.id,
+        label: item.label,
+      }));
+    };
+
+    return () => {
+      delete window.navigateToAboutSection;
+      delete window.getAboutSections;
+    };
+  }, [menuItems]);
+
   const renderSectionContent = (item) => {
     switch (item.id) {
       case "visi":
         return (
-          <div className={styles.grid}>
+          <div className={styles.header}>
+            <h1 className={styles.mainTitle}>Visi AEML</h1>
             <div className={styles.visi}>
               <div className={styles.leftVisi}>
                 <img src={visi2} className={styles.iconVisi}></img>
@@ -309,13 +443,31 @@ const ScrollNavigation = () => {
                 </p>
               </div>
             </div>
+            <h1 className={styles.mainTitle}>Misi AEML</h1>
+            <div className={styles.misi}>
+              <p className={styles.text}>
+                Misi kami untuk mendorong terciptanya mobilitas listrik di
+                Indonesia didasarkan pada panggilan untuk melindungi lingkungan
+                dengan mengurangi polusi di mana masyarakat tinggal, bekerja,
+                belajar, juga bermain.
+                <br></br>
+                <br></br>
+                Dengan berkontribusi pada inisiatif Pemerintah Republik
+                Indonesia dalam mengatasi perubahan iklim, kami juga secara
+                langsung mendukung kemandirian energi bangsa. Dengan demikian,
+                kami akan mencapai visi kami untuk mendukung adopsi kendaraan
+                listrik dan mendorong terciptanya ekosistem mobilitas listrik
+                yang berdaya saing global.
+              </p>
+            </div>
           </div>
         );
 
       case "misi":
         return (
-          <div className={styles.grid}>
-            <div className={styles.visi}>
+          <div className={styles.header}>
+            <h1 className={styles.mainTitle}>Misi AEML</h1>
+            <div className={styles.misi}>
               <p className={styles.text}>
                 Misi kami untuk mendorong terciptanya mobilitas listrik di
                 Indonesia didasarkan pada panggilan untuk melindungi lingkungan
@@ -412,36 +564,44 @@ const ScrollNavigation = () => {
                 >
                   {lead.map((src, index) => (
                     <SwiperSlide key={index}>
-                      <SwiperSlide key={index}>
-                        <div className={styles.containerPhotos}>
-                          <div className={styles.containerImage}>
-                            <img
-                              src={src.image}
-                              alt={`Event ${index + 1}`}
-                              className={styles.carouselImage}
-                            />
+                      <div className={styles.containerPhotos}>
+                        <div className={styles.containerImage}>
+                          <img
+                            src={src.image}
+                            alt={`Event ${index + 1}`}
+                            className={styles.carouselImage}
+                          />
 
-                            <h4 className={styles.titleHover}>
-                              {src.description}
-                            </h4>
-                          </div>
-                          <h2 className={styles.name}>{src.name}</h2>
-                          <h4 className={styles.title}>{src.title}</h4>
+                          <h4 className={styles.titleHover}>
+                            {src.description}
+                          </h4>
                         </div>
-                      </SwiperSlide>
+                        <h2 className={styles.name}>{src.name}</h2>
+                        <h4 className={styles.title}>{src.title}</h4>
+                      </div>
                     </SwiperSlide>
                   ))}
                 </Swiper>
               </div>
 
               <div className={styles.section}>
-                <h1 className={styles.titleBoard}>Board of Executives </h1>
+                <h1 className={styles.titleBoard}>Board of Executives </h1>
                 <Swiper
                   spaceBetween={20}
                   slidesPerView={3.6}
+                  slidesOffsetAfter={20} // kasih jarak sesuai spaceBetween
+                  centeredSlides={false}
                   loop={false}
                   navigation={true}
                   modules={[Navigation]}
+                  observer={true}
+                  observeParents={true}
+                  onSwiper={(swiper) => {
+                    // Multiple update untuk memastikan
+                    setTimeout(() => swiper.update(), 0);
+                    setTimeout(() => swiper.update(), 50);
+                    setTimeout(() => swiper.update(), 100);
+                  }}
                 >
                   {lead.map((src, index) => (
                     <SwiperSlide key={index}>
@@ -504,18 +664,43 @@ const ScrollNavigation = () => {
       case "perusahaan-anggota":
         return (
           <div className={styles.partnersGrid}>
-            {logos.map((partner) => (
-              <div key={partner.id} className={styles.partnerCard}>
+            {logos.map((logo, index) => (
+              <div key={index} className={styles.partnerCard}>
                 <div className={styles.logoContainer}>
                   <img
-                    src={partner.image}
-                    alt={partner.alt}
+                    src={logo.image}
+                    alt={logo.alt}
                     className={styles.companyLogo}
                   />
                 </div>
               </div>
             ))}
           </div>
+        );
+
+      case "tentang":
+        return (
+          <header className={styles.header}>
+            <h1 className={styles.mainTitle}>
+              Asosiasi Ekosistem Mobilitas Listrik
+            </h1>
+            <p className={styles.description}>
+              Asosiasi Ekosistem Mobilitas Listrik (AEML) adalah sebuah forum
+              kolaboratif yang mempertemukan para pemangku kepentingan utama
+              dalam pengembangan kendaraan listrik di Indonesia, mulai dari
+              produsen kendaraan, penyedia baterai, infrastruktur pengisian
+              daya, hingga pelaku teknologi digital dan keuangan.
+              <br></br>
+              <br></br>
+              AEML berperan sebagai wadah industri, pusat pemikiran, serta
+              advokat kebijakan publik yang mendorong terciptanya ekosistem
+              mobilitas listrik yang berdaya saing global. Melalui sinergi
+              lintas sektor, asosiasi ini berkomitmen untuk mempercepat adopsi
+              kendaraan listrik, memperkuat rantai pasok domestik, serta
+              mendukung transisi menuju energi bersih dan transportasi
+              berkelanjutan di Indonesia.
+            </p>
+          </header>
         );
 
       default:
@@ -561,7 +746,7 @@ const ScrollNavigation = () => {
         </h1>
         <Swiper
           spaceBetween={30} // Add some space between slides
-          slidesPerView={1} // Show only 1 slide at a time
+          slidesPerView="auto"
           loop={true}
           navigation={true}
           centeredSlides={true} // Center the slide
@@ -582,55 +767,39 @@ const ScrollNavigation = () => {
         <div className={styles.sidebar}>
           <div className={styles.sidebarContent}>
             <nav className={styles.menu}>
-              {menuItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`${styles.menuItem} ${
-                    activeSection === item.id ? styles.active : ""
-                  }`}
-                >
-                  <span className={styles.label}>{item.label}</span>
-                </button>
-              ))}
+              {menuItems.map(
+                (item) =>
+                  item.showSidebar && (
+                    <button
+                      key={item.id}
+                      onClick={() => scrollToSection(item.id)}
+                      className={`${styles.menuItem} ${
+                        activeSection === item.id ? styles.active : ""
+                      }`}
+                    >
+                      <span className={styles.label}>{item.label}</span>
+                    </button>
+                  )
+              )}
             </nav>
           </div>
         </div>
 
         {/* Main Content */}
-        <div className={styles.content} ref={contentRef}>
+        <div id="content" className={styles.content} ref={contentRef}>
           {/* Header */}
-          <header className={styles.header}>
-            <h1 className={styles.mainTitle}>
-              Asosiasi Ekosistem Mobilitas Listrik
-            </h1>
-            <p className={styles.description}>
-              Asosiasi Ekosistem Mobilitas Listrik (AEML) adalah sebuah forum
-              kolaboratif yang mempertemukan para pemangku kepentingan utama
-              dalam pengembangan kendaraan listrik di Indonesia, mulai dari
-              produsen kendaraan, penyedia baterai, infrastruktur pengisian
-              daya, hingga pelaku teknologi digital dan keuangan.
-              <br></br>
-              <br></br>
-              AEML berperan sebagai wadah industri, pusat pemikiran, serta
-              advokat kebijakan publik yang mendorong terciptanya ekosistem
-              mobilitas listrik yang berdaya saing global. Melalui sinergi
-              lintas sektor, asosiasi ini berkomitmen untuk mempercepat adopsi
-              kendaraan listrik, memperkuat rantai pasok domestik, serta
-              mendukung transisi menuju energi bersih dan transportasi
-              berkelanjutan di Indonesia.
-            </p>
-          </header>
-
           {/* Sections */}
           {menuItems.map((item) => (
             <section
               key={item.id}
+              id={item.id} // Tambahkan ID untuk setiap section
               ref={(el) => (sectionsRef.current[item.id] = el)}
               className={styles.section}
             >
               <div className={styles.sectionCard}>
-                <h2 className={styles.sectionTitle}>{item.label}</h2>
+                {item.showTitle && (
+                  <h2 className={styles.sectionTitle}>{item.label}</h2>
+                )}{" "}
                 {renderSectionContent(item)}
               </div>
             </section>

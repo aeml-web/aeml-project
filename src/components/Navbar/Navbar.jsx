@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom"; // ✅ import react-router-dom
+import { Link, useLocation } from "react-router-dom";
 import styles from "./navbar.module.css";
 import logo from "../../assets/logoaemlfix.png";
 import logobrowse from "../../assets/image-rils.png";
+import { aboutMenuItems } from "../About/ScrollNavigation"; // Sesuaikan dengan struktur folder Anda
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const location = useLocation(); // ✅ get current path for active state
+  const location = useLocation();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useEffect(() => {
@@ -21,6 +22,39 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const handleDropdownClick = (sectionId) => {
+    // Tutup dropdown
+    setIsDropdownOpen(false);
+
+    // Scroll ke tengah container "content" tapi agak dinaikkan dikit
+    const contentContainer = document.getElementById("content");
+    if (contentContainer) {
+      const rect = contentContainer.getBoundingClientRect();
+      const containerTop = window.pageYOffset + rect.top;
+      const containerHeight = rect.height;
+      const windowHeight = window.innerHeight;
+
+      // Scroll ke posisi tengah tapi dinaikkan 100px (sesuaikan nilai ini)
+      const offset = 100; // Ubah nilai ini untuk mengatur seberapa naik
+      const scrollTo =
+        containerTop + containerHeight / 2 - windowHeight / 2 - offset;
+
+      window.scrollTo({
+        top: scrollTo,
+        behavior: "smooth",
+      });
+    }
+
+    // Jika sedang di halaman about, langsung scroll ke section
+    if (location.pathname === "/about") {
+      setTimeout(() => {
+        if (window.navigateToAboutSection) {
+          window.navigateToAboutSection(sectionId);
+        }
+      }, 500);
+    }
+  };
 
   return (
     <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ""}`}>
@@ -55,26 +89,24 @@ const Navbar = () => {
               </svg>
             </Link>
 
-            {/* Dropdown Menu */}
+            {/* Dropdown Menu - Updated with section links */}
             {isDropdownOpen && (
               <div className={styles.dropdownMenu}>
-                <Link to="/about/sejarah" className={styles.dropdownItem}>
-                  Visi & Misi
-                </Link>
-                <Link to="/about/visi-misi" className={styles.dropdownItem}>
-                  Perjalanan Bersama
-                </Link>
-                <Link to="/about/struktur" className={styles.dropdownItem}>
-                  Pimpinan AEML
-                </Link>
-                <Link to="/about/prestasi" className={styles.dropdownItem}>
-                  Perusahaan Anggota
-                </Link>
+                {aboutMenuItems.map((item) => (
+                  <Link
+                    key={item.id}
+                    to={`/about#${item.id}`}
+                    className={styles.dropdownItem}
+                    onClick={() => handleDropdownClick(item.id)}
+                  >
+                    {/* <span className={styles.dropdownIcon}>{item.icon}</span> */}
+                    {item.label}
+                  </Link>
+                ))}
               </div>
             )}
           </li>
           <li>
-            {/* Replace with a route instead of hash anchor if you have pages */}
             <Link
               to="/kegiatan"
               className={`${
@@ -98,8 +130,6 @@ const Navbar = () => {
 
         <div className={styles.logo}>
           <Link to="/">
-            {" "}
-            {/* ✅ Logo clickable to homepage */}
             <img src={logo} alt="AEML Logo" className={styles.img} />
           </Link>
         </div>

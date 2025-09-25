@@ -1,11 +1,15 @@
 .footer {
   position: relative;
   background: linear-gradient(94.48deg, #0c4fd3 4.4%, #a3e221 173.44%);
-
   color: white;
-  padding: 80px 0 60px 0;
   overflow: hidden;
   font-family: "Instrument Sans", sans-serif;
+  height: 554px;
+  padding-top: 68px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .curvedBackground {
@@ -248,4 +252,28 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.view {
+  width: 1280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  margin-bottom: 81px;
+  height: fit-content;
+  gap: 28px;
+}
+
+.viewContent {
+  width: 1280px;
+  height: 1px;
+  background-color: #6eb5be;
+}
+
+.text {
+  font-size: 12px;
+  font-weight: 400;
+  color: white;
+  margin: 0;
 }

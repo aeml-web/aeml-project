@@ -184,8 +184,8 @@
 /* Swiper Navigation Buttons Styling */
 :global(.swiper-button-next),
 :global(.swiper-button-prev) {
-  color: #a8ff00 !important;
-  background: white;
+  /* color: #a8ff00 !important;
+  background: white; */
   width: 40px !important;
   height: 40px !important;
   border-radius: 50%;
@@ -195,8 +195,8 @@
 
 :global(.swiper-button-next):hover,
 :global(.swiper-button-prev):hover {
-  background: #a8ff00;
-  color: white !important;
+  /* background: #a8ff00;
+  color: white !important; */
   transform: scale(1.1);
 }
 
