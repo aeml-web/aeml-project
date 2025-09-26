@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import foto1 from "../../assets/foto1.png";
-import foto2 from "../../assets/foto2new.png";
+import foto2 from "../../assets/foto3new.png";
 import foto4 from "../../assets/amelpic.jpg";
 import foto5 from "../../assets/fotoasset1.jpg";
 
