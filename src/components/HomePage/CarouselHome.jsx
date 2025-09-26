@@ -6,14 +6,10 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import foto1 from "../../assets/foto1.png";
 import foto2 from "../../assets/foto2new.png";
-import foto3 from "../../assets/foto3new.png";
+import foto4 from "../../assets/amelpic.jpg";
+import foto5 from "../../assets/fotoasset1.jpg";
 
-const photos = [
-  foto1,
-  "https://picsum.photos/id/1025/800/500",
-  foto3,
-  "https://picsum.photos/id/1025/800/500",
-];
+const photos = [foto1, foto4, foto2, foto5];
 
 export default function CarouselHome() {
   return (

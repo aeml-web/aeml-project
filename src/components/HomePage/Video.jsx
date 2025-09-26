@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./homepage.module.css";
-import energi from "../../assets/video.mp4";
+import energi from "../../assets/event-video.mp4";
 import thumbnail from "../../assets/thumbnail.png";
 
 const Video = () => {

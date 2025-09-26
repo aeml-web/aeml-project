@@ -29,6 +29,9 @@ import image6 from "../../assets/logos-gov/image6.png";
 import airlangga from "../../assets/airlangga.png";
 import anin from "../../assets/anin.png";
 import pandu from "../../assets/pandu.png";
+import fototentang from "../../assets/fototentang.png";
+import coverpub from "../../assets/publication_cover.png";
+import homepage from "../../assets/headernew.png";
 
 import defaultPhoto from "../../assets/default.png";
 
@@ -308,12 +311,7 @@ const ScrollNavigation = () => {
     },
   ];
 
-  const photos = [
-    "https://picsum.photos/id/1011/800/500",
-    "https://picsum.photos/id/1015/800/500",
-    "https://picsum.photos/id/1016/800/500",
-    "https://picsum.photos/id/1025/800/500",
-  ];
+  const photos = [fototentang, coverpub, homepage];
 
   // Fungsi untuk scroll ke section
   const scrollToSection = (sectionId) => {
