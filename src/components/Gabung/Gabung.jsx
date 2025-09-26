@@ -47,7 +47,7 @@ const Gabung = () => {
   };
 
   return (
-    <div className={styles.contactSection}>
+    <div id="form-section" className={styles.contactSection}>
       <div className={styles.contactContainer}>
         <div className={styles.textSection}>
           <h1 className={styles.mainTitle}>Bergabung bersama AEML</h1>

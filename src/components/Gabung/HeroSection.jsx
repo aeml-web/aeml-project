@@ -4,6 +4,13 @@ import styles from "./Gabung.module.css";
 import bg from "../../assets/bggabung.png";
 
 const HeroSection = () => {
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className={styles.hero}>
       <img
@@ -24,8 +31,18 @@ const HeroSection = () => {
           ekosistem mobilitas listrik di Indonesia hingga mandunia.
         </p>
         <div className={styles.heroButtons}>
-          <button className={styles.primaryBtn}>Pelajari</button>
-          <button className={styles.secondaryBtn}>Isi form</button>
+          <button
+            className={styles.primaryBtn}
+            onClick={() => scrollToSection("pelajari-section")}
+          >
+            Pelajari
+          </button>
+          <button
+            className={styles.secondaryBtn}
+            onClick={() => scrollToSection("form-section")}
+          >
+            Isi form
+          </button>
         </div>
       </div>
     </section>

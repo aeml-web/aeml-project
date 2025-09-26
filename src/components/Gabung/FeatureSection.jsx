@@ -44,7 +44,7 @@ const FeatureSection = () => {
   ];
 
   return (
-    <div className={styles.containerFeature}>
+    <div id="pelajari-section" className={styles.containerFeature}>
       <div className={styles.imageIcon}>
         <img src={banner} className={styles.imageBanner}></img>
       </div>
