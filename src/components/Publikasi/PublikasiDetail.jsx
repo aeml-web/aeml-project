@@ -139,7 +139,7 @@ export default function PublicationDetail() {
                       : styles.categoryDefault
                   }`}
                 >
-                  {publication.type}
+                  {publication.tags}
                 </span>
                 <span className={styles.date}>{publication.date}</span>
               </div>

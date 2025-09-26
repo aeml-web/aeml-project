@@ -3,39 +3,108 @@ import { useNavigate } from "react-router-dom";
 import styles from "./publikasi.module.css";
 import { getPublications } from "../../helpers/apiService";
 import { Download } from "lucide-react";
+import tagsData from "../../assets/tagsPlaceholder.json";
 
 export default function Content() {
   const [publications, setPublications] = useState([]);
+  const [filteredPublications, setFilteredPublications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("Pilih kategori");
+  const [selectedCategory, setSelectedCategory] = useState("Semua Kategori");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const categories = [
-    "Semua Kategori",
-    "Artikel",
-    "Berita",
-    "Laporan",
-    "Panduan",
-    "Penelitian",
-  ];
+  // Pagination states
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(6); // Adjust as needed
 
+  // Get categories from tags JSON file
+  const categories = ["Semua Kategori", ...Object.values(tagsData.TAGS)];
+
+  const navigate = useNavigate();
+
+  // Handle category selection with proper dropdown toggle
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
     setIsDropdownOpen(false);
+    setCurrentPage(1); // Reset to first page when filtering
   };
 
+  // Toggle dropdown on click
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  // Filter publications based on search query and selected category
+  const filterPublications = () => {
+    console.log("Filtering with:", { selectedCategory, searchQuery });
+    console.log("Available publications:", publications);
+    console.log("Tags data:", tagsData.TAGS);
+
+    let filtered = [...publications];
+
+    // Filter by category
+    if (selectedCategory !== "Semua Kategori") {
+      console.log("Filtering by category:", selectedCategory);
+
+      filtered = filtered.filter((pub) => {
+        // Only check tags field (ignore type field for filtering)
+        let matches = false;
+
+        if (pub.tags && typeof pub.tags === "string" && pub.tags !== "null") {
+          const pubTagLower = pub.tags.toLowerCase();
+          const selectedCategoryLower = selectedCategory.toLowerCase();
+
+          // Direct match
+          if (pubTagLower === selectedCategoryLower) {
+            matches = true;
+          }
+
+          // Check if publication tag matches the selected category from tagsData
+          if (!matches) {
+            Object.entries(tagsData.TAGS).forEach(([key, value]) => {
+              if (
+                pubTagLower === key.toLowerCase() &&
+                value.toLowerCase() === selectedCategoryLower
+              ) {
+                matches = true;
+              }
+            });
+          }
+        }
+
+        console.log(
+          `Publication "${pub.title}": tags="${pub.tags}", selectedCategory="${selectedCategory}", matches=${matches}`
+        );
+
+        return matches;
+      });
+
+      console.log("Filtered results:", filtered);
+    }
+
+    // Filter by search query (title search)
+    if (searchQuery.trim()) {
+      filtered = filtered.filter(
+        (pub) =>
+          pub.title &&
+          pub.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    setFilteredPublications(filtered);
+    setCurrentPage(1); // Reset to first page when filtering
+  };
+
+  // Handle search
   const handleSearch = () => {
-    console.log(
-      "Searching for:",
-      searchQuery,
-      "in category:",
-      selectedCategory
-    );
+    filterPublications();
   };
 
-  const navigate = useNavigate();
+  // Handle real-time search as user types
+  useEffect(() => {
+    filterPublications();
+  }, [searchQuery, selectedCategory, publications]);
 
   const handleCardClick = (id) => {
     navigate(`/publikasi/${id}`);
@@ -44,9 +113,9 @@ export default function Content() {
   const handleDownloadClick = (e, pub) => {
     e.stopPropagation(); // Prevent card click when download button is clicked
 
-    // Handle download logic here
-    if (pub.downloadUrl) {
-      window.open(pub.downloadUrl, "_blank");
+    // Handle download logic here - fixed to use linkDownload
+    if (pub.linkDownload) {
+      window.open(pub.linkDownload, "_blank");
     } else {
       // If you have a download API endpoint
       window.open(`/api/publications/${pub.id}/download`, "_blank");
@@ -59,7 +128,9 @@ export default function Content() {
         setLoading(true);
         setError(null);
         const data = await getPublications();
+        console.log(222, data);
         setPublications(data);
+        setFilteredPublications(data);
       } catch (err) {
         setError("Failed to load publications. Please try again later.");
         console.error("Error fetching publications:", err);
@@ -70,6 +141,28 @@ export default function Content() {
 
     loadPublications();
   }, []);
+
+  // Pagination calculations
+  const totalPages = Math.ceil(filteredPublications.length / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredPublications.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
+
+  // Handle page change
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
 
   if (loading) {
     return (
@@ -108,13 +201,12 @@ export default function Content() {
       <div className={styles.containerContentPublikasi}>
         <div className={styles.navigation}>
           <div className={styles.searchFilterContainer}>
-            {/* Category Dropdown */}
-            <div
-              className={styles.categoryDropdown}
-              onMouseEnter={() => setIsDropdownOpen(true)}
-              onMouseLeave={() => setIsDropdownOpen(false)}
-            >
-              <button className={styles.categoryButton}>
+            {/* Category Dropdown - Fixed to be clickable */}
+            <div className={styles.categoryDropdown}>
+              <button
+                className={styles.categoryButton}
+                onClick={toggleDropdown}
+              >
                 {selectedCategory}
                 <svg
                   width="8"
@@ -150,7 +242,7 @@ export default function Content() {
               )}
             </div>
 
-            {/* Search Input */}
+            {/* Search Input - Now searches by title */}
             <div className={styles.searchContainer}>
               <input
                 type="text"
@@ -177,67 +269,90 @@ export default function Content() {
             </div>
           </div>
         </div>
+
+        {/* Show filtered results count */}
+        {(searchQuery || selectedCategory !== "Semua Kategori") && (
+          <div className={styles.resultsInfo}>
+            Menampilkan {filteredPublications.length} dari {publications.length}{" "}
+            publikasi
+            {searchQuery && ` untuk "${searchQuery}"`}
+            {selectedCategory !== "Semua Kategori" &&
+              ` dalam kategori "${selectedCategory}"`}
+          </div>
+        )}
+
         <div className={styles.containerContent}>
-          {publications.map((pub) => (
-            <div
-              key={pub.id}
-              className={`${styles.card} ${styles.clickable}`}
-              onClick={() => handleCardClick(pub.id)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  handleCardClick(pub.id);
-                }
-              }}
-            >
-              <img
-                src={pub.image}
-                alt={pub.title}
-                className={styles.image}
-                onError={(e) => {
-                  e.target.src = "/placeholder-image.jpg"; // Fallback image
+          {currentItems.length > 0 ? (
+            currentItems.map((pub) => (
+              <div
+                key={pub.id}
+                className={`${styles.card} ${styles.clickable}`}
+                onClick={() => handleCardClick(pub.id)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    handleCardClick(pub.id);
+                  }
                 }}
-              />
-              <div className={styles.meta}>
-                <span
-                  className={`${styles.badge} ${
-                    pub.type === "Research"
-                      ? styles.research
-                      : styles.publication
-                  }`}
-                >
-                  {pub.type}
-                </span>
-                <h3 className={styles.title}>{pub.title}</h3>
-                <div className={styles.bottomCard}>
-                  <p className={styles.date}>
-                    {" "}
-                    {new Date(pub.createdAt).toLocaleDateString("id-ID", {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                    })}
-                  </p>
-                  <button
-                    onClick={handleDownloadClick}
-                    className={styles.downloadButton}
-                  >
-                    <Download size={14} style={{ marginRight: "8px" }} />
-                    Download
-                  </button>
+              >
+                <img
+                  src={pub.image}
+                  alt={pub.title}
+                  className={styles.image}
+                  onError={(e) => {
+                    e.target.src = "/placeholder-image.jpg"; // Fallback image
+                  }}
+                />
+                <div className={styles.meta}>
+                  {pub.tags && pub.tags !== "null" && pub.tags !== null && (
+                    <span
+                      className={`${styles.badge} ${
+                        pub.type === "Research"
+                          ? styles.research
+                          : styles.publication
+                      }`}
+                    >
+                      {pub.tags}
+                    </span>
+                  )}
+                  <h3 className={styles.title}>{pub.title}</h3>
+                  <div className={styles.bottomCard}>
+                    <p className={styles.date}>
+                      {new Date(pub.createdAt).toLocaleDateString("id-ID", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                      })}
+                    </p>
+                    <button
+                      onClick={(e) => handleDownloadClick(e, pub)}
+                      className={styles.downloadButton}
+                    >
+                      <Download size={14} style={{ marginRight: "8px" }} />
+                      Download
+                    </button>
+                  </div>
                 </div>
               </div>
+            ))
+          ) : (
+            <div className={styles.noResults}>
+              Tidak ada publikasi yang ditemukan
+              {searchQuery && ` untuk "${searchQuery}"`}
+              {selectedCategory !== "Semua Kategori" &&
+                ` dalam kategori "${selectedCategory}"`}
             </div>
-          ))}
+          )}
         </div>
       </div>
-      {/* Pagination */}
+
+      {/* Dynamic Pagination - Only show if there are multiple pages */}
       <div className={styles.pagination}>
         <button
           className={styles.pageBtn}
-          // onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-          // disabled={currentPage === 1}
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
         >
           <svg
             width="12"
@@ -248,18 +363,19 @@ export default function Content() {
           >
             <path
               d="M9.24081 0.830078L11.3359 2.9252L4.5305 9.7455L11.3359 16.5658L9.24081 18.6609L0.325391 9.7455L9.24081 0.830078Z"
-              fill="#B3B3B3"
+              fill={currentPage === 1 ? "#B3B3B3" : "#181818"}
             />
           </svg>
         </button>
 
-        {/* {[...Array(totalPages)].map((_, i) => ( */}
-        <h4 className={styles.total}> 1 dari 5 </h4>
+        <h4 className={styles.total}>
+          {currentPage} dari {totalPages}
+        </h4>
 
         <button
           className={styles.pageBtn}
-          // onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
-          // disabled={currentPage === totalPages}
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
         >
           <svg
             width="12"
@@ -270,7 +386,7 @@ export default function Content() {
           >
             <path
               d="M2.75919 0.830078L0.664062 2.9252L7.4695 9.7455L0.664062 16.5658L2.75919 18.6609L11.6746 9.7455L2.75919 0.830078Z"
-              fill="#181818"
+              fill={currentPage === totalPages ? "#B3B3B3" : "#181818"}
             />
           </svg>
         </button>

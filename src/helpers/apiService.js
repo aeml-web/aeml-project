@@ -66,6 +66,7 @@ export const transformArticleData = (apiArticles) => {
     body: article.body,
     type: article.type,
     linkDownload: article.linkDownload,
+    tags: article.tags,
   }));
 };
 
@@ -89,6 +90,7 @@ export const transformPublicationData = (apiPublications) => {
     linkDownload: publication.linkDownload,
     createdAt: publication.createdAt,
     updatedAt: publication.updatedAt,
+    tags: publication.tags,
   }));
 };
 
@@ -273,6 +275,7 @@ export const getPublicationById = async (id) => {
         tenantId: publication.tenant_id,
         createdAt: publication.createdAt,
         updatedAt: publication.updatedAt,
+        tags: publication.tags,
         // Format date for display
         date: new Date(publication.createdAt).toLocaleDateString("id-ID", {
           day: "numeric",
