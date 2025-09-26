@@ -27,6 +27,9 @@ import image5 from "../../assets/logos-gov/image5.png";
 import image6 from "../../assets/logos-gov/image6.png";
 
 import airlangga from "../../assets/airlangga.png";
+import anin from "../../assets/anin.png";
+import pandu from "../../assets/pandu.png";
+
 import defaultPhoto from "../../assets/default.png";
 
 import pertaminaLogo from "../../assets/logos/pertamina-logo.png";
@@ -131,58 +134,92 @@ const ScrollNavigation = () => {
       id: "1",
       name: "Airlangga Hartarto",
       title: "Chairman of Board of Patrons",
-      description:
-        "Chairman of Indonesia Chamber of Commerce (KADIN Indonesia)",
+      description: "Chairman of Board of Patrons",
       image: airlangga,
     },
     {
       id: "2",
       name: "Agus Gumiwang Kartasasmita",
       title: "Member of Board of Patrons",
-      description:
-        "Chairman of Indonesia Chamber of Commerce (KADIN Indonesia)",
+      description: "Member of Board of Patrons",
       image: defaultPhoto,
     },
     {
       id: "3",
-      name: "Pandu Sjahrir",
-      title: "Lead",
-      description: "asdfh kfjfnfjjf dkkeoeow",
+      name: "John Anis",
+      title: "Member of Board of Patrons",
+      description: "Member of Board of Patrons",
       image: defaultPhoto,
     },
     {
       id: "4",
-      name: "Pandu Sjahrir",
-      title: "Lead",
-      description: "asdfh kfjfnfjjf dkkeoeow",
+      name: "Darmawan Prasodjo",
+      title: "Member of Board of Patrons",
+      description: "Member of Board of Patrons",
+      image: defaultPhoto,
+    },
+  ];
+
+  const leadSupervisor = [
+    {
+      id: "1",
+      name: "Anindya Novyan Bakrie",
+      title: "Chairman of Supervisory Board",
+      description:
+        "Chairman of Indonesia Chamber of Commerce (KADIN Indonesia)",
+      image: anin,
+    },
+    {
+      id: "2",
+      name: "M. Arsjad Rasjid Prabu M.",
+      title: "Member of Board of Supervisors",
+      description: "Member of Board of Supervisors",
       image: defaultPhoto,
     },
     {
-      id: "5",
-      name: "Pandu Sjahrir",
-      title: "Lead",
-      description: "asdfh kfjfnfjjf dkkeoeow",
+      id: "3",
+      name: "Diaz Faisal Malik H.",
+      title: "Member of Board of Supervisors",
+      description: "Member of Board of Supervisors",
       image: defaultPhoto,
     },
     {
-      id: "6",
-      name: "Pandu Sjahrir",
-      title: "Lead",
-      description: "asdfh kfjfnfjjf dkkeoeow",
+      id: "4",
+      name: "Shirley Santoso",
+      title: "Member of Board of Supervisors",
+      description: "Member of Board of Supervisors",
+      image: defaultPhoto,
+    },
+  ];
+
+  const leadExecutive = [
+    {
+      id: "1",
+      name: "Pandu Patria Sjahrir",
+      title: "Chairman",
+      description: "Chairman",
+      image: pandu,
+    },
+    {
+      id: "2",
+      name: "Riszajidien Zakaria",
+      title: "Vice Chairman for Technical and Safety",
+      description: "Vice Chairman for Technical and Safety",
       image: defaultPhoto,
     },
     {
-      id: "7",
-      name: "Pandu Sjahrir",
-      title: "Lead",
-      description: "asdfh kfjfnfjjf dkkeoeow",
+      id: "3",
+      name: "Putu Yudha",
+      title: "Vice Chairman for Partnerships",
+      description: "Vice Chairman for Partnerships",
       image: defaultPhoto,
     },
     {
-      id: "8",
-      name: "Pandu Sjahrir",
-      title: "Lead",
-      description: "asdfh kfjfnfjjf dkkeoeow",
+      id: "4",
+      name: "Ririn Rachmawardini",
+      title: "Vice Chairwoman for Infrastructure and Electric Vehicle Mobility",
+      description:
+        "Vice Chairwoman for Infrastructure and Electric Vehicle Mobility",
       image: defaultPhoto,
     },
   ];
@@ -562,7 +599,7 @@ const ScrollNavigation = () => {
                   navigation={true}
                   modules={[Navigation]}
                 >
-                  {lead.map((src, index) => (
+                  {leadSupervisor.map((src, index) => (
                     <SwiperSlide key={index}>
                       <div className={styles.containerPhotos}>
                         <div className={styles.containerImage}>
@@ -603,7 +640,7 @@ const ScrollNavigation = () => {
                     setTimeout(() => swiper.update(), 100);
                   }}
                 >
-                  {lead.map((src, index) => (
+                  {leadExecutive.map((src, index) => (
                     <SwiperSlide key={index}>
                       <div className={styles.containerPhotos}>
                         <div className={styles.containerImage}>

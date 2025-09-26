@@ -270,7 +270,7 @@
 
 .containerPhotos {
   width: 234px;
-  height: 310px;
+  height: 330px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -283,6 +283,7 @@
   width: 234px;
   height: 295px;
   transition: all 0.3s ease;
+  object-fit: cover;
 }
 
 .containerImage {
