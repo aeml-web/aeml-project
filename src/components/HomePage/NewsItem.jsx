@@ -75,7 +75,20 @@ const NewsItem = () => {
       <div className={styles.header}>
         <h1 className={styles.titleNews}>Kegiatan</h1>
         <a href="/kegiatan" className={styles.readMore}>
-          Baca selengkapnya →
+          <span>Baca selengkapnya</span>
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style={{ marginLeft: "3px" }} // kasih jarak biar nggak dempet
+          >
+            <path
+              d="M12.5003 4.16699L11.3253 5.34199L15.142 9.16699H1.66699V10.8337H15.142L11.317 14.6587L12.5003 15.8337L18.3337 10.0003L12.5003 4.16699Z"
+              fill="#0C4FD3"
+            />
+          </svg>
         </a>
       </div>
 
