@@ -3,11 +3,13 @@ import styles from "./homepage.module.css";
 import energi from "../../assets/event-video.mp4";
 import thumbnail from "../../assets/thumbnail.png";
 import "animate.css";
+import { useNavigate } from "react-router-dom";
 
 const Video = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -82,7 +84,10 @@ const Video = () => {
           )}
         </div>
 
-        <button className={styles.learnMoreButton}>
+        <button
+          className={styles.learnMoreButton}
+          onClick={() => navigate("/about")}
+        >
           Pelajari selengkapnya
           <svg viewBox="0 0 24 24" className={styles.arrowIcon}>
             <path
