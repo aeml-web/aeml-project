@@ -28,7 +28,7 @@ const pageVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: [0.16, 1, 0.3, 1], // Elegant easing curve
+      ease: [0.16, 1, 0.3, 1],
     },
   },
   exit: {
@@ -46,33 +46,13 @@ const Wrapper = ({ children }) => {
   const [isPageLoaded, setIsPageLoaded] = useState(false);
 
   useLayoutEffect(() => {
+    // Reset loading state on route change
     setIsPageLoaded(false);
 
-    // Smooth scroll to top with custom easing
-    const scrollToTop = () => {
-      const duration = 600;
-      const start = window.pageYOffset;
-      const startTime = performance.now();
+    // Scroll to the top of the page when the route changes
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
 
-      const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
-
-      const scroll = (currentTime) => {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const easeProgress = easeOutCubic(progress);
-
-        window.scrollTo(0, start * (1 - easeProgress));
-
-        if (progress < 1) {
-          requestAnimationFrame(scroll);
-        }
-      };
-
-      requestAnimationFrame(scroll);
-    };
-
-    scrollToTop();
-
+    // Set page as loaded after a short delay
     const timer = setTimeout(() => {
       setIsPageLoaded(true);
     }, 100);
