@@ -41,6 +41,8 @@ export default function PublicationDetail() {
   }, [id]);
 
   const handleDownload = () => {
+    if (!isFormValid) return; // Prevent action if form is invalid
+
     if (!formData.company.trim() || !formData.email.trim()) {
       alert("Please fill in both company and email fields");
       return;
@@ -60,10 +62,11 @@ export default function PublicationDetail() {
   };
 
   const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   if (loading) {
@@ -99,6 +102,10 @@ export default function PublicationDetail() {
       </div>
     );
   }
+
+  // Check if all fields are filled
+  const isFormValid =
+    formData.company.trim() !== "" && formData.email.trim() !== "";
 
   return (
     <div className={styles.container}>
@@ -177,7 +184,10 @@ export default function PublicationDetail() {
 
                 <button
                   onClick={handleDownload}
-                  className={styles.downloadButton}
+                  disabled={!isFormValid}
+                  className={`${styles.downloadButton} ${
+                    !isFormValid ? styles.disabled : ""
+                  }`}
                 >
                   <Download size={14} />
                   Download File

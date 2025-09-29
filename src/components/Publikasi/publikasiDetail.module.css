@@ -206,6 +206,35 @@
   border-color: #ccc;
 }
 
+.downloadButton:disabled {
+  width: 180px;
+  height: 40px;
+  padding: 1rem;
+  font-size: 16px;
+  font-weight: 700;
+  color: black;
+  background: #b3b3b3;
+  border: none;
+  border-radius: 26px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  font-family: "Instrument Sans", sans-serif; /* Prevents all interactions including hover */
+}
+
+/* Or if you're using a separate disabled class */
+/* .downloadButton.disabled {
+  opacity: 1;
+  cursor: not-allowed;
+  pointer-events: none;
+} */
+
+.downloadButton.disabled:hover {
+  /* This won't trigger because of pointer-events: none */
+  background: inherit;
+  transform: none;
+}
+
 .loading {
   text-align: center;
   padding: 2rem;
@@ -293,7 +322,7 @@
   font-family: "Instrument Sans", sans-serif;
 }
 
-.downloadButton:hover {
+.downloadButton {
   padding: 1rem;
   font-size: 16px;
   font-weight: 600;
