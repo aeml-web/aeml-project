@@ -22,10 +22,11 @@
 
 .bannerImage {
   width: 100%;
-  height: 100%;
+  height: 250px;
   object-fit: cover;
+  object-position: center;
   border-radius: 16px;
-  display: block; /* hilangkan whitespace */
+  display: block;
 }
 
 /* Konten umum */

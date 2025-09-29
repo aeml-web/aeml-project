@@ -63,7 +63,10 @@ const PublikasiDetail = () => {
     return (
       <div className={styles.publicationsSection}>
         <div className={styles.publicationsHeader}>
-          <h2 className={styles.publicationsTitle}>Publikasi</h2>
+          <h2 className={styles.publicationsTitle}>
+            {" "}
+            Download Publikasi Lainnya
+          </h2>
         </div>
         <div className={styles.emptyContainer}>
           <p>Belum ada publikasi tersedia.</p>
@@ -75,7 +78,10 @@ const PublikasiDetail = () => {
   return (
     <div className={styles.publicationsSection}>
       <div className={styles.publicationsHeader}>
-        <h2 className={styles.publicationsTitle}>Publikasi</h2>
+        <h2 className={styles.publicationsTitle}>
+          {" "}
+          Download Publikasi Lainnya
+        </h2>
         <a href="/publikasi" className={styles.viewAllLink}>
           Baca selengkapnya →
         </a>

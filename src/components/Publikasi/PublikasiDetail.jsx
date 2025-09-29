@@ -71,7 +71,7 @@ export default function PublicationDetail() {
 
   if (loading) {
     return (
-      <div className={styles.container}>
+      <div className={styles.containerPub}>
         <div className={styles.loading}>Loading publication details...</div>
       </div>
     );
@@ -79,7 +79,7 @@ export default function PublicationDetail() {
 
   if (error) {
     return (
-      <div className={styles.container}>
+      <div className={styles.containerPub}>
         <button onClick={handleBack} className={styles.backBtn}>
           ← Back
         </button>
