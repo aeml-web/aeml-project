@@ -62,7 +62,7 @@ const NewsDetailComponent = () => {
               <span className={styles.articleDate}>
                 {formatDate(article.createdAt)}
               </span>
-              <span className={styles.articleCategory}>{article.type}</span>
+              <span className={styles.articleCategory}>{article.tags}</span>
             </div>
             <div className={styles.line}></div>
           </div>
