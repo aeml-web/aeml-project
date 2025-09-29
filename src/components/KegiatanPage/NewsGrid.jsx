@@ -170,7 +170,7 @@ const NewsGrid = ({ items }) => {
       </div>
 
       {/* Pagination - only show if there are results */}
-      {filteredItems.length > 0 && totalPages > 1 && (
+      {filteredItems.length > 0 && totalPages >= 1 && (
         <div className={styles.pagination}>
           {/* Prev button */}
           <button
