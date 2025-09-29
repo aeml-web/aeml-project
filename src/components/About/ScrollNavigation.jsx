@@ -432,7 +432,6 @@ const ScrollNavigation = () => {
   }, []);
 
   useEffect(() => {
-    // Create intersection observer
     observerRef.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -441,14 +440,10 @@ const ScrollNavigation = () => {
             const animType = element.getAttribute("data-anim");
             const delay = element.getAttribute("data-delay") || "0s";
 
-            // Apply animation
+            // Apply delay and animation
             element.style.animationDelay = delay;
             element.classList.add(styles[animType]);
 
-            // Mark as animated
-            setAnimatedElements((prev) => new Set(prev).add(element));
-
-            // Stop observing this element
             observerRef.current.unobserve(element);
           }
         });
@@ -456,17 +451,11 @@ const ScrollNavigation = () => {
       { threshold: 0.2 }
     );
 
-    // Observe all elements with data-anim attribute
     const elements = document.querySelectorAll("[data-anim]");
     elements.forEach((el) => observerRef.current.observe(el));
 
-    return () => {
-      if (observerRef.current) {
-        observerRef.current.disconnect();
-      }
-    };
+    return () => observerRef.current?.disconnect();
   }, []);
-
   // Handle scroll spy
   useEffect(() => {
     const contentEl = contentRef.current;

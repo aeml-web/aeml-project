@@ -500,19 +500,19 @@
   background: #94a3b8;
 }
 
-/* Initial hidden state */
 [data-anim] {
   opacity: 0;
   visibility: hidden;
+  transform: translateY(50px);
 }
 
 /* Slide in up animation */
 @keyframes slideInUp {
-  from {
+  0% {
     opacity: 0;
     transform: translateY(50px);
   }
-  to {
+  100% {
     opacity: 1;
     transform: translateY(0);
     visibility: visible;
@@ -521,23 +521,5 @@
 
 .slideInUp {
   animation: slideInUp 0.8s ease-out forwards;
-  visibility: visible !important;
-}
-
-/* Slide in left animation */
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-    visibility: visible;
-  }
-}
-
-.slideInLeft {
-  animation: slideInLeft 0.8s ease-out forwards;
   visibility: visible !important;
 }
