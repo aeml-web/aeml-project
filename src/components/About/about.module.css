@@ -96,7 +96,7 @@
 
 /* Menu Item Styles */
 .menuItem {
-  width: 210px;
+  width: 220px;
   text-align: right;
   transition: all 0.2s ease;
   border: none;
@@ -270,7 +270,7 @@
 
 .containerPhotos {
   width: 234px;
-  height: 330px;
+  height: fit-content;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -498,4 +498,46 @@
 
 .content::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
+}
+
+/* Initial hidden state */
+[data-anim] {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Slide in up animation */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+}
+
+.slideInUp {
+  animation: slideInUp 0.8s ease-out forwards;
+  visibility: visible !important;
+}
+
+/* Slide in left animation */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+  }
+}
+
+.slideInLeft {
+  animation: slideInLeft 0.8s ease-out forwards;
+  visibility: visible !important;
 }

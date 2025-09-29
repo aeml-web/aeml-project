@@ -1,17 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./homepage.module.css";
 import energi from "../../assets/event-video.mp4";
 import thumbnail from "../../assets/thumbnail.png";
+import "animate.css";
 
 const Video = () => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 } // Trigger when 20% of section is visible
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
 
   const handlePlayClick = () => {
     setIsPlaying(true);
   };
 
   return (
-    <div className={styles.videoSection}>
+    <div
+      className={`${styles.videoSection} ${
+        isVisible ? "animate__animated animate__fadeInUp animate__slow" : ""
+      }`}
+      ref={sectionRef}
+    >
       {/* Background decorative circles
       <div className={styles.backgroundShapes}>
         <div className={styles.circleLeft}></div>

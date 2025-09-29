@@ -120,9 +120,9 @@ const KegiatanHero = ({
             {truncateTitle(displayActivity.title)}
           </h1>
 
-          {displayActivity.preview && (
+          {/* {displayActivity.preview && (
             <p className={styles.heroPreview}>{displayActivity.preview}</p>
-          )}
+          )} */}
 
           <button
             className={styles.heroCta}

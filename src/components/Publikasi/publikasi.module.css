@@ -13,16 +13,18 @@
 .banner {
   max-width: 1280px;
   width: 100%;
-  max-height: 400px;
+  max-height: 250px;
   overflow: hidden;
   margin: 0 auto; /* center */
   margin-top: 32px;
+  border-radius: 16px;
 }
 
 .bannerImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 16px;
   display: block; /* hilangkan whitespace */
 }
 

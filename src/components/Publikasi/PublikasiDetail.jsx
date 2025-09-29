@@ -5,6 +5,8 @@ import { Download } from "lucide-react";
 
 import { getPublicationById } from "../../helpers/apiService"; // adjust path if needed
 import styles from "./publikasiDetail.module.css";
+import Publikasi from "../HomePage/Publikasi";
+import PublikasiDetail from "../HomePage/PublikasiDetail";
 
 export default function PublicationDetail() {
   const [publication, setPublication] = useState(null);
@@ -185,6 +187,7 @@ export default function PublicationDetail() {
           </div>
         </div>
       </div>
+      <PublikasiDetail />
     </div>
   );
 }

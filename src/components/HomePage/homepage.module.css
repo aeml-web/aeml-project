@@ -11,7 +11,7 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  color: #1b3974;
+  color: #061d4c;
   width: 1280px;
 }
 
@@ -45,7 +45,6 @@
 
 .heroButtons button {
   flex: 1;
-  padding: 14px 20px;
   font-size: 1rem;
   font-weight: 600;
   border-radius: 9999px;
@@ -55,35 +54,101 @@
   font-family: "Instrument Sans", sans-serif;
   z-index: 3;
 }
-
 .btnPrimary {
-  background-color: #a3e221;
+  background: linear-gradient(135deg, #a3e221 0%, #8bc34a 100%);
   border: none;
   color: black;
   width: 360px;
   font-size: 16px;
   height: 48px;
+  cursor: pointer;
+  border-radius: 12px;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, box-shadow;
+}
+
+/* Shimmer/shine effect */
+.btnPrimary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transition: left 0.6s ease;
 }
 
 .btnPrimary:hover {
-  background-color: #256eff;
+  background: linear-gradient(135deg, #256eff 0%, #1a4fff 100%);
   color: white;
+  transform: scale(1.02);
+  box-shadow: 0 15px 35px rgba(37, 110, 255, 0.3), 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btnPrimary:hover::before {
+  left: 100%; /* Shimmer animation */
 }
 
 .btnSecondary {
-  background-color: white;
-  border: 1px solid black;
+  background: white;
+  border: 2px solid black;
   color: black;
   width: 360px;
   font-size: 16px;
   height: 48px;
   box-sizing: border-box;
+  cursor: pointer;
+  border-radius: 12px;
+  font-weight: 400;
+  position: relative;
+  overflow: hidden;
+
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Fill-from-left effect */
+.btnSecondary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: white;
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 0;
+  box-sizing: border-box;
+}
+
+.btnSecondary:hover::before {
+  width: 100%; /* Fill animation */
 }
 
 .btnSecondary:hover {
-  background-color: white;
-  font-weight: 700;
-  border: 2px solid black;
+  color: white;
+  border-color: black;
+  transform: scale(1.02);
+  border: 3px solid black;
+}
+
+.btnSecondary span {
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+.btnSecondary:hover span {
+  color: black;
 }
 
 .containerCarousel {
@@ -477,6 +542,12 @@
   font-family: "Space Grotesk", sans-serif;
   margin: 0;
   width: 400px;
+
+  /* Limit to 2 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .featuredPreview {
@@ -1244,4 +1315,38 @@
     min-height: 120px;
     font-size: 0.9rem;
   }
+}
+
+.heroTitle.animate__animated {
+  --animate-duration: 1s; /* Custom duration for title */
+}
+
+.heroSubtitle.animate__animated {
+  --animate-duration: 2s; /* Custom duration for subtitle */
+}
+
+.heroTitle,
+.heroSubtitle {
+  opacity: 0;
+}
+
+.heroTitle.animate__animated,
+.heroSubtitle.animate__animated {
+  opacity: 1;
+}
+
+.videoSection {
+  opacity: 0;
+}
+
+.videoSection.animate__animated {
+  opacity: 1;
+}
+
+.partnerCategory {
+  opacity: 0;
+}
+
+.partnerCategory.animate__animated {
+  opacity: 1;
 }

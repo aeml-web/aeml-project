@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./homepage.module.css";
 import govEkonomi from "../../assets/logos-gov/ekonomi.png";
 import govInvest from "../../assets/logos-gov/invest.png";
@@ -15,7 +15,41 @@ import image4 from "../../assets/logos-gov/image4.png";
 import image5 from "../../assets/logos-gov/image5.png";
 import image6 from "../../assets/logos-gov/image6.png";
 
+import "animate.css";
+
 const Mitra = () => {
+  const [showFirstSection, setShowFirstSection] = useState(false);
+  const [showSecondSection, setShowSecondSection] = useState(false);
+  const firstSectionRef = useRef(null);
+  const secondSectionRef = useRef(null);
+
+  useEffect(() => {
+    const firstObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setShowFirstSection(true);
+            // Trigger second section after delay
+            setTimeout(() => {
+              setShowSecondSection(true);
+            }, 600);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (firstSectionRef.current) {
+      firstObserver.observe(firstSectionRef.current);
+    }
+
+    return () => {
+      if (firstSectionRef.current) {
+        firstObserver.unobserve(firstSectionRef.current);
+      }
+    };
+  }, []);
+
   const governmentPartners = [
     {
       id: 1,
@@ -102,7 +136,14 @@ const Mitra = () => {
 
   return (
     <div className={styles.partnersSection}>
-      <div className={styles.partnerCategory}>
+      <div
+        className={`${styles.partnerCategory} ${
+          showFirstSection
+            ? "animate__animated animate__fadeInUp animate_slow"
+            : ""
+        }`}
+        ref={firstSectionRef}
+      >
         <h2 className={styles.categoryTitle}>Mitra Pemerintahan AEML</h2>
         <div className={styles.partnersGrid}>
           {governmentPartners.map((partner) => (
@@ -119,7 +160,14 @@ const Mitra = () => {
         </div>
       </div>
 
-      <div className={styles.partnerCategory}>
+      <div
+        className={`${styles.partnerCategory} ${
+          showSecondSection
+            ? "animate__animated animate__fadeInUp animate_slower"
+            : ""
+        }`}
+        ref={secondSectionRef}
+      >
         <h2 className={styles.categoryTitle}>Mitra Pembangunan AEML</h2>
         <div className={styles.partnersGrid}>
           {developmentPartners.map((partner) => (

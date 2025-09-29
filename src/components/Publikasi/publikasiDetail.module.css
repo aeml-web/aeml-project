@@ -1,9 +1,13 @@
 .container {
-  height: 100vh;
+  height: fit-content;
   display: flex;
   justify-content: center;
   padding-top: 44px;
   width: 100vw;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
 }
 
 .containerContent {

@@ -161,7 +161,9 @@ const Navbar = () => {
             Infomolis.id
           </button>
           <Link to="/gabung">
-            <button className={styles.buttonLang}>Gabung AEML</button>
+            <button className={styles.buttonLang}>
+              <span>Gabung AEML</span>
+            </button>
           </Link>
           <div ref={dropdownRef} className={styles.langDropdownWrapper}>
             {/* Tombol utama */}

@@ -10,6 +10,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "../../global.css";
+import "animate.css";
 
 import govEkonomi from "../../assets/logos-gov/ekonomi.png";
 import govInvest from "../../assets/logos-gov/invest.png";
@@ -32,6 +33,8 @@ import pandu from "../../assets/pandu.png";
 import fototentang from "../../assets/fototentang.png";
 import coverpub from "../../assets/publication_cover.png";
 import homepage from "../../assets/headernew.png";
+import rian from "../../assets/rian.webp";
+import anugrah from "../../assets/anugrah.webp";
 
 import defaultPhoto from "../../assets/default.png";
 
@@ -107,8 +110,13 @@ export const aboutMenuItems = [
 
 const ScrollNavigation = () => {
   const [activeSection, setActiveSection] = useState("visi");
+  const [showTitle, setShowTitle] = useState(false);
   const sectionsRef = useRef({});
   const contentRef = useRef(null);
+  const titleRef = useRef(null);
+
+  const [animatedElements, setAnimatedElements] = useState(new Set());
+  const observerRef = useRef(null);
 
   const menuItems = aboutMenuItems;
 
@@ -161,6 +169,14 @@ const ScrollNavigation = () => {
       description: "Member of Board of Patrons",
       image: defaultPhoto,
     },
+    {
+      id: "5",
+      name: "Muhammad Rachmat K.",
+      title: "Member of Board of Patrons",
+      description:
+        "Deputy for Basic Infrastructure Coordination, Coordinating Ministry for Infrastructure and Regional Development of the Republic of Indonesia",
+      image: defaultPhoto,
+    },
   ];
 
   const leadSupervisor = [
@@ -174,23 +190,32 @@ const ScrollNavigation = () => {
     },
     {
       id: "2",
-      name: "M. Arsjad Rasjid Prabu M.",
+      name: "M. Anjani Pudu M.",
       title: "Member of Board of Supervisors",
-      description: "Member of Board of Supervisors",
+      description: "President Director of PT. Indika Energy Tbk",
       image: defaultPhoto,
     },
     {
       id: "3",
       name: "Diaz Faisal Malik H.",
       title: "Member of Board of Supervisors",
-      description: "Member of Board of Supervisors",
+      description:
+        "Deputy Minister of Environment of the Republic of Indonesia",
       image: defaultPhoto,
     },
     {
       id: "4",
       name: "Shirley Santoso",
       title: "Member of Board of Supervisors",
-      description: "Member of Board of Supervisors",
+      description: "Chief Executive Officer of Kasaemy",
+      image: defaultPhoto,
+    },
+    {
+      id: "5",
+      name: "Fabilly Tumwa",
+      title: "Member of Board of Supervisors",
+      description:
+        "Executive Director of Institute for Essential Services Reform (IESR)",
       image: defaultPhoto,
     },
   ];
@@ -200,29 +225,74 @@ const ScrollNavigation = () => {
       id: "1",
       name: "Pandu Patria Sjahrir",
       title: "Chairman",
-      description: "Chairman",
+      description:
+        "Investor, businessman and a visionary for Electric Vehicle Ecosystem",
       image: pandu,
     },
     {
       id: "2",
-      name: "Riszajidien Zakaria",
+      name: "Rizqidden Zakaria",
       title: "Vice Chairman for Technical and Safety",
-      description: "Vice Chairman for Technical and Safety",
+      description:
+        "Head of Battery Infrastructure of PT. Energi Kreasi Batama (Electrum)",
       image: defaultPhoto,
     },
     {
       id: "3",
       name: "Putu Yudha",
       title: "Vice Chairman for Partnerships",
-      description: "Vice Chairman for Partnerships",
+      description: "Chief Marketing Officer of PT. Ilectra Motor Group (ILMG)",
       image: defaultPhoto,
     },
     {
       id: "4",
-      name: "Ririn Rachmawardini",
-      title: "Vice Chairwoman for Infrastructure and Electric Vehicle Mobility",
+      name: "Heru Rachmadiardi",
+      title: "Vice Chairman for Infrastructure and Electric Vehicle Mobility",
       description:
-        "Vice Chairwoman for Infrastructure and Electric Vehicle Mobility",
+        "Executive Vice President of PT Perusahaan Listrik Negara (Persero)",
+      image: defaultPhoto,
+    },
+    {
+      id: "5",
+      name: "Herry Haryman",
+      title: "Vice Chairman for Market Development",
+      description:
+        "Executive Director Institutional Banking Group of PT. Bank DBS Indonesia",
+      image: defaultPhoto,
+    },
+    {
+      id: "6",
+      name: "Thomson Opuraman",
+      title: "Treasurer",
+      description: "Co-founder of Smart Motor Indonesia",
+      image: defaultPhoto,
+    },
+    {
+      id: "7",
+      name: "Rian Ernest Tandjaja",
+      title: "Secretary General",
+      description: "A professional in law and policy",
+      image: rian,
+    },
+    {
+      id: "8",
+      name: "Dhany Rachman",
+      title: "Vice Section 1",
+      description: "Government Relations",
+      image: defaultPhoto,
+    },
+    {
+      id: "10",
+      name: "Anugraha Dismariedi",
+      title: "Director Executive Secretariat",
+      description: "A professional in management",
+      image: anugrah,
+    },
+    {
+      id: "9",
+      name: "Valdano Pandu Ruru",
+      title: "Vice Section 2",
+      description: "Legal Advisor",
       image: defaultPhoto,
     },
   ];
@@ -337,6 +407,65 @@ const ScrollNavigation = () => {
       }
     }
   };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setShowTitle(true);
+          }
+        });
+      },
+      { threshold: 0.3 } // Trigger when 30% visible
+    );
+
+    if (titleRef.current) {
+      observer.observe(titleRef.current);
+    }
+
+    return () => {
+      if (titleRef.current) {
+        observer.unobserve(titleRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    // Create intersection observer
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const element = entry.target;
+            const animType = element.getAttribute("data-anim");
+            const delay = element.getAttribute("data-delay") || "0s";
+
+            // Apply animation
+            element.style.animationDelay = delay;
+            element.classList.add(styles[animType]);
+
+            // Mark as animated
+            setAnimatedElements((prev) => new Set(prev).add(element));
+
+            // Stop observing this element
+            observerRef.current.unobserve(element);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    // Observe all elements with data-anim attribute
+    const elements = document.querySelectorAll("[data-anim]");
+    elements.forEach((el) => observerRef.current.observe(el));
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, []);
 
   // Handle scroll spy
   useEffect(() => {
@@ -775,7 +904,11 @@ const ScrollNavigation = () => {
   return (
     <div className={styles.aboutPage}>
       <div className={styles.aboutContainer}>
-        <h1 className={styles.titleAbout}>
+        <h1
+          data-anim="slideInUp"
+          data-delay="0.3s"
+          className={styles.titleAbout}
+        >
           Memajukan ekosistem mobilitas listrik di Indonesia sehingga berkelas
           dunia.
         </h1>
