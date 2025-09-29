@@ -1351,3 +1351,33 @@
 .partnerCategory.animate__animated {
   opacity: 1;
 }
+
+.right {
+  position: relative;
+}
+
+.hoverZoneLeft,
+.hoverZoneRight {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 10;
+}
+
+.hoverZoneLeft {
+  left: 0;
+  cursor: w-resize;
+}
+
+.hoverZoneRight {
+  right: 0;
+  cursor: e-resize;
+}
+
+/* Optional: Visual feedback */
+.hoverZoneLeft:hover {
+}
+
+.hoverZoneRight:hover {
+}
