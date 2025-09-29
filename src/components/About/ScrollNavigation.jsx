@@ -145,28 +145,31 @@ const ScrollNavigation = () => {
       id: "1",
       name: "Airlangga Hartarto",
       title: "Chairman of Board of Patrons",
-      description: "Chairman of Board of Patrons",
+      description:
+        "Minister of Coordinating Ministry for Economic Affairs of the Republic of Indonesia",
       image: airlangga,
     },
     {
       id: "2",
       name: "Agus Gumiwang Kartasasmita",
       title: "Member of Board of Patrons",
-      description: "Member of Board of Patrons",
+      description: "Minister of Industry of the Republic of Indonesia",
       image: defaultPhoto,
     },
     {
       id: "3",
       name: "John Anis",
       title: "Member of Board of Patrons",
-      description: "Member of Board of Patrons",
+      description:
+        "President Director of PT. Pertamina Power Indonesia (Pertamina NRE)",
       image: defaultPhoto,
     },
     {
       id: "4",
       name: "Darmawan Prasodjo",
       title: "Member of Board of Patrons",
-      description: "Member of Board of Patrons",
+      description:
+        "President Director of PT. Perusahaan Listrik Negara (Persero)",
       image: defaultPhoto,
     },
     {
@@ -189,12 +192,19 @@ const ScrollNavigation = () => {
       image: anin,
     },
     {
-      id: "2",
-      name: "M. Anjani Pudu M.",
+      id: "1",
+      name: "M. Arsjad Rasjid Prabu Mangkuningrat",
       title: "Member of Board of Supervisors",
       description: "President Director of PT. Indika Energy Tbk",
       image: defaultPhoto,
     },
+    // {
+    //   id: "2",
+    //   name: "M. Anjani Pudu M.",
+    //   title: "Member of Board of Supervisors",
+    //   description: "President Director of PT. Indika Energy Tbk",
+    //   image: defaultPhoto,
+    // },
     {
       id: "3",
       name: "Diaz Faisal Malik H.",
@@ -207,12 +217,12 @@ const ScrollNavigation = () => {
       id: "4",
       name: "Shirley Santoso",
       title: "Member of Board of Supervisors",
-      description: "Chief Executive Officer of Kasaemy",
+      description: "Chief Executive Officer of Kearney",
       image: defaultPhoto,
     },
     {
       id: "5",
-      name: "Fabilly Tumwa",
+      name: "Fabilly Fabby Tumiwa",
       title: "Member of Board of Supervisors",
       description:
         "Executive Director of Institute for Essential Services Reform (IESR)",
@@ -231,7 +241,7 @@ const ScrollNavigation = () => {
     },
     {
       id: "2",
-      name: "Rizqidden Zakaria",
+      name: "Riszajidien Zakaria",
       title: "Vice Chairman for Technical and Safety",
       description:
         "Head of Battery Infrastructure of PT. Energi Kreasi Batama (Electrum)",
@@ -245,16 +255,16 @@ const ScrollNavigation = () => {
       image: defaultPhoto,
     },
     {
-      id: "4",
-      name: "Heru Rachmadiardi",
-      title: "Vice Chairman for Infrastructure and Electric Vehicle Mobility",
+      id: "3",
+      name: "Ririn Rachmawardini",
+      title: "Vice Chairwoman for Infrastructure and Electric Vehicle Mobility",
       description:
         "Executive Vice President of PT Perusahaan Listrik Negara (Persero)",
       image: defaultPhoto,
     },
     {
-      id: "5",
-      name: "Herry Haryman",
+      id: "4",
+      name: "Heru Hatman",
       title: "Vice Chairman for Market Development",
       description:
         "Executive Director Institutional Banking Group of PT. Bank DBS Indonesia",
@@ -264,7 +274,7 @@ const ScrollNavigation = () => {
       id: "6",
       name: "Thomson Opuraman",
       title: "Treasurer",
-      description: "Co-founder of Smart Motor Indonesia",
+      description: "Co-founder of Smoot Motor Indonesia",
       image: defaultPhoto,
     },
     {
@@ -276,21 +286,21 @@ const ScrollNavigation = () => {
     },
     {
       id: "8",
-      name: "Dhany Rachman",
+      name: "Dhery Rachman",
       title: "Vice Section 1",
       description: "Government Relations",
       image: defaultPhoto,
     },
     {
       id: "10",
-      name: "Anugraha Dismariedi",
+      name: "Anugraha Dezmercoledi",
       title: "Director Executive Secretariat",
       description: "A professional in management",
       image: anugrah,
     },
     {
       id: "9",
-      name: "Valdano Pandu Ruru",
+      name: "Valdano Paulo Ruru",
       title: "Vice Section 2",
       description: "Legal Advisor",
       image: defaultPhoto,
@@ -387,6 +397,7 @@ const ScrollNavigation = () => {
   const scrollToSection = (sectionId) => {
     const element = sectionsRef.current[sectionId];
     const container = contentRef.current;
+    const [perView, setPerView] = useState(3.6);
 
     if (element && container) {
       const containerTop = container.getBoundingClientRect().top;
