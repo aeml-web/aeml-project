@@ -29,10 +29,28 @@ body {
   background-color: white;
 }
 
-/* Buat container biasa tanpa flex */
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Base container styles */
 .container {
   width: 100vw;
+  min-height: 100vh;
   margin: 0 auto;
+  overflow-x: hidden;
+}
+
+/* Page wrapper for consistent layout */
+.page-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
 }
 
 /* Untuk halaman full center (opsional) */
@@ -44,30 +62,42 @@ body {
   text-align: center;
 }
 
-html {
-  scroll-behavior: smooth;
+/* Ensure footer is properly positioned */
+footer {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  margin-top: auto;
 }
 
-* {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Optional: Hide scrollbar during transitions for cleaner look */
-.container {
-  overflow-x: hidden;
-}
-
+/* Restore normal scrolling */
 html,
 body {
+  overflow: auto;
   height: auto;
   min-height: 100%;
-  overflow: hidden; /* biar Locomotive takeover */
 }
 
-[data-scroll-container] {
-  min-height: 100vh;
-  height: auto;
-  overflow: visible;
-  will-change: transform;
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .page-wrapper {
+    overflow-x: hidden;
+  }
+
+  .container {
+    overflow-x: hidden;
+  }
+}
+
+/* Smooth scrolling for anchor links */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Performance optimizations */
+.page-wrapper * {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 }

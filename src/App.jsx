@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState, useEffect, useRef } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -6,8 +6,6 @@ import {
   useLocation,
 } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import LocomotiveScroll from "locomotive-scroll";
-import "locomotive-scroll/dist/locomotive-scroll.css";
 
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
@@ -38,103 +36,40 @@ const pageVariants = {
 const Wrapper = ({ children }) => {
   const location = useLocation();
   const [isPageLoaded, setIsPageLoaded] = useState(false);
-  const scrollRef = useRef(null);
-  const locomotiveScrollRef = useRef(null);
 
-  const isAboutPage = location.pathname === "/about";
-
-  // Inisialisasi Locomotive hanya kalau bukan /about
-  useEffect(() => {
-    if (isAboutPage || !scrollRef.current) return;
-
-    locomotiveScrollRef.current = new LocomotiveScroll({
-      el: scrollRef.current,
-      smooth: true,
-      multiplier: 1,
-      class: "is-inview",
-      smoothMobile: false,
-      resetNativeScroll: true,
-    });
-
-    setTimeout(() => {
-      locomotiveScrollRef.current?.update();
-    }, 500);
-
-    const handleResize = () => {
-      locomotiveScrollRef.current?.update();
-    };
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      locomotiveScrollRef.current?.destroy();
-    };
-  }, [location.pathname, isAboutPage]);
-
+  // Handle page transitions and scroll to top
   useLayoutEffect(() => {
-    if (isAboutPage) return; // biarin native scroll
+    // Scroll to top on route change
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
 
     setIsPageLoaded(false);
 
-    if (locomotiveScrollRef.current) {
-      locomotiveScrollRef.current.scrollTo(0, {
-        duration: 0,
-        disableLerp: true,
-      });
-    } else {
-      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-    }
-
-    const timer = setTimeout(() => {
+    // Set page loaded state
+    const pageTimer = setTimeout(() => {
       setIsPageLoaded(true);
-      locomotiveScrollRef.current?.update();
     }, 300);
 
-    return () => clearTimeout(timer);
-  }, [location.pathname, isAboutPage]);
+    return () => {
+      clearTimeout(pageTimer);
+    };
+  }, [location.pathname]);
 
   return (
     <>
       <Navbar />
-      {isAboutPage ? (
-        // ✅ Scroll native untuk /about
-        <AnimatePresence mode="wait">
-          <motion.main
-            key={location.pathname}
-            className="container"
-            style={{
-              minHeight: "100vh",
-              overflowY: "auto", // ⬅️ tambahin ini
-              height: "100vh", // ⬅️ pastikan penuh layar
-              WebkitOverflowScrolling: "touch", // biar smooth di iOS
-            }}
-            variants={pageVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-          >
-            {children}
-            <Footer /> {/* taruh di sini biar ikut scroll native */}
-          </motion.main>
-        </AnimatePresence>
-      ) : (
-        <div ref={scrollRef} data-scroll-container>
-          <AnimatePresence mode="wait">
-            <motion.main
-              key={location.pathname}
-              className="container"
-              style={{ minHeight: "100vh" }}
-              variants={pageVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-            >
-              {children}
-            </motion.main>
-          </AnimatePresence>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={location.pathname}
+          className="page-wrapper"
+          variants={pageVariants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+        >
+          <main className="container">{children}</main>
           {isPageLoaded && <Footer />}
-        </div>
-      )}
+        </motion.div>
+      </AnimatePresence>
     </>
   );
 };

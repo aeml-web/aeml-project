@@ -239,6 +239,7 @@ export const getArticleById = async (id) => {
         body: response.data.body,
         images: response.data.images,
         type: response.data.type,
+        tags: response.data.tags,
         linkDownload: response.data.linkDownload,
         createdAt: response.data.createdAt,
         updatedAt: response.data.updatedAt,
