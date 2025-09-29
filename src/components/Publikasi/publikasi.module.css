@@ -115,6 +115,9 @@
   padding-right: 108px;
   padding-top: 30px;
   border-radius: 16px;
+
+  position: relative;
+  overflow: visible;
 }
 
 .searchFilterContainer {
@@ -334,6 +337,7 @@
   position: relative;
   flex: 1;
   max-width: 280px;
+  z-index: 10;
 }
 
 .categoryButton {

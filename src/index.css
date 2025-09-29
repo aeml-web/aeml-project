@@ -95,9 +95,3 @@ body {
     scroll-behavior: smooth;
   }
 }
-
-/* Performance optimizations */
-.page-wrapper * {
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-}
