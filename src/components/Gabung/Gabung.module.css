@@ -1402,3 +1402,12 @@
     transform: rotate(360deg);
   }
 }
+
+.containerFeature {
+  opacity: 0;
+}
+
+.containerFeature.animate__animated {
+  opacity: 1;
+  --animate-duration: 1.5s; /* Lebih lambat dari slower (3s) */
+}
