@@ -47,3 +47,17 @@ body {
   min-height: 100vh;
   text-align: center;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optional: Hide scrollbar during transitions for cleaner look */
+.container {
+  overflow-x: hidden;
+}
