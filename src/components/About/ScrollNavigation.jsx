@@ -33,6 +33,12 @@ import pandu from "../../assets/pandu.png";
 import fototentang from "../../assets/fototentang.png";
 import coverpub from "../../assets/publication_cover.png";
 import homepage from "../../assets/headernew.png";
+
+import fotoo1 from "../../assets/fotoo1.jpeg";
+import fotoo2 from "../../assets/fotoo2.jpeg";
+import fotoo3 from "../../assets/fotoo3.jpeg";
+import fotoo4 from "../../assets/fotoo4.jpeg";
+
 import rian from "../../assets/rian.webp";
 import anugrah from "../../assets/anugrah.webp";
 
@@ -391,7 +397,7 @@ const ScrollNavigation = () => {
     },
   ];
 
-  const photos = [fototentang, coverpub, homepage];
+  const photos = [fotoo1, fotoo2, fotoo3, fotoo4];
 
   // Fungsi untuk scroll ke section
   const scrollToSection = (sectionId) => {
