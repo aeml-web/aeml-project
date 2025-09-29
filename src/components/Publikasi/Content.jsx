@@ -271,7 +271,7 @@ export default function Content() {
         </div>
 
         {/* Show filtered results count */}
-        {(searchQuery || selectedCategory !== "Semua Kategori") && (
+        {/* {(searchQuery || selectedCategory !== "Semua Kategori") && (
           <div className={styles.resultsInfo}>
             Menampilkan {filteredPublications.length} dari {publications.length}{" "}
             publikasi
@@ -279,7 +279,7 @@ export default function Content() {
             {selectedCategory !== "Semua Kategori" &&
               ` dalam kategori "${selectedCategory}"`}
           </div>
-        )}
+        )} */}
 
         <div className={styles.containerContent}>
           {currentItems.length > 0 ? (

@@ -1015,6 +1015,7 @@
   justify-items: center;
   justify-content: space-between;
   font-family: "Instrument Sans", sans-serif;
+  box-sizing: border-box;
 }
 
 .learnMoreButton:hover {

@@ -235,12 +235,12 @@
     align-items: flex-start;
     gap: 16px;
   }
-  
+
   .tagsScrollContainer {
     max-width: 100%;
     width: 100%;
   }
-  
+
   .titleNews {
     font-size: 24px;
   }

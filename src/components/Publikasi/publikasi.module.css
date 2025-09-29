@@ -34,6 +34,10 @@
   margin-top: 46px;
 }
 
+.noResults {
+  color: black;
+}
+
 .badges {
   display: inline-flex;
   align-items: center;
