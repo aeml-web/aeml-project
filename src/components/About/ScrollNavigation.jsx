@@ -272,14 +272,14 @@ const ScrollNavigation = () => {
     },
     {
       id: "6",
-      name: "Thomson Opuraman",
+      name: "Thomson Djuraiman",
       title: "Treasurer",
       description: "Co-founder of Smoot Motor Indonesia",
       image: defaultPhoto,
     },
     {
       id: "7",
-      name: "Rian Ernest Tandjaja",
+      name: "Rian Ernest Tanudjaja",
       title: "Secretary General",
       description: "A professional in law and policy",
       image: rian,
@@ -397,7 +397,6 @@ const ScrollNavigation = () => {
   const scrollToSection = (sectionId) => {
     const element = sectionsRef.current[sectionId];
     const container = contentRef.current;
-    const [perView, setPerView] = useState(3.6);
 
     if (element && container) {
       const containerTop = container.getBoundingClientRect().top;

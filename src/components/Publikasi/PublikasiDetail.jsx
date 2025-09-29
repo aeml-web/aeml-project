@@ -110,10 +110,6 @@ export default function PublicationDetail() {
   return (
     <div className={styles.container}>
       <div className={styles.containerContent}>
-        <button onClick={handleBack} className={styles.backBtn}>
-          ← Back to Publications
-        </button>
-
         <div className={styles.content}>
           {/* Left side - Publication Image */}
           <div className={styles.imageSection}>

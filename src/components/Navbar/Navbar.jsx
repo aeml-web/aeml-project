@@ -156,7 +156,10 @@ const Navbar = () => {
         </div>
 
         <div className={styles.end}>
-          <button className={styles.buttonInfomolis}>
+          <button
+            className={styles.buttonInfomolis}
+            onClick={() => window.open("https://infomolis.id", "_blank")}
+          >
             <img src={logobrowse} alt="" className={styles.icon} />
             Infomolis.id
           </button>

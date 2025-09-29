@@ -1,3 +1,4 @@
+import { style } from "framer-motion/client";
 import Feedback from "../Feedback/Feedback";
 import CarouselHome from "./CarouselHome";
 import FeedbackHome from "./FeedbackHome";
@@ -8,11 +9,12 @@ import NewsItem from "./NewsItem";
 import Publikasi from "./Publikasi";
 import Video from "./Video";
 import React, { useState } from "react";
+import styles from "./homepage.module.css";
 
 function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(true);
   return (
-    <>
+    <div className={styles.containerHome}>
       <HeaderHome />
       <CarouselHome />
       <LogoCompany />
@@ -25,7 +27,7 @@ function HomePage() {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       />{" "} */}
-    </>
+    </div>
   );
 }
 

@@ -29,14 +29,10 @@ body {
   background-color: white;
 }
 
-/* Container agar konten tetap center */
+/* Buat container biasa tanpa flex */
 .container {
   width: 100vw;
-  max-width: 1440px; /* batasi lebar */
   margin: 0 auto;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
 }
 
 /* Untuk halaman full center (opsional) */
@@ -60,4 +56,18 @@ html {
 /* Optional: Hide scrollbar during transitions for cleaner look */
 .container {
   overflow-x: hidden;
+}
+
+html,
+body {
+  height: auto;
+  min-height: 100%;
+  overflow: hidden; /* biar Locomotive takeover */
+}
+
+[data-scroll-container] {
+  min-height: 100vh;
+  height: auto;
+  overflow: visible;
+  will-change: transform;
 }

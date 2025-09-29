@@ -85,7 +85,7 @@
 .regularGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  height: 654px;
+  height: 720px;
   gap: 24px;
 }
 
@@ -94,7 +94,7 @@
   border-radius: 12px;
   overflow: hidden;
   transition: transform 0.2s ease;
-  height: 303px;
+  height: 350px;
 }
 
 .regularCard:hover .regularImage {
@@ -129,6 +129,12 @@
   color: #181818;
   margin: 8px 0 4px;
   font-family: "Space Grotesk", sans-serif;
+
+  display: -webkit-box; /* enable flexbox model untuk webkit */
+  -webkit-box-orient: vertical; /* orientasi vertikal */
+  -webkit-line-clamp: 3; /* maksimal 3 baris */
+  overflow: hidden; /* sembunyikan sisa text */
+  text-overflow: ellipsis;
 }
 
 .regularDate {

@@ -137,7 +137,6 @@ const KegiatanPages = () => {
 
     return (
       <div className={styles.content}>
-        <h2 className={styles.sectionTitle}>Kegiatan AEML</h2>
         {error && (
           <div className={styles.warningMessage}>
             <p>⚠️ Menggunakan data fallback karena gagal memuat dari server</p>

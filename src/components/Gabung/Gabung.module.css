@@ -12,6 +12,7 @@
 .containerAll {
   width: 100vw;
   height: fit-content;
+  padding-bottom: 100px;
   background: linear-gradient(145.78deg, #0c4fd3 -4.84%, #a3e221 160.38%);
 }
 
