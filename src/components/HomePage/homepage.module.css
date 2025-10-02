@@ -548,7 +548,7 @@
 }
 
 .featuredTitle {
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 700;
   color: #181818;
   line-height: 100%;
@@ -626,7 +626,7 @@
 }
 
 .regularTitle {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   color: #181818;
   overflow: hidden;
@@ -1407,4 +1407,32 @@
 }
 
 .hoverZoneRight:hover {
+}
+
+.right {
+  cursor: none; /* Hide default cursor */
+  position: relative;
+}
+
+.customCursor {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #a3e221;
+  border: none;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease, opacity 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #000;
+  font-weight: bold;
+}
+
+.customCursor.hidden {
+  opacity: 0;
 }

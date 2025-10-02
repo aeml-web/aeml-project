@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import styles from "./homepage.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
@@ -14,36 +14,87 @@ const photos = [foto1, foto4, foto2, foto5];
 
 export default function CarouselHome() {
   const swiperRef = useRef(null);
-  const intervalRef = useRef(null);
+  const containerRef = useRef(null);
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const [cursorVisible, setCursorVisible] = useState(false);
+  const [cursorDirection, setCursorDirection] = useState("");
 
-  const startAutoScroll = (direction) => {
-    stopAutoScroll();
+  const handleMouseMove = (e) => {
+    // Update cursor position
+    setCursorPos({ x: e.clientX, y: e.clientY });
 
-    if (swiperRef.current) {
-      // langsung gerak sekali pas hover
-      if (direction === "next") {
-        swiperRef.current.slideNext();
-      } else {
-        swiperRef.current.slidePrev();
-      }
+    // Use cached rect if available, or get it once
+    if (!containerRef.current) return;
+
+    const rect = containerRef.current.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const halfWidth = rect.width / 2;
+
+    const newDirection = mouseX < halfWidth ? "prev" : "next";
+
+    // Only update state if direction actually changed
+    if (newDirection !== cursorDirection) {
+      setCursorDirection(newDirection);
     }
-
-    // lanjut auto scroll tiap 2 detik
-    intervalRef.current = setInterval(() => {
-      if (swiperRef.current) {
-        if (direction === "next") {
-          swiperRef.current.slideNext();
-        } else {
-          swiperRef.current.slidePrev();
-        }
-      }
-    }, 300);
   };
 
-  const stopAutoScroll = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
+  const handleMouseEnter = () => {
+    setCursorVisible(true);
+  };
+
+  const handleMouseLeave = () => {
+    setCursorVisible(false);
+    setCursorDirection("");
+  };
+
+  const handleClick = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const halfWidth = rect.width / 2;
+
+    if (swiperRef.current) {
+      if (mouseX < halfWidth) {
+        swiperRef.current.slidePrev();
+      } else {
+        swiperRef.current.slideNext();
+      }
+    }
+  };
+
+  const renderCursorIcon = () => {
+    if (cursorDirection === "prev") {
+      return (
+        <svg
+          width="12"
+          height="19"
+          viewBox="0 0 12 19"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M9.24081 0.830078L11.3359 2.9252L4.5305 9.7455L11.3359 16.5658L9.24081 18.6609L0.325391 9.7455L9.24081 0.830078Z"
+            fill="#181818"
+          />
+        </svg>
+      );
+    } else if (cursorDirection === "next") {
+      return (
+        <svg
+          width="12"
+          height="19"
+          viewBox="0 0 12 19"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ transform: "rotate(180deg)" }}
+        >
+          <path
+            d="M9.24081 0.830078L11.3359 2.9252L4.5305 9.7455L11.3359 16.5658L9.24081 18.6609L0.325391 9.7455L9.24081 0.830078Z"
+            fill="#181818"
+          />
+        </svg>
+      );
+    } else {
+      return null;
     }
   };
 
@@ -72,20 +123,26 @@ export default function CarouselHome() {
       </div>
 
       {/* Right carousel */}
-      <div className={styles.right}>
-        {/* Left hover zone */}
+      <div
+        ref={containerRef}
+        className={styles.right}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onClick={handleClick}
+      >
+        {/* Custom Cursor */}
         <div
-          className={styles.hoverZoneLeft}
-          onMouseEnter={() => startAutoScroll("prev")}
-          onMouseLeave={stopAutoScroll}
-        />
-
-        {/* Right hover zone */}
-        <div
-          className={styles.hoverZoneRight}
-          onMouseEnter={() => startAutoScroll("next")}
-          onMouseLeave={stopAutoScroll}
-        />
+          className={`${styles.customCursor} ${
+            !cursorVisible ? styles.hidden : ""
+          }`}
+          style={{
+            left: `${cursorPos.x}px`,
+            top: `${cursorPos.y}px`,
+          }}
+        >
+          {renderCursorIcon()}
+        </div>
 
         <Swiper
           spaceBetween={20}
