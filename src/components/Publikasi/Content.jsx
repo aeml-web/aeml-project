@@ -320,13 +320,12 @@ export default function Content() {
                   <div className={styles.bottomCard}>
                     <p className={styles.date}>
                       {new Date(pub.createdAt).toLocaleDateString("id-ID", {
-                        day: "numeric",
                         month: "long",
                         year: "numeric",
                       })}
                     </p>
                     <button
-                      onClick={(e) => handleDownloadClick(e, pub)}
+                      onClick={(e) => handleCardClick(pub.id)}
                       className={styles.downloadButton}
                     >
                       <Download size={14} style={{ marginRight: "8px" }} />

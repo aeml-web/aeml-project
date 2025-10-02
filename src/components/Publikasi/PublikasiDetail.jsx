@@ -49,8 +49,14 @@ export default function PublicationDetail() {
     }
 
     // You can send form data to your API here before downloading
-    if (publication?.downloadUrl) {
-      window.open(publication.downloadUrl, "_blank");
+    // if (publication?.downloadUrl) {
+    //   window.open(publication.downloadUrl, "_blank");
+    // } else {
+    //   window.open(`/api/publications/${id}/download`, "_blank");
+    // }
+
+    if (publication?.linkDownload) {
+      window.open(publication.linkDownload, "_blank");
     } else {
       window.open(`/api/publications/${id}/download`, "_blank");
     }
@@ -146,7 +152,12 @@ export default function PublicationDetail() {
                 >
                   {publication.tags}
                 </span>
-                <span className={styles.date}>{publication.date}</span>
+                <span className={styles.date}>
+                  {new Date(publication.createdAt).toLocaleDateString("id-ID", {
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </span>
               </div>
 
               {publication.subtitle && (
