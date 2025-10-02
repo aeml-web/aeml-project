@@ -211,6 +211,10 @@
 
 .regularImageContainer {
   overflow: hidden;
+  width: 100%;
+  height: 197px;
+  border-radius: 8px;
+  object-fit: cover;
 }
 
 .regularImage {
@@ -221,9 +225,9 @@
   transition: transform 0.3s ease;
 }
 
-/* .regularImage:hover {
-  transform: scale(1.05);
-} */
+.regularImage:hover {
+  transform: scale(1.1);
+}
 
 .regularContent {
   padding: 10px;
@@ -235,6 +239,10 @@
   color: #181818;
   margin: 8px 0 4px;
   font-family: "Space Grotesk", sans-serif;
+  display: -webkit-box; /* enable flexbox model untuk webkit */
+  -webkit-box-orient: vertical; /* orientasi vertikal */
+  -webkit-line-clamp: 2; /* maksimal 3 baris */
+  overflow: hidden; /* sembunyikan sisa text */
 }
 
 .regularDate {

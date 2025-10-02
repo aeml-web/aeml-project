@@ -129,7 +129,20 @@ const KegiatanHero = ({
             onClick={handleReadMore}
             disabled={!featuredActivity || !featuredActivity.id}
           >
-            Baca selengkapnya →
+            Baca selengkapnya
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style={{ marginLeft: "8px" }}
+            >
+              <path
+                d="M12.5003 4.16699L11.3253 5.34199L15.142 9.16699H1.66699V10.8337H15.142L11.317 14.6587L12.5003 15.8337L18.3337 10.0003L12.5003 4.16699Z"
+                fill="currentColor"
+              />
+            </svg>
           </button>
         </div>
 

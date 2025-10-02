@@ -148,17 +148,19 @@ const NewsGrid = ({ items }) => {
               </div>
               <div className={styles.regularContent}>
                 <h3 className={styles.regularTitle}>{item.title}</h3>
-                <p className={styles.regularDate}>{item.date}</p>
-                {/* Display item tags */}
-                {item.tags && (
-                  <div className={styles.itemTags}>
-                    <span className={styles.itemTag}>
-                      {tagsData.TAGS[item.tags.toUpperCase()] ||
-                        item.tags.charAt(0).toUpperCase() +
-                          item.tags.slice(1).toLowerCase()}
-                    </span>
-                  </div>
-                )}
+                <div className={styles.contentbottom}>
+                  <p className={styles.regularDate}>{item.date}</p>
+                  {/* Display item tags */}
+                  {item.tags && (
+                    <div className={styles.itemTags}>
+                      <span className={styles.itemTag}>
+                        {tagsData.TAGS[item.tags.toUpperCase()] ||
+                          item.tags.charAt(0).toUpperCase() +
+                            item.tags.slice(1).toLowerCase()}
+                      </span>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           ))
