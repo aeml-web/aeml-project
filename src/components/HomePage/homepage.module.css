@@ -1036,6 +1036,7 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
+  height: 48px;
   transition: all 0.3s ease;
   text-decoration: none;
   width: 360px;
