@@ -56,6 +56,7 @@ const Wrapper = ({ children }) => {
 
   return (
     <>
+      {/* Move Navbar OUTSIDE AnimatePresence */}
       <Navbar />
       <AnimatePresence mode="wait">
         <motion.div

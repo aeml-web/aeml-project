@@ -1,0 +1,121 @@
+/* Add these styles to your CSS file */
+
+.sektorContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 600px;
+  padding: 4rem 2rem;
+}
+
+/* Center logo */
+.centerLogo {
+  position: relative;
+  z-index: 10;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Orbiting items container */
+.orbitContainer {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  animation: rotate 30s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Individual category items */
+.categoryItem {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  margin: -60px 0 0 -60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-align: center;
+  animation: counterRotate 30s linear infinite;
+  transition: transform 0.3s ease;
+}
+
+/* Counter-rotate to keep text upright */
+@keyframes counterRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.categoryItem:hover {
+  transform: scale(1.2) rotate(0deg) !important;
+  z-index: 20;
+}
+
+/* Position each item around the circle */
+.categoryItem:nth-child(1) {
+  /* Energy */
+  transform: rotate(0deg) translate(250px) rotate(0deg);
+}
+
+.categoryItem:nth-child(2) {
+  /* Battery */
+  transform: rotate(72deg) translate(250px) rotate(-72deg);
+}
+
+.categoryItem:nth-child(3) {
+  /* Charging */
+  transform: rotate(144deg) translate(250px) rotate(-144deg);
+}
+
+.categoryItem:nth-child(4) {
+  /* EV Manufacturer */
+  transform: rotate(216deg) translate(250px) rotate(-216deg);
+}
+
+.categoryItem:nth-child(5) {
+  /* Ride Hailing */
+  transform: rotate(288deg) translate(250px) rotate(-288deg);
+}
+
+.categoryItem:nth-child(6) {
+  /* Financier */
+  transform: rotate(360deg) translate(250px) rotate(-360deg);
+}
+
+.categoryIcon {
+  width: 60px;
+  height: 60px;
+  filter: brightness(0) invert(1);
+}
+
+.categoryText {
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+}

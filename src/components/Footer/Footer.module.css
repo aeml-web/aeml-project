@@ -130,6 +130,11 @@
   margin: 0;
 }
 
+.navItem:hover {
+  margin: 0;
+  text-decoration: underline;
+}
+
 .navLink {
   color: white;
   text-decoration: none;

@@ -90,7 +90,7 @@ const NewsGrid = ({ items }) => {
               {availableTags.map((tag, index) => (
                 <div
                   key={tag.id}
-                  className={`${styles.tagItem} ${
+                  className={`${styles.x} ${
                     selectedTag === tag.id
                       ? styles.tagActive
                       : styles.tagInactive
