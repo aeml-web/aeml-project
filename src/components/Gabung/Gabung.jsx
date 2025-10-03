@@ -11,6 +11,9 @@ const Gabung = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
+  const isFormValid =
+    formData.name && formData.email && formData.phone && formData.sector;
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -143,7 +146,7 @@ const Gabung = () => {
               className={`${styles.submitButton} ${
                 isLoading ? styles.loading : ""
               }`}
-              disabled={isLoading}
+              disabled={isLoading || !isFormValid}
             >
               {isLoading ? "Mengirim..." : "Submit"}
             </button>

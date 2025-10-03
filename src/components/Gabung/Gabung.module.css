@@ -1185,7 +1185,7 @@
 .formSelect {
   width: 470px;
   height: 40px;
-  font-size: 1rem;
+  font-size: 12px;
   padding-left: 1rem;
   border: 1px solid #adadad;
   background-color: #dedede;
@@ -1200,24 +1200,24 @@
   background-size: 20px;
   padding-right: 3rem;
   cursor: pointer;
+
+  /* default color = grey until real selection */
   color: #a6a6a6;
   font-style: italic;
-  font-size: 12px;
-  font-weight: 300;
   font-family: "Epilogue", sans-serif;
+  font-weight: 300;
 }
 
-.formSelect::placeholder {
+/* Force placeholder (first option) to stay grey */
+.formSelect option[value=""] {
   color: #a6a6a6;
   font-style: italic;
-  font-size: 12px;
-  font-weight: 300;
-  font-family: "Epilogue", sans-serif;
 }
 
-.formSelect:focus {
-  color: #a6a6a6;
-  transform: translateY(-1px);
+/* When user selects a real option → black text */
+.formSelect:valid {
+  color: black;
+  font-style: normal;
 }
 
 .submitButton {
@@ -1227,7 +1227,6 @@
   font-size: 16px;
   font-weight: 600;
   color: black;
-  background: #a3e221;
   border: none;
   border-radius: 26px;
   cursor: pointer;
@@ -1244,6 +1243,7 @@
 
 .submitButton:active {
   transform: translateY(0);
+  background: linear-gradient(135deg, #65a30d, #84cc16);
   box-shadow: 0 5px 10px rgba(132, 204, 22, 0.2);
 }
 
@@ -1411,4 +1411,19 @@
 .containerFeature.animate__animated {
   opacity: 1;
   --animate-duration: 1.5s; /* Lebih lambat dari slower (3s) */
+}
+
+.submitButton.disabled {
+  background-color: #cccccc !important;
+  background: #cccccc !important;
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none !important;
+}
+
+.submitButton.disabled:hover {
+  background-color: #cccccc !important;
+  background: #cccccc !important;
+  transform: none !important;
+  box-shadow: none !important;
 }
