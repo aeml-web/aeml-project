@@ -115,7 +115,7 @@ export const aboutMenuItems = [
 ];
 
 const ScrollNavigation = () => {
-  const [activeSection, setActiveSection] = useState("tentang");
+  const [activeSection, setActiveSection] = useState("perusahaan-anggota"); // default aktif
   const sectionsRef = useRef({});
 
   // Pastikan aboutMenuItems sudah di-import atau didefinisikan
@@ -385,40 +385,43 @@ const ScrollNavigation = () => {
   const scrollToSection = (sectionId) => {
     const element = sectionsRef.current[sectionId];
     if (element) {
-      const navbarHeight = -700;
+      const navbarHeight = -700; // ✅ samain dengan top di CSS
       const offsetPosition = element.offsetTop - navbarHeight;
-
       window.scrollTo({
         top: offsetPosition,
         behavior: "smooth",
       });
-
-      setActiveSection(sectionId);
     }
   };
+
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 120;
+      const scrollPosition = window.scrollY + 50; // 150px dari atas viewport
+      console.log("scrollY:", scrollPosition);
 
+      let foundSection = null;
       for (const item of menuItems) {
-        const element = sectionsRef.current[item.id];
-        if (element) {
-          const sectionTop = element.offsetTop;
-          const sectionBottom = sectionTop + element.offsetHeight;
-
-          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-            setActiveSection(item.id);
+        const el = sectionsRef.current[item.id];
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          console.log(item.id, top, height);
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            foundSection = item.id;
             break;
           }
         }
       }
+
+      if (foundSection && foundSection !== activeSection) {
+        console.log("Aktif berubah:", foundSection);
+        setActiveSection(foundSection);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // trigger sekali di awal
-
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [menuItems]);
+  }, [menuItems, activeSection]);
 
   const renderSectionContent = (item) => {
     switch (item.id) {
