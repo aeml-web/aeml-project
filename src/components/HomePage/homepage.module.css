@@ -1,3 +1,4 @@
+/* Base styles - Desktop First (1280px+) */
 .heroWrapper {
   max-width: 1440px;
   align-items: center;
@@ -61,6 +62,7 @@
   font-family: "Instrument Sans", sans-serif;
   z-index: 3;
 }
+
 .btnPrimary {
   background: linear-gradient(135deg, #a3e221 0%, #8bc34a 100%);
   border: none;
@@ -73,12 +75,10 @@
   font-weight: 600;
   position: relative;
   overflow: hidden;
-
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform, box-shadow;
 }
 
-/* Shimmer/shine effect */
 .btnPrimary::before {
   content: "";
   position: absolute;
@@ -103,7 +103,7 @@
 }
 
 .btnPrimary:hover::before {
-  left: 100%; /* Shimmer animation */
+  left: 100%;
 }
 
 .btnSecondary {
@@ -119,11 +119,9 @@
   font-weight: 400;
   position: relative;
   overflow: hidden;
-
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Fill-from-left effect */
 .btnSecondary::before {
   content: "";
   position: absolute;
@@ -138,7 +136,7 @@
 }
 
 .btnSecondary:hover::before {
-  width: 100%; /* Fill animation */
+  width: 100%;
 }
 
 .btnSecondary:hover {
@@ -159,7 +157,7 @@
 }
 
 .containerCarousel {
-  position: relative; /* penting biar ::after bisa absolute */
+  position: relative;
   display: flex;
   gap: 24px;
   align-items: center;
@@ -168,7 +166,7 @@
   padding-bottom: 138px;
   padding-left: 100px;
   justify-content: center;
-  background: none; /* pindahkan gradient ke ::after */
+  background: none;
   z-index: 1;
 }
 
@@ -178,7 +176,7 @@
   top: 0;
   left: 0;
   right: 0;
-  bottom: -30px; /* extend background ke bawah 30px */
+  bottom: -30px;
   background: linear-gradient(
     360deg,
     #ffffff 8.55%,
@@ -186,7 +184,7 @@
     #e1ebff 66.61%,
     #ffffff 94.81%
   );
-  z-index: -1; /* biar background di belakang konten */
+  z-index: -1;
 }
 
 .left {
@@ -198,6 +196,7 @@
 .right {
   flex: 1;
   max-width: 720px;
+  position: relative;
 }
 
 .titleCarousel {
@@ -265,12 +264,10 @@
   height: 422px;
 }
 
-/* even slides */
 .evenImage {
   height: 350px;
 }
 
-/* Swiper Navigation Buttons Styling */
 :global(.swiper-button-next),
 :global(.swiper-button-prev) {
   background: white;
@@ -292,7 +289,6 @@
   font-weight: bold;
 }
 
-/* Swiper Pagination Styling */
 :global(.swiper-pagination-bullet) {
   background: #ccc !important;
   opacity: 0.5 !important;
@@ -306,7 +302,7 @@
 }
 
 :global(.swiper-slide) {
-  padding: 0 10px; /* 10px padding on each side = 20px total gap */
+  padding: 0 10px;
 }
 
 :global(.swiper-slide:last-child) .carouselImage {
@@ -376,7 +372,6 @@
   text-align: center;
 }
 
-/* Company-specific colors */
 .alva {
   color: #2c3e50;
 }
@@ -434,7 +429,6 @@
   height: 58px !important;
 }
 
-/* Animations */
 @keyframes moveLeft {
   0% {
     transform: translateX(0);
@@ -531,7 +525,7 @@
 }
 
 .featuredCard:hover .featuredImage {
-  transform: scale(1.1); /* Scale image to 110% */
+  transform: scale(1.1);
 }
 
 .featuredImage {
@@ -548,15 +542,13 @@
 }
 
 .featuredTitle {
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 700;
   color: #181818;
   line-height: 100%;
   font-family: "Space Grotesk", sans-serif;
   margin: 0;
   width: 400px;
-
-  /* Limit to 2 lines */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -607,7 +599,7 @@
 }
 
 .regularCard:hover .regularImage {
-  transform: scale(1.1); /* Scale image to 110% */
+  transform: scale(1.1);
 }
 
 .regularImage {
@@ -618,22 +610,17 @@
   cursor: pointer;
 }
 
-.regularImage:hover {
-  /* transform: scale(1.05); */
-}
-
 .regularContent {
 }
 
 .regularTitle {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
   color: #181818;
   overflow: hidden;
   font-family: "Space Grotesk", sans-serif;
   margin-bottom: 0;
   margin-top: 10px;
-
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -646,61 +633,6 @@
   margin: 0;
   font-family: "Instrument Sans", sans-serif;
   margin-top: 4px;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .containerCarousel {
-    flex-direction: column;
-    padding: 20px;
-    gap: 30px;
-  }
-
-  .title {
-    font-size: 2rem;
-  }
-
-  .stats {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .carouselImage {
-    height: 250px;
-  }
-
-  .title {
-    font-size: 2rem;
-    margin-bottom: 40px;
-  }
-
-  .logoItem {
-    min-width: 120px;
-    padding: 15px 20px;
-  }
-
-  .logoImage {
-    max-width: fit-content !important;
-    height: 46px !important;
-  }
-
-  .logoTrack {
-    gap: 40px;
-  }
-}
-
-@media (max-width: 480px) {
-  .title {
-    font-size: 1.8rem;
-  }
-
-  .card {
-    padding: 15px;
-  }
-
-  .card h3 {
-    font-size: 1.5rem;
-  }
 }
 
 .publicationsSection {
@@ -748,8 +680,8 @@
 .publicationsGrid {
   max-width: 1200px;
   display: flex;
-  flex-wrap: wrap; /* biar bisa turun ke bawah */
-  gap: 44px; /* jarak antar item */
+  flex-wrap: wrap;
+  gap: 44px;
   margin-left: 111px;
 }
 
@@ -766,11 +698,6 @@
   align-items: center;
   gap: 8px;
 }
-
-/* .publicationCard:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
-} */
 
 .btnRead {
   background: #e8f9ff;
@@ -848,39 +775,6 @@
   transform: translateY(-2px);
 }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  .publicationsSection {
-    padding: 40px 20px;
-  }
-
-  .publicationsHeader {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-  }
-
-  .publicationsTitle {
-    font-size: 2rem;
-  }
-
-  .publicationsGrid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .cardContent {
-    padding: 20px;
-  }
-
-  .cardTitle {
-    font-size: 1.1rem;
-    min-height: auto;
-  }
-}
-
-/* VideoSection.module.css */
-
 .videoSection {
   position: relative;
   display: flex;
@@ -890,9 +784,8 @@
   min-height: 600px;
   overflow: hidden;
   width: 1440px;
-  background: url("../../assets/lingkaran.png") no-repeat center bottom /
-    contain;
-  background-size: 102%; /* 100% = default contain width, 150% = 1.5x lebih besar */
+  background: url("../../assets/lingkaran.png") no-repeat center bottom / contain;
+  background-size: 102%;
 }
 
 .backgroundShapes {
@@ -1036,7 +929,6 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  height: 48px;
   transition: all 0.3s ease;
   text-decoration: none;
   width: 360px;
@@ -1060,64 +952,6 @@
 .learnMoreButton:hover .arrowIcon {
   transform: translateX(4px);
 }
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  .videoSection {
-    padding: 60px 20px;
-    min-height: 500px;
-  }
-
-  .videoTitle {
-    font-size: 2.2rem;
-    margin-bottom: 40px;
-  }
-
-  .videoWrapper {
-    max-width: 100%;
-  }
-
-  .playButton {
-    width: 60px;
-    height: 60px;
-  }
-
-  .playIcon {
-    width: 24px;
-    height: 24px;
-  }
-
-  .learnMoreButton {
-    padding: 14px 28px;
-    font-size: 1rem;
-  }
-
-  .circleLeft {
-    width: 250px;
-    height: 250px;
-    left: -125px;
-  }
-
-  .circleRight {
-    width: 200px;
-    height: 200px;
-    right: -100px;
-  }
-}
-
-@media (max-width: 480px) {
-  .videoTitle {
-    font-size: 1.8rem;
-    margin-bottom: 30px;
-  }
-
-  .learnMoreButton {
-    padding: 12px 24px;
-    font-size: 0.95rem;
-  }
-}
-
-/* PartnersSection.module.css */
 
 .partnersSection {
   padding: 80px 0;
@@ -1150,13 +984,13 @@
 
 .partnersGrid {
   display: flex;
-  flex-wrap: wrap; /* biar bisa turun ke bawah */
-  gap: 32px; /* jarak antar item */
-  justify-content: center; /* selalu center */
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
 }
 
 .partnersGrid > * {
-  width: 230px; /* lebar fixed tiap item */
+  width: 230px;
 }
 
 .partnerCard {
@@ -1190,7 +1024,6 @@
   transform: scale(1.05);
 }
 
-/* Specific adjustments for different logo types */
 .partnerCard:nth-child(1) .partnerLogo,
 .partnerCard:nth-child(2) .partnerLogo,
 .partnerCard:nth-child(3) .partnerLogo,
@@ -1198,80 +1031,14 @@
   max-height: 70px;
 }
 
-/* Government logos tend to be more detailed */
 .partnerCategory:first-child .partnerLogo {
   max-height: 75px;
 }
 
-/* Development partner logos tend to be more modern/simpler */
 .partnerCategory:last-child .partnerLogo {
   max-height: 65px;
 }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  .partnersSection {
-    padding: 60px 20px;
-  }
-
-  .partnerCategory {
-    margin-bottom: 60px;
-  }
-
-  .categoryTitle {
-    font-size: 2rem;
-    margin-bottom: 40px;
-  }
-
-  .partnersGrid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 12px;
-  }
-
-  .partnerCard {
-    padding: 24px 16px;
-    min-height: 120px;
-  }
-
-  .logoContainer {
-    height: 70px;
-  }
-
-  .partnerLogo {
-    max-height: 60px;
-  }
-}
-
-@media (max-width: 480px) {
-  .partnersSection {
-    padding: 40px 16px;
-  }
-
-  .categoryTitle {
-    font-size: 1.75rem;
-    margin-bottom: 32px;
-  }
-
-  .partnersGrid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .partnerCard {
-    padding: 20px 16px;
-    min-height: 100px;
-  }
-
-  .logoContainer {
-    height: 60px;
-  }
-
-  .partnerLogo {
-    max-height: 50px;
-  }
-}
-
-/* Loading state for images */
 .partnerLogo {
   opacity: 0;
   animation: fadeIn 0.5s ease-in-out forwards;
@@ -1287,7 +1054,6 @@
     transform: translateY(0);
   }
 }
-/* Add these styles to your homepage.module.css file */
 
 .loadingContainer,
 .errorContainer,
@@ -1335,23 +1101,12 @@
   color: #6c757d;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .loadingContainer,
-  .errorContainer,
-  .emptyContainer {
-    padding: 1rem;
-    min-height: 120px;
-    font-size: 0.9rem;
-  }
-}
-
 .heroTitle.animate__animated {
-  --animate-duration: 1s; /* Custom duration for title */
+  --animate-duration: 1s;
 }
 
 .heroSubtitle.animate__animated {
-  --animate-duration: 2s; /* Custom duration for subtitle */
+  --animate-duration: 2s;
 }
 
 .heroTitle,
@@ -1380,10 +1135,6 @@
   opacity: 1;
 }
 
-.right {
-  position: relative;
-}
-
 .hoverZoneLeft,
 .hoverZoneRight {
   position: absolute;
@@ -1403,37 +1154,942 @@
   cursor: e-resize;
 }
 
-/* Optional: Visual feedback */
-.hoverZoneLeft:hover {
+/* ========================================
+   RESPONSIVE STYLES
+   ======================================== */
+
+/* Mobile Small - 320px to 479px */
+@media (max-width: 479px) {
+  .heroWrapper {
+    max-width: 100%;
+    margin-top: 15px;
+    padding: 0 16px;
+  }
+
+  .heroContainer {
+    width: 100%;
+    height: 250px;
+    background-size: cover;
+  }
+
+  .heroContent {
+    margin-left: 20px;
+    max-width: 100%;
+    padding-right: 20px;
+  }
+
+  .heroTitle {
+    font-size: 24px;
+    line-height: 120%;
+    margin-bottom: 8px;
+  }
+
+  .heroSubtitle {
+    font-size: 14px;
+    max-width: 100%;
+  }
+
+  .heroButtons {
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+    padding: 0 16px;
+  }
+
+  .heroButtons button {
+    max-width: 100%;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    width: 100%;
+    font-size: 14px;
+    height: 44px;
+  }
+
+  /* Carousel Section */
+  .containerCarousel {
+    flex-direction: column;
+    padding: 40px 16px 60px;
+    gap: 30px;
+  }
+
+  .left {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .titleCarousel {
+    font-size: 24px;
+  }
+
+  .description {
+    font-size: 14px;
+    max-width: 100%;
+  }
+
+  .stats {
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .card {
+    width: 100%;
+    height: 100px;
+  }
+
+  .card h3 {
+    font-size: 24px;
+  }
+
+  .card p {
+    font-size: 14px;
+  }
+
+  .right {
+    max-width: 100%;
+  }
+
+  .carouselImage {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .oddImage {
+    height: 320px;
+  }
+
+  .evenImage {
+    height: 280px;
+  }
+
+  /* News Section */
+  .containerNews {
+    width: 100%;
+    padding: 0 16px;
+  }
+
+  .titleLogo {
+    font-size: 20px;
+  }
+
+  .container {
+    padding: 1rem 16px;
+  }
+
+  .titleNews {
+    font-size: 20px;
+    margin-left: 0;
+  }
+
+  .readMore {
+    font-size: 14px;
+  }
+
+  .newsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .featuredCard {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .featuredCard .featuredImageContainer {
+    width: calc(100% - 32px);
+    height: 280px;
+  }
+
+  .featuredTitle {
+    font-size: 20px;
+    width: 100%;
+  }
+
+  .featuredPreview,
+  .featuredDate {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .regularGrid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .regularCard {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+  }
+
+  .regularImageContainer {
+    width: 100%;
+    height: 180px;
+  }
+
+  .regularTitle {
+    font-size: 18px;
+  }
+
+  .regularDate {
+    font-size: 14px;
+  }
+
+  /* Publications Section */
+  .publicationsSection {
+    width: 100%;
+    height: auto;
+    padding: 30px 16px;
+    border-radius: 16px;
+    margin: 20px 0;
+  }
+
+  .publicationsHeader {
+    flex-direction: column;
+    gap: 16px;
+    margin: 0 0 20px 0;
+  }
+
+  .publicationsTitle {
+    font-size: 20px;
+  }
+
+  .publicationsGrid {
+    margin-left: 0;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .publicationCard {
+    width: 100%;
+    max-width: 290px;
+  }
+
+  .btnRead {
+    margin-left: 0;
+    width: 140px;
+    font-size: 14px;
+  }
+
+  /* Video Section */
+  .videoSection {
+    width: 100%;
+    min-height: 400px;
+    padding: 40px 16px;
+    background-size: 200%;
+  }
+
+  .videoContainer {
+    max-width: 100%;
+  }
+
+  .videoTitle {
+    font-size: 24px;
+  }
+
+  .videoWrapper {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .playButton {
+    width: 60px;
+    height: 60px;
+  }
+
+  .playIcon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .learnMoreButton {
+    width: 100%;
+    padding: 14px 24px;
+    padding-left: 24px;
+    font-size: 14px;
+    justify-content: center;
+  }
+
+  /* Partners Section */
+  .partnersSection {
+    padding: 40px 0;
+  }
+
+  .partnerCategory {
+    width: 100%;
+    padding: 0 16px;
+    margin-bottom: 40px;
+  }
+
+  .categoryTitle {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+
+  .partnersGrid {
+    gap: 20px;
+  }
+
+  .partnersGrid > * {
+    width: 140px;
+  }
+
+  .partnerLogo {
+    max-width: 140px;
+    max-height: 60px;
+  }
 }
 
-.hoverZoneRight:hover {
+/* Mobile Medium - 480px to 767px */
+@media (min-width: 480px) and (max-width: 767px) {
+  .heroWrapper {
+    margin-top: 20px;
+    padding: 0 24px;
+  }
+
+  .heroContainer {
+    width: 100%;
+    height: 320px;
+  }
+
+  .heroContent {
+    margin-left: 30px;
+    padding-right: 30px;
+  }
+
+  .heroTitle {
+    font-size: 32px;
+    margin-bottom: 8px;
+  }
+
+  .heroSubtitle {
+    font-size: 16px;
+    max-width: 400px;
+  }
+
+  .heroButtons {
+    flex-direction: row;
+    gap: 14px;
+    margin-top: 25px;
+    padding: 0 24px;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    width: 100%;
+    font-size: 15px;
+    height: 46px;
+  }
+
+  /* Carousel Section */
+  .containerCarousel {
+    flex-direction: column;
+    padding: 50px 24px 80px;
+    gap: 40px;
+  }
+
+  .left {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .titleCarousel {
+    font-size: 32px;
+  }
+
+  .description {
+    font-size: 15px;
+    max-width: 100%;
+  }
+
+  .stats {
+    justify-content: center;
+    gap: 14px;
+    margin-top: 24px;
+  }
+
+  .card {
+    width: 180px;
+    height: 110px;
+  }
+
+  .right {
+    max-width: 100%;
+  }
+
+  .carouselImage {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .oddImage {
+    height: 380px;
+  }
+
+  .evenImage {
+    height: 320px;
+  }
+
+  /* News Section */
+  .containerNews {
+    width: 100%;
+    padding: 0 24px;
+  }
+
+  .titleLogo {
+    font-size: 24px;
+  }
+
+  .container {
+    padding: 1.25rem 24px;
+  }
+
+  .titleNews {
+    font-size: 24px;
+    margin-left: 0;
+  }
+
+  .readMore {
+    font-size: 15px;
+  }
+
+  .featuredCard {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .featuredCard .featuredImageContainer {
+    width: calc(100% - 32px);
+    height: 320px;
+  }
+
+  .featuredTitle {
+    font-size: 24px;
+    width: 100%;
+  }
+
+  .featuredPreview,
+  .featuredDate {
+    width: 100%;
+  }
+
+  .regularGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .regularCard {
+    width: 100%;
+    max-width: 220px;
+  }
+
+  .regularImageContainer {
+    width: 100%;
+    height: 160px;
+  }
+
+  .regularTitle {
+    font-size: 18px;
+  }
+
+  /* Publications Section */
+  .publicationsSection {
+    width: 100%;
+    height: auto;
+    padding: 40px 24px;
+    border-radius: 20px;
+  }
+
+  .publicationsHeader {
+    margin: 0 0 30px 0;
+    flex-direction: row;
+  }
+
+  .publicationsTitle {
+    font-size: 24px;
+  }
+
+  .publicationsGrid {
+    margin-left: 0;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .publicationCard {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  /* Video Section */
+  .videoSection {
+    width: 100%;
+    min-height: 500px;
+    padding: 50px 24px;
+    background-size: 150%;
+  }
+
+  .videoTitle {
+    font-size: 32px;
+  }
+
+  .videoWrapper {
+    max-width: 100%;
+  }
+
+  .playButton {
+    width: 70px;
+    height: 70px;
+  }
+
+  .playIcon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .learnMoreButton {
+    width: 320px;
+    padding-left: 60px;
+  }
+
+  /* Partners Section */
+  .partnersSection {
+    padding: 50px 0;
+  }
+
+  .partnerCategory {
+    width: 100%;
+    padding: 0 24px;
+    margin-bottom: 50px;
+  }
+
+  .categoryTitle {
+    font-size: 24px;
+    margin-bottom: 40px;
+  }
+
+  .partnersGrid {
+    gap: 24px;
+  }
+
+  .partnersGrid > * {
+    width: 160px;
+  }
+
+  .partnerLogo {
+    max-width: 160px;
+    max-height: 70px;
+  }
 }
 
-.right {
-  cursor: none; /* Hide default cursor */
-  position: relative;
+/* Tablet - 768px to 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .heroWrapper {
+    margin-top: 25px;
+    padding: 0 32px;
+  }
+
+  .heroContainer {
+    height: 420px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .heroContent {
+    margin-left: 50px;
+    padding-right: 50px;
+  }
+
+  .heroTitle {
+    font-size: 42px;
+    line-height: 125%;
+    margin-bottom: 9px;
+  }
+
+  .heroSubtitle {
+    font-size: 18px;
+    max-width: 480px;
+  }
+
+  .heroButtons {
+    gap: 16px;
+    margin-top: -30px;
+    padding: 0 32px;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    width: 100%;
+    max-width: 280px;
+    font-size: 16px;
+    height: 48px;
+  }
+
+  /* Carousel Section */
+  .containerCarousel {
+    padding: 60px 32px 100px;
+    gap: 30px;
+  }
+
+  .left {
+    max-width: 45%;
+  }
+
+  .titleCarousel {
+    font-size: 36px;
+  }
+
+  .description {
+    font-size: 15px;
+    max-width: 380px;
+  }
+
+  .stats {
+    gap: 16px;
+    margin-top: 28px;
+  }
+
+  .card {
+    width: 180px;
+    height: 110px;
+  }
+
+  .card h3 {
+    font-size: 28px;
+  }
+
+  .right {
+    max-width: 55%;
+  }
+
+  .carouselImage {
+    width: 280px;
+  }
+
+  .oddImage {
+    height: 390px;
+  }
+
+  .evenImage {
+    height: 330px;
+  }
+
+  /* News Section */
+  .containerNews {
+    width: 100%;
+    max-width: 720px;
+    padding: 0 32px;
+  }
+
+  .titleLogo {
+    font-size: 28px;
+  }
+
+  .container {
+    padding: 1.25rem 32px;
+  }
+
+  .titleNews {
+    font-size: 28px;
+    margin-left: 0;
+  }
+
+  .featuredCard {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .featuredCard .featuredImageContainer {
+    width: calc(100% - 32px);
+    height: 360px;
+  }
+
+  .featuredTitle {
+    font-size: 28px;
+    width: 100%;
+  }
+
+  .regularGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .regularCard {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .regularImageContainer {
+    width: 100%;
+    height: 180px;
+  }
+
+  .regularTitle {
+    font-size: 20px;
+  }
+
+  /* Publications Section */
+  .publicationsSection {
+    width: 100%;
+    max-width: 720px;
+    height: auto;
+    padding: 40px 32px;
+  }
+
+  .publicationsHeader {
+    margin: 0 0 30px 0;
+  }
+
+  .publicationsTitle {
+    font-size: 28px;
+  }
+
+  .publicationsGrid {
+    margin-left: 0;
+    gap: 24px;
+    justify-content: center;
+  }
+
+  .publicationCard {
+    width: 290px;
+  }
+
+  /* Video Section */
+  .videoSection {
+    width: 100%;
+    max-width: 100%;
+    padding: 60px 32px;
+    background-size: 120%;
+  }
+
+  .videoTitle {
+    font-size: 36px;
+  }
+
+  .videoWrapper {
+    max-width: 680px;
+    height: auto;
+  }
+
+  .learnMoreButton {
+    width: 320px;
+    padding-left: 70px;
+  }
+
+  /* Partners Section */
+  .partnerCategory {
+    width: 100%;
+    max-width: 720px;
+    padding: 0 32px;
+  }
+
+  .categoryTitle {
+    font-size: 28px;
+  }
+
+  .partnersGrid {
+    gap: 28px;
+  }
+
+  .partnersGrid > * {
+    width: 180px;
+  }
+
+  .partnerLogo {
+    max-width: 180px;
+    max-height: 80px;
+  }
 }
 
-.customCursor {
-  position: fixed;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #a3e221;
-  border: none;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: transform 0.15s ease, opacity 0.15s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  color: #000;
-  font-weight: bold;
-}
+/* Desktop - 1024px to 1279px */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .heroWrapper {
+    padding: 0 40px;
+  }
 
-.customCursor.hidden {
-  opacity: 0;
+  .heroContainer {
+    height: 520px;
+    width: 100%;
+    max-width: 1024px;
+  }
+
+  .heroContent {
+    margin-left: 80px;
+  }
+
+  .heroTitle {
+    font-size: 52px;
+  }
+
+  .heroSubtitle {
+    font-size: 19px;
+  }
+
+  .heroButtons {
+    gap: 17px;
+    margin-top: -45px;
+    padding: 0 40px;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    width: 320px;
+    max-width: 320px;
+  }
+
+  /* Carousel Section */
+  .containerCarousel {
+    padding: 65px 40px 120px;
+    padding-left: 80px;
+  }
+
+  .titleCarousel {
+    font-size: 38px;
+  }
+
+  .description {
+    font-size: 15px;
+    max-width: 400px;
+  }
+
+  .stats {
+    margin-top: 30px;
+  }
+
+  .right {
+    max-width: 650px;
+  }
+
+  .carouselImage {
+    width: 290px;
+  }
+
+  .oddImage {
+    height: 410px;
+  }
+
+  .evenImage {
+    height: 340px;
+  }
+
+  /* News Section */
+  .containerNews {
+    width: 100%;
+    max-width: 960px;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 1.5rem 40px;
+  }
+
+  .titleNews {
+    font-size: 30px;
+  }
+
+  .newsGrid {
+    grid-template-columns: 1fr 1.5fr;
+  }
+
+  .featuredCard {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .featuredCard .featuredImageContainer {
+    width: calc(100% - 32px);
+    height: 400px;
+  }
+
+  .featuredTitle {
+    font-size: 30px;
+  }
+
+  .regularCard {
+    width: 280px;
+  }
+
+  .regularImageContainer {
+    width: 280px;
+    height: 185px;
+  }
+
+  .regularTitle {
+    font-size: 22px;
+  }
+
+  /* Publications Section */
+  .publicationsSection {
+    width: 100%;
+    max-width: 1024px;
+    height: auto;
+    padding: 45px 80px;
+  }
+
+  .publicationsHeader {
+    margin: 0 0 35px 0;
+  }
+
+  .publicationsTitle {
+    font-size: 30px;
+  }
+
+  .publicationsGrid {
+    margin-left: 0;
+    gap: 32px;
+  }
+
+  .publicationCard {
+    width: 300px;
+  }
+
+  /* Video Section */
+  .videoSection {
+    width: 100%;
+    max-width: 1024px;
+    padding: 65px 40px;
+  }
+
+  .videoTitle {
+    font-size: 38px;
+  }
+
+  .videoWrapper {
+    max-width: 760px;
+  }
+
+  .learnMoreButton {
+    width: 340px;
+    padding-left: 80px;
+  }
+
+  /* Partners Section */
+  .partnerCategory {
+    width: 100%;
+    max-width: 1024px;
+    padding: 0 40px;
+  }
+
+  .categoryTitle {
+    font-size: 30px;
+  }
+
+  .partnersGrid {
+    gap: 30px;
+  }
+
+  .partnersGrid > * {
+    width: 200px;
+  }
+
+  .partnerLogo {
+    max-width: 200px;
+    max-height: 90px;
+  }
 }

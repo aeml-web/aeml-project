@@ -12,11 +12,13 @@ const NewsGrid = ({ items }) => {
   const tagsScrollRef = useRef(null);
 
   // Convert tags object to array for easier mapping
-  const availableTags = Object.entries(tagsData.TAGS).map(([key, value]) => ({
-    id: key, // e.g. "ARTIKEL"
-    name: value.charAt(0).toUpperCase() + value.slice(1).toLowerCase(), // "Artikel"
-    value: key.toUpperCase(), // normalized version for filtering
-  }));
+  const availableTags = tagsData?.KEGIATAN_TAGS
+    ? Object.entries(tagsData.KEGIATAN_TAGS).map(([key, value]) => ({
+        id: key, // e.g. "ARTIKEL"
+        name: value.charAt(0).toUpperCase() + value.slice(1).toLowerCase(),
+        value: key.toUpperCase(),
+      }))
+    : [];
 
   // Filter items when tag changes
   useEffect(() => {
@@ -154,7 +156,7 @@ const NewsGrid = ({ items }) => {
                   {item.tags && (
                     <div className={styles.itemTags}>
                       <span className={styles.itemTag}>
-                        {tagsData.TAGS[item.tags.toUpperCase()] ||
+                        {tagsData.KEGIATAN_TAGS[item.tags.toUpperCase()] ||
                           item.tags.charAt(0).toUpperCase() +
                             item.tags.slice(1).toLowerCase()}
                       </span>
