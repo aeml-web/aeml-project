@@ -1,11 +1,13 @@
 /* about.module.css */
 
-.container {
+/* Wrapper utama */
+.aboutPage {
   display: flex;
-  min-height: 100vh;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  padding-bottom: 100px;
+  background-color: white;
 }
+
 .aboutContainer {
   width: 100vw;
   height: 711px;
@@ -15,25 +17,18 @@
   justify-content: center;
   background: url(/src/assets/lingkaran.png) center bottom no-repeat,
     linear-gradient(rgb(255, 255, 255) 6.54%, rgb(196, 216, 255) 70.6%);
-  background-size: 1700px auto, 100vw 100%; /* Fixed value dulu */
+  background-size: 1700px auto, 100vw 100%;
 }
 
 .aboutContainer .swiper {
   width: 100%;
-  max-width: 1062px; /* Adjust the max width as needed */
+  max-width: 1062px;
 }
 
 .carouselImageHead {
   width: 1062px !important;
   height: 505px !important;
   object-fit: cover;
-}
-
-.aboutPage {
-  display: flex;
-  flex-direction: column;
-  gap: 44px;
-  margin-bottom: 100px;
 }
 
 .titleAbout {
@@ -58,12 +53,28 @@
   background-color: #181818;
 }
 
-/* Sidebar Styles */
-.sidebar {
-  height: 638px;
+/* Container utama - FIXED */
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 44px 40px 0;
+  gap: 40px;
   position: relative;
-  overflow-y: auto;
-  z-index: 9;
+}
+
+/* Sidebar Styles - FIXED STICKY */
+.sidebar {
+  width: 264px;
+  position: sticky;
+  top: 120px; /* kasih offset sesuai tinggi navbar */
+  align-self: flex-start;
+  height: fit-content;
+  max-height: calc(100vh - 40px);
+  flex-shrink: 0;
+  z-index: 10;
 }
 
 .sidebar::after {
@@ -86,6 +97,21 @@
 
 .sidebarContent {
   padding: 24px;
+  overflow-y: auto;
+  max-height: calc(100vh - 40px);
+}
+
+.sidebarContent::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebarContent::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebarContent::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 2px;
 }
 
 .menu {
@@ -106,6 +132,7 @@
   font-weight: 400;
   font-size: 16px;
   font-family: "Instrument Sans", sans-serif;
+  padding: 0;
 }
 
 .menuItem:hover {
@@ -121,6 +148,7 @@
 .label {
   font-weight: 400;
   text-align: right;
+  transition: all 0.2s ease;
 }
 
 .label:hover {
@@ -133,14 +161,14 @@
   color: #181818;
 }
 
-/* Main Content Styles - scrollable */
+/* Main Content Styles */
 .content {
-  margin-left: 40px;
   width: 800px;
+  max-width: 800px;
+  flex: 1;
   text-align: justify;
-  overflow-y: auto;
-  height: 95vh;
   padding-right: 20px;
+  padding-bottom: 100px;
 }
 
 /* Header Styles */
@@ -170,7 +198,7 @@
 /* Section Styles */
 .section {
   margin-bottom: 64px;
-  scroll-margin-top: 20px;
+  scroll-margin-top: 120px;
 }
 
 .sectionCard {
@@ -301,6 +329,7 @@
     rgba(12, 79, 211, 0.82) 100%
   );
   transition: all 0.5s ease;
+  position: relative;
 }
 
 .containerImage:hover .titleHover {
@@ -322,11 +351,11 @@
   position: absolute;
   width: 208px;
   text-align: center;
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-align: center;
   display: none;
+  z-index: 1;
 }
 
 .name {
@@ -355,21 +384,20 @@
 }
 
 /* Swiper navigation styles */
-.swiper-button-next,
-.swiper-button-prev {
+:global(.swiper-button-next),
+:global(.swiper-button-prev) {
   z-index: 999 !important;
   pointer-events: auto !important;
   width: 35px !important;
-  height: 35px;
-  margin-bottom: 200px !important;
+  height: 35px !important;
 }
 
-.swiper {
+:global(.swiper) {
   --swiper-navigation-disabled-opacity: 0;
 }
 
-.lead .swiper .swiper-button-prev.swiper-button-disabled,
-.lead .swiper .swiper-button-next.swiper-button-disabled {
+.lead :global(.swiper .swiper-button-prev.swiper-button-disabled),
+.lead :global(.swiper .swiper-button-next.swiper-button-disabled) {
   opacity: 0 !important;
   visibility: hidden !important;
 }
@@ -444,28 +472,40 @@
 
 /* Responsive Design */
 @media (max-width: 1024px) {
+  .container {
+    padding: 44px 20px 0;
+  }
+
   .sidebar {
-    width: 280px;
+    width: 240px;
   }
 
   .content {
-    margin-left: 280px;
+    width: 100%;
   }
 }
 
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
+    gap: 20px;
   }
 
   .sidebar {
     position: relative;
     width: 100%;
     height: auto;
+    max-height: none;
+    top: 0;
+  }
+
+  .sidebarContent {
+    max-height: none;
   }
 
   .content {
     margin-left: 0;
+    width: 100%;
   }
 
   .mainTitle {
@@ -475,12 +515,6 @@
   .grid {
     grid-template-columns: 1fr;
   }
-}
-
-/* Smooth Scrolling */
-:global(html) {
-  scroll-behavior: smooth;
-  scroll-padding-top: 120px;
 }
 
 /* Custom Scrollbar for content area */
@@ -501,13 +535,13 @@
   background: #94a3b8;
 }
 
+/* Animation Styles */
 [data-anim] {
   opacity: 0;
   visibility: hidden;
   transform: translateY(50px);
 }
 
-/* Slide in up animation */
 @keyframes slideInUp {
   0% {
     opacity: 0;

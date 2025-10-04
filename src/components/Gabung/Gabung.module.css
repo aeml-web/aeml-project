@@ -1235,7 +1235,7 @@
   font-family: "Instrument Sans", sans-serif;
 }
 
-.submitButton:hover {
+.submitButton:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(132, 204, 22, 0.3);
   background: linear-gradient(135deg, #65a30d, #84cc16);

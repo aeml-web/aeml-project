@@ -115,23 +115,14 @@ export const aboutMenuItems = [
 ];
 
 const ScrollNavigation = () => {
-  const [activeSection, setActiveSection] = useState("visi");
-  const [showTitle, setShowTitle] = useState(false);
+  const [activeSection, setActiveSection] = useState("tentang");
   const sectionsRef = useRef({});
-  const contentRef = useRef(null);
-  const titleRef = useRef(null);
 
-  const [animatedElements, setAnimatedElements] = useState(new Set());
-  const observerRef = useRef(null);
-
+  // Pastikan aboutMenuItems sudah di-import atau didefinisikan
   const menuItems = aboutMenuItems;
 
   const logos = [
-    {
-      name: "ALVA",
-      image: alvaLogo,
-      alt: "ALVA Logo",
-    },
+    { name: "ALVA", image: alvaLogo, alt: "ALVA Logo" },
     { name: "PERTAMINA", style: "pertamina", image: pertaminaLogo },
     { name: "TBS", style: "tbs", image: tbsLogo },
     { name: "PLN", style: "pln", image: plnLogo },
@@ -198,19 +189,12 @@ const ScrollNavigation = () => {
       image: anin,
     },
     {
-      id: "1",
+      id: "2",
       name: "M. Arsjad Rasjid Prabu Mangkuningrat",
       title: "Member of Board of Supervisors",
       description: "President Director of PT. Indika Energy Tbk",
       image: defaultPhoto,
     },
-    // {
-    //   id: "2",
-    //   name: "M. Anjani Pudu M.",
-    //   title: "Member of Board of Supervisors",
-    //   description: "President Director of PT. Indika Energy Tbk",
-    //   image: defaultPhoto,
-    // },
     {
       id: "3",
       name: "Diaz Faisal Malik H.",
@@ -261,7 +245,7 @@ const ScrollNavigation = () => {
       image: defaultPhoto,
     },
     {
-      id: "3",
+      id: "4",
       name: "Ririn Rachmawardini",
       title: "Vice Chairwoman for Infrastructure and Electric Vehicle Mobility",
       description:
@@ -269,7 +253,7 @@ const ScrollNavigation = () => {
       image: defaultPhoto,
     },
     {
-      id: "4",
+      id: "5",
       name: "Heru Hatman",
       title: "Vice Chairman for Market Development",
       description:
@@ -298,18 +282,18 @@ const ScrollNavigation = () => {
       image: defaultPhoto,
     },
     {
-      id: "10",
-      name: "Anugraha Dezmercoledi",
-      title: "Director Executive Secretariat",
-      description: "A professional in management",
-      image: anugrah,
-    },
-    {
       id: "9",
       name: "Valdano Paulo Ruru",
       title: "Vice Section 2",
       description: "Legal Advisor",
       image: defaultPhoto,
+    },
+    {
+      id: "10",
+      name: "Anugraha Dezmercoledi",
+      title: "Director Executive Secretariat",
+      description: "A professional in management",
+      image: anugrah,
     },
   ];
 
@@ -398,195 +382,42 @@ const ScrollNavigation = () => {
   ];
 
   const photos = [fotoo1, fotoo2, fotoo3, fotoo4];
-
-  // Fungsi untuk scroll ke section
   const scrollToSection = (sectionId) => {
     const element = sectionsRef.current[sectionId];
-    const container = contentRef.current;
+    if (element) {
+      const navbarHeight = -700;
+      const offsetPosition = element.offsetTop - navbarHeight;
 
-    if (element && container) {
-      const containerTop = container.getBoundingClientRect().top;
-      const elementTop = element.getBoundingClientRect().top;
-
-      const scrollOffset = elementTop - containerTop + container.scrollTop;
-
-      container.scrollTo({
-        top: scrollOffset,
+      window.scrollTo({
+        top: offsetPosition,
         behavior: "smooth",
       });
 
       setActiveSection(sectionId);
-
-      // Update URL hash tanpa reload page
-      if (window.location.hash !== `#${sectionId}`) {
-        window.history.pushState(null, null, `#${sectionId}`);
-      }
     }
   };
-
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setShowTitle(true);
-          }
-        });
-      },
-      { threshold: 0.3 } // Trigger when 30% visible
-    );
-
-    if (titleRef.current) {
-      observer.observe(titleRef.current);
-    }
-
-    return () => {
-      if (titleRef.current) {
-        observer.unobserve(titleRef.current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const element = entry.target;
-            const animType = element.getAttribute("data-anim");
-            const delay = element.getAttribute("data-delay") || "0s";
-
-            // Apply delay and animation
-            element.style.animationDelay = delay;
-            element.classList.add(styles[animType]);
-
-            observerRef.current.unobserve(element);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    const elements = document.querySelectorAll("[data-anim]");
-    elements.forEach((el) => observerRef.current.observe(el));
-
-    return () => observerRef.current?.disconnect();
-  }, []);
-  // Handle scroll spy
-  useEffect(() => {
-    const contentEl = contentRef.current;
-    if (!contentEl) return;
-
     const handleScroll = () => {
-      const containerTop = contentEl.getBoundingClientRect().top;
-
-      let currentSection = null;
+      const scrollPosition = window.scrollY + 120;
 
       for (const item of menuItems) {
         const element = sectionsRef.current[item.id];
         if (element) {
-          const rect = element.getBoundingClientRect();
-          const elementTop = rect.top - containerTop;
+          const sectionTop = element.offsetTop;
+          const sectionBottom = sectionTop + element.offsetHeight;
 
-          if (elementTop <= 120) {
-            // 120px buffer biar lebih natural
-            currentSection = item.id;
+          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+            setActiveSection(item.id);
+            break;
           }
         }
       }
-
-      if (currentSection) {
-        setActiveSection(currentSection);
-      }
     };
 
-    contentEl.addEventListener("scroll", handleScroll);
-    handleScroll(); // run once on mount
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // trigger sekali di awal
 
-    return () => contentEl.removeEventListener("scroll", handleScroll);
-  }, [menuItems]);
-
-  const location = useLocation();
-
-  useEffect(() => {
-    // Cek apakah ada hash di URL dan halaman sudah loaded
-    if (location.hash) {
-      const timer = setTimeout(() => {
-        const contentContainer = document.getElementById("content");
-        if (contentContainer) {
-          // Gunakan kalkulasi manual yang sama seperti handleDropdownClick
-          const rect = contentContainer.getBoundingClientRect();
-          const containerTop = window.pageYOffset + rect.top;
-          const containerHeight = rect.height;
-          const windowHeight = window.innerHeight;
-
-          // Scroll ke posisi tengah tapi dinaikkan sedikit
-          const offset = 100; // Sama seperti di handleDropdownClick
-          const scrollTo =
-            containerTop + containerHeight / 2 - windowHeight / 2 - offset;
-
-          window.scrollTo({
-            top: scrollTo,
-            behavior: "smooth",
-          });
-
-          // Setelah scroll ke content, lanjutkan ke section jika ada
-          setTimeout(() => {
-            if (window.navigateToAboutSection) {
-              const sectionId = location.hash.replace("#", "");
-              window.navigateToAboutSection(sectionId);
-            }
-          }, 300);
-        }
-      }, 500);
-
-      return () => clearTimeout(timer);
-    }
-  }, [location]);
-
-  // Handle hash navigation dari URL atau navbar
-  useEffect(() => {
-    // Fungsi untuk scroll ke section berdasarkan hash
-    const handleHashChange = () => {
-      const hash = window.location.hash.substring(1); // Remove # dari hash
-      if (hash && sectionsRef.current[hash]) {
-        // Delay sedikit untuk memastikan komponen sudah render
-        setTimeout(() => scrollToSection(hash), 100);
-      }
-    };
-
-    // Check hash saat komponen mount
-    handleHashChange();
-
-    // Listen untuk perubahan hash
-    window.addEventListener("hashchange", handleHashChange);
-
-    return () => {
-      window.removeEventListener("hashchange", handleHashChange);
-    };
-  }, []);
-
-  // Expose function untuk external navigation
-  useEffect(() => {
-    // Fungsi global untuk navigasi dari luar komponen
-    window.navigateToAboutSection = (sectionId) => {
-      if (menuItems.find((item) => item.id === sectionId)) {
-        scrollToSection(sectionId);
-      }
-    };
-
-    // Fungsi untuk mendapatkan daftar section yang tersedia
-    window.getAboutSections = () => {
-      return menuItems.map((item) => ({
-        id: item.id,
-        label: item.label,
-      }));
-    };
-
-    return () => {
-      delete window.navigateToAboutSection;
-      delete window.getAboutSections;
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [menuItems]);
 
   const renderSectionContent = (item) => {
@@ -597,14 +428,14 @@ const ScrollNavigation = () => {
             <h1 className={styles.mainTitle}>Visi AEML</h1>
             <div className={styles.visi}>
               <div className={styles.leftVisi}>
-                <img src={visi2} className={styles.iconVisi}></img>
+                <img src={visi2} className={styles.iconVisi} alt="Visi 2" />
                 <p className={styles.text}>
                   Mendukung adopsi kendaraan listrik dan mendorong terciptanya
                   ekosistem kendaraan listrik yang berdaya saing global
                 </p>
               </div>
               <div className={styles.rightVisi}>
-                <img src={visi1} className={styles.iconVisi}></img>
+                <img src={visi1} className={styles.iconVisi} alt="Visi 1" />
                 <p className={styles.text}>
                   Memberikan suara kepada anggota dan membina kemitraan yang
                   membangun rantai nilai domestik yang kuat, serta kolaborasi
@@ -619,31 +450,8 @@ const ScrollNavigation = () => {
                 Indonesia didasarkan pada panggilan untuk melindungi lingkungan
                 dengan mengurangi polusi di mana masyarakat tinggal, bekerja,
                 belajar, juga bermain.
-                <br></br>
-                <br></br>
-                Dengan berkontribusi pada inisiatif Pemerintah Republik
-                Indonesia dalam mengatasi perubahan iklim, kami juga secara
-                langsung mendukung kemandirian energi bangsa. Dengan demikian,
-                kami akan mencapai visi kami untuk mendukung adopsi kendaraan
-                listrik dan mendorong terciptanya ekosistem mobilitas listrik
-                yang berdaya saing global.
-              </p>
-            </div>
-          </div>
-        );
-
-      case "misi":
-        return (
-          <div className={styles.header}>
-            <h1 className={styles.mainTitle}>Misi AEML</h1>
-            <div className={styles.misi}>
-              <p className={styles.text}>
-                Misi kami untuk mendorong terciptanya mobilitas listrik di
-                Indonesia didasarkan pada panggilan untuk melindungi lingkungan
-                dengan mengurangi polusi di mana masyarakat tinggal, bekerja,
-                belajar, juga bermain.
-                <br></br>
-                <br></br>
+                <br />
+                <br />
                 Dengan berkontribusi pada inisiatif Pemerintah Republik
                 Indonesia dalam mengatasi perubahan iklim, kami juga secara
                 langsung mendukung kemandirian energi bangsa. Dengan demikian,
@@ -659,27 +467,31 @@ const ScrollNavigation = () => {
         return (
           <div className={styles.grid}>
             <div className={styles.way}>
-              <img src={profil} className={styles.photoWay}></img>
+              <img src={profil} className={styles.photoWay} alt="Profil" />
               <p className={styles.text}>
                 Asosiasi Ekosistem Mobilitas Listrik (AEML) didirikan pada tahun
                 2022 sebagai respons atas kebutuhan mendesak untuk mempercepat
                 adopsi kendaraan listrik di Indonesia serta membangun ekosistem
-                mobilitas listrik yang terintegrasi. <br></br> <br></br>Sejak
-                awal terbentuk, AEML hadir sebagai wadah kolaborasi yang
+                mobilitas listrik yang terintegrasi. <br />
+                <br />
+                Sejak awal terbentuk, AEML hadir sebagai wadah kolaborasi yang
                 menyatukan beragam pemangku kepentingan—mulai dari produsen
                 kendaraan, penyedia baterai, penyelenggara infrastruktur
                 pengisian dan tukar baterai, perusahaan transportasi berbasis
-                aplikasi, hingga lembaga keuangan. <br></br>
-                <br></br>
+                aplikasi, hingga lembaga keuangan. <br />
+                <br />
                 Berawal dari lima perusahaan perintis, kini AEML telah
                 berkembang menjadi asosiasi dengan dua puluh anggota, dan jumlah
-                ini terus bertambah. <br></br> <br></br>Dengan status sebagai
-                anggota di dua Komite Teknis Badan Standardisasi Nasional (BSN)
-                serta Anggota Luar Biasa Kamar Dagang dan Industri Indonesia
-                (KADIN), AEML juga menjalin kerja sama erat dengan berbagai
-                kementerian, pusat kajian, dan lembaga riset. <br></br>{" "}
-                <br></br>Komitmen kami jelas: menjadi katalis dalam mendorong
-                regulasi yang kondusif, memperkuat rantai pasok nasional, serta
+                ini terus bertambah. <br />
+                <br />
+                Dengan status sebagai anggota di dua Komite Teknis Badan
+                Standardisasi Nasional (BSN) serta Anggota Luar Biasa Kamar
+                Dagang dan Industri Indonesia (KADIN), AEML juga menjalin kerja
+                sama erat dengan berbagai kementerian, pusat kajian, dan lembaga
+                riset. <br />
+                <br />
+                Komitmen kami jelas: menjadi katalis dalam mendorong regulasi
+                yang kondusif, memperkuat rantai pasok nasional, serta
                 mempercepat transisi menuju mobilitas berkelanjutan di
                 Indonesia.
               </p>
@@ -706,10 +518,9 @@ const ScrollNavigation = () => {
                         <div className={styles.containerImage}>
                           <img
                             src={src.image}
-                            alt={`Event ${index + 1}`}
+                            alt={`${src.name}`}
                             className={styles.carouselImage}
                           />
-
                           <h4 className={styles.titleHover}>
                             {src.description}
                           </h4>
@@ -737,10 +548,9 @@ const ScrollNavigation = () => {
                         <div className={styles.containerImage}>
                           <img
                             src={src.image}
-                            alt={`Event ${index + 1}`}
+                            alt={`${src.name}`}
                             className={styles.carouselImage}
                           />
-
                           <h4 className={styles.titleHover}>
                             {src.description}
                           </h4>
@@ -754,11 +564,11 @@ const ScrollNavigation = () => {
               </div>
 
               <div className={styles.section}>
-                <h1 className={styles.titleBoard}>Board of Executives </h1>
+                <h1 className={styles.titleBoard}>Board of Executives</h1>
                 <Swiper
                   spaceBetween={20}
                   slidesPerView={3.6}
-                  slidesOffsetAfter={20} // kasih jarak sesuai spaceBetween
+                  slidesOffsetAfter={20}
                   centeredSlides={false}
                   loop={false}
                   navigation={true}
@@ -766,7 +576,6 @@ const ScrollNavigation = () => {
                   observer={true}
                   observeParents={true}
                   onSwiper={(swiper) => {
-                    // Multiple update untuk memastikan
                     setTimeout(() => swiper.update(), 0);
                     setTimeout(() => swiper.update(), 50);
                     setTimeout(() => swiper.update(), 100);
@@ -778,7 +587,7 @@ const ScrollNavigation = () => {
                         <div className={styles.containerImage}>
                           <img
                             src={src.image}
-                            alt={`Event ${index + 1}`}
+                            alt={`${src.name}`}
                             className={styles.carouselImage}
                           />
                           <h4 className={styles.titleHover}>
@@ -859,8 +668,8 @@ const ScrollNavigation = () => {
               dalam pengembangan kendaraan listrik di Indonesia, mulai dari
               produsen kendaraan, penyedia baterai, infrastruktur pengisian
               daya, hingga pelaku teknologi digital dan keuangan.
-              <br></br>
-              <br></br>
+              <br />
+              <br />
               AEML berperan sebagai wadah industri, pusat pemikiran, serta
               advokat kebijakan publik yang mendorong terciptanya ekosistem
               mobilitas listrik yang berdaya saing global. Melalui sinergi
@@ -877,30 +686,8 @@ const ScrollNavigation = () => {
           <div>
             <p className={styles.text}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
-            <p className={styles.text}>
-              Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-              cupidatat non proident, sunt in culpa qui officia deserunt mollit
-              anim id est laborum.
-            </p>
-
-            <div className={styles.features}>
-              {[1, 2, 3].map((card) => (
-                <div key={card} className={styles.featureCard}>
-                  <div className={styles.featureIcon}>
-                    <span className={styles.featureNumber}>{card}</span>
-                  </div>
-                  <h4 className={styles.featureTitle}>Feature {card}</h4>
-                  <p className={styles.featureDesc}>
-                    Brief description of this feature or benefit.
-                  </p>
-                </div>
-              ))}
-            </div>
           </div>
         );
     }
@@ -908,21 +695,18 @@ const ScrollNavigation = () => {
 
   return (
     <div className={styles.aboutPage}>
+      {/* Hero Section */}
       <div className={styles.aboutContainer}>
-        <h1
-          data-anim="slideInUp"
-          data-delay="0.3s"
-          className={styles.titleAbout}
-        >
+        <h1 className={styles.titleAbout}>
           Memajukan ekosistem mobilitas listrik di Indonesia sehingga berkelas
           dunia.
         </h1>
         <Swiper
-          spaceBetween={30} // Add some space between slides
+          spaceBetween={30}
           slidesPerView="auto"
           loop={true}
           navigation={true}
-          centeredSlides={true} // Center the slide
+          centeredSlides={true}
           modules={[Navigation]}
         >
           {photos.map((src, index) => (
@@ -936,51 +720,47 @@ const ScrollNavigation = () => {
           ))}
         </Swiper>
       </div>
-      <div className={styles.container}>
-        <div className={styles.sidebar}>
-          <div className={styles.sidebarContent}>
-            <nav className={styles.menu}>
-              {menuItems.map(
-                (item) =>
-                  item.showSidebar && (
-                    <button
-                      key={item.id}
-                      onClick={() => scrollToSection(item.id)}
-                      className={`${styles.menuItem} ${
-                        activeSection === item.id ? styles.active : ""
-                      }`}
-                    >
-                      <span className={styles.label}>{item.label}</span>
-                    </button>
-                  )
-              )}
-            </nav>
-          </div>
-        </div>
 
-        {/* Main Content */}
-        <div id="content" className={styles.content} ref={contentRef}>
-          {/* Header */}
-          {/* Sections */}
+      {/* Main Content Container */}
+      <div className={styles.container}>
+        {/* Sticky Sidebar */}
+        <aside className={styles.sidebar}>
+          <nav className={styles.menu}>
+            {menuItems.map(
+              (item) =>
+                item.showSidebar && (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className={`${styles.menuItem} ${
+                      activeSection === item.id ? styles.active : ""
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                )
+            )}
+          </nav>
+        </aside>
+
+        {/* Scrollable Content */}
+        <main className={styles.content}>
           {menuItems.map((item) => (
             <section
               key={item.id}
-              id={item.id} // Tambahkan ID untuk setiap section
+              id={item.id}
               ref={(el) => (sectionsRef.current[item.id] = el)}
               className={styles.section}
             >
               <div className={styles.sectionCard}>
                 {item.showTitle && (
                   <h2 className={styles.sectionTitle}>{item.label}</h2>
-                )}{" "}
+                )}
                 {renderSectionContent(item)}
               </div>
             </section>
           ))}
-
-          {/* Footer spacer */}
-          <div className={styles.footer}></div>
-        </div>
+        </main>
       </div>
     </div>
   );
