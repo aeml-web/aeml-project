@@ -93,21 +93,21 @@ export const aboutMenuItems = [
   },
   {
     id: "perusahaan-anggota",
-    label: "Perusahaan Anggota AEML",
+    label: "Perusahaan Anggota",
     icon: "🏢",
     showTitle: true,
     showSidebar: true,
   },
   {
     id: "mitra-pemerintahan",
-    label: "Mitra Pemerintahan AEML",
+    label: "Mitra Pemerintahan",
     icon: "🏛️",
     showTitle: true,
     showSidebar: true,
   },
   {
     id: "mitra-pembangunan",
-    label: "Mitra Pembangunan AEML",
+    label: "Mitra Pembangunan",
     icon: "🔧",
     showTitle: true,
     showSidebar: true,
@@ -396,7 +396,7 @@ const ScrollNavigation = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 50; // 150px dari atas viewport
+      const scrollPosition = window.scrollY + 100; // 150px dari atas viewport
       console.log("scrollY:", scrollPosition);
 
       let foundSection = null;

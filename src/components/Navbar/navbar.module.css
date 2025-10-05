@@ -17,12 +17,23 @@
   height: 3px;
   width: 100%;
   background: linear-gradient(to right, #0c4fd3, #a3e221);
-  opacity: 0; /* Hide by default */
-  transition: opacity 0.3s ease; /* Smooth transition */
+  opacity: 1; /* defaultnya kelihatan */
+  transition: opacity 0.3s ease;
 }
 
-.navbar.scrolled::after {
-  opacity: 1; /* Show when scrolled */
+/* Homepage — awalnya garis disembunyikan */
+.homepage::after {
+  opacity: 0;
+}
+
+/* Homepage — pas discroll, garis muncul */
+.homepage.scrolled::after {
+  opacity: 1;
+}
+
+/* Halaman lain — selalu kelihatan */
+.otherpage::after {
+  opacity: 1;
 }
 
 /* kiri */

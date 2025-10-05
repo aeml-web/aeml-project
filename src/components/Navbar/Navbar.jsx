@@ -78,7 +78,12 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ""}`}>
+    <nav
+      className={`${styles.navbar} 
+    ${location.pathname === "/" ? styles.homepage : styles.otherpage} 
+    ${isScrolled && location.pathname === "/" ? styles.scrolled : ""}
+  `}
+    >
       <div className={styles.containerMargin}>
         <ul className={styles.navLinks}>
           <li
