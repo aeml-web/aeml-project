@@ -428,7 +428,7 @@ const ScrollNavigation = () => {
       case "visi":
         return (
           <div className={styles.header}>
-            <h1 className={styles.mainTitle}>Visi AEML</h1>
+            <h1 className={styles.mainTitleVisi}>Visi AEML</h1>
             <div className={styles.visi}>
               <div className={styles.leftVisi}>
                 <img src={visi2} className={styles.iconVisi} alt="Visi 2" />

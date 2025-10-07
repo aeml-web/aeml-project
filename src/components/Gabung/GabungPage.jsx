@@ -7,6 +7,7 @@ import HeaderAbout from "../About/HeaderAbout";
 import Header from "./Header";
 import styles from "./Gabung.module.css";
 import Gabung from "./Gabung";
+import IconCircle from "./IconCircle";
 
 function GabungPage() {
   return (
