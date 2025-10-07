@@ -396,7 +396,7 @@ const ScrollNavigation = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100; // 150px dari atas viewport
+      const scrollPosition = window.scrollY + 0; // 150px dari atas viewport
       console.log("scrollY:", scrollPosition);
 
       let foundSection = null;

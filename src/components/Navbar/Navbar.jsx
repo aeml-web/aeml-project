@@ -1,13 +1,14 @@
 import { useState, useEffect, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./navbar.module.css";
 import logo from "../../assets/logoaemlfix.png";
 import logobrowse from "../../assets/image-rils.png";
-import { aboutMenuItems } from "../About/ScrollNavigation"; // Sesuaikan dengan struktur folder Anda
+import { aboutMenuItems } from "../About/ScrollNavigation";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const [selectedLang, setSelectedLang] = useState("ID");
@@ -44,36 +45,33 @@ const Navbar = () => {
     };
   }, []);
 
-  const handleDropdownClick = (sectionId) => {
+  const handleDropdownClick = (e, sectionId) => {
+    e.preventDefault();
+
     // Tutup dropdown
     setIsDropdownOpen(false);
 
-    // Scroll ke tengah container "content" tapi agak dinaikkan dikit
-    const contentContainer = document.getElementById("content");
-    if (contentContainer) {
-      const rect = contentContainer.getBoundingClientRect();
-      const containerTop = window.pageYOffset + rect.top;
-      const containerHeight = rect.height;
-      const windowHeight = window.innerHeight;
+    // Fungsi untuk scroll ke section
+    const scrollToSection = () => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const navbarHeight = -700; // Sesuaikan dengan tinggi navbar
+        const offsetPosition = element.offsetTop - navbarHeight;
 
-      // Scroll ke posisi tengah tapi dinaikkan 100px (sesuaikan nilai ini)
-      const offset = 100; // Ubah nilai ini untuk mengatur seberapa naik
-      const scrollTo =
-        containerTop + containerHeight / 2 - windowHeight / 2 - offset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
+    };
 
-      window.scrollTo({
-        top: scrollTo,
-        behavior: "smooth",
-      });
-    }
-
-    // Jika sedang di halaman about, langsung scroll ke section
+    // Jika sudah di halaman about, langsung scroll
     if (location.pathname === "/about") {
-      setTimeout(() => {
-        if (window.navigateToAboutSection) {
-          window.navigateToAboutSection(sectionId);
-        }
-      }, 500);
+      setTimeout(scrollToSection, 100);
+    } else {
+      // Jika belum di halaman about, navigate dulu baru scroll
+      navigate("/about");
+      setTimeout(scrollToSection, 500);
     }
   };
 
@@ -115,19 +113,18 @@ const Navbar = () => {
               </svg>
             </Link>
 
-            {/* Dropdown Menu - Updated with section links */}
+            {/* Dropdown Menu */}
             {isDropdownOpen && (
               <div className={styles.dropdownMenu}>
                 {aboutMenuItems.map((item) => (
-                  <Link
+                  <a
                     key={item.id}
-                    to={`/about#${item.id}`}
+                    href={`#${item.id}`}
                     className={styles.dropdownItem}
-                    onClick={() => handleDropdownClick(item.id)}
+                    onClick={(e) => handleDropdownClick(e, item.id)}
                   >
-                    {/* <span className={styles.dropdownIcon}>{item.icon}</span> */}
                     {item.label}
-                  </Link>
+                  </a>
                 ))}
               </div>
             )}
