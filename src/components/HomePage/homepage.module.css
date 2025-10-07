@@ -1432,6 +1432,7 @@
   font-size: 20px;
   color: #000;
   font-weight: bold;
+  will-change: transform;
 }
 
 .customCursor.hidden {

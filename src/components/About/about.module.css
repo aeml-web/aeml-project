@@ -70,7 +70,7 @@
 .sidebar {
   width: 264px;
   position: sticky;
-  top: 120px; /* kasih offset sesuai tinggi navbar */
+  top: 130px; /* kasih offset sesuai tinggi navbar */
   align-self: flex-start;
   height: fit-content;
   max-height: calc(100vh - 40px);

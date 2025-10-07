@@ -385,7 +385,7 @@ const ScrollNavigation = () => {
   const scrollToSection = (sectionId) => {
     const element = sectionsRef.current[sectionId];
     if (element) {
-      const navbarHeight = -700; // ✅ samain dengan top di CSS
+      const navbarHeight = -680; // ✅ samain dengan top di CSS
       const offsetPosition = element.offsetTop - navbarHeight;
       window.scrollTo({
         top: offsetPosition,
