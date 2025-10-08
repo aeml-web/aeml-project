@@ -509,6 +509,7 @@ const ScrollNavigation = () => {
               <div className={styles.section}>
                 <h1 className={styles.titleBoard}>Board of Patrons</h1>
                 <Swiper
+                  slidesOffsetAfter={250}
                   spaceBetween={20}
                   slidesPerView={3.6}
                   loop={false}
@@ -539,7 +540,7 @@ const ScrollNavigation = () => {
               <div className={styles.section}>
                 <h1 className={styles.titleBoard}>Board of Supervisors</h1>
                 <Swiper
-                  spaceBetween={20}
+                  slidesOffsetAfter={250}
                   slidesPerView={3.6}
                   loop={false}
                   navigation={true}
@@ -571,7 +572,7 @@ const ScrollNavigation = () => {
                 <Swiper
                   spaceBetween={20}
                   slidesPerView={3.6}
-                  slidesOffsetAfter={20}
+                  slidesOffsetAfter={250}
                   centeredSlides={false}
                   loop={false}
                   navigation={true}
