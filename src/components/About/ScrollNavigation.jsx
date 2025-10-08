@@ -700,7 +700,9 @@ const ScrollNavigation = () => {
     <div className={styles.aboutPage}>
       {/* Hero Section */}
       <div className={styles.aboutContainer}>
-        <h1 className={styles.titleAbout}>
+        <h1
+          className={`${styles.titleAbout} animate__animated animate__fadeInUp`}
+        >
           Memajukan ekosistem mobilitas listrik di Indonesia sehingga berkelas
           dunia.
         </h1>
