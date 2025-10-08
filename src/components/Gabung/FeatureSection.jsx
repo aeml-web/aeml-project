@@ -1,14 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./Gabung.module.css";
-import orbit from "../../assets/orbit.png";
-import battery from "../../assets/baterry.png";
-import ev from "../../assets/ev.png";
-import ride from "../../assets/ride.png";
-import finance from "../../assets/finance.png";
-import energi from "../../assets/energy.png";
-import swap from "../../assets/swap.png";
-import banner from "../../assets/banner.png";
 import "animate.css";
+import IconCircle from "./IconCircle";
 
 const FeatureSection = () => {
   const [showContent, setShowContent] = useState(false);
@@ -40,39 +33,6 @@ const FeatureSection = () => {
     };
   }, []);
 
-  const ecosystemItems = [
-    {
-      image: battery,
-      title: "Battery",
-      angle: 0,
-    },
-    {
-      image: swap,
-      title: "Charging & Battery Swapping",
-      angle: 60,
-    },
-    {
-      image: ev,
-      title: "EV Manufacturer",
-      angle: 120,
-    },
-    {
-      image: ride,
-      title: "Ride Hailing & Fleet Operator",
-      angle: 180,
-    },
-    {
-      image: finance,
-      title: "Financier & Market Developer",
-      angle: 240,
-    },
-    {
-      image: energi,
-      title: "Energy",
-      angle: 300,
-    },
-  ];
-
   return (
     <div
       id="pelajari-section"
@@ -82,7 +42,7 @@ const FeatureSection = () => {
       ref={sectionRef}
     >
       <div className={styles.imageIcon}>
-        <img src={banner} className={styles.imageBanner}></img>
+        <IconCircle />
       </div>
 
       <div className={styles.textDesc}>

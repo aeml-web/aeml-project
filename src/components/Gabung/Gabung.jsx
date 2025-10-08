@@ -145,10 +145,10 @@ const Gabung = () => {
               type="submit"
               className={`${styles.submitButton} ${
                 isLoading ? styles.loading : ""
-              }`}
+              } ${!isFormValid ? styles.disabled : ""}`}
               disabled={isLoading || !isFormValid}
             >
-              {isLoading ? "Mengirim..." : "Submit"}
+              <span>{isLoading ? "Mengirim..." : "Submit"}</span>
             </button>
           </form>
         </div>

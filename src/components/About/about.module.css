@@ -6,6 +6,7 @@
   flex-direction: column;
   padding-bottom: 100px;
   background-color: white;
+  min-height: 100vh; /* ✅ tambahkan */
 }
 
 .aboutContainer {
@@ -69,7 +70,7 @@
 .sidebar {
   width: 264px;
   position: sticky;
-  top: 120px; /* kasih offset sesuai tinggi navbar */
+  top: 130px; /* kasih offset sesuai tinggi navbar */
   align-self: flex-start;
   height: fit-content;
   max-height: calc(100vh - 40px);
@@ -97,8 +98,8 @@
 
 .sidebarContent {
   padding: 24px;
-  overflow-y: auto;
-  max-height: calc(100vh - 40px);
+  overflow-y: visible; /* ✅ biar gak bentrok dengan scroll window */
+  max-height: none;
 }
 
 .sidebarContent::-webkit-scrollbar {
@@ -183,6 +184,16 @@
   color: #181818;
   margin-bottom: 24px;
   line-height: 100%;
+  margin: 0;
+  font-family: "Instrument Sans", sans-serif;
+}
+
+.mainTitleVisi {
+  font-size: 32px;
+  font-weight: 700;
+  color: #181818;
+  margin-bottom: 24px;
+  line-height: 100%;
   font-family: "Instrument Sans", sans-serif;
 }
 
@@ -198,7 +209,7 @@
 /* Section Styles */
 .section {
   margin-bottom: 64px;
-  scroll-margin-top: 120px;
+  scroll-margin-top: 200px; /* ✅ agar scroll berhenti pas di bawah navbar */
 }
 
 .sectionCard {
@@ -254,6 +265,12 @@
   align-items: flex-start;
   gap: 16px;
   flex-direction: column;
+}
+
+.active {
+  font-weight: 700;
+  color: #181818;
+  position: relative;
 }
 
 .rightVisi {

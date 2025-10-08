@@ -93,21 +93,21 @@ export const aboutMenuItems = [
   },
   {
     id: "perusahaan-anggota",
-    label: "Perusahaan Anggota AEML",
+    label: "Perusahaan Anggota",
     icon: "🏢",
     showTitle: true,
     showSidebar: true,
   },
   {
     id: "mitra-pemerintahan",
-    label: "Mitra Pemerintahan AEML",
+    label: "Mitra Pemerintahan",
     icon: "🏛️",
     showTitle: true,
     showSidebar: true,
   },
   {
     id: "mitra-pembangunan",
-    label: "Mitra Pembangunan AEML",
+    label: "Mitra Pembangunan",
     icon: "🔧",
     showTitle: true,
     showSidebar: true,
@@ -115,7 +115,7 @@ export const aboutMenuItems = [
 ];
 
 const ScrollNavigation = () => {
-  const [activeSection, setActiveSection] = useState("tentang");
+  const [activeSection, setActiveSection] = useState("perusahaan-anggota"); // default aktif
   const sectionsRef = useRef({});
 
   // Pastikan aboutMenuItems sudah di-import atau didefinisikan
@@ -385,47 +385,50 @@ const ScrollNavigation = () => {
   const scrollToSection = (sectionId) => {
     const element = sectionsRef.current[sectionId];
     if (element) {
-      const navbarHeight = -700;
+      const navbarHeight = -680; // ✅ samain dengan top di CSS
       const offsetPosition = element.offsetTop - navbarHeight;
-
       window.scrollTo({
         top: offsetPosition,
         behavior: "smooth",
       });
-
-      setActiveSection(sectionId);
     }
   };
+
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 120;
+      const scrollPosition = window.scrollY + 0; // 150px dari atas viewport
+      console.log("scrollY:", scrollPosition);
 
+      let foundSection = null;
       for (const item of menuItems) {
-        const element = sectionsRef.current[item.id];
-        if (element) {
-          const sectionTop = element.offsetTop;
-          const sectionBottom = sectionTop + element.offsetHeight;
-
-          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-            setActiveSection(item.id);
+        const el = sectionsRef.current[item.id];
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          console.log(item.id, top, height);
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            foundSection = item.id;
             break;
           }
         }
       }
+
+      if (foundSection && foundSection !== activeSection) {
+        console.log("Aktif berubah:", foundSection);
+        setActiveSection(foundSection);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // trigger sekali di awal
-
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [menuItems]);
+  }, [menuItems, activeSection]);
 
   const renderSectionContent = (item) => {
     switch (item.id) {
       case "visi":
         return (
           <div className={styles.header}>
-            <h1 className={styles.mainTitle}>Visi AEML</h1>
+            <h1 className={styles.mainTitleVisi}>Visi AEML</h1>
             <div className={styles.visi}>
               <div className={styles.leftVisi}>
                 <img src={visi2} className={styles.iconVisi} alt="Visi 2" />
@@ -697,7 +700,9 @@ const ScrollNavigation = () => {
     <div className={styles.aboutPage}>
       {/* Hero Section */}
       <div className={styles.aboutContainer}>
-        <h1 className={styles.titleAbout}>
+        <h1
+          className={`${styles.titleAbout} animate__animated animate__fadeInUp`}
+        >
           Memajukan ekosistem mobilitas listrik di Indonesia sehingga berkelas
           dunia.
         </h1>
