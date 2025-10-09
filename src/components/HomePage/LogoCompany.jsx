@@ -1,44 +1,55 @@
 // AEMLAnimatedLogos.jsx
 import React, { useState } from "react";
 import styles from "./homepage.module.css";
-import pertaminaLogo from "../../assets/logos/pertamina-logo.png";
-import tbsLogo from "../../assets/logos/tbs-logo.png";
-import plnLogo from "../../assets/logos/pln-logo.png";
-import electrumLogo from "../../assets/logos/electrum-logo.png";
-import ibcLogo from "../../assets/logos/ibc-logo.png";
-import vktrLogo from "../../assets/logos/vktr-logo.png";
-import voltaLogo from "../../assets/logos/volta-logo.png";
-import casionLogo from "../../assets/logos/casion-logo.png";
-import grabLogo from "../../assets/logos/grab-logo.png";
-import gotoLogo from "../../assets/logos/goto-logo.png";
-import dbsLogo from "../../assets/logos/dbs-logo.png";
-import gesitsLogo from "../../assets/logos/gesits-logo.png";
-import alvaLogo from "../../assets/logos/alva-logo.png";
+
+import alamtriLogo from "../../assets/icon_mitra/alamtri.png";
+import alvaLogo from "../../assets/icon_mitra/alva.png";
+import casionLogo from "../../assets/icon_mitra/casion.png";
+import davigoLogo from "../../assets/icon_mitra/davigo.png";
+import dbsLogo from "../../assets/icon_mitra/dbs.png";
+import electrumLogo from "../../assets/icon_mitra/electrum.png";
+import gesitsLogo from "../../assets/icon_mitra/gesits.png";
+import gotoLogo from "../../assets/icon_mitra/goto.png";
+import grabLogo from "../../assets/icon_mitra/grab.png";
+import ibcLogo from "../../assets/icon_mitra/ibc.png";
+import okliLogo from "../../assets/icon_mitra/okli 1.png";
+import oyoxaLogo from "../../assets/icon_mitra/oyoxa.png";
+import pertaminaLogo from "../../assets/icon_mitra/pertamina.png";
+import plnLogo from "../../assets/icon_mitra/pln.png";
+import smootLogo from "../../assets/icon_mitra/smoot.png";
+import tbsLogo from "../../assets/icon_mitra/tbs.png";
+import utomoLogo from "../../assets/icon_mitra/utomo.png";
+import viarLogo from "../../assets/icon_mitra/viar.png";
+import vktrLogo from "../../assets/icon_mitra/vktr.png";
+import voltaLogo from "../../assets/icon_mitra/volta.png";
 
 const LogoCompany = () => {
   const [hoveredLogo, setHoveredLogo] = useState(null);
 
   const firstRowLogos = [
-    {
-      name: "ALVA",
-      image: alvaLogo,
-      alt: "ALVA Logo",
-    },
-    { name: "PERTAMINA", style: "pertamina", image: pertaminaLogo },
-    { name: "TBS", style: "tbs", image: tbsLogo },
-    { name: "PLN", style: "pln", image: plnLogo },
+    { name: "AlamTri", style: "alamtri", image: alamtriLogo },
+    { name: "ALVA", style: "alva", image: alvaLogo },
+    { name: "CASION", style: "casion", image: casionLogo },
+    { name: "DAVIGO", style: "davigo", image: davigoLogo },
+    { name: "DBS", style: "dbs", image: dbsLogo },
     { name: "electrum", style: "electrum", image: electrumLogo },
+    { name: "GESITS", style: "gesits", image: gesitsLogo },
+    { name: "goto", style: "goto", image: gotoLogo },
+    { name: "Grab", style: "grab", image: grabLogo },
     { name: "IBC", style: "ibc", image: ibcLogo },
-    { name: "VKTR", style: "vktr", image: vktrLogo },
   ];
 
   const secondRowLogos = [
+    { name: "OKLI", style: "okli", image: okliLogo },
+    { name: "OYOXA", style: "oyoxa", image: oyoxaLogo },
+    { name: "PERTAMINA", style: "pertamina", image: pertaminaLogo },
+    { name: "PLN", style: "pln", image: plnLogo },
+    { name: "SMOOT", style: "smoot", image: smootLogo },
+    { name: "TBS", style: "tbs", image: tbsLogo },
+    { name: "UTOMO", style: "utomo", image: utomoLogo },
+    { name: "VIAR", style: "viar", image: viarLogo },
+    { name: "VKTR", style: "vktr", image: vktrLogo },
     { name: "VOLTA", style: "volta", image: voltaLogo },
-    { name: "GASION", style: "gasion", image: casionLogo },
-    { name: "Grab", style: "grab", image: grabLogo },
-    { name: "goto", style: "goto", image: gotoLogo },
-    { name: "DBS", style: "dbs", image: dbsLogo },
-    { name: "GESITS", style: "gesits", image: gesitsLogo },
   ];
 
   const renderLogoTrack = (logos, direction) => (
