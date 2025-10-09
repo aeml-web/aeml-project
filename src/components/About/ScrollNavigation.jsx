@@ -509,12 +509,21 @@ const ScrollNavigation = () => {
               <div className={styles.section}>
                 <h1 className={styles.titleBoard}>Board of Patrons</h1>
                 <Swiper
-                  slidesOffsetAfter={250}
                   spaceBetween={20}
                   slidesPerView={3.6}
+                  slidesOffsetBefore={0} // Add this
+                  slidesOffsetAfter={250}
+                  centeredSlides={false}
                   loop={false}
                   navigation={true}
                   modules={[Navigation]}
+                  observer={true}
+                  observeParents={true}
+                  onSwiper={(swiper) => {
+                    setTimeout(() => swiper.update(), 0);
+                    setTimeout(() => swiper.update(), 50);
+                    setTimeout(() => swiper.update(), 100);
+                  }}
                 >
                   {lead.map((src, index) => (
                     <SwiperSlide key={index}>
@@ -540,11 +549,21 @@ const ScrollNavigation = () => {
               <div className={styles.section}>
                 <h1 className={styles.titleBoard}>Board of Supervisors</h1>
                 <Swiper
-                  slidesOffsetAfter={250}
+                  spaceBetween={20}
                   slidesPerView={3.6}
+                  slidesOffsetBefore={0} // Add this
+                  slidesOffsetAfter={250}
+                  centeredSlides={false}
                   loop={false}
                   navigation={true}
                   modules={[Navigation]}
+                  observer={true}
+                  observeParents={true}
+                  onSwiper={(swiper) => {
+                    setTimeout(() => swiper.update(), 0);
+                    setTimeout(() => swiper.update(), 50);
+                    setTimeout(() => swiper.update(), 100);
+                  }}
                 >
                   {leadSupervisor.map((src, index) => (
                     <SwiperSlide key={index}>
@@ -572,6 +591,7 @@ const ScrollNavigation = () => {
                 <Swiper
                   spaceBetween={20}
                   slidesPerView={3.6}
+                  slidesOffsetBefore={0}
                   slidesOffsetAfter={250}
                   centeredSlides={false}
                   loop={false}
