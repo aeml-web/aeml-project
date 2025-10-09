@@ -210,6 +210,7 @@
 .section {
   margin-bottom: 64px;
   scroll-margin-top: 200px; /* ✅ agar scroll berhenti pas di bawah navbar */
+overflow: visible; /* ADD THIS */
 }
 
 .sectionCard {
@@ -302,6 +303,7 @@
 
 /* Leadership section */
 .lead {
+  overflow: visible; /* ADD THIS */
 }
 
 .titleBoard {
@@ -321,7 +323,7 @@
   flex-direction: column;
   justify-content: left;
   align-items: start;
-  margin-left: -10px;
+  margin-left: 0; /* CHANGE from -10px to 0 */
 }
 
 .carouselImage {

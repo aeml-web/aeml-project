@@ -19,7 +19,10 @@ export default function Content() {
   const [itemsPerPage] = useState(6); // Adjust as needed
 
   // Get categories from tags JSON file
-  const categories = ["Semua Kategori", ...Object.values(tagsData.TAGS)];
+  const categories = [
+    "Semua Kategori",
+    ...Object.values(tagsData.PUBLICATION_TAGS),
+  ];
 
   const navigate = useNavigate();
 

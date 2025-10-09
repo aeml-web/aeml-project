@@ -1,3 +1,4 @@
+/* Base styles - Desktop First (1280px+) */
 .heroWrapper {
   max-width: 1440px;
   align-items: center;
@@ -61,6 +62,7 @@
   font-family: "Instrument Sans", sans-serif;
   z-index: 3;
 }
+
 .btnPrimary {
   background: linear-gradient(135deg, #a3e221 0%, #8bc34a 100%);
   border: none;
@@ -73,12 +75,10 @@
   font-weight: 600;
   position: relative;
   overflow: hidden;
-
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform, box-shadow;
 }
 
-/* Shimmer/shine effect */
 .btnPrimary::before {
   content: "";
   position: absolute;
@@ -103,7 +103,7 @@
 }
 
 .btnPrimary:hover::before {
-  left: 100%; /* Shimmer animation */
+  left: 100%;
 }
 
 .btnSecondary {
@@ -119,11 +119,9 @@
   font-weight: 400;
   position: relative;
   overflow: hidden;
-
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Fill-from-left effect */
 .btnSecondary::before {
   content: "";
   position: absolute;
@@ -138,7 +136,7 @@
 }
 
 .btnSecondary:hover::before {
-  width: 100%; /* Fill animation */
+  width: 100%;
 }
 
 .btnSecondary:hover {
@@ -159,7 +157,7 @@
 }
 
 .containerCarousel {
-  position: relative; /* penting biar ::after bisa absolute */
+  position: relative;
   display: flex;
   gap: 24px;
   align-items: center;
@@ -168,7 +166,7 @@
   padding-bottom: 138px;
   padding-left: 100px;
   justify-content: center;
-  background: none; /* pindahkan gradient ke ::after */
+  background: none;
   z-index: 1;
 }
 
@@ -178,7 +176,7 @@
   top: 0;
   left: 0;
   right: 0;
-  bottom: -30px; /* extend background ke bawah 30px */
+  bottom: -30px;
   background: linear-gradient(
     360deg,
     #ffffff 8.55%,
@@ -186,7 +184,7 @@
     #e1ebff 66.61%,
     #ffffff 94.81%
   );
-  z-index: -1; /* biar background di belakang konten */
+  z-index: -1;
 }
 
 .left {
@@ -198,6 +196,7 @@
 .right {
   flex: 1;
   max-width: 720px;
+  position: relative;
 }
 
 .titleCarousel {
@@ -265,12 +264,10 @@
   height: 422px;
 }
 
-/* even slides */
 .evenImage {
   height: 350px;
 }
 
-/* Swiper Navigation Buttons Styling */
 :global(.swiper-button-next),
 :global(.swiper-button-prev) {
   background: white;
@@ -292,7 +289,6 @@
   font-weight: bold;
 }
 
-/* Swiper Pagination Styling */
 :global(.swiper-pagination-bullet) {
   background: #ccc !important;
   opacity: 0.5 !important;
@@ -306,7 +302,7 @@
 }
 
 :global(.swiper-slide) {
-  padding: 0 10px; /* 10px padding on each side = 20px total gap */
+  padding: 0 10px;
 }
 
 :global(.swiper-slide:last-child) .carouselImage {
@@ -376,7 +372,6 @@
   text-align: center;
 }
 
-/* Company-specific colors */
 .alva {
   color: #2c3e50;
 }
@@ -434,7 +429,6 @@
   height: 58px !important;
 }
 
-/* Animations */
 @keyframes moveLeft {
   0% {
     transform: translateX(0);
@@ -531,7 +525,7 @@
 }
 
 .featuredCard:hover .featuredImage {
-  transform: scale(1.1); /* Scale image to 110% */
+  transform: scale(1.1);
 }
 
 .featuredImage {
@@ -548,15 +542,13 @@
 }
 
 .featuredTitle {
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 700;
   color: #181818;
   line-height: 100%;
   font-family: "Space Grotesk", sans-serif;
   margin: 0;
   width: 400px;
-
-  /* Limit to 2 lines */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -607,7 +599,7 @@
 }
 
 .regularCard:hover .regularImage {
-  transform: scale(1.1); /* Scale image to 110% */
+  transform: scale(1.1);
 }
 
 .regularImage {
@@ -618,22 +610,17 @@
   cursor: pointer;
 }
 
-.regularImage:hover {
-  /* transform: scale(1.05); */
-}
-
 .regularContent {
 }
 
 .regularTitle {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
   color: #181818;
   overflow: hidden;
   font-family: "Space Grotesk", sans-serif;
   margin-bottom: 0;
   margin-top: 10px;
-
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -646,61 +633,6 @@
   margin: 0;
   font-family: "Instrument Sans", sans-serif;
   margin-top: 4px;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .containerCarousel {
-    flex-direction: column;
-    padding: 20px;
-    gap: 30px;
-  }
-
-  .title {
-    font-size: 2rem;
-  }
-
-  .stats {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .carouselImage {
-    height: 250px;
-  }
-
-  .title {
-    font-size: 2rem;
-    margin-bottom: 40px;
-  }
-
-  .logoItem {
-    min-width: 120px;
-    padding: 15px 20px;
-  }
-
-  .logoImage {
-    max-width: fit-content !important;
-    height: 46px !important;
-  }
-
-  .logoTrack {
-    gap: 40px;
-  }
-}
-
-@media (max-width: 480px) {
-  .title {
-    font-size: 1.8rem;
-  }
-
-  .card {
-    padding: 15px;
-  }
-
-  .card h3 {
-    font-size: 1.5rem;
-  }
 }
 
 .publicationsSection {
@@ -748,8 +680,8 @@
 .publicationsGrid {
   max-width: 1200px;
   display: flex;
-  flex-wrap: wrap; /* biar bisa turun ke bawah */
-  gap: 44px; /* jarak antar item */
+  flex-wrap: wrap;
+  gap: 44px;
   margin-left: 111px;
 }
 
@@ -766,11 +698,6 @@
   align-items: center;
   gap: 8px;
 }
-
-/* .publicationCard:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
-} */
 
 .btnRead {
   background: #e8f9ff;
@@ -848,39 +775,6 @@
   transform: translateY(-2px);
 }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  .publicationsSection {
-    padding: 40px 20px;
-  }
-
-  .publicationsHeader {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-  }
-
-  .publicationsTitle {
-    font-size: 2rem;
-  }
-
-  .publicationsGrid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .cardContent {
-    padding: 20px;
-  }
-
-  .cardTitle {
-    font-size: 1.1rem;
-    min-height: auto;
-  }
-}
-
-/* VideoSection.module.css */
-
 .videoSection {
   position: relative;
   display: flex;
@@ -890,9 +784,8 @@
   min-height: 600px;
   overflow: hidden;
   width: 1440px;
-  background: url("../../assets/lingkaran.png") no-repeat center bottom /
-    contain;
-  background-size: 102%; /* 100% = default contain width, 150% = 1.5x lebih besar */
+  background: url("../../assets/lingkaran.png") no-repeat center bottom / contain;
+  background-size: 102%;
 }
 
 .backgroundShapes {
@@ -1036,7 +929,6 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  height: 48px;
   transition: all 0.3s ease;
   text-decoration: none;
   width: 360px;
@@ -1060,64 +952,6 @@
 .learnMoreButton:hover .arrowIcon {
   transform: translateX(4px);
 }
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  .videoSection {
-    padding: 60px 20px;
-    min-height: 500px;
-  }
-
-  .videoTitle {
-    font-size: 2.2rem;
-    margin-bottom: 40px;
-  }
-
-  .videoWrapper {
-    max-width: 100%;
-  }
-
-  .playButton {
-    width: 60px;
-    height: 60px;
-  }
-
-  .playIcon {
-    width: 24px;
-    height: 24px;
-  }
-
-  .learnMoreButton {
-    padding: 14px 28px;
-    font-size: 1rem;
-  }
-
-  .circleLeft {
-    width: 250px;
-    height: 250px;
-    left: -125px;
-  }
-
-  .circleRight {
-    width: 200px;
-    height: 200px;
-    right: -100px;
-  }
-}
-
-@media (max-width: 480px) {
-  .videoTitle {
-    font-size: 1.8rem;
-    margin-bottom: 30px;
-  }
-
-  .learnMoreButton {
-    padding: 12px 24px;
-    font-size: 0.95rem;
-  }
-}
-
-/* PartnersSection.module.css */
 
 .partnersSection {
   padding: 80px 0;
@@ -1150,13 +984,13 @@
 
 .partnersGrid {
   display: flex;
-  flex-wrap: wrap; /* biar bisa turun ke bawah */
-  gap: 32px; /* jarak antar item */
-  justify-content: center; /* selalu center */
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
 }
 
 .partnersGrid > * {
-  width: 230px; /* lebar fixed tiap item */
+  width: 230px;
 }
 
 .partnerCard {
@@ -1190,7 +1024,6 @@
   transform: scale(1.05);
 }
 
-/* Specific adjustments for different logo types */
 .partnerCard:nth-child(1) .partnerLogo,
 .partnerCard:nth-child(2) .partnerLogo,
 .partnerCard:nth-child(3) .partnerLogo,
@@ -1198,80 +1031,14 @@
   max-height: 70px;
 }
 
-/* Government logos tend to be more detailed */
 .partnerCategory:first-child .partnerLogo {
   max-height: 75px;
 }
 
-/* Development partner logos tend to be more modern/simpler */
 .partnerCategory:last-child .partnerLogo {
   max-height: 65px;
 }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  .partnersSection {
-    padding: 60px 20px;
-  }
-
-  .partnerCategory {
-    margin-bottom: 60px;
-  }
-
-  .categoryTitle {
-    font-size: 2rem;
-    margin-bottom: 40px;
-  }
-
-  .partnersGrid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 12px;
-  }
-
-  .partnerCard {
-    padding: 24px 16px;
-    min-height: 120px;
-  }
-
-  .logoContainer {
-    height: 70px;
-  }
-
-  .partnerLogo {
-    max-height: 60px;
-  }
-}
-
-@media (max-width: 480px) {
-  .partnersSection {
-    padding: 40px 16px;
-  }
-
-  .categoryTitle {
-    font-size: 1.75rem;
-    margin-bottom: 32px;
-  }
-
-  .partnersGrid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .partnerCard {
-    padding: 20px 16px;
-    min-height: 100px;
-  }
-
-  .logoContainer {
-    height: 60px;
-  }
-
-  .partnerLogo {
-    max-height: 50px;
-  }
-}
-
-/* Loading state for images */
 .partnerLogo {
   opacity: 0;
   animation: fadeIn 0.5s ease-in-out forwards;
@@ -1287,7 +1054,6 @@
     transform: translateY(0);
   }
 }
-/* Add these styles to your homepage.module.css file */
 
 .loadingContainer,
 .errorContainer,
@@ -1335,23 +1101,12 @@
   color: #6c757d;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .loadingContainer,
-  .errorContainer,
-  .emptyContainer {
-    padding: 1rem;
-    min-height: 120px;
-    font-size: 0.9rem;
-  }
-}
-
 .heroTitle.animate__animated {
-  --animate-duration: 1s; /* Custom duration for title */
+  --animate-duration: 1s;
 }
 
 .heroSubtitle.animate__animated {
-  --animate-duration: 2s; /* Custom duration for subtitle */
+  --animate-duration: 2s;
 }
 
 .heroTitle,
@@ -1380,10 +1135,6 @@
   opacity: 1;
 }
 
-.right {
-  position: relative;
-}
-
 .hoverZoneLeft,
 .hoverZoneRight {
   position: absolute;
@@ -1403,12 +1154,100 @@
   cursor: e-resize;
 }
 
-/* Optional: Visual feedback */
-.hoverZoneLeft:hover {
-}
+/* ========================================
+   RESPONSIVE STYLES
+   ======================================== */
 
-.hoverZoneRight:hover {
-}
+/* Mobile Small - 320px to 479px */
+@media (max-width: 479px) {
+  .heroWrapper {
+    max-width: 100%;
+    margin-top: 15px;
+    padding: 0 16px;
+  }
+
+  .heroContainer {
+    width: 100%;
+    height: 250px;
+    background-size: cover;
+  }
+
+  .heroContent {
+    margin-left: 20px;
+    max-width: 100%;
+    padding-right: 20px;
+  }
+
+  .heroTitle {
+    font-size: 24px;
+    line-height: 120%;
+    margin-bottom: 8px;
+  }
+
+  .heroSubtitle {
+    font-size: 14px;
+    max-width: 100%;
+  }
+
+  .heroButtons {
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+    padding: 0 16px;
+  }
+
+  .heroButtons button {
+    max-width: 100%;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    width: 100%;
+    font-size: 14px;
+    height: 44px;
+  }
+
+  /* Carousel Section */
+  .containerCarousel {
+    flex-direction: column;
+    padding: 40px 16px 60px;
+    gap: 30px;
+  }
+
+  .left {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .titleCarousel {
+    font-size: 24px;
+  }
+
+  .description {
+    font-size: 14px;
+    max-width: 100%;
+  }
+
+  .stats {
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .card {
+    width: 100%;
+    height: 100px;
+  }
+
+  .card h3 {
+    font-size: 24px;
+  }
+
+  .card p {
+    font-size: 14px;
+  }
 
 .right {
   cursor: none; /* Hide default cursor */
@@ -1437,4 +1276,5 @@
 
 .customCursor.hidden {
   opacity: 0;
+}
 }
