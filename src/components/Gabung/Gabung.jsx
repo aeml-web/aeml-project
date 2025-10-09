@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Gabung.module.css";
+import { submitContactForm } from "../../helpers/apiService"; // Adjust the path to your apiService.js
 
 const Gabung = () => {
   const [formData, setFormData] = useState({
@@ -27,10 +28,10 @@ const Gabung = () => {
     setIsLoading(true);
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // Call the API service
+      await submitContactForm(formData);
 
-      console.log("Form submitted:", formData);
+      console.log("Form submitted successfully:", formData);
 
       // Reset form after successful submission
       setFormData({
@@ -127,17 +128,17 @@ const Gabung = () => {
                 disabled={isLoading}
               >
                 <option value="">Pilih sektor perusahaan disini</option>
-                <option value="energy">Energy</option>
-                <option value="transportation">Transportation</option>
-                <option value="manufacturing">Manufacturing</option>
-                <option value="technology">Technology</option>
-                <option value="finance">Finance</option>
-                <option value="construction">Construction</option>
-                <option value="healthcare">Healthcare</option>
-                <option value="education">Education</option>
-                <option value="retail">Retail</option>
-                <option value="agriculture">Agriculture</option>
-                <option value="other">Lainnya</option>
+                <option value="Energy">Energy</option>
+                <option value="Transportation">Transportation</option>
+                <option value="Manufacturing">Manufacturing</option>
+                <option value="Technology">Technology</option>
+                <option value="Finance">Finance</option>
+                <option value="Construction">Construction</option>
+                <option value="Healthcare">Healthcare</option>
+                <option value="Education">Education</option>
+                <option value="Retail">Retail</option>
+                <option value="Agriculture">Agriculture</option>
+                <option value="Lainnya">Lainnya</option>
               </select>
             </div>
 
