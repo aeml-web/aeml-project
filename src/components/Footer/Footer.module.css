@@ -147,102 +147,6 @@
   color: white;
 }
 
-/* Tablet Responsive */
-@media (max-width: 968px) {
-  .footerContent {
-    grid-template-columns: 1fr;
-    gap: 60px;
-    padding: 0 30px;
-  }
-
-  .rightSection {
-    justify-content: center;
-  }
-
-  .navGrid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-    max-width: 500px;
-  }
-}
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  .footer {
-    padding: 60px 0 40px 0;
-  }
-
-  .footerContent {
-    padding: 0 20px;
-    gap: 40px;
-  }
-
-  .leftSection {
-    gap: 30px;
-    text-align: center;
-  }
-
-  .contactInfo {
-    align-items: center;
-  }
-
-  .contactItem {
-    justify-content: center;
-    text-align: left;
-    max-width: 300px;
-  }
-
-  .navGrid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    text-align: center;
-  }
-
-  .navTitle {
-    font-size: 1rem;
-  }
-
-  .navLink:hover {
-    padding-left: 0;
-    transform: none;
-  }
-
-  .curveSvg {
-    top: 10%;
-    height: 80%;
-  }
-}
-
-@media (max-width: 480px) {
-  .footer {
-    padding: 40px 0 30px 0;
-  }
-
-  .footerContent {
-    padding: 0 16px;
-    gap: 32px;
-  }
-
-  .footerLogo {
-    height: 50px;
-  }
-
-  .navGrid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    max-width: 250px;
-  }
-
-  .contactItem {
-    font-size: 0.9rem;
-  }
-
-  .contactIcon {
-    width: 18px;
-    height: 18px;
-  }
-}
-
 /* Animation for smooth loading */
 .footerContent {
   animation: fadeInUp 0.6s ease-out;
@@ -281,4 +185,25 @@
   font-weight: 400;
   color: white;
   margin: 0;
+}
+
+@media (max-width: 910px) {
+  .footerContent {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rightSection {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .navGrid {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .navList {
+    display: none;
+  }
 }

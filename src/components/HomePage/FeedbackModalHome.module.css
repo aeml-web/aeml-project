@@ -105,8 +105,12 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 .modalOverlay {
   position: fixed;
@@ -360,11 +364,9 @@
 }
 
 /* Mobile Responsive */
-@media (max-width: 768px) {
+@media (max-width: 910px) {
   .modalContent {
-    max-width: 100%;
-    margin: 0 10px;
-    border-radius: 20px;
+    display: none;
   }
 
   .modalBody {
