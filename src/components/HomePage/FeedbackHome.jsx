@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styles from "./FeedbackModalHome.module.css";
-import { getActiveQuestion, submitAnswer } from "../../helpers/apiService"; // Adjust the import path as needed
+import {
+  getActiveQuestion,
+  submitAnswer,
+  submitContactUsAnswer,
+} from "../../helpers/apiService";
 
 const FeedbackHome = () => {
   const [feedback, setFeedback] = useState("");
@@ -45,7 +49,11 @@ const FeedbackHome = () => {
 
     try {
       await submitAnswer(feedback.trim(), question.id);
-
+      await submitContactUsAnswer(
+        feedback.trim(),
+        question.id,
+        question.question // Pass the actual question text
+      );
       // Success feedback
       console.log("Feedback submitted successfully");
       setSuccessMessage("Terima kasih! Jawaban Anda telah berhasil dikirim.");

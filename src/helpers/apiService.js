@@ -1,6 +1,7 @@
-// handlers/articleService.js
-
 const API_BASE_URL = "https://doa-backend.my.id/api/v3";
+// const API_BASE_URL = "http://localhost:8081/api/v3";
+// # REACT_APP_URL_API_DOMAIN='http://localhost:8081/api/v3'
+
 const AUTH_TOKEN =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInRlbmFudF9pZCI6IkFlbWxBZG1pbiIsImlhdCI6MTc1NzA2NjM5NSwiZXhwIjoxNzU3MDczNTk1fQ.h2p8uL_GVDIeShyftXHOJlK5nDYR4JeariKDi79Hbkc";
 
@@ -325,6 +326,111 @@ export const submitAnswer = async (answer, questionId) => {
     };
 
     const response = await fetch(`${API_BASE_URL}/answers`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${AUTH_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (data.statusCode === 201) {
+      return data.data;
+    } else {
+      throw new Error(data.message || "Failed to submit answer");
+    }
+  } catch (error) {
+    console.error("Error submitting answer:", error);
+    throw error;
+  }
+};
+
+export const submitContactForm = async (formData) => {
+  try {
+    const payload = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      sector: formData.sector,
+    };
+
+    const response = await fetch(`${API_BASE_URL}/contact-us/gabung`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (data.success) {
+      return data;
+    } else {
+      throw new Error(data.message || "Failed to submit contact form");
+    }
+  } catch (error) {
+    console.error("Error submitting contact form:", error);
+    throw error;
+  }
+};
+
+export const submitDownloadForm = async (formData, publicationId) => {
+  try {
+    const payload = {
+      company: formData.company,
+      email: formData.email,
+      publicationId: publicationId,
+    };
+
+    const response = await fetch(`${API_BASE_URL}/contact-us/download`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (data.success) {
+      return data;
+    } else {
+      throw new Error(data.message || "Failed to submit download request");
+    }
+  } catch (error) {
+    console.error("Error submitting download request:", error);
+    throw error;
+  }
+};
+
+export const submitContactUsAnswer = async (
+  answer,
+  questionId,
+  questionText
+) => {
+  try {
+    const payload = {
+      answer: answer,
+      aemlAdminQuestionId: questionId,
+      questionText: questionText, // Include question text for email notification
+    };
+
+    const response = await fetch(`${API_BASE_URL}/contact-us/answers`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${AUTH_TOKEN}`,

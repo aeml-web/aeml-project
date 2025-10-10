@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom"; // React Router v6
+import { useParams, useNavigate } from "react-router-dom";
 import { Download } from "lucide-react";
-// Alternative: import { useRouter } from "next/router"; // Next.js
 
-import { getPublicationById } from "../../helpers/apiService"; // adjust path if needed
+import {
+  getPublicationById,
+  submitDownloadForm,
+} from "../../helpers/apiService"; // adjust path if needed
 import styles from "./publikasiDetail.module.css";
 import Publikasi from "../HomePage/Publikasi";
 import PublikasiDetail from "../HomePage/PublikasiDetail";
@@ -12,6 +14,7 @@ export default function PublicationDetail() {
   const [publication, setPublication] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     company: "",
     email: "",
@@ -40,31 +43,52 @@ export default function PublicationDetail() {
     loadPublication();
   }, [id]);
 
-  const handleDownload = () => {
-    if (!isFormValid) return; // Prevent action if form is invalid
+  const handleDownload = async () => {
+    if (!isFormValid) return;
 
     if (!formData.company.trim() || !formData.email.trim()) {
       alert("Please fill in both company and email fields");
       return;
     }
 
-    // You can send form data to your API here before downloading
-    // if (publication?.downloadUrl) {
-    //   window.open(publication.downloadUrl, "_blank");
-    // } else {
-    //   window.open(`/api/publications/${id}/download`, "_blank");
-    // }
+    setIsSubmitting(true);
 
-    if (publication?.linkDownload) {
-      window.open(publication.linkDownload, "_blank");
-    } else {
-      window.open(`/api/publications/${id}/download`, "_blank");
+    try {
+      // Submit download request to backend (sends email notification)
+      await submitDownloadForm(
+        {
+          company: formData.company,
+          email: formData.email,
+          publicationId: id,
+          publicationTitle: publication?.title,
+        },
+        id
+      );
+
+      // After successful submission, trigger download
+      if (publication?.linkDownload) {
+        window.open(publication.linkDownload, "_blank");
+      } else {
+        window.open(`/api/publications/${id}/download`, "_blank");
+      }
+
+      // Reset form
+      setFormData({
+        company: "",
+        email: "",
+      });
+
+      alert("Download berhasil! Terima kasih telah mengisi formulir.");
+    } catch (error) {
+      console.error("Error submitting download request:", error);
+      alert("Terjadi kesalahan saat memproses permintaan. Silakan coba lagi.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   const handleBack = () => {
-    navigate(-1); // Go back to previous page
-    // Alternative: navigate('/publications'); // Go to publications list
+    navigate(-1);
   };
 
   const handleInputChange = (e) => {
@@ -179,6 +203,7 @@ export default function PublicationDetail() {
                   value={formData.company}
                   onChange={handleInputChange}
                   className={styles.formInput}
+                  disabled={isSubmitting}
                 />
                 <input
                   type="email"
@@ -187,17 +212,18 @@ export default function PublicationDetail() {
                   value={formData.email}
                   onChange={handleInputChange}
                   className={styles.formInput}
+                  disabled={isSubmitting}
                 />
 
                 <button
                   onClick={handleDownload}
-                  disabled={!isFormValid}
+                  disabled={!isFormValid || isSubmitting}
                   className={`${styles.downloadButton} ${
-                    !isFormValid ? styles.disabled : ""
+                    !isFormValid || isSubmitting ? styles.disabled : ""
                   }`}
                 >
                   <Download size={14} />
-                  Download File
+                  {isSubmitting ? "Processing..." : "Download File"}
                 </button>
               </div>
             </div>
