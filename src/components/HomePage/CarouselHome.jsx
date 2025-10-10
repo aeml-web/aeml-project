@@ -150,6 +150,11 @@ export default function CarouselHome() {
           loop={true}
           modules={[Pagination]}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
+          breakpoints={{
+            768: {
+              slidesPerView: 3.5,
+            },
+          }}
         >
           {photos.map((src, index) => (
             <SwiperSlide key={index}>
