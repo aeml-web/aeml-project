@@ -73,7 +73,7 @@
 }
 
 .bottom {
-  margin-top: auto; /* ini yang mendorong ke bawah */
+  margin-top: auto;
   background: linear-gradient(
     114.01deg,
     rgba(196, 216, 255, 0.93) 0.08%,
@@ -228,7 +228,7 @@
 }
 
 .downloadButton:hover:not(:disabled)::before {
-  left: 100%; /* Shimmer animation */
+  left: 100%;
 }
 
 .downloadButton:disabled {
@@ -247,19 +247,6 @@
   font-family: "Instrument Sans", sans-serif;
   pointer-events: auto;
 }
-
-/* Or if you're using a separate disabled class */
-/* .downloadButton.disabled {
-  opacity: 1;
-  cursor: not-allowed;
-  pointer-events: none;
-} */
-
-/* .downloadButton.disabled:hover { */
-/* This won't trigger because of pointer-events: none */
-/* background: inherit;
-  transform: none;
-} */
 
 .loading {
   text-align: center;
@@ -360,4 +347,157 @@
   transition: all 0.3s ease;
   margin-top: 1rem;
   font-family: "Instrument Sans", sans-serif;
+}
+
+/* ========================================
+   MOBILE RESPONSIVE (MAX-WIDTH 768PX)
+   ======================================== */
+
+@media (max-width: 768px) {
+  .container {
+    gap: 32px;
+  }
+
+  .containerContent {
+    padding-top: 24px;
+    width: 100%;
+  }
+
+  .content {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  .imageSection {
+    flex: none;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+
+  .publicationImage {
+    width: 100%;
+    height: auto;
+    min-height: 300px;
+    max-height: 400px;
+  }
+
+  .publicationImage img {
+    width: 100%;
+    height: auto;
+    min-height: 300px;
+    max-height: 400px;
+  }
+
+  .imagePlaceholder {
+    font-size: 16px;
+    padding: 0 16px;
+  }
+
+  .imageSubtitle {
+    font-size: 9px;
+    padding: 0 16px;
+  }
+
+  .detailSection {
+    width: 100%;
+    padding-left: 0;
+    height: auto;
+  }
+
+  .top {
+    margin-bottom: 24px;
+  }
+
+  .title {
+    font-size: 24px;
+    width: 100%;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .meta {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 16px;
+  }
+
+  .category {
+    font-size: 14px;
+    padding: 0.2rem 0.6rem;
+  }
+
+  .date {
+    font-size: 14px;
+  }
+
+  .subtitle {
+    font-size: 15px;
+    width: 100%;
+  }
+
+  .bottom {
+    padding: 16px;
+    margin-top: 0;
+  }
+
+  .downloadText {
+    font-size: 14px;
+    width: 100%;
+    margin-bottom: 12px;
+  }
+
+  .form {
+    gap: 0.625rem;
+  }
+
+  .formInput {
+    width: 100%;
+    height: 44px;
+    font-size: 0.938rem;
+    padding: 0.75rem;
+  }
+
+  .formInput::placeholder {
+    font-size: 11px;
+  }
+
+  .downloadButton {
+    width: 100%;
+    height: 44px;
+    font-size: 15px;
+    margin-top: 0.75rem;
+  }
+
+  .downloadButton:disabled {
+    width: 100%;
+    height: 44px;
+    font-size: 15px;
+  }
+
+  .loading,
+  .error {
+    padding: 1.5rem 1rem;
+    font-size: 1rem;
+  }
+
+  .backBtn {
+    position: static;
+    margin-bottom: 16px;
+    width: 100%;
+    text-align: center;
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .authorSection,
+  .tagsSection {
+    font-size: 0.813rem;
+    margin-bottom: 1rem;
+  }
+
+  .formLabel {
+    font-size: 11px;
+    margin-bottom: 6px;
+  }
 }
