@@ -227,7 +227,7 @@ const ScrollNavigation = () => {
     },
     {
       id: "5",
-      name: "Fabilly Fabby Tumiwa",
+      name: "Fabby Tumiwa",
       title: "Member of Board of Supervisors",
       description:
         "Executive Director of Institute for Essential Services Reform (IESR)",
