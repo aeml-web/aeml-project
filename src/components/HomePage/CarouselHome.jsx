@@ -1,10 +1,9 @@
 import { useRef, useState } from "react";
 import styles from "./homepage.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/navigation"; // ✅ Add this
 
 import foto1 from "../../assets/foto1.png";
 import foto2 from "../../assets/foto3new.png";
@@ -19,6 +18,85 @@ export default function CarouselHome() {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [cursorVisible, setCursorVisible] = useState(false);
   const [cursorDirection, setCursorDirection] = useState("");
+
+  const handleMouseMove = (e) => {
+    // Update cursor position
+    setCursorPos({ x: e.clientX, y: e.clientY });
+
+    // Use cached rect if available, or get it once
+    if (!containerRef.current) return;
+
+    const rect = containerRef.current.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const halfWidth = rect.width / 2;
+
+    const newDirection = mouseX < halfWidth ? "prev" : "next";
+
+    // Only update state if direction actually changed
+    if (newDirection !== cursorDirection) {
+      setCursorDirection(newDirection);
+    }
+  };
+
+  const handleMouseEnter = () => {
+    setCursorVisible(true);
+  };
+
+  const handleMouseLeave = () => {
+    setCursorVisible(false);
+    setCursorDirection("");
+  };
+
+  const handleClick = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const halfWidth = rect.width / 2;
+
+    if (swiperRef.current) {
+      if (mouseX < halfWidth) {
+        swiperRef.current.slidePrev();
+      } else {
+        swiperRef.current.slideNext();
+      }
+    }
+  };
+
+  const renderCursorIcon = () => {
+    if (cursorDirection === "prev") {
+      return (
+        <svg
+          width="12"
+          height="19"
+          viewBox="0 0 12 19"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M9.24081 0.830078L11.3359 2.9252L4.5305 9.7455L11.3359 16.5658L9.24081 18.6609L0.325391 9.7455L9.24081 0.830078Z"
+            fill="#181818"
+          />
+        </svg>
+      );
+    } else if (cursorDirection === "next") {
+      return (
+        <svg
+          width="12"
+          height="19"
+          viewBox="0 0 12 19"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ transform: "rotate(180deg)" }}
+        >
+          <path
+            d="M9.24081 0.830078L11.3359 2.9252L4.5305 9.7455L11.3359 16.5658L9.24081 18.6609L0.325391 9.7455L9.24081 0.830078Z"
+            fill="#181818"
+          />
+        </svg>
+      );
+    } else {
+      return null;
+    }
+  };
 
   return (
     <div className={styles.containerCarousel}>
@@ -45,17 +123,33 @@ export default function CarouselHome() {
       </div>
 
       {/* Right carousel */}
-      <div ref={containerRef} className={styles.right}>
+      <div
+        ref={containerRef}
+        className={styles.right}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onClick={handleClick}
+      >
+        {/* Custom Cursor */}
+        <div
+          className={`${styles.customCursor} ${
+            !cursorVisible ? styles.hidden : ""
+          }`}
+          style={{
+            left: `${cursorPos.x}px`,
+            top: `${cursorPos.y}px`,
+          }}
+        >
+          {renderCursorIcon()}
+        </div>
+
         <Swiper
           spaceBetween={20}
           slidesPerView={2.5}
-          slidesOffsetBefore={0}
-          centeredSlides={false}
           loop={true}
-          navigation={true}
-          modules={[Navigation]}
-          observer={true}
-          observeParents={true}
+          modules={[Pagination]}
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
         >
           {photos.map((src, index) => (
             <SwiperSlide key={index}>
