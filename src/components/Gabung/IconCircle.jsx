@@ -6,6 +6,7 @@ import finance from "../../assets/gabung/finance.png";
 import orbit from "../../assets/gabung/orbit.png";
 import ride from "../../assets/gabung/ride.png";
 import swap from "../../assets/gabung/swap.png";
+import globe from "../../assets/logoamelfix.png";
 import styles from "./Tentang.module.css";
 
 const IconCircle = () => {
@@ -57,7 +58,7 @@ const IconCircle = () => {
       <div className={styles.container}>
         {/* Center Icon - Globe/Sphere */}
         <div className={styles.centerIcon}>
-          <img src={orbit} alt="Center Globe" className={styles.centerImage} />
+          <img src={globe} alt="Center Globe" className={styles.centerImage} />
         </div>
 
         {/* Surrounding Icons - tersebar merata 360 derajat */}
