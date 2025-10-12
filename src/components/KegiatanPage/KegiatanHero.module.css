@@ -1,6 +1,6 @@
 .kegiatanHero {
   display: flex;
-  height: 622px; /* Figma size */
+  height: 622px;
   max-width: 100vw;
   margin: 0 auto;
   overflow: hidden;
@@ -10,7 +10,7 @@
 
 .kegiatanHeroChild {
   display: flex;
-  height: 622px; /* Figma size */
+  height: 622px;
   max-width: 100vw;
   margin: 0 auto;
   overflow: hidden;
@@ -19,9 +19,9 @@
 
 /* Left Side: Gradient + Text */
 .heroContent {
-  width: 50%; /* ✅ exact half */
+  width: 50%;
   background: linear-gradient(0deg, #c4d8ff -23.31%, #ffffff 80.06%);
-  padding: 0 80px; /* align with navbar, no top padding */
+  padding: 0 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -111,16 +111,76 @@
 }
 
 .heroCta:hover::before {
-  left: 100%; /* Shimmer animation */
+  left: 100%;
 }
 
 /* Right Side: Image */
 .heroImageCol {
-  width: 50%; /* ✅ exact half */
+  width: 50%;
 }
 
 .heroImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* ========================================
+   MOBILE RESPONSIVE (MAX-WIDTH 768PX)
+   ======================================== */
+
+@media (max-width: 768px) {
+  .kegiatanHero {
+    height: auto;
+    min-height: 500px;
+  }
+
+  .kegiatanHeroChild {
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+  }
+
+  .heroContent {
+    width: 100%;
+    padding: 40px 24px;
+    order: 2;
+  }
+
+  .heroImageCol {
+    width: 100%;
+    height: 300px;
+    order: 1;
+  }
+
+  .heroImage {
+    object-position: center;
+  }
+
+  .heroTitle {
+    font-size: 32px;
+    margin-bottom: 16px;
+    max-width: 100%;
+  }
+
+  .breadcrumbInfo {
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .dateBadge {
+    font-size: 14px;
+    margin-right: 12px;
+  }
+
+  .categoryBadge {
+    font-size: 14px;
+    padding: 4px 12px;
+  }
+
+  .heroCta {
+    width: 100%;
+    max-width: 250px;
+    margin-top: 24px;
+  }
 }

@@ -41,8 +41,8 @@
 .publicationsGrid {
   max-width: 1200px;
   display: flex;
-  flex-wrap: wrap; /* biar bisa turun ke bawah */
-  gap: 44px; /* jarak antar item */
+  flex-wrap: wrap;
+  gap: 44px;
   margin-left: 111px;
 }
 
@@ -59,11 +59,6 @@
   align-items: center;
   gap: 8px;
 }
-
-/* .publicationCard:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
-} */
 
 .btnRead {
   background: #e8f9ff;
@@ -136,37 +131,6 @@
   transform: translateY(-2px);
 }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  .publicationsSection {
-    padding: 40px 20px;
-  }
-
-  .publicationsHeader {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-  }
-
-  .publicationsTitle {
-    font-size: 2rem;
-  }
-
-  .publicationsGrid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .cardContent {
-    padding: 20px;
-  }
-
-  .cardTitle {
-    font-size: 1.1rem;
-    min-height: auto;
-  }
-}
-
 .containerNews {
   max-width: 1280px;
   margin: 0 auto;
@@ -188,7 +152,7 @@
   font-family: "Instrument Sans", sans-serif;
 }
 
-/* Grid: 4 columns per row */
+/* Grid: 3 columns per row */
 .regularGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -203,11 +167,6 @@
   transition: transform 0.2s ease;
   height: 303px;
 }
-
-/* .regularCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
-} */
 
 .regularImageContainer {
   overflow: hidden;
@@ -239,10 +198,10 @@
   color: #181818;
   margin: 8px 0 4px;
   font-family: "Space Grotesk", sans-serif;
-  display: -webkit-box; /* enable flexbox model untuk webkit */
-  -webkit-box-orient: vertical; /* orientasi vertikal */
-  -webkit-line-clamp: 2; /* maksimal 3 baris */
-  overflow: hidden; /* sembunyikan sisa text */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .regularDate {
@@ -270,10 +229,6 @@
   cursor: pointer;
   transition: all 0.2s ease;
 }
-/* 
-.pageBtn:hover:not(:disabled) {
-  background: #f0f0f0;
-} */
 
 .pageBtn:disabled {
   opacity: 0.5;
@@ -283,4 +238,146 @@
 .activePage {
   background: #181818;
   color: white;
+}
+
+/* Loading and Error States */
+.loadingContainer,
+.errorContainer {
+  text-align: center;
+  padding: 2rem;
+  color: #6b7280;
+}
+
+.errorContainer {
+  color: #dc2626;
+}
+
+/* ========================================
+   MOBILE RESPONSIVE (MAX-WIDTH 768PX)
+   ======================================== */
+
+@media (max-width: 768px) {
+  .publicationsSection {
+    width: 100%;
+    height: auto;
+    margin-top: 40px;
+    margin-bottom: 60px;
+    padding: 24px 16px;
+    border-radius: 12px;
+  }
+
+  .publicationsHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 0 0 24px 0;
+  }
+
+  .publicationsTitle {
+    font-size: 20px;
+    margin-bottom: 0;
+  }
+
+  .viewAllLink {
+    font-size: 14px;
+  }
+
+  .publicationsGrid {
+    margin: 0;
+    gap: 20px;
+    flex-direction: column;
+  }
+
+  .publicationCard {
+    width: 100%;
+    height: auto;
+    padding: 16px;
+  }
+
+  .cardContain {
+    width: 100%;
+  }
+
+  .cardImage {
+    height: 70px;
+    width: 70px;
+  }
+
+  .cardTitle {
+    font-size: 16px;
+    width: 100%;
+  }
+
+  .btnRead {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 12px;
+  }
+
+  .containerNews {
+    padding: 24px 16px;
+  }
+
+  .header {
+    margin-bottom: 32px;
+  }
+
+  .titleNews {
+    font-size: 24px;
+  }
+
+  /* Grid: 1 column on mobile */
+  .regularGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin: 0;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .regularCard {
+    height: auto;
+  }
+
+  .regularImageContainer {
+    height: 200px;
+  }
+
+  .regularImage {
+    height: 200px;
+  }
+
+  .regularContent {
+    padding: 12px 0;
+  }
+
+  .regularTitle {
+    font-size: 16px;
+    margin: 4px 0;
+  }
+
+  .regularDate {
+    font-size: 13px;
+  }
+
+  .pagination {
+    margin-top: 1.5rem;
+    gap: 6px;
+  }
+
+  .pageBtn {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+
+  .readButton {
+    padding: 10px 20px;
+    font-size: 0.875rem;
+  }
+
+  .loadingContainer,
+  .errorContainer {
+    padding: 1.5rem 1rem;
+    font-size: 14px;
+  }
 }
