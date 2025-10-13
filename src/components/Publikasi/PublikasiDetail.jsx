@@ -9,8 +9,20 @@ import {
 import styles from "./publikasiDetail.module.css";
 import Publikasi from "../HomePage/Publikasi";
 import PublikasiDetail from "../HomePage/PublikasiDetail";
+import { motion } from "framer-motion";
 
 export default function PublicationDetail() {
+  const fadeUp = {
+    hidden: { opacity: 0, y: 60 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.8, 0.25, 1],
+      },
+    },
+  };
   const [publication, setPublication] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -138,99 +150,109 @@ export default function PublicationDetail() {
     formData.company.trim() !== "" && formData.email.trim() !== "";
 
   return (
-    <div className={styles.container}>
-      <div className={styles.containerContent}>
-        <div className={styles.content}>
-          {/* Left side - Publication Image */}
-          <div className={styles.imageSection}>
-            <div className={styles.publicationImage}>
-              {publication.image ? (
-                <img src={publication.image} alt={publication.title} />
-              ) : (
-                <div>
-                  <div className={styles.imagePlaceholder}>
-                    {publication.title}
-                  </div>
-                  {publication.subtitle && (
-                    <div className={styles.imageSubtitle}>
-                      {publication.subtitle}
+    <motion.div
+      variants={fadeUp}
+      initial="hidden"
+      animate="visible"
+      className="space-y-9"
+    >
+      <div className={styles.container}>
+        <div className={styles.containerContent}>
+          <div className={styles.content}>
+            {/* Left side - Publication Image */}
+            <div className={styles.imageSection}>
+              <div className={styles.publicationImage}>
+                {publication.image ? (
+                  <img src={publication.image} alt={publication.title} />
+                ) : (
+                  <div>
+                    <div className={styles.imagePlaceholder}>
+                      {publication.title}
                     </div>
-                  )}
-                </div>
-              )}
+                    {publication.subtitle && (
+                      <div className={styles.imageSubtitle}>
+                        {publication.subtitle}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
 
-          {/* Right side - Details */}
-          <div className={styles.detailSection}>
-            <div className={styles.top}>
-              <h1 className={styles.title}>{publication.title}</h1>
+            {/* Right side - Details */}
+            <div className={styles.detailSection}>
+              <div className={styles.top}>
+                <h1 className={styles.title}>{publication.title}</h1>
 
-              <div className={styles.meta}>
-                <span
-                  className={`${styles.category} ${
-                    publication.type === "Research"
-                      ? styles.categoryResearch
-                      : styles.categoryDefault
-                  }`}
-                >
-                  {publication.tags}
-                </span>
-                <span className={styles.date}>
-                  {new Date(publication.createdAt).toLocaleDateString("id-ID", {
-                    month: "long",
-                    year: "numeric",
-                  })}
-                </span>
+                <div className={styles.meta}>
+                  <span
+                    className={`${styles.category} ${
+                      publication.type === "Research"
+                        ? styles.categoryResearch
+                        : styles.categoryDefault
+                    }`}
+                  >
+                    {publication.tags}
+                  </span>
+                  <span className={styles.date}>
+                    {new Date(publication.createdAt).toLocaleDateString(
+                      "id-ID",
+                      {
+                        month: "long",
+                        year: "numeric",
+                      }
+                    )}
+                  </span>
+                </div>
+
+                {publication.subtitle && (
+                  <p className={styles.subtitle}>{publication.subtitle}</p>
+                )}
               </div>
 
-              {publication.subtitle && (
-                <p className={styles.subtitle}>{publication.subtitle}</p>
-              )}
-            </div>
+              <div className={styles.bottom}>
+                <p className={styles.downloadText}>
+                  Mohon mengisi data diri terlebih dahulu untuk mengunduh
+                  publikasi ini.
+                </p>
 
-            <div className={styles.bottom}>
-              <p className={styles.downloadText}>
-                Mohon mengisi data diri terlebih dahulu untuk mengunduh
-                publikasi ini.
-              </p>
+                <div className={styles.form}>
+                  <input
+                    type="text"
+                    name="company"
+                    placeholder="Ketik perusahaan atau instansimu"
+                    value={formData.company}
+                    onChange={handleInputChange}
+                    className={styles.formInput}
+                    disabled={isSubmitting}
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Alamat email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className={styles.formInput}
+                    disabled={isSubmitting}
+                  />
 
-              <div className={styles.form}>
-                <input
-                  type="text"
-                  name="company"
-                  placeholder="Ketik perusahaan atau instansimu"
-                  value={formData.company}
-                  onChange={handleInputChange}
-                  className={styles.formInput}
-                  disabled={isSubmitting}
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Alamat email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className={styles.formInput}
-                  disabled={isSubmitting}
-                />
-
-                <button
-                  onClick={handleDownload}
-                  disabled={!isFormValid || isSubmitting}
-                  className={`${styles.downloadButton} ${
-                    !isFormValid || isSubmitting ? styles.disabled : ""
-                  }`}
-                >
-                  <Download size={14} />
-                  {isSubmitting ? "Processing..." : "Download File"}
-                </button>
+                  <button
+                    onClick={handleDownload}
+                    disabled={!isFormValid || isSubmitting}
+                    className={`${styles.downloadButton} ${
+                      !isFormValid || isSubmitting ? styles.disabled : ""
+                    }`}
+                  >
+                    <Download size={14} />
+                    {isSubmitting ? "Processing..." : "Download File"}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <PublikasiDetail />
       </div>
-      <PublikasiDetail />
-    </div>
+    </motion.div>
   );
 }

@@ -3,11 +3,24 @@ import KegiatanHero from "./KegiatanHero";
 import styles from "./KegiatanPages.module.css";
 import NewsGrid from "./NewsGrid";
 import { getArticles } from "../../helpers/apiService";
+import { motion } from "framer-motion";
 
 const KegiatanPages = () => {
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 60 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.8, 0.25, 1],
+      },
+    },
+  };
 
   // Fallback data in case API fails
   const sampleActivities = [
@@ -147,18 +160,25 @@ const KegiatanPages = () => {
   };
 
   return (
-    <div className={styles.kegiatanPages}>
-      <KegiatanHero
-        activities={currentActivities}
-        newestActivities={getNewestActivities(currentActivities)}
-        loading={loading}
-        error={error}
-      />
+    <motion.div
+      variants={fadeUp}
+      initial="hidden"
+      animate="visible"
+      className="space-y-9"
+    >
+      <div className={styles.kegiatanPages}>
+        <KegiatanHero
+          activities={currentActivities}
+          newestActivities={getNewestActivities(currentActivities)}
+          loading={loading}
+          error={error}
+        />
 
-      {renderContent()}
+        {renderContent()}
 
-      <NewsGrid items={currentActivities} loading={loading} />
-    </div>
+        <NewsGrid items={currentActivities} loading={loading} />
+      </div>
+    </motion.div>
   );
 };
 

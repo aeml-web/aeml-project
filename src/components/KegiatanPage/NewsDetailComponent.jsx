@@ -3,8 +3,21 @@ import { useParams, useNavigate } from "react-router-dom";
 import styles from "./NewsDetail.module.css";
 import { getArticleById } from "../../helpers/apiService"; // adjust path if needed
 import ReadAnother from "./ReadAnother";
+import { motion } from "framer-motion";
 
 const NewsDetailComponent = () => {
+  const fadeUp = {
+    hidden: { opacity: 0, y: 60 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.8, 0.25, 1],
+      },
+    },
+  };
+
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -42,42 +55,49 @@ const NewsDetailComponent = () => {
   }
 
   return (
-    <div className={styles.newsDetailContainer}>
-      <div className={styles.mainContent}>
-        <div className={styles.contentWrapper}>
-          {article.images && article.images.length > 0 && (
-            <div className={styles.heroImageContainer}>
-              <img
-                src={article.images[0]}
-                alt={article.title}
-                className={styles.heroImage}
-                onError={(e) => (e.target.style.display = "none")}
-              />
-            </div>
-          )}
-
-          <div className={styles.articleHeader}>
-            <h1 className={styles.articleTitle}>{article.title}</h1>
-            <div className={styles.articleMeta}>
-              <span className={styles.articleDate}>
-                {formatDate(article.createdAt)}
-              </span>
-              <span className={styles.articleCategory}>{article.tags}</span>
-            </div>
-            <div className={styles.line}></div>
-          </div>
-
-          <div className={styles.articleContent}>
-            {article.body ? (
-              <div dangerouslySetInnerHTML={{ __html: article.body }} />
-            ) : (
-              <p>Tidak ada konten</p>
+    <motion.div
+      variants={fadeUp}
+      initial="hidden"
+      animate="visible"
+      className="space-y-9"
+    >
+      <div className={styles.newsDetailContainer}>
+        <div className={styles.mainContent}>
+          <div className={styles.contentWrapper}>
+            {article.images && article.images.length > 0 && (
+              <div className={styles.heroImageContainer}>
+                <img
+                  src={article.images[0]}
+                  alt={article.title}
+                  className={styles.heroImage}
+                  onError={(e) => (e.target.style.display = "none")}
+                />
+              </div>
             )}
+
+            <div className={styles.articleHeader}>
+              <h1 className={styles.articleTitle}>{article.title}</h1>
+              <div className={styles.articleMeta}>
+                <span className={styles.articleDate}>
+                  {formatDate(article.createdAt)}
+                </span>
+                <span className={styles.articleCategory}>{article.tags}</span>
+              </div>
+              <div className={styles.line}></div>
+            </div>
+
+            <div className={styles.articleContent}>
+              {article.body ? (
+                <div dangerouslySetInnerHTML={{ __html: article.body }} />
+              ) : (
+                <p>Tidak ada konten</p>
+              )}
+            </div>
           </div>
         </div>
+        <ReadAnother excludeId={id} />
       </div>
-      <ReadAnother excludeId={id} />
-    </div>
+    </motion.div>
   );
 };
 

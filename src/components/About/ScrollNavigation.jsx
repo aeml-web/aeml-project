@@ -71,6 +71,7 @@ import utomoLogo from "../../assets/icon_mitra/utomo.png";
 import viarLogo from "../../assets/icon_mitra/viar.png";
 import vktrLogo from "../../assets/icon_mitra/vktr.png";
 import voltaLogo from "../../assets/icon_mitra/volta.png";
+import { motion } from "framer-motion";
 
 import HeaderAbout from "./HeaderAbout";
 
@@ -135,6 +136,18 @@ const ScrollNavigation = () => {
 
   // Pastikan aboutMenuItems sudah di-import atau didefinisikan
   const menuItems = aboutMenuItems;
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 60 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.8, 0.25, 1],
+      },
+    },
+  };
 
   const logos = [
     { name: "AlamTri", style: "alamtri", image: alamtriLogo },
@@ -752,77 +765,84 @@ const ScrollNavigation = () => {
   };
 
   return (
-    <div className={styles.aboutPage}>
-      {/* Hero Section */}
-      <div className={styles.aboutContainer}>
-        <h1
-          className={`${styles.titleAbout} animate__animated animate__fadeInUp`}
-        >
-          Memajukan ekosistem mobilitas listrik di Indonesia sehingga berkelas
-          dunia.
-        </h1>
-        <Swiper
-          spaceBetween={30}
-          slidesPerView="auto"
-          loop={true}
-          navigation={true}
-          centeredSlides={true}
-          modules={[Navigation]}
-        >
-          {photos.map((src, index) => (
-            <SwiperSlide key={index}>
-              <img
-                src={src}
-                alt={`Event ${index + 1}`}
-                className={styles.carouselImageHead}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+    <motion.div
+      variants={fadeUp}
+      initial="hidden"
+      animate="visible"
+      className="space-y-8"
+    >
+      <div className={styles.aboutPage}>
+        {/* Hero Section */}
+        <div className={styles.aboutContainer}>
+          <h1
+            className={`${styles.titleAbout} animate__animated animate__fadeInUp`}
+          >
+            Memajukan ekosistem mobilitas listrik di Indonesia sehingga berkelas
+            dunia.
+          </h1>
+          <Swiper
+            spaceBetween={30}
+            slidesPerView="auto"
+            loop={true}
+            navigation={true}
+            centeredSlides={true}
+            modules={[Navigation]}
+          >
+            {photos.map((src, index) => (
+              <SwiperSlide key={index}>
+                <img
+                  src={src}
+                  alt={`Event ${index + 1}`}
+                  className={styles.carouselImageHead}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
 
-      {/* Main Content Container */}
-      <div className={styles.container}>
-        {/* Sticky Sidebar */}
-        <aside className={styles.sidebar}>
-          <nav className={styles.menu}>
-            {menuItems.map(
-              (item) =>
-                item.showSidebar && (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className={`${styles.menuItem} ${
-                      activeSection === item.id ? styles.active : ""
-                    }`}
-                  >
-                    {item.label}
-                  </button>
-                )
-            )}
-          </nav>
-        </aside>
+        {/* Main Content Container */}
+        <div className={styles.container}>
+          {/* Sticky Sidebar */}
+          <aside className={styles.sidebar}>
+            <nav className={styles.menu}>
+              {menuItems.map(
+                (item) =>
+                  item.showSidebar && (
+                    <button
+                      key={item.id}
+                      onClick={() => scrollToSection(item.id)}
+                      className={`${styles.menuItem} ${
+                        activeSection === item.id ? styles.active : ""
+                      }`}
+                    >
+                      {item.label}
+                    </button>
+                  )
+              )}
+            </nav>
+          </aside>
 
-        {/* Scrollable Content */}
-        <main className={styles.content}>
-          {menuItems.map((item) => (
-            <section
-              key={item.id}
-              id={item.id}
-              ref={(el) => (sectionsRef.current[item.id] = el)}
-              className={styles.section}
-            >
-              <div className={styles.sectionCard}>
-                {item.showTitle && (
-                  <h2 className={styles.sectionTitle}>{item.label}</h2>
-                )}
-                {renderSectionContent(item)}
-              </div>
-            </section>
-          ))}
-        </main>
+          {/* Scrollable Content */}
+          <main className={styles.content}>
+            {menuItems.map((item) => (
+              <section
+                key={item.id}
+                id={item.id}
+                ref={(el) => (sectionsRef.current[item.id] = el)}
+                className={styles.section}
+              >
+                <div className={styles.sectionCard}>
+                  {item.showTitle && (
+                    <h2 className={styles.sectionTitle}>{item.label}</h2>
+                  )}
+                  {renderSectionContent(item)}
+                </div>
+              </section>
+            ))}
+          </main>
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
