@@ -10,7 +10,8 @@ const Footer = () => {
     },
     contact: {
       email: "info@aeml.or.id",
-      address: "Treasury Tower, 33rd Floor, District 8 SCBD Lot. 28",
+      address:
+        "Treasury Tower, 33rd Floor, District 8 SCBD Lot. 28. Jl. Jend. Sudirman Kav. 52-53, Kec. Kebayoran Baru, Jakarta Selatan 12190",
     },
     navigation: {
       "Tentang AEML": [

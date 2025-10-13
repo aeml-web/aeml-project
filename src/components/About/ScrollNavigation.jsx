@@ -34,10 +34,10 @@ import fototentang from "../../assets/fototentang.png";
 import coverpub from "../../assets/publication_cover.png";
 import homepage from "../../assets/headernew.png";
 
-import fotoo1 from "../../assets/fotoo1.jpeg";
-import fotoo2 from "../../assets/fotoo2.jpeg";
-import fotoo3 from "../../assets/fotoo3.jpeg";
-import fotoo4 from "../../assets/fotoo4.jpeg";
+import fotoo1 from "../../assets/aemlabout1.jpeg";
+import fotoo2 from "../../assets/aemlabout2.jpeg";
+import fotoo3 from "../../assets/aemlabout3.jpeg";
+import fotoo4 from "../../assets/aemlabout4.jpeg";
 
 import rian from "../../assets/rian.webp";
 import anugrah from "../../assets/anugrah.webp";

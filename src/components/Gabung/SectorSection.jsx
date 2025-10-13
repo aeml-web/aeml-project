@@ -13,7 +13,7 @@ const SectorsSection = () => {
     {
       title: "Battery",
       description:
-        "Sektor Charging and Battery swapping berisi penyediaan stasiun baik berupa Maksimal 2 kolom singkat saja",
+        "Providers offering battery supply, management, and lifecycle services for electric vehicles",
       image: battery,
       className: styles.battery,
     },

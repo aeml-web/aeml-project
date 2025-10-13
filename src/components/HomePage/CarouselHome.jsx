@@ -7,10 +7,14 @@ import "swiper/css/pagination";
 
 import foto1 from "../../assets/foto1.png";
 import foto2 from "../../assets/foto3new.png";
-import foto4 from "../../assets/amelpic.jpg";
-import foto5 from "../../assets/fotoasset1.jpg";
+import foto5 from "../../assets/aeml1.jpeg";
+import foto4 from "../../assets/aeml2.jpeg";
+import foto3 from "../../assets/aeml3.jpeg";
+import foto6 from "../../assets/aeml4.jpeg";
+import foto7 from "../../assets/aeml5.jpeg";
+import foto8 from "../../assets/fotoasset1.jpg";
 
-const photos = [foto1, foto4, foto2, foto5];
+const photos = [foto1, foto4, foto2, foto5, foto3, foto6, foto7, foto8];
 
 export default function CarouselHome() {
   const swiperRef = useRef(null);
