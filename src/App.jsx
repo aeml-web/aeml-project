@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -19,66 +19,56 @@ import PublikasiDetail from "./components/Publikasi/PublikasiDetail";
 
 import "./index.css";
 
+/* 
+🌟 Transition Style: Fade + Rise (like APBI)
+- starts slightly lower (y: 60)
+- fades in softly
+- very smooth cubic easing
+- no white flash, because layout persists
+*/
 const pageVariants = {
-  initial: { opacity: 0, y: 50 },
+  initial: {
+    opacity: 0,
+    y: 60,
+  },
   animate: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+    transition: {
+      duration: 0.8,
+      ease: [0.25, 0.8, 0.25, 1], // smooth "easeOut"
+    },
   },
   exit: {
     opacity: 0,
-    y: -50,
-    transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
+    y: -40,
+    transition: {
+      duration: 0.5,
+      ease: [0.25, 0.8, 0.25, 1],
+    },
   },
 };
 
-const Wrapper = ({ children }) => {
+const PageWrapper = ({ children }) => {
   const location = useLocation();
-  const [isPageLoaded, setIsPageLoaded] = useState(false);
 
-  // Handle page transitions and scroll to top
   useLayoutEffect(() => {
-    // Scroll to top on route change
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-
-    setIsPageLoaded(false);
-
-    // Set page loaded state
-    const pageTimer = setTimeout(() => {
-      setIsPageLoaded(true);
-    }, 300);
-
-    return () => {
-      clearTimeout(pageTimer);
-    };
   }, [location.pathname]);
 
   return (
-    <>
-      {/* Move Navbar OUTSIDE AnimatePresence */}
+    <div className="relative flex flex-col min-h-screen bg-white text-gray-900 overflow-hidden">
       <Navbar />
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={location.pathname}
-          className="page-wrapper"
-          variants={pageVariants}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-        >
-          <main className="container">{children}</main>
-          {isPageLoaded && <Footer />}
-        </motion.div>
-      </AnimatePresence>
-    </>
+      <div className="flex-grow container mx-auto px-4 py-12">{children}</div>
+      <Footer />
+    </div>
   );
 };
 
 function App() {
   return (
     <Router>
-      <Wrapper>
+      <PageWrapper>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/kegiatan" element={<KegiatanPages />} />
@@ -88,7 +78,7 @@ function App() {
           <Route path="/kegiatan/:id" element={<NewsDetailPage />} />
           <Route path="/publikasi/:id" element={<PublikasiDetail />} />
         </Routes>
-      </Wrapper>
+      </PageWrapper>
     </Router>
   );
 }

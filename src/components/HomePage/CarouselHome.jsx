@@ -14,7 +14,7 @@ import foto6 from "../../assets/aeml4.jpeg";
 import foto7 from "../../assets/aeml5.jpeg";
 import foto8 from "../../assets/fotoasset1.jpg";
 
-const photos = [foto1, foto4, foto2, foto5, foto3, foto6, foto7, foto8];
+const photos = [foto1, foto4, foto2, foto5, foto6, foto8];
 
 export default function CarouselHome() {
   const swiperRef = useRef(null);

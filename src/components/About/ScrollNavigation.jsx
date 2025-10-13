@@ -38,6 +38,13 @@ import fotoo1 from "../../assets/aemlabout1.jpeg";
 import fotoo2 from "../../assets/aemlabout2.jpeg";
 import fotoo3 from "../../assets/aemlabout3.jpeg";
 import fotoo4 from "../../assets/aemlabout4.jpeg";
+import foto7 from "../../assets/aeml5.jpeg";
+import foto3 from "../../assets/aeml3.jpeg";
+import foto6 from "../../assets/aeml4.jpeg";
+import fotoo5 from "../../assets/fotoo1.jpeg";
+import fotoo6 from "../../assets/fotoo2.jpeg";
+import fotoo7 from "../../assets/fotoo3.jpeg";
+import fotoo8 from "../../assets/fotoo4.jpeg";
 
 import rian from "../../assets/rian.webp";
 import anugrah from "../../assets/anugrah.webp";
@@ -396,7 +403,19 @@ const ScrollNavigation = () => {
     },
   ];
 
-  const photos = [fotoo1, fotoo2, fotoo3, fotoo4];
+  const photos = [
+    fotoo1,
+    fotoo2,
+    fotoo3,
+    fotoo4,
+    foto3,
+    foto6,
+    foto7,
+    fotoo5,
+    fotoo6,
+    fotoo7,
+    fotoo8,
+  ];
   const scrollToSection = (sectionId) => {
     const element = sectionsRef.current[sectionId];
     if (element) {
