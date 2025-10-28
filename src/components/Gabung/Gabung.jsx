@@ -8,12 +8,17 @@ const Gabung = () => {
     email: "",
     phone: "",
     sector: "",
+    reason: "",
   });
 
   const [isLoading, setIsLoading] = useState(false);
 
   const isFormValid =
-    formData.name && formData.email && formData.phone && formData.sector;
+    formData.name &&
+    formData.email &&
+    formData.phone &&
+    formData.sector &&
+    formData.reason;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,6 +44,7 @@ const Gabung = () => {
         email: "",
         phone: "",
         sector: "",
+        reason: "",
       });
 
       alert("Form berhasil dikirim! Kami akan segera menghubungi Anda.");
@@ -140,6 +146,23 @@ const Gabung = () => {
                 <option value="Agriculture">Agriculture</option>
                 <option value="Lainnya">Lainnya</option>
               </select>
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="reason" className={styles.formLabel}>
+                Alasan bergabung{" "}
+              </label>
+              <textarea
+                type="text"
+                id="reason"
+                name="reason"
+                className={styles.formInputBig}
+                placeholder="Alasan bergabung dengan AEML..."
+                value={formData.reason}
+                onChange={handleChange}
+                required
+                disabled={isLoading}
+              />
             </div>
 
             <button

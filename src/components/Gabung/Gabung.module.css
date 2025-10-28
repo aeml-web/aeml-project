@@ -1170,6 +1170,39 @@
   color: black;
 }
 
+.formInputBig {
+  width: 470px;
+  height: 160px;
+  padding: 1rem;
+  font-size: 1rem;
+  border: 1px solid #adadad;
+  background-color: #dedede;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  font-family: "Epilogue", sans-serif;
+  color: black;
+}
+
+.formInputBig:focus {
+  transform: translateY(-1px);
+}
+
+.formInputBig::placeholder {
+  color: #a6a6a6;
+  font-style: italic;
+  font-size: 12px;
+  font-weight: 300;
+  font-family: "Epilogue", sans-serif;
+}
+
+.formInputBig:disabled {
+  background-color: #e8e8e8;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
 .formInput:focus {
   transform: translateY(-1px);
 }
