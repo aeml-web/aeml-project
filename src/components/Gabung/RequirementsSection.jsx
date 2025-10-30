@@ -22,7 +22,7 @@ const RequirementsSection = () => {
     <section className={styles.requirements}>
       <div className={styles.container}>
         <div className={styles.requirementsCard}>
-          <h2 className={styles.title}>Persyaratan Testing</h2>
+          <h2 className={styles.title}>Persyaratan</h2>
           <h1 className={styles.comingSoon}>
             Informasi persyaratan akan tersedia dalam waktu dekat. <br></br>
             Silakan isi formulir pendaftaran di bawah ini untuk bergabung.
