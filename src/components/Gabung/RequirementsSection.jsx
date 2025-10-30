@@ -23,9 +23,12 @@ const RequirementsSection = () => {
       <div className={styles.container}>
         <div className={styles.requirementsCard}>
           <h2 className={styles.title}>Persyaratan</h2>
-
-          <div className={styles.requirementsGrid}>
-            <div className={styles.leftColumn}>
+          <h1 className={styles.comingSoon}>
+            Informasi persyaratan akan tersedia dalam waktu dekat. <br></br>
+            Silakan isi formulir pendaftaran di bawah ini untuk bergabung.
+          </h1>
+          {/* <div className={styles.requirementsGrid}> */}
+          {/* <div className={styles.leftColumn}>
               <ul className={styles.requirementsList}>
                 {leftRequirements.map((requirement, index) => (
                   <li key={index} className={styles.requirementItem}>
@@ -33,8 +36,8 @@ const RequirementsSection = () => {
                   </li>
                 ))}
               </ul>
-            </div>
-
+            </div> */}
+          {/* 
             <div className={styles.rightColumn}>
               <ul className={styles.requirementsList}>
                 {rightRequirements.map((requirement, index) => (
@@ -43,8 +46,8 @@ const RequirementsSection = () => {
                   </li>
                 ))}
               </ul>
-            </div>
-          </div>
+            </div> */}
+          {/* </div> */}
         </div>
       </div>
     </section>
