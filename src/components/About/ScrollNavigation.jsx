@@ -27,7 +27,7 @@ import image4 from "../../assets/logos-gov/image4.png";
 import image5 from "../../assets/logos-gov/image5.png";
 import image6 from "../../assets/logos-gov/image6.png";
 
-import airlangga from "../../assets/airlangga.png";
+import airlangga from "../../assets/airlangga.jpg";
 import anin from "../../assets/anin.png";
 import pandu from "../../assets/pandu.png";
 import fototentang from "../../assets/fototentang.png";
@@ -46,7 +46,12 @@ import fotoo6 from "../../assets/fotoo2.jpeg";
 import fotoo7 from "../../assets/fotoo3.jpeg";
 import fotoo8 from "../../assets/fotoo4.jpeg";
 
-import rian from "../../assets/rian.webp";
+import rian from "../../assets/rian.jpg";
+import valda from "../../assets/valda.jpg";
+import putu from "../../assets/putu.jpg";
+import ririn from "../../assets/ririn.jpg";
+import rizsa from "../../assets/rizsa.jpg";
+
 import anugrah from "../../assets/anugrah.webp";
 
 import defaultPhoto from "../../assets/default.png";
@@ -270,14 +275,14 @@ const ScrollNavigation = () => {
       title: "Vice Chairman for Technical and Safety",
       description:
         "Head of Battery Infrastructure of PT. Energi Kreasi Batama (Electrum)",
-      image: defaultPhoto,
+      image: rizsa,
     },
     {
       id: "3",
       name: "Putu Yudha",
       title: "Vice Chairman for Partnerships",
       description: "Chief Marketing Officer of PT. Ilectra Motor Group (ILMG)",
-      image: defaultPhoto,
+      image: putu,
     },
     {
       id: "4",
@@ -285,7 +290,7 @@ const ScrollNavigation = () => {
       title: "Vice Chairwoman for Infrastructure and Electric Vehicle Mobility",
       description:
         "Executive Vice President of PT Perusahaan Listrik Negara (Persero)",
-      image: defaultPhoto,
+      image: ririn,
     },
     {
       id: "5",
@@ -321,7 +326,7 @@ const ScrollNavigation = () => {
       name: "Valdano Paulo Ruru",
       title: "Vice Section 2",
       description: "Legal Advisor",
-      image: defaultPhoto,
+      image: valda,
     },
     {
       id: "10",
