@@ -1,5 +1,5 @@
 .containerNews {
-  max-width: 1280px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 40px 20px;
 }
@@ -9,7 +9,7 @@
   flex-direction: column;
   gap: 20px;
   margin-bottom: 60px;
-  max-width: 1280px;
+  max-width: 1440px;
   width: 100%;
 }
 
