@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./publikasi.module.css";
-import cover from "../../assets/bgpublikasi.png";
+import cover from "../../assets/publikasiphoto.png";
 
 export default function Header() {
   return (
