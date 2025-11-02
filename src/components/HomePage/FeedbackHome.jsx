@@ -111,49 +111,51 @@ const FeedbackHome = () => {
   }
 
   return (
-    <div className={styles.modalContent}>
-      <div className={styles.leftSection}>
-        <h2 className={styles.hashtag}>#SharingEML</h2>
-        <p className={styles.subtitle}>Jaring pendapat publik untuk AEML</p>
-      </div>
+    <div className={styles.backgroundFeedback}>
+      <div className={styles.modalContent}>
+        <div className={styles.leftSection}>
+          <h2 className={styles.hashtag}>#SharingEML</h2>
+          <p className={styles.subtitle}>Jaring pendapat publik untuk AEML</p>
+        </div>
 
-      <div className={styles.rightSection}>
-        <form onSubmit={handleSubmit} className={styles.feedbackForm}>
-          <h3 className={styles.formTitle}>{question.question}</h3>
+        <div className={styles.rightSection}>
+          <form onSubmit={handleSubmit} className={styles.feedbackForm}>
+            <h3 className={styles.formTitle}>{question.question}</h3>
 
-          <div className={styles.textareaContainer}>
-            <textarea
-              value={feedback}
-              onChange={(e) => setFeedback(e.target.value)}
-              placeholder="Ketik jawaban kamu disini..."
-              className={styles.textarea}
-              rows={5}
-              maxLength={500}
-              disabled={isSubmitting}
-            />
-            <div className={styles.charCount}>{feedback.length}/500</div>
-          </div>
+            <div className={styles.textareaContainer}>
+              <textarea
+                value={feedback}
+                onChange={(e) => setFeedback(e.target.value)}
+                placeholder="Ketik jawaban kamu disini..."
+                className={styles.textarea}
+                rows={5}
+                maxLength={500}
+                disabled={isSubmitting}
+              />
+              <div className={styles.charCount}>{feedback.length}/500</div>
+            </div>
 
-          {error && <p className={styles.errorMessage}>{error}</p>}
-          {successMessage && (
-            <p className={styles.successMessage}>{successMessage}</p>
-          )}
-
-          <button
-            type="submit"
-            className={styles.submitButton}
-            disabled={!feedback.trim() || isSubmitting}
-          >
-            {isSubmitting ? (
-              <>
-                <div className={styles.spinner}></div>
-                Mengirim...
-              </>
-            ) : (
-              "Submit"
+            {error && <p className={styles.errorMessage}>{error}</p>}
+            {successMessage && (
+              <p className={styles.successMessage}>{successMessage}</p>
             )}
-          </button>
-        </form>
+
+            <button
+              type="submit"
+              className={styles.submitButton}
+              disabled={!feedback.trim() || isSubmitting}
+            >
+              {isSubmitting ? (
+                <>
+                  <div className={styles.spinner}></div>
+                  Mengirim...
+                </>
+              ) : (
+                "Submit"
+              )}
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

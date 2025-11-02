@@ -145,6 +145,20 @@
   margin-bottom: 100px;
 }
 
+.backgroundFeedback {
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background: linear-gradient(
+    180deg,
+    #ffffff 16.15%,
+    #c4d8ff 42.38%,
+    #eeffca 73.79%,
+    #ffffff 93.01%
+  );
+}
+
 .closeButton {
   position: absolute;
   top: 20px;
