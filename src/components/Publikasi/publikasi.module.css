@@ -57,9 +57,11 @@
 }
 
 .titlePub {
-  font-size: 48px;
+  font-size: 32px;
   font-weight: bold;
-  margin: 8px 0;
+  margin: 0;
+  margin-top: 0;
+  margin-bottom: 3px;
   color: #222;
   font-family: "Instrument Sans", sans-serif;
 }
@@ -71,6 +73,7 @@
   margin: 0 auto;
   line-height: 1.5;
   font-family: "Instrument Sans", sans-serif;
+  margin-bottom: 24px;
 }
 
 .container {
@@ -156,13 +159,13 @@
 }
 
 .research {
-  background: #e6fbe6;
-  color: #1a7f1a;
+  background: #ffffff;
+  color: #025e3f;
 }
 
 .publication {
-  background: #e6f0ff;
-  color: #2a4dff;
+  background: #ffffff;
+  color: #025e3f;
 }
 
 .card .title {
