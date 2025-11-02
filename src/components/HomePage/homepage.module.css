@@ -794,7 +794,7 @@
   justify-content: center;
   min-height: 600px;
   overflow: hidden;
-  width: 1440px;
+  width: 1800px;
   background: url("../../assets/lingkaran.png") no-repeat center bottom /
     contain;
   background-size: 102%; /* 100% = default contain width, 150% = 1.5x lebih besar */
