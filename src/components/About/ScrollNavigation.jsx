@@ -53,6 +53,8 @@ import ririn from "../../assets/ririn.jpg";
 import rizsa from "../../assets/rizsa.jpg";
 
 import anugrah from "../../assets/anugrah.webp";
+import dhery from "../../assets/dhery.jpg";
+import anugraha from "../../assets/anugraha.jpg";
 
 import defaultPhoto from "../../assets/default.png";
 
@@ -319,7 +321,7 @@ const ScrollNavigation = () => {
       name: "Dhery Rachman",
       title: "Vice Section 1",
       description: "Government Relations",
-      image: defaultPhoto,
+      image: dhery,
     },
     {
       id: "9",
@@ -333,7 +335,7 @@ const ScrollNavigation = () => {
       name: "Anugraha Dezmercoledi",
       title: "Director Executive Secretariat",
       description: "A professional in management",
-      image: anugrah,
+      image: anugraha,
     },
   ];
 
