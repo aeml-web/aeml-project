@@ -542,7 +542,7 @@
 }
 
 .featuredContent {
-  padding: 1.5rem;
+  padding-top: 10px;
   display: flex;
   flex-direction: column;
 }
@@ -568,6 +568,11 @@
   width: 400px;
   font-family: "Instrument Sans", sans-serif;
   font-size: 16px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .featuredDate {
