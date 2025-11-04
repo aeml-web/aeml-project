@@ -29,7 +29,7 @@ import image6 from "../../assets/logos-gov/image6.png";
 
 import airlangga from "../../assets/airlangga.jpg";
 import anin from "../../assets/anin.png";
-import pandu from "../../assets/pandu.png";
+import pandu from "../../assets/pandu_photo.jpg";
 import fototentang from "../../assets/fototentang.png";
 import coverpub from "../../assets/publication_cover.png";
 import homepage from "../../assets/headernew.png";
