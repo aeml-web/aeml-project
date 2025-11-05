@@ -210,7 +210,7 @@
 .section {
   margin-bottom: 64px;
   scroll-margin-top: 200px; /* ✅ agar scroll berhenti pas di bawah navbar */
-overflow: visible; /* ADD THIS */
+  overflow: visible; /* ADD THIS */
 }
 
 .sectionCard {
@@ -576,4 +576,358 @@ overflow: visible; /* ADD THIS */
 .slideInUp {
   animation: slideInUp 0.8s ease-out forwards;
   visibility: visible !important;
+}
+
+/* Add these mobile styles to the end of about.module.css */
+
+/* Mobile Responsive Design - Under 768px */
+@media (max-width: 768px) {
+  /* Hero Section Mobile */
+  .aboutContainer {
+    height: auto;
+    min-height: 400px;
+    background-size: 100% auto, 100vw 100%;
+  }
+
+  .titleAbout {
+    font-size: 28px;
+    line-height: 130%;
+    max-width: 100%;
+    margin-bottom: 24px;
+    margin-top: 0;
+    text-align: center;
+  }
+
+  .aboutContainer .swiper {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  .carouselImageHead {
+    width: 100% !important;
+    height: 250px !important;
+    object-fit: cover;
+  }
+
+  /* Main Container Mobile */
+  .container {
+    flex-direction: column;
+    gap: 0;
+    padding: 24px 20px 0;
+  }
+
+  /* Sidebar Mobile - Horizontal Scroll */
+  .sidebar {
+    position: sticky;
+    top: 80px;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    margin-bottom: 24px;
+    background-color: white;
+    z-index: 100;
+    padding: 12px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .sidebar::after {
+    display: none;
+  }
+
+  .menu {
+    flex-direction: row;
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 0 8px 0;
+  }
+
+  .menu::-webkit-scrollbar {
+    height: 3px;
+  }
+
+  .menu::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+
+  .menu::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 2px;
+  }
+
+  .menuItem {
+    width: auto;
+    white-space: nowrap;
+    text-align: center;
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background-color: #f1f5f9;
+    flex-shrink: 0;
+  }
+
+  .menuItem.active {
+    background: linear-gradient(135deg, #0c4fd3 0%, #a3e221 100%);
+    color: white;
+  }
+
+  .menuItem:hover {
+    background-color: #e2e8f0;
+  }
+
+  .menuItem.active:hover {
+    background: linear-gradient(135deg, #0c4fd3 0%, #a3e221 100%);
+  }
+
+  /* Content Mobile */
+  .content {
+    width: 100%;
+    max-width: 100%;
+    padding-right: 0;
+    padding-bottom: 60px;
+  }
+
+  /* Section Mobile */
+  .section {
+    margin-bottom: 48px;
+    scroll-margin-top: 150px;
+  }
+
+  /* Header Mobile */
+  .header {
+    margin-bottom: 32px;
+    padding-right: 0;
+  }
+
+  .mainTitle,
+  .mainTitleVisi,
+  .sectionTitle {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .description,
+  .text {
+    font-size: 14px;
+    line-height: 160%;
+  }
+
+  /* Visi Misi Mobile */
+  .visi {
+    flex-direction: column;
+    gap: 32px;
+    margin-right: 0;
+  }
+
+  .misi {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .leftVisi,
+  .rightVisi {
+    gap: 12px;
+  }
+
+  .iconVisi {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+  }
+
+  /* Way Section Mobile */
+  .way {
+    margin-right: 0;
+    gap: 24px;
+  }
+
+  .photoWay {
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+  }
+
+  /* Leadership Section Mobile */
+  .titleBoard {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .containerPhotos {
+    width: 180px;
+    margin-left: 0;
+  }
+
+  .containerImage {
+    width: 180px;
+    height: 227px;
+  }
+
+  .carouselImage {
+    width: 180px;
+    height: 227px;
+  }
+
+  .titleHover {
+    font-size: 14px;
+    width: 160px;
+  }
+
+  .name {
+    font-size: 14px;
+  }
+
+  .title {
+    font-size: 11px;
+  }
+
+  /* Swiper Mobile Settings */
+  .lead :global(.swiper) {
+    margin: 0 -20px;
+    padding: 0 20px;
+  }
+
+  .section :global(.swiper) {
+    overflow: visible;
+  }
+
+  :global(.swiper-button-next),
+  :global(.swiper-button-prev) {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  :global(.swiper-button-next)::after,
+  :global(.swiper-button-prev)::after {
+    font-size: 16px !important;
+  }
+
+  /* Partners Grid Mobile */
+  .partnersGrid {
+    gap: 40px;
+    justify-content: center;
+    padding-top: 24px;
+  }
+
+  .partnersGridGov {
+    gap: 24px;
+    justify-content: center;
+    padding-top: 24px;
+  }
+
+  .partnersGridMitra {
+    gap: 32px;
+    justify-content: center;
+    padding-top: 24px;
+  }
+
+  .partnerLogo {
+    max-width: 150px;
+    max-height: 90px;
+  }
+
+  .companyLogo {
+    max-width: 100px;
+    max-height: 50px;
+  }
+
+  .govLogo {
+    max-width: 180px;
+    max-height: 85px;
+  }
+
+  /* Grid Mobile */
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  /* Footer Mobile */
+  .footer {
+    height: 200px;
+  }
+
+  /* About Page Mobile */
+  .aboutPage {
+    padding-bottom: 60px;
+  }
+}
+
+/* Extra Small Mobile - Under 480px */
+@media (max-width: 480px) {
+  .titleAbout {
+    font-size: 24px;
+  }
+
+  .carouselImageHead {
+    height: 200px !important;
+  }
+
+  .mainTitle,
+  .mainTitleVisi,
+  .sectionTitle {
+    font-size: 20px;
+  }
+
+  .description,
+  .text {
+    font-size: 13px;
+  }
+
+  .menuItem {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+
+  .containerPhotos {
+    width: 150px;
+  }
+
+  .containerImage {
+    width: 150px;
+    height: 189px;
+  }
+
+  .carouselImage {
+    width: 150px;
+    height: 189px;
+  }
+
+  .titleHover {
+    font-size: 12px;
+    width: 130px;
+  }
+
+  .photoWay {
+    max-height: 200px;
+  }
+
+  .iconVisi {
+    max-width: 150px;
+  }
+
+  .partnersGrid {
+    gap: 32px;
+  }
+
+  .partnersGridGov,
+  .partnersGridMitra {
+    gap: 20px;
+  }
+
+  .companyLogo {
+    max-width: 80px;
+    max-height: 40px;
+  }
+
+  .govLogo {
+    max-width: 140px;
+    max-height: 70px;
+  }
+
+  .partnerLogo {
+    max-width: 120px;
+    max-height: 75px;
+  }
 }
