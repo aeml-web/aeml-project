@@ -7,7 +7,9 @@ const Publikasi = () => {
   const [publications, setPublications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [visibleCards, setVisibleCards] = useState([]);
   const navigate = useNavigate();
+  const cardRefs = useRef([]);
 
   useEffect(() => {
     const loadPublications = async () => {
@@ -26,6 +28,36 @@ const Publikasi = () => {
 
     loadPublications();
   }, []);
+
+  // Intersection Observer untuk animasi scroll
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1, // Trigger ketika 10% element terlihat
+      rootMargin: "0px 0px -50px 0px", // Trigger sedikit sebelum element masuk viewport
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = cardRefs.current.indexOf(entry.target);
+          if (index !== -1 && !visibleCards.includes(index)) {
+            setVisibleCards((prev) => [...prev, index]);
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observe semua card
+    cardRefs.current.forEach((card) => {
+      if (card) observer.observe(card);
+    });
+
+    return () => {
+      cardRefs.current.forEach((card) => {
+        if (card) observer.unobserve(card);
+      });
+    };
+  }, [publications, visibleCards]);
 
   const handleGoToDetail = (id) => {
     navigate(`/publikasi/${id}`);
@@ -93,12 +125,18 @@ const Publikasi = () => {
       </div>
 
       <div className={styles.publicationsGrid}>
-        {publications.slice(0, 3).map((pub) => (
+        {publications.slice(0, 3).map((pub, index) => (
           <div
             key={pub.id}
-            className={styles.publicationCard}
+            ref={(el) => (cardRefs.current[index] = el)}
+            className={`${styles.publicationCard} ${
+              visibleCards.includes(index) ? styles.fadeInUp : styles.hidden
+            }`}
+            style={{
+              transitionDelay: `${index * 150}ms`, // Staggered animation
+            }}
             onClick={(e) => {
-              e.stopPropagation(); // biar gak trigger card click
+              e.stopPropagation();
               handleGoToDetail(pub.id);
             }}
           >
@@ -116,16 +154,13 @@ const Publikasi = () => {
               </div>
               <div className={styles.cardContent}>
                 <h3 className={styles.cardTitle}>{pub.title}</h3>
-                {/* {pub.subtitle && (
-                  <p className={styles.cardSubtitle}>{pub.subtitle}</p>
-                )} */}
               </div>
             </div>
 
             <button
               className={styles.btnRead}
               onClick={(e) => {
-                e.stopPropagation(); // biar gak trigger card click
+                e.stopPropagation();
                 handleGoToDetail(pub.id);
               }}
               title="Klik untuk membaca detail publikasi"

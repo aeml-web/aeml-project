@@ -2018,3 +2018,37 @@
 
 .hoverZoneRight:hover {
 }
+
+.hidden {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* Fade in up animation */
+.fadeInUp {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Optional: Smooth transition untuk semua card */
+.publicationCard {
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Alternative: Jika ingin menggunakan CSS animation @keyframes */
+@keyframes fadeInUpAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Jika mau pakai keyframes, ganti fadeInUp class dengan ini */
+.fadeInUpKeyframes {
+  animation: fadeInUpAnimation 0.6s ease-out forwards;
+}
