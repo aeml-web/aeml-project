@@ -7,7 +7,10 @@ const NewsItem = () => {
   const [newsItems, setNewsItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [visibleElements, setVisibleElements] = useState([]);
   const navigate = useNavigate();
+  const featuredRef = useRef(null);
+  const cardRefs = useRef([]);
 
   useEffect(() => {
     const loadArticles = async () => {
@@ -26,6 +29,46 @@ const NewsItem = () => {
 
     loadArticles();
   }, []);
+
+  // Intersection Observer untuk animasi scroll
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const element = entry.target;
+          const elementId = element.dataset.animationId;
+
+          if (elementId && !visibleElements.includes(elementId)) {
+            setVisibleElements((prev) => [...prev, elementId]);
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observe featured article
+    if (featuredRef.current) {
+      observer.observe(featuredRef.current);
+    }
+
+    // Observe regular cards
+    cardRefs.current.forEach((card) => {
+      if (card) observer.observe(card);
+    });
+
+    return () => {
+      if (featuredRef.current) {
+        observer.unobserve(featuredRef.current);
+      }
+      cardRefs.current.forEach((card) => {
+        if (card) observer.unobserve(card);
+      });
+    };
+  }, [newsItems, visibleElements]);
 
   const handleCardClick = (itemId) => {
     navigate(`/kegiatan/${itemId}`);
@@ -82,7 +125,7 @@ const NewsItem = () => {
             viewBox="0 0 20 20"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            style={{ marginLeft: "3px" }} // kasih jarak biar nggak dempet
+            style={{ marginLeft: "3px" }}
           >
             <path
               d="M12.5003 4.16699L11.3253 5.34199L15.142 9.16699H1.66699V10.8337H15.142L11.317 14.6587L12.5003 15.8337L18.3337 10.0003L12.5003 4.16699Z"
@@ -95,9 +138,18 @@ const NewsItem = () => {
       <div className={styles.newsGrid}>
         {/* Featured Article */}
         <div
-          className={styles.featuredArticle}
+          ref={featuredRef}
+          data-animation-id="featured"
+          className={`${styles.featuredArticle} ${
+            visibleElements.includes("featured")
+              ? styles.fadeInUp
+              : styles.hidden
+          }`}
           onClick={() => handleCardClick(newsItems[0].id)}
-          style={{ cursor: "pointer" }}
+          style={{
+            cursor: "pointer",
+            transitionDelay: "0ms",
+          }}
         >
           <div className={styles.featuredCard}>
             <div className={styles.featuredImageContainer}>
@@ -120,12 +172,21 @@ const NewsItem = () => {
 
         {/* Regular Articles Grid */}
         <div className={styles.regularGrid}>
-          {newsItems.slice(1, 5).map((item) => (
+          {newsItems.slice(1, 5).map((item, index) => (
             <div
               key={item.id}
-              className={styles.regularCard}
+              ref={(el) => (cardRefs.current[index] = el)}
+              data-animation-id={`card-${index}`}
+              className={`${styles.regularCard} ${
+                visibleElements.includes(`card-${index}`)
+                  ? styles.fadeInUp
+                  : styles.hidden
+              }`}
               onClick={() => handleCardClick(item.id)}
-              style={{ cursor: "pointer" }}
+              style={{
+                cursor: "pointer",
+                transitionDelay: `${(index + 1) * 100}ms`,
+              }}
             >
               <div className={styles.regularImageContainer}>
                 <img
