@@ -335,6 +335,10 @@
     width: 100px;
     height: 100px;
   }
+
+  .formInputBig {
+    width: 80vw !important;
+  }
 }
 
 /* SectorsSection.module.css */
@@ -524,26 +528,24 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .sectorsGrid {
-    grid-template-columns: 1fr; /* Stack on mobile */
+    grid-template-columns: 0fr !important;
     gap: 1.5rem;
     max-width: 100%;
+    justify-content: center;
+    align-items: center;
   }
 
   .sectorCard {
     height: 250px;
+    width: 90vw;
   }
 
   .sectorCardTitle {
-    font-size: 2rem;
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .sectorCard {
-    height: 200px;
-    border-radius: 15px;
-  }
-
   .sectorCardTitle {
     font-size: 1.8rem;
   }
@@ -613,6 +615,14 @@
 
   .sectorCard {
     height: 200px;
+  }
+  .sectorSubtitle {
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+    font-family: "Epilogue", sans-serif;
+    width: 90vw;
+    margin: 0;
   }
 }
 
@@ -695,6 +705,28 @@
 
   .title {
     font-size: 2rem;
+  }
+
+  .textDesc {
+    text-align: center;
+    width: 90vw !important;
+    font-size: 18px;
+  }
+
+  .containerFeature {
+    flex-direction: column;
+    gap: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .imageIcon {
+    height: fit-content !important;
+  }
+
+  .containerSector {
+    width: 100vw;
+    padding: 0;
   }
 }
 
@@ -1413,6 +1445,7 @@
   .formSection {
     padding: 2rem;
     border-radius: 20px;
+    width: 80vw;
   }
 
   .mainTitle {
