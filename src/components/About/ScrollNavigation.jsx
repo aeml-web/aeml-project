@@ -78,6 +78,16 @@ import utomoLogo from "../../assets/icon_mitra/utomo.png";
 import viarLogo from "../../assets/icon_mitra/viar.png";
 import vktrLogo from "../../assets/icon_mitra/vktr.png";
 import voltaLogo from "../../assets/icon_mitra/volta.png";
+
+import agus from "../../assets/agusgumiwang.jpg";
+import arsjad from "../../assets/arsjad.jpg";
+import darmawan from "../../assets/darmawan.jpg";
+import diaz from "../../assets/diaz.jpg";
+import fabby from "../../assets/fabby.jpg";
+import john from "../../assets/john.jpg";
+import rachmat from "../../assets/rachmat.jpg";
+import shirley from "../../assets/shirley.jpg";
+
 import { motion } from "framer-motion";
 
 import HeaderAbout from "./HeaderAbout";
@@ -193,7 +203,7 @@ const ScrollNavigation = () => {
       name: "Agus Gumiwang Kartasasmita",
       title: "Member of Board of Patrons",
       description: "Minister of Industry of the Republic of Indonesia",
-      image: defaultPhoto,
+      image: agus,
     },
     {
       id: "3",
@@ -201,7 +211,7 @@ const ScrollNavigation = () => {
       title: "Member of Board of Patrons",
       description:
         "President Director of PT. Pertamina Power Indonesia (Pertamina NRE)",
-      image: defaultPhoto,
+      image: john,
     },
     {
       id: "4",
@@ -209,7 +219,7 @@ const ScrollNavigation = () => {
       title: "Member of Board of Patrons",
       description:
         "President Director of PT. Perusahaan Listrik Negara (Persero)",
-      image: defaultPhoto,
+      image: darmawan,
     },
     {
       id: "5",
@@ -217,7 +227,7 @@ const ScrollNavigation = () => {
       title: "Member of Board of Patrons",
       description:
         "Deputy for Basic Infrastructure Coordination, Coordinating Ministry for Infrastructure and Regional Development of the Republic of Indonesia",
-      image: defaultPhoto,
+      image: rachmat,
     },
   ];
 
@@ -235,7 +245,7 @@ const ScrollNavigation = () => {
       name: "M. Arsjad Rasjid Prabu Mangkuningrat",
       title: "Member of Board of Supervisors",
       description: "President Director of PT. Indika Energy Tbk",
-      image: defaultPhoto,
+      image: arsjad,
     },
     {
       id: "3",
@@ -243,14 +253,14 @@ const ScrollNavigation = () => {
       title: "Member of Board of Supervisors",
       description:
         "Deputy Minister of Environment of the Republic of Indonesia",
-      image: defaultPhoto,
+      image: diaz,
     },
     {
       id: "4",
       name: "Shirley Santoso",
       title: "Member of Board of Supervisors",
       description: "Chief Executive Officer of Kearney",
-      image: defaultPhoto,
+      image: shirley,
     },
     {
       id: "5",
@@ -258,7 +268,7 @@ const ScrollNavigation = () => {
       title: "Member of Board of Supervisors",
       description:
         "Executive Director of Institute for Essential Services Reform (IESR)",
-      image: defaultPhoto,
+      image: fabby,
     },
   ];
 
