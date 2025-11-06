@@ -1412,6 +1412,12 @@
     margin: 0 auto;
   }
 
+  .featuredContent {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+  }
+
   .featuredCard .featuredImageContainer {
     width: calc(100% - 32px);
     height: 280px;
@@ -1435,7 +1441,7 @@
 
   .regularCard {
     width: 100%;
-    max-width: 280px;
+    max-width: 320px;
     height: auto;
   }
 
