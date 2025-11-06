@@ -510,6 +510,11 @@
     gap: 20px;
   }
 
+  .aboutContainer .swiper {
+    width: 100%;
+    max-width: 1062px;
+  }
+
   .sidebar {
     position: relative;
     width: 100%;
@@ -578,6 +583,10 @@
   visibility: visible !important;
 }
 
+.mySwiper {
+  max-width: 1062px;
+}
+
 /* Add these mobile styles to the end of about.module.css */
 
 /* Mobile Responsive Design - Under 768px */
@@ -585,8 +594,14 @@
   /* Hero Section Mobile */
   .aboutContainer {
     height: auto;
-    min-height: 400px;
+    min-height: 180px;
     background-size: 100% auto, 100vw 100%;
+    height: fit-content;
+    padding-top: 30px;
+  }
+
+  .mySwiper {
+    max-width: 90vw !important;
   }
 
   .titleAbout {
@@ -613,7 +628,9 @@
   .container {
     flex-direction: column;
     gap: 0;
-    padding: 24px 20px 0;
+    padding: 10px 10px 10px 10px;
+    margin: 0;
+    width: 90vw;
   }
 
   /* Sidebar Mobile - Horizontal Scroll */
@@ -755,7 +772,7 @@
   }
 
   .containerPhotos {
-    width: 180px;
+    width: 20px;
     margin-left: 0;
   }
 
@@ -861,7 +878,7 @@
   }
 
   .carouselImageHead {
-    height: 200px !important;
+    height: 250px !important;
   }
 
   .mainTitle,

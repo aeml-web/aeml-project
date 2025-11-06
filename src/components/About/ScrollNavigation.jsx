@@ -563,6 +563,7 @@ const ScrollNavigation = () => {
               <div className={styles.section}>
                 <h1 className={styles.titleBoard}>Board of Patrons</h1>
                 <Swiper
+                  className={styles.mySwiper}
                   spaceBetween={20}
                   slidesPerView={3.6}
                   slidesOffsetBefore={0}
@@ -577,6 +578,18 @@ const ScrollNavigation = () => {
                     setTimeout(() => swiper.update(), 0);
                     setTimeout(() => swiper.update(), 50);
                     setTimeout(() => swiper.update(), 100);
+                  }}
+                  breakpoints={{
+                    0: {
+                      // screens under 768px
+                      slidesPerView: 2.8,
+                      slidesOffsetAfter: 50,
+                    },
+                    768: {
+                      // screens 768px and up
+                      slidesPerView: 3.6,
+                      slidesOffsetAfter: 250,
+                    },
                   }}
                 >
                   {lead.map((src, index) => (
@@ -603,6 +616,7 @@ const ScrollNavigation = () => {
               <div className={styles.section}>
                 <h1 className={styles.titleBoard}>Board of Supervisors</h1>
                 <Swiper
+                  className={styles.mySwiper}
                   spaceBetween={20}
                   slidesPerView={3.6}
                   slidesOffsetBefore={0} // Add this
@@ -617,6 +631,18 @@ const ScrollNavigation = () => {
                     setTimeout(() => swiper.update(), 0);
                     setTimeout(() => swiper.update(), 50);
                     setTimeout(() => swiper.update(), 100);
+                  }}
+                  breakpoints={{
+                    0: {
+                      // screens under 768px
+                      slidesPerView: 2.8,
+                      slidesOffsetAfter: 50,
+                    },
+                    768: {
+                      // screens 768px and up
+                      slidesPerView: 3.6,
+                      slidesOffsetAfter: 250,
+                    },
                   }}
                 >
                   {leadSupervisor.map((src, index) => (
@@ -643,6 +669,7 @@ const ScrollNavigation = () => {
               <div className={styles.section}>
                 <h1 className={styles.titleBoard}>Board of Executives</h1>
                 <Swiper
+                  className={styles.mySwiper}
                   spaceBetween={20}
                   slidesPerView={3.6}
                   slidesOffsetBefore={0}
@@ -657,6 +684,18 @@ const ScrollNavigation = () => {
                     setTimeout(() => swiper.update(), 0);
                     setTimeout(() => swiper.update(), 50);
                     setTimeout(() => swiper.update(), 100);
+                  }}
+                  breakpoints={{
+                    0: {
+                      // screens under 768px
+                      slidesPerView: 2.8,
+                      slidesOffsetAfter: 50,
+                    },
+                    768: {
+                      // screens 768px and up
+                      slidesPerView: 3.6,
+                      slidesOffsetAfter: 250,
+                    },
                   }}
                 >
                   {leadExecutive.map((src, index) => (
