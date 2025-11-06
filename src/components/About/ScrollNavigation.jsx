@@ -593,7 +593,7 @@ const ScrollNavigation = () => {
                     0: {
                       // screens under 768px
                       slidesPerView: 2.8,
-                      slidesOffsetAfter: 50,
+                      slidesOffsetAfter: 150,
                     },
                     768: {
                       // screens 768px and up
@@ -646,7 +646,7 @@ const ScrollNavigation = () => {
                     0: {
                       // screens under 768px
                       slidesPerView: 2.8,
-                      slidesOffsetAfter: 50,
+                      slidesOffsetAfter: 150,
                     },
                     768: {
                       // screens 768px and up
@@ -699,7 +699,7 @@ const ScrollNavigation = () => {
                     0: {
                       // screens under 768px
                       slidesPerView: 2.8,
-                      slidesOffsetAfter: 50,
+                      slidesOffsetAfter: 250,
                     },
                     768: {
                       // screens 768px and up
