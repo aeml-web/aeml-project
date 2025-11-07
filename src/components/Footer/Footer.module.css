@@ -49,6 +49,15 @@
   gap: 15px;
 }
 
+.contactLink {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: white;
+}
+
 .logoSection {
   display: flex;
   align-items: center;

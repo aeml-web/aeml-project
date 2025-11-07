@@ -1,8 +1,32 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Footer.module.css";
 import logo from "../../assets/logo-aeml.png";
+import { aboutMenuItems } from "../About/ScrollNavigation";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
+  const handleAboutClick = (e, sectionId) => {
+    e.preventDefault();
+
+    const scrollToSection = () => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const navbarHeight = -700;
+        const offsetPosition = element.offsetTop - navbarHeight;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
+    };
+
+    navigate("/about");
+    setTimeout(scrollToSection, 500);
+  };
+
   const footerData = {
     logo: {
       src: logo,
@@ -14,22 +38,29 @@ const Footer = () => {
         "Treasury Tower, 33rd Floor, District 8 SCBD Lot. 28. Jl. Jend. Sudirman Kav. 52-53, Kec. Kebayoran Baru, Jakarta Selatan 12190",
     },
     navigation: {
-      "Tentang AEML": [
-        { label: "Sejarah", href: "/tentang/sejarah" },
-        { label: "Visi", href: "/tentang/visi" },
-        { label: "Struktur", href: "/tentang/struktur" },
-        { label: "Anggota", href: "/tentang/anggota" },
-      ],
-      Berita: [
-        { label: "Artikel", href: "/kegiatan" },
-        { label: "Kegiatan", href: "/kegiatan" },
-      ],
-      Publikasi: [
-        { label: "Edaran", href: "/publikasi" },
-        { label: "Laporan", href: "/publikasi" },
-        { label: "Peraturan", href: "/publikasi" },
-      ],
-      Gabung: [{ label: "Isi Form", href: "/kontak/media-sosial" }],
+      "Tentang AEML": {
+        mainHref: "/about",
+        items: aboutMenuItems,
+      },
+      Kegiatan: {
+        mainHref: "/kegiatan",
+        items: [
+          { label: "Artikel", href: "/kegiatan" },
+          { label: "Kegiatan", href: "/kegiatan" },
+        ],
+      },
+      Publikasi: {
+        mainHref: "/publikasi",
+        items: [
+          { label: "Edaran", href: "/publikasi" },
+          { label: "Laporan", href: "/publikasi" },
+          { label: "Peraturan", href: "/publikasi" },
+        ],
+      },
+      Gabung: {
+        mainHref: "/gabung",
+        items: [{ label: "Isi Form", href: "/gabung" }],
+      },
     },
   };
 
@@ -39,12 +70,13 @@ const Footer = () => {
         {/* Left Section - Logo and Contact */}
         <div className={styles.leftSection}>
           <div className={styles.logoSection}>
-            <img
-              src={footerData.logo.src}
-              alt={footerData.logo.alt}
-              className={styles.footerLogo}
-              //oke
-            />
+            <Link to="/">
+              <img
+                src={footerData.logo.src}
+                alt={footerData.logo.alt}
+                className={styles.footerLogo}
+              />
+            </Link>
           </div>
 
           <div className={styles.contactInfo}>
@@ -55,7 +87,12 @@ const Footer = () => {
                   fill="currentColor"
                 />
               </svg>
-              <span>{footerData.contact.email}</span>
+              <a
+                href={`mailto:${footerData.contact.email}`}
+                className={styles.contactLink}
+              >
+                {footerData.contact.email}
+              </a>
             </div>
 
             <div className={styles.contactItem}>
@@ -73,15 +110,30 @@ const Footer = () => {
         {/* Right Section - Navigation Links */}
         <div className={styles.rightSection}>
           <div className={styles.navGrid}>
-            {Object.entries(footerData.navigation).map(([category, links]) => (
+            {Object.entries(footerData.navigation).map(([category, data]) => (
               <div key={category} className={styles.navColumn}>
-                <h3 className={styles.navTitle}>{category}</h3>
+                {/* Clickable Title */}
+                <Link to={data.mainHref} className={styles.navTitleLink}>
+                  <h3 className={styles.navTitle}>{category}</h3>
+                </Link>
+
+                {/* Sub Menu Items */}
                 <ul className={styles.navList}>
-                  {links.map((link, index) => (
+                  {data.items.map((link, index) => (
                     <li key={index} className={styles.navItem}>
-                      <a href={link.href} className={styles.navLink}>
-                        {link.label}
-                      </a>
+                      {category === "Tentang AEML" ? (
+                        <a
+                          href={`#${link.id}`}
+                          className={styles.navLink}
+                          onClick={(e) => handleAboutClick(e, link.id)}
+                        >
+                          {link.label}
+                        </a>
+                      ) : (
+                        <Link to={link.href} className={styles.navLink}>
+                          {link.label}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>
