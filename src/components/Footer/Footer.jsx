@@ -42,6 +42,7 @@ const Footer = () => {
               src={footerData.logo.src}
               alt={footerData.logo.alt}
               className={styles.footerLogo}
+              //oke
             />
           </div>
 
