@@ -26,9 +26,10 @@ const Footer = () => {
       ],
       Publikasi: [
         { label: "Edaran", href: "/publikasi" },
-        { label: "Aturan", href: "/publikasi" },
+        { label: "Laporan", href: "/publikasi" },
+        { label: "Peraturan", href: "/publikasi" },
       ],
-      Kontak: [{ label: "Media Sosial", href: "/kontak/media-sosial" }],
+      Gabung: [{ label: "Isi Form", href: "/kontak/media-sosial" }],
     },
   };
 
