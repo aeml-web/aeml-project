@@ -78,6 +78,7 @@ import utomoLogo from "../../assets/icon_mitra/utomo.png";
 import viarLogo from "../../assets/icon_mitra/viar.png";
 import vktrLogo from "../../assets/icon_mitra/vktr.png";
 import voltaLogo from "../../assets/icon_mitra/volta.png";
+import tebLogo from "../../assets/icon_mitra/logoteb.png";
 
 import agus from "../../assets/agusgumiwang.jpg";
 import arsjad from "../../assets/arsjad.jpg";
@@ -187,6 +188,7 @@ const ScrollNavigation = () => {
     { name: "VIAR", style: "viar", image: viarLogo },
     { name: "VOLTA", style: "volta", image: voltaLogo },
     { name: "VKTR", style: "vktr", image: vktrLogo },
+    { name: "TEB", style: "teb", image: tebLogo },
   ];
 
   const lead = [
@@ -306,7 +308,7 @@ const ScrollNavigation = () => {
     },
     {
       id: "5",
-      name: "Heru Hatman",
+      name: "Ello Hanson",
       title: "Vice Chairman for Market Development",
       description:
         "Executive Director Institutional Banking Group of PT. Bank DBS Indonesia",

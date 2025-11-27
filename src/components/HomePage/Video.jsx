@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./homepage.module.css";
-import energi from "../../assets/event-video.mp4";
+import energi from "../../assets/video_fix.mp4";
 import thumbnail from "../../assets/thumbnail.png";
 import "animate.css";
 import { useNavigate } from "react-router-dom";

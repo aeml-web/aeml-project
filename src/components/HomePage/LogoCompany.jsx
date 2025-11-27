@@ -22,6 +22,7 @@ import utomoLogo from "../../assets/icon_mitra/utomo.png";
 import viarLogo from "../../assets/icon_mitra/viar.png";
 import vktrLogo from "../../assets/icon_mitra/vktr.png";
 import voltaLogo from "../../assets/icon_mitra/volta.png";
+import tebLogo from "../../assets/icon_mitra/logoteb.png";
 
 const LogoCompany = () => {
   const [hoveredLogo, setHoveredLogo] = useState(null);
@@ -37,6 +38,7 @@ const LogoCompany = () => {
     { name: "goto", style: "goto", image: gotoLogo },
     { name: "Grab", style: "grab", image: grabLogo },
     { name: "IBC", style: "ibc", image: ibcLogo },
+    { name: "TEB", style: "teb", image: tebLogo },
   ];
 
   const secondRowLogos = [

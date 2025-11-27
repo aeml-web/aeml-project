@@ -1,7 +1,7 @@
 // HeroSection.jsx
 import React from "react";
 import styles from "./Gabung.module.css";
-import bg from "../../assets/aemlheader.png";
+import bg from "../../assets/gabung/AEML_BG_GABUNG.jpg";
 
 const HeroSection = () => {
   const scrollToSection = (id) => {
