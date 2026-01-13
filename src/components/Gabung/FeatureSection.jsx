@@ -2,10 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./Gabung.module.css";
 import "animate.css";
 import IconCircle from "./IconCircle";
+import { useTranslation, Trans } from "react-i18next";
 
 const FeatureSection = () => {
   const [showContent, setShowContent] = useState(false);
   const sectionRef = useRef(null);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -47,11 +49,8 @@ const FeatureSection = () => {
 
       <div className={styles.textDesc}>
         <p>
-          Asosiasi Ekosistem Mobilitas Listrik (AEML) merupakan forum bagi para
-          pelopor kendaraan listrik untuk mengkatalisasi pengembangan ekosistem
-          mobilitas listrik kelas dunia di Indonesia. <br></br> <br></br> Kami
-          adalah badan industri, thought leaders, dan advokat kebijakan publik
-          untuk ekosistem kendaraan listrik di Indonesia.
+          {t("join.aboutAEML")}
+          <br></br> <br></br> {t("join.aboutAEML2")}
         </p>
       </div>
     </div>

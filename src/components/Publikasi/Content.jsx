@@ -1,57 +1,83 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import styles from "./publikasi.module.css";
 import { getPublications } from "../../helpers/apiService";
 import { Download } from "lucide-react";
 import tagsData from "../../assets/tagsPlaceholder.json";
 
 export default function Content() {
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language;
+
   const [publications, setPublications] = useState([]);
   const [filteredPublications, setFilteredPublications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("Semua Kategori");
+  const [selectedCategory, setSelectedCategory] = useState(
+    currentLang === "id" ? "Semua Kategori" : "All Categories"
+  );
   const [searchQuery, setSearchQuery] = useState("");
 
   // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(6); // Adjust as needed
+  const [itemsPerPage] = useState(6);
 
-  // Get categories from tags JSON file
+  // Translate categories using i18n
+  const translateCategory = (category) => {
+    const categoryKey = category.toLowerCase();
+    const categoryMap = {
+      edaran: t("publications.circulars"),
+      laporan: t("publications.reports"),
+      peraturan: t("publications.regulations"),
+    };
+    return categoryMap[categoryKey] || category;
+  };
+
+  // Get categories with translation
   const categories = [
-    "Semua Kategori",
-    ...Object.values(tagsData.PUBLICATION_TAGS),
+    currentLang === "id" ? "Semua Kategori" : "All Categories",
+    t("publications.circulars"),
+    t("publications.reports"),
+    t("publications.regulations"),
   ];
 
   const navigate = useNavigate();
 
-  // Handle category selection with proper dropdown toggle
+  // Update selected category when language changes
+  useEffect(() => {
+    if (
+      selectedCategory === "Semua Kategori" ||
+      selectedCategory === "All Categories"
+    ) {
+      setSelectedCategory(
+        currentLang === "id" ? "Semua Kategori" : "All Categories"
+      );
+    }
+  }, [currentLang]);
+
+  // Handle category selection
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
     setIsDropdownOpen(false);
-    setCurrentPage(1); // Reset to first page when filtering
+    setCurrentPage(1);
   };
 
-  // Toggle dropdown on click
+  // Toggle dropdown
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  // Filter publications based on search query and selected category
+  // Filter publications
   const filterPublications = () => {
-    console.log("Filtering with:", { selectedCategory, searchQuery });
-    console.log("Available publications:", publications);
-    console.log("Tags data:", tagsData.TAGS);
-
     let filtered = [...publications];
 
     // Filter by category
-    if (selectedCategory !== "Semua Kategori") {
-      console.log("Filtering by category:", selectedCategory);
-
+    const allCategoriesText =
+      currentLang === "id" ? "Semua Kategori" : "All Categories";
+    if (selectedCategory !== allCategoriesText) {
       filtered = filtered.filter((pub) => {
-        // Only check tags field (ignore type field for filtering)
         let matches = false;
 
         if (pub.tags && typeof pub.tags === "string" && pub.tags !== "null") {
@@ -63,30 +89,45 @@ export default function Content() {
             matches = true;
           }
 
-          // Check if publication tag matches the selected category from tagsData
+          // Check against original Indonesian tags
           if (!matches) {
-            Object.entries(tagsData.TAGS).forEach(([key, value]) => {
-              if (
-                pubTagLower === key.toLowerCase() &&
-                value.toLowerCase() === selectedCategoryLower
-              ) {
-                matches = true;
+            const reverseCategoryMap = {
+              circulars: "edaran",
+              reports: "laporan",
+              regulations: "peraturan",
+            };
+            const mappedCategory =
+              reverseCategoryMap[selectedCategoryLower] ||
+              selectedCategoryLower;
+            if (pubTagLower === mappedCategory) {
+              matches = true;
+            }
+          }
+
+          // Check tagsData
+          if (!matches) {
+            Object.entries(tagsData.PUBLICATION_TAGS).forEach(
+              ([key, value]) => {
+                if (
+                  pubTagLower === key.toLowerCase() ||
+                  pubTagLower === value.toLowerCase()
+                ) {
+                  const translatedValue =
+                    translateCategory(value).toLowerCase();
+                  if (translatedValue === selectedCategoryLower) {
+                    matches = true;
+                  }
+                }
               }
-            });
+            );
           }
         }
 
-        console.log(
-          `Publication "${pub.title}": tags="${pub.tags}", selectedCategory="${selectedCategory}", matches=${matches}`
-        );
-
         return matches;
       });
-
-      console.log("Filtered results:", filtered);
     }
 
-    // Filter by search query (title search)
+    // Filter by search query
     if (searchQuery.trim()) {
       filtered = filtered.filter(
         (pub) =>
@@ -96,7 +137,7 @@ export default function Content() {
     }
 
     setFilteredPublications(filtered);
-    setCurrentPage(1); // Reset to first page when filtering
+    setCurrentPage(1);
   };
 
   // Handle search
@@ -104,7 +145,7 @@ export default function Content() {
     filterPublications();
   };
 
-  // Handle real-time search as user types
+  // Real-time filtering
   useEffect(() => {
     filterPublications();
   }, [searchQuery, selectedCategory, publications]);
@@ -114,13 +155,11 @@ export default function Content() {
   };
 
   const handleDownloadClick = (e, pub) => {
-    e.stopPropagation(); // Prevent card click when download button is clicked
+    e.stopPropagation();
 
-    // Handle download logic here - fixed to use linkDownload
     if (pub.linkDownload) {
       window.open(pub.linkDownload, "_blank");
     } else {
-      // If you have a download API endpoint
       window.open(`/api/publications/${pub.id}/download`, "_blank");
     }
   };
@@ -131,7 +170,6 @@ export default function Content() {
         setLoading(true);
         setError(null);
         const data = await getPublications();
-        console.log(222, data);
         setPublications(data);
         setFilteredPublications(data);
       } catch (err) {
@@ -145,6 +183,55 @@ export default function Content() {
     loadPublications();
   }, []);
 
+  // Format date based on language
+  const formatDate = (dateString) => {
+    if (!dateString) return "";
+
+    try {
+      const date = new Date(dateString);
+
+      if (isNaN(date.getTime())) {
+        return dateString;
+      }
+
+      if (currentLang === "id") {
+        const monthsID = [
+          "Januari",
+          "Februari",
+          "Maret",
+          "April",
+          "Mei",
+          "Juni",
+          "Juli",
+          "Agustus",
+          "September",
+          "Oktober",
+          "November",
+          "Desember",
+        ];
+        return `${monthsID[date.getMonth()]} ${date.getFullYear()}`;
+      } else {
+        const monthsEN = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+        return `${monthsEN[date.getMonth()]} ${date.getFullYear()}`;
+      }
+    } catch (e) {
+      return dateString;
+    }
+  };
+
   // Pagination calculations
   const totalPages = Math.ceil(filteredPublications.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -154,7 +241,6 @@ export default function Content() {
     indexOfLastItem
   );
 
-  // Handle page change
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -170,7 +256,7 @@ export default function Content() {
   if (loading) {
     return (
       <div className={styles.container}>
-        <div className={styles.loading}>Loading publications...</div>
+        <div className={styles.loading}>{t("home.load")}</div>
       </div>
     );
   }
@@ -179,12 +265,12 @@ export default function Content() {
     return (
       <div className={styles.container}>
         <div className={styles.error}>
-          <p>{error}</p>
+          <p>{t("home.failedLoad")}</p>
           <button
             onClick={() => window.location.reload()}
             className={styles.retryBtn}
           >
-            Retry
+            {currentLang === "id" ? "Coba Lagi" : "Retry"}
           </button>
         </div>
       </div>
@@ -194,7 +280,11 @@ export default function Content() {
   if (!publications || publications.length === 0) {
     return (
       <div className={styles.container}>
-        <div className={styles.empty}>No publications found.</div>
+        <div className={styles.empty}>
+          {currentLang === "id"
+            ? "Tidak ada publikasi yang ditemukan."
+            : "No publications found."}
+        </div>
       </div>
     );
   }
@@ -204,7 +294,7 @@ export default function Content() {
       <div className={styles.containerContentPublikasi}>
         <div className={styles.navigation}>
           <div className={styles.searchFilterContainer}>
-            {/* Category Dropdown - Fixed to be clickable */}
+            {/* Category Dropdown */}
             <div className={styles.categoryDropdown}>
               <button
                 className={styles.categoryButton}
@@ -245,11 +335,15 @@ export default function Content() {
               )}
             </div>
 
-            {/* Search Input - Now searches by title */}
+            {/* Search Input */}
             <div className={styles.searchContainer}>
               <input
                 type="text"
-                placeholder="Cari publikasi"
+                placeholder={
+                  currentLang === "id"
+                    ? "Cari publikasi"
+                    : "Search publications"
+                }
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className={styles.searchInput}
@@ -273,17 +367,6 @@ export default function Content() {
           </div>
         </div>
 
-        {/* Show filtered results count */}
-        {/* {(searchQuery || selectedCategory !== "Semua Kategori") && (
-          <div className={styles.resultsInfo}>
-            Menampilkan {filteredPublications.length} dari {publications.length}{" "}
-            publikasi
-            {searchQuery && ` untuk "${searchQuery}"`}
-            {selectedCategory !== "Semua Kategori" &&
-              ` dalam kategori "${selectedCategory}"`}
-          </div>
-        )} */}
-
         <div className={styles.containerContent}>
           {currentItems.length > 0 ? (
             currentItems.map((pub) => (
@@ -304,7 +387,7 @@ export default function Content() {
                   alt={pub.title}
                   className={styles.image}
                   onError={(e) => {
-                    e.target.src = "/placeholder-image.jpg"; // Fallback image
+                    e.target.src = "/placeholder-image.jpg";
                   }}
                 />
                 <div className={styles.meta}>
@@ -316,23 +399,18 @@ export default function Content() {
                           : styles.publication
                       }`}
                     >
-                      {pub.tags}
+                      {translateCategory(pub.tags)}
                     </span>
                   )}
                   <h3 className={styles.title}>{pub.title}</h3>
                   <div className={styles.bottomCard}>
-                    <p className={styles.date}>
-                      {new Date(pub.createdAt).toLocaleDateString("id-ID", {
-                        month: "long",
-                        year: "numeric",
-                      })}
-                    </p>
+                    <p className={styles.date}>{formatDate(pub.createdAt)}</p>
                     <button
                       onClick={(e) => handleCardClick(pub.id)}
                       className={styles.downloadButton}
                     >
                       <Download size={14} style={{ marginRight: "8px" }} />
-                      Download
+                      {currentLang === "id" ? "Unduh" : "Download"}
                     </button>
                   </div>
                 </div>
@@ -340,59 +418,72 @@ export default function Content() {
             ))
           ) : (
             <div className={styles.noResults}>
-              Tidak ada publikasi yang ditemukan
-              {searchQuery && ` untuk "${searchQuery}"`}
-              {selectedCategory !== "Semua Kategori" &&
-                ` dalam kategori "${selectedCategory}"`}
+              {currentLang === "id"
+                ? `Tidak ada publikasi yang ditemukan${
+                    searchQuery ? ` untuk "${searchQuery}"` : ""
+                  }${
+                    selectedCategory !== "Semua Kategori"
+                      ? ` dalam kategori "${selectedCategory}"`
+                      : ""
+                  }`
+                : `No publications found${
+                    searchQuery ? ` for "${searchQuery}"` : ""
+                  }${
+                    selectedCategory !== "All Categories"
+                      ? ` in category "${selectedCategory}"`
+                      : ""
+                  }`}
             </div>
           )}
         </div>
       </div>
 
-      {/* Dynamic Pagination - Only show if there are multiple pages */}
-      <div className={styles.pagination}>
-        <button
-          className={styles.pageBtn}
-          onClick={handlePrevPage}
-          disabled={currentPage === 1}
-        >
-          <svg
-            width="12"
-            height="19"
-            viewBox="0 0 12 19"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className={styles.pagination}>
+          <button
+            className={styles.pageBtn}
+            onClick={handlePrevPage}
+            disabled={currentPage === 1}
           >
-            <path
-              d="M9.24081 0.830078L11.3359 2.9252L4.5305 9.7455L11.3359 16.5658L9.24081 18.6609L0.325391 9.7455L9.24081 0.830078Z"
-              fill={currentPage === 1 ? "#B3B3B3" : "#181818"}
-            />
-          </svg>
-        </button>
+            <svg
+              width="12"
+              height="19"
+              viewBox="0 0 12 19"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9.24081 0.830078L11.3359 2.9252L4.5305 9.7455L11.3359 16.5658L9.24081 18.6609L0.325391 9.7455L9.24081 0.830078Z"
+                fill={currentPage === 1 ? "#B3B3B3" : "#181818"}
+              />
+            </svg>
+          </button>
 
-        <h4 className={styles.total}>
-          {currentPage} dari {totalPages}
-        </h4>
+          <h4 className={styles.total}>
+            {currentPage} {currentLang === "id" ? "dari" : "of"} {totalPages}
+          </h4>
 
-        <button
-          className={styles.pageBtn}
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-        >
-          <svg
-            width="12"
-            height="19"
-            viewBox="0 0 12 19"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+          <button
+            className={styles.pageBtn}
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
           >
-            <path
-              d="M2.75919 0.830078L0.664062 2.9252L7.4695 9.7455L0.664062 16.5658L2.75919 18.6609L11.6746 9.7455L2.75919 0.830078Z"
-              fill={currentPage === totalPages ? "#B3B3B3" : "#181818"}
-            />
-          </svg>
-        </button>
-      </div>
+            <svg
+              width="12"
+              height="19"
+              viewBox="0 0 12 19"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2.75919 0.830078L0.664062 2.9252L7.4695 9.7455L0.664062 16.5658L2.75919 18.6609L11.6746 9.7455L2.75919 0.830078Z"
+                fill={currentPage === totalPages ? "#B3B3B3" : "#181818"}
+              />
+            </svg>
+          </button>
+        </div>
+      )}
     </div>
   );
 }

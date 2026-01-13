@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import styles from "./navbar.module.css";
 import logo from "../../assets/logoaemlfix.png";
 import logobrowse from "../../assets/image-rils.png";
-import { aboutMenuItems } from "../About/ScrollNavigation";
+import { getAboutMenuItems } from "../About/ScrollNavigation";
 
 const Navbar = () => {
+  const { t, i18n } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -13,9 +15,14 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
 
-  const [selectedLang, setSelectedLang] = useState("ID");
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
+
+  // Get current language display (ID or EN)
+  const currentLang = i18n.language === "id" ? "ID" : "EN";
+
+  // Get translated menu items - TAMBAHKAN INI
+  const aboutMenuItems = getAboutMenuItems(t);
 
   // Click outside to close dropdown
   useEffect(() => {
@@ -30,8 +37,11 @@ const Navbar = () => {
 
   const toggleDropdown = () => setOpen(!open);
 
+  // Change language using i18next
   const changeLang = (lang) => {
-    setSelectedLang(lang);
+    const langCode = lang === "ID" ? "id" : "en";
+    i18n.changeLanguage(langCode);
+    localStorage.setItem("lang", langCode);
     setOpen(false);
   };
 
@@ -101,7 +111,7 @@ const Navbar = () => {
                   location.pathname === "/about" ? styles.active : ""
                 }`}
               >
-                Tentang AEML
+                {t("nav.about")}
                 <svg
                   width="8"
                   height="6"
@@ -142,7 +152,7 @@ const Navbar = () => {
                   location.pathname === "/kegiatan" ? styles.active : ""
                 }`}
               >
-                Kegiatan
+                {t("nav.activities")}
               </Link>
             </li>
             <li>
@@ -152,7 +162,7 @@ const Navbar = () => {
                   location.pathname === "/publikasi" ? styles.active : ""
                 }`}
               >
-                Publikasi
+                {t("nav.publications")}
               </Link>
             </li>
           </ul>
@@ -175,12 +185,12 @@ const Navbar = () => {
             </button>
             <Link to="/gabung">
               <button className={styles.buttonLang}>
-                <span>Gabung AEML</span>
+                <span>{t("nav.join")}</span>
               </button>
             </Link>
             <div ref={dropdownRef} className={styles.langDropdownWrapper}>
               <button onClick={toggleDropdown} className={styles.buttonId}>
-                {selectedLang}
+                {currentLang}
                 <svg
                   width="10"
                   height="6"
@@ -205,13 +215,17 @@ const Navbar = () => {
                 <div className={styles.langDropdownMenu}>
                   <button
                     onClick={() => changeLang("ID")}
-                    className={styles.langDropdownItem}
+                    className={`${styles.langDropdownItem} ${
+                      currentLang === "ID" ? styles.langActive : ""
+                    }`}
                   >
                     ID
                   </button>
                   <button
                     onClick={() => changeLang("EN")}
-                    className={styles.langDropdownItem}
+                    className={`${styles.langDropdownItem} ${
+                      currentLang === "EN" ? styles.langActive : ""
+                    }`}
                   >
                     EN
                   </button>
@@ -252,7 +266,7 @@ const Navbar = () => {
               className={styles.mobileDropdownTrigger}
               onClick={() => setIsMobileDropdownOpen(!isMobileDropdownOpen)}
             >
-              Tentang AEML
+              {t("nav.about")}
               <svg
                 width="8"
                 height="6"
@@ -287,12 +301,12 @@ const Navbar = () => {
           {/* Mobile Navigation Links */}
           <li>
             <Link to="/kegiatan" onClick={() => setIsMobileMenuOpen(false)}>
-              Kegiatan
+              {t("nav.activities")}
             </Link>
           </li>
           <li>
             <Link to="/publikasi" onClick={() => setIsMobileMenuOpen(false)}>
-              Publikasi
+              {t("nav.publications")}
             </Link>
           </li>
         </ul>
@@ -312,14 +326,14 @@ const Navbar = () => {
 
           <Link to="/gabung" onClick={() => setIsMobileMenuOpen(false)}>
             <button className={styles.buttonLang}>
-              <span>Gabung AEML</span>
+              <span>{t("nav.join")}</span>
             </button>
           </Link>
 
           {/* Mobile Language Selector */}
           <div className={styles.langDropdownWrapper}>
             <button onClick={toggleDropdown} className={styles.buttonId}>
-              {selectedLang}
+              {currentLang}
               <svg
                 width="10"
                 height="6"
@@ -343,13 +357,17 @@ const Navbar = () => {
               <div className={styles.langDropdownMenu}>
                 <button
                   onClick={() => changeLang("ID")}
-                  className={styles.langDropdownItem}
+                  className={`${styles.langDropdownItem} ${
+                    currentLang === "ID" ? styles.langActive : ""
+                  }`}
                 >
                   ID
                 </button>
                 <button
                   onClick={() => changeLang("EN")}
-                  className={styles.langDropdownItem}
+                  className={`${styles.langDropdownItem} ${
+                    currentLang === "EN" ? styles.langActive : ""
+                  }`}
                 >
                   EN
                 </button>

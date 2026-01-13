@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import styles from "./homepage.module.css";
 import { getPublications } from "../../helpers/apiService";
 
 const PublikasiDetail = () => {
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language;
+
   const [publications, setPublications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -36,11 +40,13 @@ const PublikasiDetail = () => {
       <div className={styles.publicationsSection}>
         <div className={styles.publicationsHeader}>
           <h2 className={styles.publicationsTitle}>
-            Download Publikasi Lainnya
+            {currentLang === "id"
+              ? "Download Publikasi Lainnya"
+              : "Download Other Publications"}
           </h2>
         </div>
         <div className={styles.loadingContainer}>
-          <p>Memuat publikasi...</p>
+          <p>{t("home.load")}</p>
         </div>
       </div>
     );
@@ -50,10 +56,12 @@ const PublikasiDetail = () => {
     return (
       <div className={styles.publicationsSection}>
         <div className={styles.publicationsHeader}>
-          <h2 className={styles.publicationsTitle}>Publikasi</h2>
+          <h2 className={styles.publicationsTitle}>
+            {t("publications.title")}
+          </h2>
         </div>
         <div className={styles.errorContainer}>
-          <p>Gagal memuat publikasi. Silakan coba lagi nanti.</p>
+          <p>{t("home.failedLoad")}</p>
         </div>
       </div>
     );
@@ -64,12 +72,13 @@ const PublikasiDetail = () => {
       <div className={styles.publicationsSection}>
         <div className={styles.publicationsHeader}>
           <h2 className={styles.publicationsTitle}>
-            {" "}
-            Download Publikasi Lainnya
+            {currentLang === "id"
+              ? "Download Publikasi Lainnya"
+              : "Download Other Publications"}
           </h2>
         </div>
         <div className={styles.emptyContainer}>
-          <p>Belum ada publikasi tersedia.</p>
+          <p>{t("home.empty")}</p>
         </div>
       </div>
     );
@@ -79,11 +88,14 @@ const PublikasiDetail = () => {
     <div className={styles.publicationsSection}>
       <div className={styles.publicationsHeader}>
         <h2 className={styles.publicationsTitle}>
-          {" "}
-          Download Publikasi Lainnya
+          {currentLang === "id"
+            ? "Download Publikasi Lainnya"
+            : "Download Other Publications"}
         </h2>
         <a href="/publikasi" className={styles.viewAllLink}>
-          <span>Baca selengkapnya</span>
+          <span>
+            {currentLang === "id" ? "Baca selengkapnya" : "Read more"}
+          </span>
           <svg
             width="20"
             height="20"
@@ -106,7 +118,7 @@ const PublikasiDetail = () => {
             key={pub.id}
             className={styles.publicationCard}
             onClick={(e) => {
-              e.stopPropagation(); // biar gak trigger card click
+              e.stopPropagation();
               handleGoToDetail(pub.id);
             }}
           >
@@ -124,21 +136,22 @@ const PublikasiDetail = () => {
               </div>
               <div className={styles.cardContent}>
                 <h3 className={styles.cardTitle}>{pub.title}</h3>
-                {/* {pub.subtitle && (
-                  <p className={styles.cardSubtitle}>{pub.subtitle}</p>
-                )} */}
               </div>
             </div>
 
             <button
               className={styles.btnRead}
               onClick={(e) => {
-                e.stopPropagation(); // biar gak trigger card click
+                e.stopPropagation();
                 handleGoToDetail(pub.id);
               }}
-              title="Klik untuk membaca detail publikasi"
+              title={
+                currentLang === "id"
+                  ? "Klik untuk membaca detail publikasi"
+                  : "Click to read publication details"
+              }
             >
-              Baca Publikasi
+              {currentLang === "id" ? "Baca Publikasi" : "Read Publication"}
             </button>
           </div>
         ))}

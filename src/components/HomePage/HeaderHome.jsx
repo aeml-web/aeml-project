@@ -2,11 +2,13 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styles from "./homepage.module.css";
 import "animate.css";
+import { useTranslation, Trans } from "react-i18next";
 
 export default function HeaderHome() {
   const navigate = useNavigate();
   const [showTitle, setShowTitle] = useState(false);
   const [showSubtitle, setShowSubtitle] = useState(false);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     // Show title immediately
@@ -31,7 +33,9 @@ export default function HeaderHome() {
                 : ""
             }`}
           >
-            Asosiasi Ekosistem <br /> Mobilitas Listrik
+            <Trans i18nKey="home.title">
+              Asosiasi Ekosistem <br /> Mobilitas Listrik
+            </Trans>{" "}
           </h1>
           <p
             className={`${styles.heroSubtitle} ${
@@ -40,8 +44,7 @@ export default function HeaderHome() {
                 : ""
             }`}
           >
-            Katalis pengembangan ekosistem mobilitas listrik kelas dunia di
-            Indonesia.
+            {t("home.tagline")}
           </p>
         </div>
       </div>
@@ -52,13 +55,13 @@ export default function HeaderHome() {
           className={styles.btnPrimary}
           onClick={() => navigate("/about")}
         >
-          Tentang AEML
+          {t("home.btnAbout")}
         </button>
         <button
           className={styles.btnSecondary}
           onClick={() => navigate("/kegiatan")}
         >
-          <span>Kegiatan</span>
+          <span> {t("home.btnActivities")}</span>
         </button>
       </div>
     </div>

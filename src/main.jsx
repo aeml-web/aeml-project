@@ -1,6 +1,7 @@
 // Di main.jsx atau index.js
 import React from "react";
 import ReactDOM from "react-dom/client";
+import "./i18n"; // ← tambahkan ini di paling atasnp
 import App from "./App.jsx";
 import "./index.css";
 

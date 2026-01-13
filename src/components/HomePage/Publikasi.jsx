@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./homepage.module.css";
 import { getPublications } from "../../helpers/apiService";
+import { useTranslation, Trans } from "react-i18next";
 
 const Publikasi = () => {
   const [publications, setPublications] = useState([]);
@@ -10,6 +11,7 @@ const Publikasi = () => {
   const [visibleCards, setVisibleCards] = useState([]);
   const navigate = useNavigate();
   const cardRefs = useRef([]);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const loadPublications = async () => {
@@ -67,10 +69,12 @@ const Publikasi = () => {
     return (
       <div className={styles.publicationsSection}>
         <div className={styles.publicationsHeader}>
-          <h2 className={styles.publicationsTitle}>Publikasi</h2>
+          <h2 className={styles.publicationsTitle}>
+            {t("publications.title")}
+          </h2>
         </div>
         <div className={styles.loadingContainer}>
-          <p>Memuat publikasi...</p>
+          <p>{t("publications.load")}</p>
         </div>
       </div>
     );
@@ -80,10 +84,12 @@ const Publikasi = () => {
     return (
       <div className={styles.publicationsSection}>
         <div className={styles.publicationsHeader}>
-          <h2 className={styles.publicationsTitle}>Publikasi</h2>
+          <h2 className={styles.publicationsTitle}>
+            {t("publications.title")}
+          </h2>
         </div>
         <div className={styles.errorContainer}>
-          <p>Gagal memuat publikasi. Silakan coba lagi nanti.</p>
+          <p>{t("publications.failedLoad")}</p>
         </div>
       </div>
     );
@@ -93,10 +99,12 @@ const Publikasi = () => {
     return (
       <div className={styles.publicationsSection}>
         <div className={styles.publicationsHeader}>
-          <h2 className={styles.publicationsTitle}>Publikasi</h2>
+          <h2 className={styles.publicationsTitle}>
+            {t("publications.title")}
+          </h2>
         </div>
         <div className={styles.emptyContainer}>
-          <p>Belum ada publikasi tersedia.</p>
+          <p>{t("publications.empty")}</p>
         </div>
       </div>
     );
@@ -105,9 +113,9 @@ const Publikasi = () => {
   return (
     <div className={styles.publicationsSection}>
       <div className={styles.publicationsHeader}>
-        <h2 className={styles.publicationsTitle}>Publikasi</h2>
+        <h2 className={styles.publicationsTitle}>{t("publications.title")}</h2>
         <a href="/publikasi" className={styles.viewAllLink}>
-          <span>Baca selengkapnya</span>
+          <span>{t("home.readMore")}</span>
           <svg
             width="20"
             height="20"
@@ -165,7 +173,7 @@ const Publikasi = () => {
               }}
               title="Klik untuk membaca detail publikasi"
             >
-              Baca Publikasi
+              {t("publications.readPublication")}
             </button>
           </div>
         ))}

@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import styles from "./read.module.css";
 import styleGrid from "./read.module.css";
 import { getArticles } from "../../helpers/apiService";
 
 const ReadAnother = ({ excludeId }) => {
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language;
+
   const [publications, setPublications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -39,14 +43,81 @@ const ReadAnother = ({ excludeId }) => {
     navigate(`/kegiatan/${itemId}`);
   };
 
+  // Format date based on language
+  const formatDate = (dateString) => {
+    if (!dateString) return "";
+
+    // If date is already formatted (contains month names), return as is
+    if (
+      typeof dateString === "string" &&
+      (dateString.includes("Januari") ||
+        dateString.includes("January") ||
+        dateString.includes("Juli") ||
+        dateString.includes("July"))
+    ) {
+      return dateString;
+    }
+
+    try {
+      const date = new Date(dateString);
+
+      // Check if date is valid
+      if (isNaN(date.getTime())) {
+        return dateString;
+      }
+
+      if (currentLang === "id") {
+        const monthsID = [
+          "Januari",
+          "Februari",
+          "Maret",
+          "April",
+          "Mei",
+          "Juni",
+          "Juli",
+          "Agustus",
+          "September",
+          "Oktober",
+          "November",
+          "Desember",
+        ];
+        return `${date.getDate()} ${
+          monthsID[date.getMonth()]
+        } ${date.getFullYear()}`;
+      } else {
+        const monthsEN = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+        return `${
+          monthsEN[date.getMonth()]
+        } ${date.getDate()}, ${date.getFullYear()}`;
+      }
+    } catch (e) {
+      return dateString;
+    }
+  };
+
   if (loading) {
     return (
       <div className={styles.publicationsSection}>
         <div className={styles.publicationsHeader}>
-          <h2 className={styles.publicationsTitle}>Baca juga:</h2>
+          <h2 className={styles.publicationsTitle}>
+            {currentLang === "id" ? "Baca juga:" : "Read also:"}
+          </h2>
         </div>
         <div className={styles.loadingContainer}>
-          <p>Memuat publikasi...</p>
+          <p>{t("home.load")}</p>
         </div>
       </div>
     );
@@ -56,10 +127,12 @@ const ReadAnother = ({ excludeId }) => {
     return (
       <div className={styles.publicationsSection}>
         <div className={styles.publicationsHeader}>
-          <h2 className={styles.publicationsTitle}>Baca juga:</h2>
+          <h2 className={styles.publicationsTitle}>
+            {currentLang === "id" ? "Baca juga:" : "Read also:"}
+          </h2>
         </div>
         <div className={styles.errorContainer}>
-          <p>Gagal memuat publikasi. Silakan coba lagi nanti.</p>
+          <p>{t("home.failedLoad")}</p>
         </div>
       </div>
     );
@@ -72,7 +145,9 @@ const ReadAnother = ({ excludeId }) => {
   return (
     <div className={styles.publicationsSection}>
       <div className={styles.publicationsHeader}>
-        <h2 className={styles.publicationsTitle}>Baca juga:</h2>
+        <h2 className={styles.publicationsTitle}>
+          {currentLang === "id" ? "Baca juga:" : "Read also:"}
+        </h2>
       </div>
 
       <div className={styleGrid.regularGrid}>
@@ -92,7 +167,7 @@ const ReadAnother = ({ excludeId }) => {
             </div>
             <div className={styleGrid.regularContent}>
               <h3 className={styleGrid.regularTitle}>{item.title}</h3>
-              <p className={styleGrid.regularDate}>{item.date}</p>
+              <p className={styleGrid.regularDate}>{formatDate(item.date)}</p>
             </div>
           </div>
         ))}

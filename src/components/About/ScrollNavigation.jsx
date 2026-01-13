@@ -88,6 +88,7 @@ import fabby from "../../assets/fabby.jpg";
 import john from "../../assets/john.jpg";
 import rachmat from "../../assets/rachmat.jpg";
 import shirley from "../../assets/shirley.jpg";
+import { useTranslation, Trans } from "react-i18next";
 
 import { motion } from "framer-motion";
 
@@ -96,52 +97,52 @@ import HeaderAbout from "./HeaderAbout";
 import { useLocation } from "react-router-dom";
 
 // Export menu items untuk digunakan di navbar atau komponen lain
-export const aboutMenuItems = [
+export const getAboutMenuItems = (t) => [
   {
     id: "tentang",
-    label: "Tentang AEML",
+    label: t("about.title"),
     icon: "🎯",
     showTitle: false,
     showSidebar: true,
   },
   {
     id: "visi",
-    label: "Visi dan Misi",
+    label: t("about.visionMission"),
     icon: "🎯",
     showTitle: false,
     showSidebar: true,
   },
   {
     id: "perjalanan-bersama",
-    label: "Perjalanan Bersama",
+    label: t("about.journey"),
     icon: "🤝",
     showTitle: true,
     showSidebar: true,
   },
   {
     id: "pimpinan-aeml",
-    label: "Struktur AEML",
+    label: t("about.structure"),
     icon: "👥",
     showTitle: true,
     showSidebar: true,
   },
   {
     id: "perusahaan-anggota",
-    label: "Perusahaan Anggota",
+    label: t("about.memberCompanies"),
     icon: "🏢",
     showTitle: true,
     showSidebar: true,
   },
   {
     id: "mitra-pemerintahan",
-    label: "Mitra Pemerintahan",
+    label: t("about.publicPartners"),
     icon: "🏛️",
     showTitle: true,
     showSidebar: true,
   },
   {
     id: "mitra-pembangunan",
-    label: "Mitra Pembangunan",
+    label: t("about.devPartners"),
     icon: "🔧",
     showTitle: true,
     showSidebar: true,
@@ -151,8 +152,10 @@ export const aboutMenuItems = [
 const ScrollNavigation = () => {
   const [activeSection, setActiveSection] = useState("perusahaan-anggota"); // default aktif
   const sectionsRef = useRef({});
+  const { t, i18n } = useTranslation();
 
   // Pastikan aboutMenuItems sudah di-import atau didefinisikan
+  const aboutMenuItems = getAboutMenuItems(t);
   const menuItems = aboutMenuItems;
 
   const fadeUp = {
@@ -494,39 +497,24 @@ const ScrollNavigation = () => {
       case "visi":
         return (
           <div className={styles.header}>
-            <h1 className={styles.mainTitleVisi}>Visi AEML</h1>
+            <h1 className={styles.mainTitleVisi}> {t("about.visionTitle")}</h1>
             <div className={styles.visi}>
               <div className={styles.leftVisi}>
                 <img src={visi2} className={styles.iconVisi} alt="Visi 2" />
-                <p className={styles.text}>
-                  Mendukung adopsi kendaraan listrik dan mendorong terciptanya
-                  ekosistem kendaraan listrik yang berdaya saing global
-                </p>
+                <p className={styles.text}>{t("about.visionText")}</p>
               </div>
               <div className={styles.rightVisi}>
                 <img src={visi1} className={styles.iconVisi} alt="Visi 1" />
-                <p className={styles.text}>
-                  Memberikan suara kepada anggota dan membina kemitraan yang
-                  membangun rantai nilai domestik yang kuat, serta kolaborasi
-                  dengan semua pemangku kepentingan.
-                </p>
+                <p className={styles.text}>{t("about.visionText2")}</p>
               </div>
             </div>
-            <h1 className={styles.mainTitle}>Misi AEML</h1>
+            <h1 className={styles.mainTitle}>{t("about.missionTitle")}</h1>
             <div className={styles.misi}>
               <p className={styles.text}>
-                Misi kami untuk mendorong terciptanya mobilitas listrik di
-                Indonesia didasarkan pada panggilan untuk melindungi lingkungan
-                dengan mengurangi polusi di mana masyarakat tinggal, bekerja,
-                belajar, juga bermain.
+                {t("about.missionText")}
                 <br />
                 <br />
-                Dengan berkontribusi pada inisiatif Pemerintah Republik
-                Indonesia dalam mengatasi perubahan iklim, kami juga secara
-                langsung mendukung kemandirian energi bangsa. Dengan demikian,
-                kami akan mencapai visi kami untuk mendukung adopsi kendaraan
-                listrik dan mendorong terciptanya ekosistem mobilitas listrik
-                yang berdaya saing global.
+                {t("about.missionText2")}
               </p>
             </div>
           </div>
@@ -538,31 +526,19 @@ const ScrollNavigation = () => {
             <div className={styles.way}>
               <img src={profil} className={styles.photoWay} alt="Profil" />
               <p className={styles.text}>
-                Asosiasi Ekosistem Mobilitas Listrik (AEML) didirikan pada tahun
-                2022 sebagai respons atas kebutuhan mendesak untuk mempercepat
-                adopsi kendaraan listrik di Indonesia serta membangun ekosistem
-                mobilitas listrik yang terintegrasi. <br />
+                {t("about.journeyText1")}
                 <br />
-                Sejak awal terbentuk, AEML hadir sebagai wadah kolaborasi yang
-                menyatukan beragam pemangku kepentingan—mulai dari produsen
-                kendaraan, penyedia baterai, penyelenggara infrastruktur
-                pengisian dan tukar baterai, perusahaan transportasi berbasis
-                aplikasi, hingga lembaga keuangan. <br />
                 <br />
-                Berawal dari lima perusahaan perintis, kini AEML telah
-                berkembang menjadi asosiasi dengan dua puluh anggota, dan jumlah
-                ini terus bertambah. <br />
+                {t("about.journeyText2")}
                 <br />
-                Dengan status sebagai anggota di dua Komite Teknis Badan
-                Standardisasi Nasional (BSN) serta Anggota Luar Biasa Kamar
-                Dagang dan Industri Indonesia (KADIN), AEML juga menjalin kerja
-                sama erat dengan berbagai kementerian, pusat kajian, dan lembaga
-                riset. <br />
                 <br />
-                Komitmen kami jelas: menjadi katalis dalam mendorong regulasi
-                yang kondusif, memperkuat rantai pasok nasional, serta
-                mempercepat transisi menuju mobilitas berkelanjutan di
-                Indonesia.
+                {t("about.journeyText3")}
+                . <br />
+                <br />
+                {t("about.journeyText4")}
+                <br />
+                <br />
+                {t("about.journeyCommitment")}
               </p>
             </div>
           </div>
@@ -788,24 +764,12 @@ const ScrollNavigation = () => {
       case "tentang":
         return (
           <header className={styles.header}>
-            <h1 className={styles.mainTitle}>
-              Asosiasi Ekosistem Mobilitas Listrik
-            </h1>
+            <h1 className={styles.mainTitle}>{t("about.associationName")}</h1>
             <p className={styles.description}>
-              Asosiasi Ekosistem Mobilitas Listrik (AEML) adalah sebuah forum
-              kolaboratif yang mempertemukan para pemangku kepentingan utama
-              dalam pengembangan kendaraan listrik di Indonesia, mulai dari
-              produsen kendaraan, penyedia baterai, infrastruktur pengisian
-              daya, hingga pelaku teknologi digital dan keuangan.
+              {t("about.aboutDescription")}
               <br />
               <br />
-              AEML berperan sebagai wadah industri, pusat pemikiran, serta
-              advokat kebijakan publik yang mendorong terciptanya ekosistem
-              mobilitas listrik yang berdaya saing global. Melalui sinergi
-              lintas sektor, asosiasi ini berkomitmen untuk mempercepat adopsi
-              kendaraan listrik, memperkuat rantai pasok domestik, serta
-              mendukung transisi menuju energi bersih dan transportasi
-              berkelanjutan di Indonesia.
+              {t("about.aboutDescription2")}
             </p>
           </header>
         );
@@ -835,8 +799,7 @@ const ScrollNavigation = () => {
           <h1
             className={`${styles.titleAbout} animate__animated animate__fadeInUp`}
           >
-            Memajukan ekosistem mobilitas listrik di Indonesia sehingga berkelas
-            dunia.
+            {t("about.titleSlogan")}
           </h1>
           <Swiper
             spaceBetween={30}

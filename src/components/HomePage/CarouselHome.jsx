@@ -13,6 +13,7 @@ import foto3 from "../../assets/aeml3.jpeg";
 import foto6 from "../../assets/aeml4.jpeg";
 import foto7 from "../../assets/aeml5.jpeg";
 import foto8 from "../../assets/fotoasset1.jpg";
+import { useTranslation, Trans } from "react-i18next";
 
 const photos = [foto1, foto4, foto2, foto5, foto6, foto8];
 
@@ -22,6 +23,7 @@ export default function CarouselHome() {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [cursorVisible, setCursorVisible] = useState(false);
   const [cursorDirection, setCursorDirection] = useState("");
+  const { t, i18n } = useTranslation();
 
   const handleMouseMove = (e) => {
     // Update cursor position
@@ -107,21 +109,20 @@ export default function CarouselHome() {
       {/* Left content */}
       <div className={styles.left}>
         <h2 className={styles.titleCarousel}>
-          Untuk ekosistem <br /> yang lebih sehat <br /> dan maju.
+          <Trans i18nKey="home.ecosystemMessage">
+            Asosiasi Ekosistem <br /> Mobilitas Listrik
+          </Trans>{" "}
         </h2>
-        <p className={styles.description}>
-          AEML adalah forum kolaboratif yang mempertemukan para pemangku
-          kepentingan utama dalam pengembangan kendaraan listrik di Indonesia.
-        </p>
+        <p className={styles.description}>{t("home.description")}</p>
 
         <div className={styles.stats}>
           <div className={styles.card}>
-            <h3>20</h3>
-            <p>anggota perusahaan</p>
+            <h3>21</h3>
+            <p>{t("home.memberCount")}</p>
           </div>
           <div className={styles.card}>
             <h3>2022</h3>
-            <p>awal berdiri</p>
+            <p>{t("home.foundedYear")}</p>
           </div>
         </div>
       </div>

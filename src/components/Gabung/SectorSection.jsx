@@ -7,8 +7,11 @@ import energy from "../../assets/energy-banner.png";
 import ev from "../../assets/ev-manufacture.png";
 import finance from "../../assets/finance-banner.png";
 import ride from "../../assets/ride-hiling.png";
+import { useTranslation, Trans } from "react-i18next";
 
 const SectorsSection = () => {
+  const { t, i18n } = useTranslation();
+
   const sectors = [
     {
       title: "Battery",
@@ -53,10 +56,9 @@ const SectorsSection = () => {
     <section className={styles.sectors}>
       <div className={styles.containerSector}>
         <div className={styles.sectorHeader}>
-          <h2 className={styles.sectorTitle}>Sektor AEML</h2>
+          <h2 className={styles.sectorTitle}>{t("join.sectorsTitle")}</h2>
           <p className={styles.sectorSubtitle}>
-            Gabung ke dalam ekosistem yang mendukung percepatan pengembangan
-            ekosistem mobilitas listrik di Indonesia hingga mandunia.
+            {t("join.sectorsDescription")}
           </p>
         </div>
 

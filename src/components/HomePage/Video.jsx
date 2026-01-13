@@ -4,12 +4,14 @@ import energi from "../../assets/video_fix.mp4";
 import thumbnail from "../../assets/thumbnail.png";
 import "animate.css";
 import { useNavigate } from "react-router-dom";
+import { useTranslation, Trans } from "react-i18next";
 
 const Video = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -53,7 +55,7 @@ const Video = () => {
       </div> */}
 
       <div className={styles.videoContainer}>
-        <h2 className={styles.videoTitle}>Mengenal AEML lebih dekat</h2>
+        <h2 className={styles.videoTitle}>{t("home.closerLook")}</h2>
 
         <div className={styles.videoWrapper}>
           {!isPlaying ? (
@@ -88,7 +90,7 @@ const Video = () => {
           className={styles.learnMoreButton}
           onClick={() => navigate("/about")}
         >
-          Pelajari selengkapnya
+          {t("home.learnMore")}
           <svg viewBox="0 0 24 24" className={styles.arrowIcon}>
             <path
               d="M5 12h14M12 5l7 7-7 7"

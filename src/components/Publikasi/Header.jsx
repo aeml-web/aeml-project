@@ -1,8 +1,11 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import styles from "./publikasi.module.css";
 import cover from "../../assets/publikasiphoto.png";
 
 export default function Header() {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.headerParent}>
       <div className={styles.banner}>
@@ -14,8 +17,8 @@ export default function Header() {
       </div>
 
       <div className={styles.content}>
-        <h2 className={styles.titlePub}>Publikasi</h2>
-        <p className={styles.desc}>Edaran, riset, dan booklet dari AEML.</p>
+        <h2 className={styles.titlePub}>{t("publications.title")}</h2>
+        <p className={styles.desc}>{t("publications.description")}</p>
       </div>
     </div>
   );

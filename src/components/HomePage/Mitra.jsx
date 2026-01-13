@@ -14,6 +14,7 @@ import image3 from "../../assets/logos-gov/image3.png";
 import image4 from "../../assets/logos-gov/image4.png";
 import image5 from "../../assets/logos-gov/image5.png";
 import image6 from "../../assets/logos-gov/image6.png";
+import { useTranslation, Trans } from "react-i18next";
 
 import "animate.css";
 
@@ -22,6 +23,7 @@ const Mitra = () => {
   const [showSecondSection, setShowSecondSection] = useState(false);
   const firstSectionRef = useRef(null);
   const secondSectionRef = useRef(null);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const firstObserver = new IntersectionObserver(
@@ -144,7 +146,7 @@ const Mitra = () => {
         }`}
         ref={firstSectionRef}
       >
-        <h2 className={styles.categoryTitle}>Mitra Pemerintahan AEML</h2>
+        <h2 className={styles.categoryTitle}>{t("home.publicPartners")}</h2>
         <div className={styles.partnersGrid}>
           {governmentPartners.map((partner) => (
             <div key={partner.id} className={styles.partnerCard}>
@@ -168,7 +170,7 @@ const Mitra = () => {
         }`}
         ref={secondSectionRef}
       >
-        <h2 className={styles.categoryTitle}>Mitra Pembangunan AEML</h2>
+        <h2 className={styles.categoryTitle}>{t("home.devPartners")}</h2>
         <div className={styles.partnersGrid}>
           {developmentPartners.map((partner) => (
             <div key={partner.id} className={styles.partnerCard}>

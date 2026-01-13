@@ -35,7 +35,7 @@ function GabungPage() {
           <HeroSection />
           <FeaturesSection />
           <SectorsSection />
-          <RequirementsSection />
+          {/* <RequirementsSection /> */}
           <Gabung />
         </div>
       </>

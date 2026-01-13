@@ -416,9 +416,9 @@
   transition: transform 0.3s ease;
 }
 
-.sectorCard:hover .sectorImage img {
+/* .sectorCard:hover .sectorImage img {
   transform: scale(1.05);
-}
+} */
 
 /* Overlay */
 .sectorOverlay {
@@ -439,9 +439,9 @@
   transition: all 0.3s ease;
 }
 
-.sectorCard:hover .sectorOverlay {
+/* .sectorCard:hover .sectorOverlay {
   background: rgba(12, 79, 211, 0.76);
-}
+} */
 
 /* Title */
 .sectorCardTitle {
@@ -453,9 +453,9 @@
   font-family: "Epilogue", sans-serif;
 }
 
-.sectorCard:hover .sectorCardTitle {
+/* .sectorCard:hover .sectorCardTitle {
   display: none;
-}
+} */
 
 .hoverTitle {
   text-align: center;
@@ -469,9 +469,9 @@
   font-family: "Epilogue", sans-serif;
 }
 
-.sectorCard:hover .hoverTitle {
+/* .sectorCard:hover .hoverTitle {
   display: block;
-}
+} */
 
 /* Specific Card Styles */
 .energyCard {

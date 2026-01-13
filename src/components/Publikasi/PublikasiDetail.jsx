@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Download } from "lucide-react";
 
 import {
   getPublicationById,
   submitDownloadForm,
-} from "../../helpers/apiService"; // adjust path if needed
+} from "../../helpers/apiService";
 import styles from "./publikasiDetail.module.css";
 import Publikasi from "../HomePage/Publikasi";
 import PublikasiDetail from "../HomePage/PublikasiDetail";
 import { motion } from "framer-motion";
 
 export default function PublicationDetail() {
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language;
+
   const fadeUp = {
     hidden: { opacity: 0, y: 60 },
     visible: {
@@ -23,6 +27,7 @@ export default function PublicationDetail() {
       },
     },
   };
+
   const [publication, setPublication] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -34,6 +39,67 @@ export default function PublicationDetail() {
 
   const { id } = useParams();
   const navigate = useNavigate();
+
+  // Translate categories using i18n
+  const translateCategory = (category) => {
+    if (!category) return "";
+    const categoryKey = category.toLowerCase();
+    const categoryMap = {
+      edaran: t("publications.circulars"),
+      laporan: t("publications.reports"),
+      peraturan: t("publications.regulations"),
+    };
+    return categoryMap[categoryKey] || category;
+  };
+
+  // Format date based on language
+  const formatDate = (dateString) => {
+    if (!dateString) return "";
+
+    try {
+      const date = new Date(dateString);
+
+      if (isNaN(date.getTime())) {
+        return dateString;
+      }
+
+      if (currentLang === "id") {
+        const monthsID = [
+          "Januari",
+          "Februari",
+          "Maret",
+          "April",
+          "Mei",
+          "Juni",
+          "Juli",
+          "Agustus",
+          "September",
+          "Oktober",
+          "November",
+          "Desember",
+        ];
+        return `${monthsID[date.getMonth()]} ${date.getFullYear()}`;
+      } else {
+        const monthsEN = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+        return `${monthsEN[date.getMonth()]} ${date.getFullYear()}`;
+      }
+    } catch (e) {
+      return dateString;
+    }
+  };
 
   useEffect(() => {
     const loadPublication = async () => {
@@ -59,14 +125,18 @@ export default function PublicationDetail() {
     if (!isFormValid) return;
 
     if (!formData.company.trim() || !formData.email.trim()) {
-      alert("Please fill in both company and email fields");
+      alert(
+        currentLang === "id"
+          ? "Mohon isi kolom perusahaan dan email"
+          : "Please fill in both company and email fields"
+      );
       return;
     }
 
     setIsSubmitting(true);
 
     try {
-      // Submit download request to backend (sends email notification)
+      // Submit download request to backend
       await submitDownloadForm(
         {
           company: formData.company,
@@ -90,10 +160,18 @@ export default function PublicationDetail() {
         email: "",
       });
 
-      alert("Download berhasil! Terima kasih telah mengisi formulir.");
+      alert(
+        currentLang === "id"
+          ? "Download berhasil! Terima kasih telah mengisi formulir."
+          : "Download successful! Thank you for filling out the form."
+      );
     } catch (error) {
       console.error("Error submitting download request:", error);
-      alert("Terjadi kesalahan saat memproses permintaan. Silakan coba lagi.");
+      alert(
+        currentLang === "id"
+          ? "Terjadi kesalahan saat memproses permintaan. Silakan coba lagi."
+          : "An error occurred while processing your request. Please try again."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -114,7 +192,7 @@ export default function PublicationDetail() {
   if (loading) {
     return (
       <div className={styles.containerPub}>
-        <div className={styles.loading}>Loading publication details...</div>
+        <div className={styles.loading}>{t("home.load")}</div>
       </div>
     );
   }
@@ -123,10 +201,10 @@ export default function PublicationDetail() {
     return (
       <div className={styles.containerPub}>
         <button onClick={handleBack} className={styles.backBtn}>
-          ← Back
+          ← {currentLang === "id" ? "Kembali" : "Back"}
         </button>
         <div className={styles.error}>
-          <p>{error}</p>
+          <p>{t("home.failedLoad")}</p>
         </div>
       </div>
     );
@@ -136,10 +214,14 @@ export default function PublicationDetail() {
     return (
       <div className={styles.container}>
         <button onClick={handleBack} className={styles.backBtn}>
-          ← Back
+          ← {currentLang === "id" ? "Kembali" : "Back"}
         </button>
         <div className={styles.error}>
-          <p>Publication not found.</p>
+          <p>
+            {currentLang === "id"
+              ? "Publikasi tidak ditemukan."
+              : "Publication not found."}
+          </p>
         </div>
       </div>
     );
@@ -192,16 +274,10 @@ export default function PublicationDetail() {
                         : styles.categoryDefault
                     }`}
                   >
-                    {publication.tags}
+                    {translateCategory(publication.tags)}
                   </span>
                   <span className={styles.date}>
-                    {new Date(publication.createdAt).toLocaleDateString(
-                      "id-ID",
-                      {
-                        month: "long",
-                        year: "numeric",
-                      }
-                    )}
+                    {formatDate(publication.createdAt)}
                   </span>
                 </div>
 
@@ -212,15 +288,18 @@ export default function PublicationDetail() {
 
               <div className={styles.bottom}>
                 <p className={styles.downloadText}>
-                  Mohon mengisi data diri terlebih dahulu untuk mengunduh
-                  publikasi ini.
+                  {t("publications.downloadNotice")}
                 </p>
 
                 <div className={styles.form}>
                   <input
                     type="text"
                     name="company"
-                    placeholder="Ketik perusahaan atau instansimu"
+                    placeholder={
+                      currentLang === "id"
+                        ? "Ketik perusahaan atau instansimu"
+                        : "Enter your company or institution"
+                    }
                     value={formData.company}
                     onChange={handleInputChange}
                     className={styles.formInput}
@@ -229,7 +308,9 @@ export default function PublicationDetail() {
                   <input
                     type="email"
                     name="email"
-                    placeholder="Alamat email"
+                    placeholder={
+                      currentLang === "id" ? "Alamat email" : "Email address"
+                    }
                     value={formData.email}
                     onChange={handleInputChange}
                     className={styles.formInput}
@@ -244,7 +325,13 @@ export default function PublicationDetail() {
                     }`}
                   >
                     <Download size={14} />
-                    {isSubmitting ? "Processing..." : "Download File"}
+                    {isSubmitting
+                      ? currentLang === "id"
+                        ? "Memproses..."
+                        : "Processing..."
+                      : currentLang === "id"
+                      ? "Unduh File"
+                      : "Download File"}
                   </button>
                 </div>
               </div>

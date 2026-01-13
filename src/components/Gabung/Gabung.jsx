@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import styles from "./Gabung.module.css";
 import { submitContactForm } from "../../helpers/apiService"; // Adjust the path to your apiService.js
+import { useTranslation, Trans } from "react-i18next";
 
 const Gabung = () => {
+  const { t, i18n } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -60,25 +62,22 @@ const Gabung = () => {
     <div id="form-section" className={styles.contactSection}>
       <div className={styles.contactContainer}>
         <div className={styles.textSection}>
-          <h1 className={styles.mainTitle}>Bergabung bersama AEML</h1>
-          <p className={styles.subtitleGabung}>
-            Kami akan segera menghubungi anda setelah form pendaftaran telah
-            kami terima.
-          </p>
+          <h1 className={styles.mainTitle}>{t("join.becomePartOf")}</h1>
+          <p className={styles.subtitleGabung}>{t("join.formNotice")}</p>
         </div>
 
         <div className={styles.formSection}>
           <form className={styles.contactForm} onSubmit={handleSubmit}>
             <div className={styles.formGroup}>
               <label htmlFor="name" className={styles.formLabel}>
-                Nama perusahaan atau lembaga
+                {t("join.companyName")}
               </label>
               <input
                 type="text"
                 id="name"
                 name="name"
                 className={styles.formInput}
-                placeholder="Nama perusahaan atau lembaga"
+                placeholder={t("join.companyName")}
                 value={formData.name}
                 onChange={handleChange}
                 required
@@ -105,7 +104,7 @@ const Gabung = () => {
 
             <div className={styles.formGroup}>
               <label htmlFor="phone" className={styles.formLabel}>
-                Nomor telepon
+                {t("join.phoneNumber")}
               </label>
               <input
                 type="tel"
@@ -122,7 +121,7 @@ const Gabung = () => {
 
             <div className={styles.formGroup}>
               <label htmlFor="sector" className={styles.formLabel}>
-                Sektor perusahaan
+                {t("join.companySector")}{" "}
               </label>
               <select
                 id="sector"
@@ -133,31 +132,31 @@ const Gabung = () => {
                 required
                 disabled={isLoading}
               >
-                <option value="">Pilih sektor perusahaan disini</option>
+                <option value=""> {t("join.selectSector")}</option>
+                <option value="Battery">Battery</option>
+                <option value="Charging">Charging & Battery Swapping</option>
                 <option value="Energy">Energy</option>
-                <option value="Transportation">Transportation</option>
-                <option value="Manufacturing">Manufacturing</option>
-                <option value="Technology">Technology</option>
-                <option value="Finance">Finance</option>
-                <option value="Construction">Construction</option>
-                <option value="Healthcare">Healthcare</option>
+                <option value="ev">EV Manufacturer</option>
+                <option value="Riding">Ride Hailing & Fleet Operator</option>
+                <option value="financial">Financial & Market Developer</option>
+                {/* <option value="Healthcare">Healthcare</option>
                 <option value="Education">Education</option>
                 <option value="Retail">Retail</option>
                 <option value="Agriculture">Agriculture</option>
-                <option value="Lainnya">Lainnya</option>
+                <option value="Lainnya">Lainnya</option> */}
               </select>
             </div>
 
             <div className={styles.formGroup}>
               <label htmlFor="reason" className={styles.formLabel}>
-                Alasan bergabung{" "}
+                {t("join.motivation")}
               </label>
               <textarea
                 type="text"
                 id="reason"
                 name="reason"
                 className={styles.formInputBig}
-                placeholder="Alasan bergabung dengan AEML..."
+                placeholder={t("join.motivationPlaceholder")}
                 value={formData.reason}
                 onChange={handleChange}
                 required

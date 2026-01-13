@@ -1,11 +1,16 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import styles from "./Footer.module.css";
 import logo from "../../assets/logo-aeml.png";
-import { aboutMenuItems } from "../About/ScrollNavigation";
+import { getAboutMenuItems } from "../About/ScrollNavigation";
 
 const Footer = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
+
+  // Get translated menu items from centralized source
+  const aboutMenuItems = getAboutMenuItems(t);
 
   const handleAboutClick = (e, sectionId) => {
     e.preventDefault();
@@ -38,28 +43,32 @@ const Footer = () => {
         "Treasury Tower, 33rd Floor, District 8 SCBD Lot. 28. Jl. Jend. Sudirman Kav. 52-53, Kec. Kebayoran Baru, Jakarta Selatan 12190",
     },
     navigation: {
-      "Tentang AEML": {
+      about: {
+        title: t("nav.about"),
         mainHref: "/about",
         items: aboutMenuItems,
       },
-      Kegiatan: {
+      activities: {
+        title: t("nav.activities"),
         mainHref: "/kegiatan",
         items: [
-          { label: "Artikel", href: "/kegiatan" },
-          { label: "Kegiatan", href: "/kegiatan" },
+          { label: t("activities.articles"), href: "/kegiatan" },
+          { label: t("activities.activities"), href: "/kegiatan" },
         ],
       },
-      Publikasi: {
+      publications: {
+        title: t("nav.publications"),
         mainHref: "/publikasi",
         items: [
-          { label: "Edaran", href: "/publikasi" },
-          { label: "Laporan", href: "/publikasi" },
-          { label: "Peraturan", href: "/publikasi" },
+          { label: t("publications.circulars"), href: "/publikasi" },
+          { label: t("publications.reports"), href: "/publikasi" },
+          { label: t("publications.regulations"), href: "/publikasi" },
         ],
       },
-      Gabung: {
+      join: {
+        title: t("nav.join"),
         mainHref: "/gabung",
-        items: [{ label: "Isi Form", href: "/gabung" }],
+        items: [{ label: t("join.fillForm"), href: "/gabung" }],
       },
     },
   };
@@ -110,18 +119,18 @@ const Footer = () => {
         {/* Right Section - Navigation Links */}
         <div className={styles.rightSection}>
           <div className={styles.navGrid}>
-            {Object.entries(footerData.navigation).map(([category, data]) => (
-              <div key={category} className={styles.navColumn}>
+            {Object.entries(footerData.navigation).map(([key, data]) => (
+              <div key={key} className={styles.navColumn}>
                 {/* Clickable Title */}
                 <Link to={data.mainHref} className={styles.navTitleLink}>
-                  <h3 className={styles.navTitle}>{category}</h3>
+                  <h3 className={styles.navTitle}>{data.title}</h3>
                 </Link>
 
                 {/* Sub Menu Items */}
                 <ul className={styles.navList}>
                   {data.items.map((link, index) => (
                     <li key={index} className={styles.navItem}>
-                      {category === "Tentang AEML" ? (
+                      {key === "about" ? (
                         <a
                           href={`#${link.id}`}
                           className={styles.navLink}

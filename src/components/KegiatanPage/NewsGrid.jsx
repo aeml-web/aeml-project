@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import styles from "./NewsGrid.module.css";
 import tagsData from "../../assets/tagsPlaceholder.json";
 
 const NewsGrid = ({ items }) => {
+  const { t, i18n } = useTranslation();
   const itemsPerPage = 8;
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedTag, setSelectedTag] = useState(null);
@@ -11,13 +13,27 @@ const NewsGrid = ({ items }) => {
   const navigate = useNavigate();
   const tagsScrollRef = useRef(null);
 
-  // Convert tags object to array for easier mapping
+  // Get current language
+  const currentLang = i18n.language;
+
+  // Convert tags object to array with translations
   const availableTags = tagsData?.KEGIATAN_TAGS
-    ? Object.entries(tagsData.KEGIATAN_TAGS).map(([key, value]) => ({
-        id: key, // e.g. "ARTIKEL"
-        name: value.charAt(0).toUpperCase() + value.slice(1).toLowerCase(),
-        value: key.toUpperCase(),
-      }))
+    ? Object.keys(tagsData.KEGIATAN_TAGS).map((key) => {
+        // Map tag keys to translation keys
+        const translationMap = {
+          BERITA: "news",
+          ARTIKEL: "articles",
+          OPINI: "opinion",
+          PENGUMUMAN: "announcements",
+          KEGIATAN: "activities",
+        };
+
+        return {
+          id: key,
+          name: t(`activities.${translationMap[key]}`),
+          value: key.toUpperCase(),
+        };
+      })
     : [];
 
   // Filter items when tag changes
@@ -35,6 +51,7 @@ const NewsGrid = ({ items }) => {
     }
     setCurrentPage(1);
   }, [selectedTag, items]);
+
   // Calculate total pages based on filtered items
   const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
 
@@ -55,7 +72,7 @@ const NewsGrid = ({ items }) => {
     } else {
       setSelectedTag(tagValue);
 
-      // auto-scroll logic stays the same
+      // auto-scroll logic
       if (tagsScrollRef.current) {
         const tagWidth = 140;
         const containerWidth = tagsScrollRef.current.offsetWidth;
@@ -84,7 +101,7 @@ const NewsGrid = ({ items }) => {
       <div className={styles.header}>
         {/* Title and Tags in same row */}
         <div className={styles.headerTop}>
-          <h1 className={styles.titleNews}>Kegiatan AEML</h1>
+          <h1 className={styles.titleNews}>{t("activities.title")} AEML</h1>
 
           {/* Tags Filter - Limited width with auto-scroll */}
           <div className={styles.tagsScrollContainer} ref={tagsScrollRef}>
@@ -125,8 +142,13 @@ const NewsGrid = ({ items }) => {
       {selectedTag && (
         <div className={styles.resultsInfo}>
           <p>
-            Showing {filteredItems.length} results for "
-            {availableTags.find((t) => t.id === selectedTag)?.name}"
+            {currentLang === "id"
+              ? `Menampilkan ${filteredItems.length} hasil untuk "${
+                  availableTags.find((t) => t.id === selectedTag)?.name
+                }"`
+              : `Showing ${filteredItems.length} results for "${
+                  availableTags.find((t) => t.id === selectedTag)?.name
+                }"`}
           </p>
         </div>
       )}
@@ -156,9 +178,20 @@ const NewsGrid = ({ items }) => {
                   {item.tags && (
                     <div className={styles.itemTags}>
                       <span className={styles.itemTag}>
-                        {tagsData.KEGIATAN_TAGS[item.tags.toUpperCase()] ||
-                          item.tags.charAt(0).toUpperCase() +
-                            item.tags.slice(1).toLowerCase()}
+                        {(() => {
+                          const tagKey = item.tags.toUpperCase();
+                          const translationMap = {
+                            BERITA: "news",
+                            ARTIKEL: "articles",
+                            OPINI: "opinion",
+                            PENGUMUMAN: "announcements",
+                            KEGIATAN: "activities",
+                          };
+                          return (
+                            t(`activities.${translationMap[tagKey]}`) ||
+                            item.tags
+                          );
+                        })()}
                       </span>
                     </div>
                   )}
@@ -168,7 +201,11 @@ const NewsGrid = ({ items }) => {
           ))
         ) : (
           <div className={styles.noResults}>
-            <p>No items found for the selected tags.</p>
+            <p>
+              {currentLang === "id"
+                ? "Tidak ada item yang ditemukan untuk tag yang dipilih."
+                : "No items found for the selected tags."}
+            </p>
           </div>
         )}
       </div>
@@ -198,7 +235,7 @@ const NewsGrid = ({ items }) => {
 
           {/* Current page info */}
           <h4 className={styles.total}>
-            {currentPage} dari {totalPages}
+            {currentPage} {currentLang === "id" ? "dari" : "of"} {totalPages}
           </h4>
 
           {/* Next button */}

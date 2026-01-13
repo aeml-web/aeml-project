@@ -23,9 +23,11 @@ import viarLogo from "../../assets/icon_mitra/viar.png";
 import vktrLogo from "../../assets/icon_mitra/vktr.png";
 import voltaLogo from "../../assets/icon_mitra/volta.png";
 import tebLogo from "../../assets/icon_mitra/logoteb.png";
+import { useTranslation, Trans } from "react-i18next";
 
 const LogoCompany = () => {
   const [hoveredLogo, setHoveredLogo] = useState(null);
+  const { t, i18n } = useTranslation();
 
   const firstRowLogos = [
     { name: "AlamTri", style: "alamtri", image: alamtriLogo },
@@ -78,7 +80,7 @@ const LogoCompany = () => {
   return (
     <div className={styles.body}>
       <div className={styles.container}>
-        <h1 className={styles.titleLogo}>Perusahaan anggota AEML</h1>
+        <h1 className={styles.titleLogo}>{t("home.memberCompanies")}</h1>
 
         {/* First row - moving left */}
         {renderLogoTrack(firstRowLogos, "left")}

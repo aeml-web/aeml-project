@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./homepage.module.css";
 import { getArticles } from "../../helpers/apiService";
+import { useTranslation, Trans } from "react-i18next";
 
 const NewsItem = () => {
   const [newsItems, setNewsItems] = useState([]);
@@ -11,6 +12,7 @@ const NewsItem = () => {
   const navigate = useNavigate();
   const featuredRef = useRef(null);
   const cardRefs = useRef([]);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const loadArticles = async () => {
@@ -78,10 +80,10 @@ const NewsItem = () => {
     return (
       <div className={styles.containerNews}>
         <div className={styles.header}>
-          <h1 className={styles.titleNews}>Kegiatan</h1>
+          <h1 className={styles.titleNews}>{t("activities.title")}</h1>
         </div>
         <div className={styles.loadingContainer}>
-          <p>Memuat artikel...</p>
+          <p>{t("home.load")}</p>
         </div>
       </div>
     );
@@ -91,10 +93,10 @@ const NewsItem = () => {
     return (
       <div className={styles.containerNews}>
         <div className={styles.header}>
-          <h1 className={styles.titleNews}>Kegiatan</h1>
+          <h1 className={styles.titleNews}>{t("activities.title")}</h1>
         </div>
         <div className={styles.errorContainer}>
-          <p>Gagal memuat artikel. Silakan coba lagi nanti.</p>
+          <p>{t("home.failedLoad")}</p>
         </div>
       </div>
     );
@@ -104,10 +106,10 @@ const NewsItem = () => {
     return (
       <div className={styles.containerNews}>
         <div className={styles.header}>
-          <h1 className={styles.titleNews}>Kegiatan</h1>
+          <h1 className={styles.titleNews}>{t("activities.title")}</h1>
         </div>
         <div className={styles.emptyContainer}>
-          <p>Belum ada artikel tersedia.</p>
+          <p>{t("home.empty")}</p>
         </div>
       </div>
     );
@@ -116,9 +118,9 @@ const NewsItem = () => {
   return (
     <div className={styles.containerNews}>
       <div className={styles.header}>
-        <h1 className={styles.titleNews}>Kegiatan</h1>
+        <h1 className={styles.titleNews}>{t("activities.title")}</h1>
         <a href="/kegiatan" className={styles.readMore}>
-          <span>Baca selengkapnya</span>
+          <span>{t("home.readMore")}</span>
           <svg
             width="20"
             height="20"

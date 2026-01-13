@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import styles from "./KegiatanHero.module.css";
 
 const KegiatanHero = ({
@@ -9,8 +10,12 @@ const KegiatanHero = ({
   error = null,
 }) => {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
 
-  // Get the newest/featured activity (first item from newestActivities or activities)
+  // Get current language
+  const currentLang = i18n.language;
+
+  // Get the newest/featured activity
   const featuredActivity =
     newestActivities.length > 0
       ? newestActivities[0]
@@ -25,10 +30,10 @@ const KegiatanHero = ({
     }
   };
 
-  // Default fallback data if no activity is available
+  // Default fallback data
   const defaultActivity = {
-    title: "Judul Artikel Di Sini Maks. 3 Baris, tidak lebih dari 3 baris.",
-    date: "13 Desember 2024",
+    title: t("home.load"),
+    date: currentLang === "id" ? "13 Desember 2024" : "December 13, 2024",
     image:
       "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800",
     preview: "",
@@ -36,44 +41,57 @@ const KegiatanHero = ({
 
   const displayActivity = featuredActivity || defaultActivity;
 
-  // Format date if needed (assuming date comes in a specific format)
+  // Format date based on language
   const formatDate = (dateString) => {
-    if (!dateString) return "13 Desember 2024";
+    if (!dateString)
+      return currentLang === "id" ? "13 Desember 2024" : "December 13, 2024";
 
-    // If date is already in the desired format, return as is
-    if (
-      (typeof dateString === "string" && dateString.includes("Juli")) ||
-      dateString.includes("Desember")
-    ) {
-      return dateString;
-    }
-
-    // Otherwise, try to format it
     try {
       const date = new Date(dateString);
-      const months = [
-        "Januari",
-        "Februari",
-        "Maret",
-        "April",
-        "Mei",
-        "Juni",
-        "Juli",
-        "Agustus",
-        "September",
-        "Oktober",
-        "November",
-        "Desember",
-      ];
-      return `${date.getDate()} ${
-        months[date.getMonth()]
-      } ${date.getFullYear()}`;
+
+      if (currentLang === "id") {
+        const monthsID = [
+          "Januari",
+          "Februari",
+          "Maret",
+          "April",
+          "Mei",
+          "Juni",
+          "Juli",
+          "Agustus",
+          "September",
+          "Oktober",
+          "November",
+          "Desember",
+        ];
+        return `${date.getDate()} ${
+          monthsID[date.getMonth()]
+        } ${date.getFullYear()}`;
+      } else {
+        const monthsEN = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+        return `${
+          monthsEN[date.getMonth()]
+        } ${date.getDate()}, ${date.getFullYear()}`;
+      }
     } catch (e) {
       return dateString;
     }
   };
 
-  // Truncate title if it's too long (optional)
+  // Truncate title if it's too long
   const truncateTitle = (title, maxLength = 80) => {
     if (!title) return defaultActivity.title;
     return title.length > maxLength
@@ -87,17 +105,19 @@ const KegiatanHero = ({
         <div className={styles.kegiatanHeroChild}>
           <div className={styles.heroContent}>
             <div className={styles.breadcrumbInfo}>
-              <span className={styles.dateBadge}>Memuat...</span>
-              <span className={styles.categoryBadge}>Kegiatan</span>
+              <span className={styles.dateBadge}>{t("home.load")}</span>
+              <span className={styles.categoryBadge}>
+                {t("activities.activities")}
+              </span>
             </div>
-            <h1 className={styles.heroTitle}>Memuat kegiatan terbaru...</h1>
+            <h1 className={styles.heroTitle}>{t("home.load")}</h1>
             <button className={styles.heroCta} disabled>
-              Memuat →
+              {t("home.load")} →
             </button>
           </div>
           <div className={styles.heroImageCol}>
             <div className={styles.heroImagePlaceholder}>
-              <p>Memuat gambar...</p>
+              <p>{t("home.load")}</p>
             </div>
           </div>
         </div>
@@ -112,7 +132,9 @@ const KegiatanHero = ({
             <span className={styles.dateBadge}>
               {formatDate(displayActivity.date)}
             </span>
-            <span className={styles.categoryBadge}>Kegiatan</span>
+            <span className={styles.categoryBadge}>
+              {t("activities.activities")}
+            </span>
             {error && <span className={styles.errorBadge}>Fallback Data</span>}
           </div>
 
@@ -120,16 +142,12 @@ const KegiatanHero = ({
             {truncateTitle(displayActivity.title)}
           </h1>
 
-          {/* {displayActivity.preview && (
-            <p className={styles.heroPreview}>{displayActivity.preview}</p>
-          )} */}
-
           <button
             className={styles.heroCta}
             onClick={handleReadMore}
             disabled={!featuredActivity || !featuredActivity.id}
           >
-            Baca selengkapnya
+            {currentLang === "id" ? "Baca selengkapnya" : "Read more"}
             <svg
               width="20"
               height="20"
@@ -153,7 +171,6 @@ const KegiatanHero = ({
             alt={displayActivity.title || "AEML Activities"}
             className={styles.heroImage}
             onError={(e) => {
-              // Fallback image if the original fails to load
               e.target.src = defaultActivity.image;
             }}
           />

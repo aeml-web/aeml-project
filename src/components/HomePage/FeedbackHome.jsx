@@ -5,6 +5,7 @@ import {
   submitAnswer,
   submitContactUsAnswer,
 } from "../../helpers/apiService";
+import { useTranslation, Trans } from "react-i18next";
 
 const FeedbackHome = () => {
   const [feedback, setFeedback] = useState("");
@@ -13,6 +14,7 @@ const FeedbackHome = () => {
   const [question, setQuestion] = useState(null);
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const { t, i18n } = useTranslation();
 
   // Fetch active question on component mount
   useEffect(() => {
@@ -114,8 +116,8 @@ const FeedbackHome = () => {
     <div className={styles.backgroundFeedback}>
       <div className={styles.modalContent}>
         <div className={styles.leftSection}>
-          <h2 className={styles.hashtag}>#SharingEML</h2>
-          <p className={styles.subtitle}>Jaring pendapat publik untuk AEML</p>
+          <h2 className={styles.hashtag}>{t("sharing.hashtag")}</h2>
+          <p className={styles.subtitle}>{t("sharing.subtitle")}</p>
         </div>
 
         <div className={styles.rightSection}>
@@ -126,7 +128,7 @@ const FeedbackHome = () => {
               <textarea
                 value={feedback}
                 onChange={(e) => setFeedback(e.target.value)}
-                placeholder="Ketik jawaban kamu disini..."
+                placeholder={t("sharing.placeholder")}
                 className={styles.textarea}
                 rows={5}
                 maxLength={500}
