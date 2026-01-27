@@ -1,0 +1,54 @@
+{
+  "1": {
+    "id": 1,
+    "question": "Apa pendapatmu tentang kendaraan listrik di Indonesia?",
+    "isActive": false,
+    "createdAt": {
+      "_seconds": 1757520432,
+      "_nanoseconds": 0
+    },
+    "updatedAt": {
+      "_seconds": 1758033598,
+      "_nanoseconds": 0
+    }
+  },
+  "2": {
+    "id": 2,
+    "question": "Apa pendapatmu tentang kendaraan listrik di Indonesia?",
+    "isActive": false,
+    "createdAt": {
+      "_seconds": 1757520493,
+      "_nanoseconds": 0
+    },
+    "updatedAt": {
+      "_seconds": 1758566770,
+      "_nanoseconds": 0
+    }
+  },
+  "4": {
+    "id": 4,
+    "question": "Apa jenis kendaraan listrik yang kamu gunakan saat ini?",
+    "isActive": true,
+    "createdAt": {
+      "_seconds": 1758034018,
+      "_nanoseconds": 0
+    },
+    "updatedAt": {
+      "_seconds": 1761622661,
+      "_nanoseconds": 0
+    }
+  },
+  "5": {
+    "id": 5,
+    "question": "elementum mi varius nec. Duis eget velit id justo aliquam semper vitae in.",
+    "isActive": false,
+    "createdAt": {
+      "_seconds": 1758641912,
+      "_nanoseconds": 0
+    },
+    "updatedAt": {
+      "_seconds": 1759144091,
+      "_nanoseconds": 0
+    }
+  }
+}

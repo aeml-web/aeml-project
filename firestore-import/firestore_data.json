@@ -1,0 +1,867 @@
+{
+  "__collections__": {
+    "AemlAdminQuestions": {
+      "1": {
+        "id": 1,
+        "question": "Apa pendapatmu tentang kendaraan listrik di Indonesia?",
+        "isActive": false,
+        "createdAt": {
+          "_seconds": 1757520432,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1758033598,
+          "_nanoseconds": 0
+        }
+      },
+      "2": {
+        "id": 2,
+        "question": "Apa pendapatmu tentang kendaraan listrik di Indonesia?",
+        "isActive": false,
+        "createdAt": {
+          "_seconds": 1757520493,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1758566770,
+          "_nanoseconds": 0
+        }
+      },
+      "4": {
+        "id": 4,
+        "question": "Apa jenis kendaraan listrik yang kamu gunakan saat ini?",
+        "isActive": true,
+        "createdAt": {
+          "_seconds": 1758034018,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1761622661,
+          "_nanoseconds": 0
+        }
+      },
+      "5": {
+        "id": 5,
+        "question": "elementum mi varius nec. Duis eget velit id justo aliquam semper vitae in.",
+        "isActive": false,
+        "createdAt": {
+          "_seconds": 1758641912,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1759144091,
+          "_nanoseconds": 0
+        }
+      }
+    },
+    "AemlAnswers": {
+      "4": {
+        "id": 4,
+        "answer": "This is the first sample answer",
+        "aemlAdminQuestionId": 1,
+        "createdAt": {
+          "_seconds": 1757520493,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1757520493,
+          "_nanoseconds": 0
+        }
+      },
+      "5": {
+        "id": 5,
+        "answer": "Another example answer related to question 1",
+        "aemlAdminQuestionId": 1,
+        "createdAt": {
+          "_seconds": 1757520493,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1757520493,
+          "_nanoseconds": 0
+        }
+      },
+      "6": {
+        "id": 6,
+        "answer": "Answer for question 2",
+        "aemlAdminQuestionId": 2,
+        "createdAt": {
+          "_seconds": 1757520493,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1757520493,
+          "_nanoseconds": 0
+        }
+      },
+      "7": {
+        "id": 7,
+        "answer": "csdfsdfsdfsdf",
+        "aemlAdminQuestionId": 4,
+        "createdAt": {
+          "_seconds": 1758566699,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1758566699,
+          "_nanoseconds": 0
+        }
+      },
+      "8": {
+        "id": 8,
+        "answer": "ini coba jawab ya",
+        "aemlAdminQuestionId": 5,
+        "createdAt": {
+          "_seconds": 1758642200,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1758642200,
+          "_nanoseconds": 0
+        }
+      },
+      "9": {
+        "id": 9,
+        "answer": "jawab lagi 123",
+        "aemlAdminQuestionId": 5,
+        "createdAt": {
+          "_seconds": 1758642206,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1758642206,
+          "_nanoseconds": 0
+        }
+      },
+      "10": {
+        "id": 10,
+        "answer": "jawab algi deh coba",
+        "aemlAdminQuestionId": 5,
+        "createdAt": {
+          "_seconds": 1758642212,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1758642212,
+          "_nanoseconds": 0
+        }
+      },
+      "11": {
+        "id": 11,
+        "answer": "asdasdas",
+        "aemlAdminQuestionId": 5,
+        "createdAt": {
+          "_seconds": 1758729288,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1758729288,
+          "_nanoseconds": 0
+        }
+      },
+      "12": {
+        "id": 12,
+        "answer": "sadas",
+        "aemlAdminQuestionId": 5,
+        "createdAt": {
+          "_seconds": 1758729298,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1758729298,
+          "_nanoseconds": 0
+        }
+      },
+      "13": {
+        "id": 13,
+        "answer": "satu tambah satu",
+        "aemlAdminQuestionId": 5,
+        "createdAt": {
+          "_seconds": 1759142555,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1759142555,
+          "_nanoseconds": 0
+        }
+      },
+      "14": {
+        "id": 14,
+        "answer": "test sharing EML",
+        "aemlAdminQuestionId": 4,
+        "createdAt": {
+          "_seconds": 1764037913,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1764037913,
+          "_nanoseconds": 0
+        }
+      }
+    },
+    "AemlPrograms": {
+      "18": {
+        "id": 18,
+        "title": "Transforming Indonesia's Transportation",
+        "subtitle": "Accelerating EV Adoption for Two- and Four-Wheelers",
+        "body": null,
+        "images": [
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1759038887/image/mmpxmldwgrtesxvxdlkw.png"
+        ],
+        "type": "publication",
+        "linkDownload": "https://drive.google.com/file/d/1M-tVMNR-v_ctEBsSKgkCcz9xJdGO87FL/view?usp=drive_link",
+        "isDeleted": false,
+        "isShowed": true,
+        "tenant_id": "AemlAdmin",
+        "createdAt": {
+          "_seconds": 1748736000,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1759038888,
+          "_nanoseconds": 0
+        },
+        "tags": "Edaran"
+      },
+      "19": {
+        "id": 19,
+        "title": "Electrifying Indonesia's Two-Wheeler Industry",
+        "subtitle": "INDONESIA IS POISED TO ENERGIZE AN ELECTRIC VEHICLE (EV) revolution",
+        "body": null,
+        "images": [
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1759039110/image/ynkvbtdnkdxvblpwz02h.png"
+        ],
+        "type": "publication",
+        "linkDownload": "https://drive.google.com/file/d/1J8BY2PAUA3ER16sC5-MOYhH2HsiZQadT/view?usp=drive_link",
+        "isDeleted": false,
+        "isShowed": true,
+        "tenant_id": "AemlAdmin",
+        "createdAt": {
+          "_seconds": 1667260800,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1759039111,
+          "_nanoseconds": 0
+        },
+        "tags": "Edaran"
+      },
+      "25": {
+        "id": 25,
+        "title": "Indonesia's Electric Vehicle Outlook",
+        "subtitle": "Supercharging Tomorrow's Mobility",
+        "body": null,
+        "images": [
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1759140326/image/vzelqulttryvphfcfq09.jpg"
+        ],
+        "type": "publication",
+        "linkDownload": "https://drive.google.com/file/d/1PlgDopcFq2F3uhTF2b90y157k0-W8zo9/view?usp=drive_link",
+        "isDeleted": false,
+        "isShowed": true,
+        "tenant_id": "AemlAdmin",
+        "createdAt": {
+          "_seconds": 1688169600,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1759140327,
+          "_nanoseconds": 0
+        },
+        "tags": "Laporan"
+      },
+      "28": {
+        "id": 28,
+        "title": "Pandu Sjahrir Terpilih sebagai Ketua Umum AEML Periode 2025-2029",
+        "subtitle": "Menurut Pandu Sjahrir AEML akan berperan aktif menyusun berbagai usulan kebijakan insentif untuk mempercepat pengembangan ekosistem kendaraan listrik",
+        "body": "<b>TEMPO.CO, Jakarta</b> - Asosiasi Ekosistem Mobilitas Listrik (AEML) resmi menunjuk Pandu Sjahrir sebagai Ketua Umum periode 2025-2029. Hal itu disampaikan di konferensi pers yang digelar di Pacific Place, Jakarta, pada Kamis, 20 Februari 2025, Pandu mengklaim berkomitmen memperkuat ekosistem kendaraan listrik melalui kolaborasi strategis. \"Pertumbuhan kendaraan listrik di Indonesia meningkat signifikan setiap tahunnya. Pada 2023, jumlah kendaraan listrik mencapai 116 ribu unit, melonjak 179 persen dari tahun sebelumnya. Tren ini berlanjut di 2024 dengan penambahan 91 ribu unit, sehingga total populasi kendaraan listrik kini sekitar 207 ribu unit,\" kata Pandu dalam keterangan resminya dikutip Jumat, 21 Februari 2025.<br /><br />Menurut Pandu, tantangan mendorong adopsi Electric Vehicle (EV) masih besar. Kepercayaan masyarakat dan lembaga pembiayaan terhadap berbagai merek kendaraan listrik menjadi salah satu kendala utama. Selain itu, edukasi mengenai manfaat kendaraan listrik, seperti efisiensi biaya operasional dan dampak lingkungan yang lebih baik, perlu diperkuat.<br /><br />AEML, kata Pandu, memiliki visi menjadikan ekosistem kendaraan listrik di Indonesia lebih kompetitif secara global. “Kami mengajak seluruh anggota AEML untuk aktif menyampaikan tantangan di lapangan agar dapat dicari solusi bersama. Dengan begitu, AEML bisa menjadi wadah yang efektif dalam mempercepat perkembangan industri ini,” ujarnya.<br /><br />Dalam jangka pendek, AEML akan berperan aktif dalam menyusun berbagai usulan kebijakan insentif untuk mempercepat pengembangan ekosistem kendaraan listrik. Sementara dalam jangka panjang, organisasi ini menargetkan pembentukan pasar sekunder kendaraan listrik yang kuat.<br /><br />AEML bakal berfokus pada tiga pilar utama guna memastikan ekosistem kendaraan listrik di Indonesia tumbuh secara berkelanjutan yaitu enabler side, supply side, serta demand side untuk memastikan ekosistem kendaraan listrik di Indonesia tumbuh secara berkelanjutan. “Dengan semangat kolaborasi dan gotong royong, saya berharap kita semua dapat bekerja sama menciptakan industri yang lebih maju serta mengurangi emisi kendaraan untuk masa depan Indonesia yang lebih baik,” kata Pandu.<br /><br />AEML merupakan organisasi yang berfokus pada pengembangan ekosistem kendaraan listrik di Indonesia. Mereka mengklaim mendukung adopsi kendaraan listrik, memperkuat industri dalam negeri, serta membangun kolaborasi dengan pemangku kepentingan guna menciptakan ekosistem mobilitas listrik yang berdaya saing global.<br /><br />(Tempo.co)",
+        "images": [
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1762053430/image/ypilybahlr7m41vlcpkc.jpg"
+        ],
+        "type": "kegiatan",
+        "linkDownload": "",
+        "isDeleted": false,
+        "isShowed": true,
+        "tenant_id": "AemlAdmin",
+        "createdAt": {
+          "_seconds": 1740096000,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1762401726,
+          "_nanoseconds": 0
+        },
+        "tags": "pengumuman"
+      },
+      "29": {
+        "id": 29,
+        "title": "Strategi AEML Mendorong Penggunaan Kendaraan Listrik di Indonesia",
+        "subtitle": "Jakarta – Asosiasi Electric Mobility Listrik (AEML) mempunyai berbagai strategi untuk meningkatkan penggunaan kendaraan listrik di Indonesia.",
+        "body": "Jakarta – Asosiasi Electric Mobility Listrik (AEML) mempunyai berbagai strategi untuk meningkatkan penggunaan kendaraan listrik di Indonesia.<br /><br />Sebagai informasi, AEML merupakan sebuah asosiasi yang bergabung dengan perkumpulan dari sektor energi, baterai, dan infrastruktur kendaraan listrik.<br /><br />Asosiasi ini memiliki misi utama, yaitu menciptakan ekosistem kendaraan listrik di Indonesia.<br /><br />Untuk mencapai hal tersebut, AEML mengedepankan tiga pilar utama, yakni supply, demand, dan enabler.<br /><br />“Kalau untuk supply, kami mendorong manufaktur Electric Vehicle (EV) dan sebagainya tumbuh. Dari sisi demand, kami bekerja sama dengan pemerintah agar adopsi kendaraan listrik dapat berjalan dengan baik,” ujar Anugraha Dezmercoledi, Direktur Eksekutif Sekretariat AEML di sela-sela acara AEML Knowledge Exchange Forum di Jakarta, Kamis (22/8/2024).<br /><br />“Yang menarik dari sisi enabler. Selain regulasi dan kebijakan, infrastruktur EV dan pembiayaan juga menjadi kunci,” sambungnya.<br />Selain itu, AEML juga fokus pada edukasi publik sebagai strategi lain dalam meningkatkan penggunaan kendaraan listrik di Indonesia.<br /><br />Rian Ernerst Sekretaris Jenderal AEML menyampaikan bahwa pihaknya menekankan edukasi publik melalui media sosial serta komunikasi langsung dengan pengguna kendaraan listrik.<br /><br />“AEML aktif berinteraksi dengan pengguna sepeda motor listrik, membantu mereka memahami manfaat dan kemudahan penggunaan kendaraan listrik,” jelas Rian.<br /><br />Tak hanya itu, AEML turut terlibat dalam pengembangan standar nasional untuk baterai kendaraan listrik melalui Badan Standarisasi Nasional (BSN).<br /><br />Menurut Rian, menjaga standar baterai merupakan kunci untuk memastikan performa kendaraan listrik tetap baik selama dikendarai.<br /><br />“Baterai (kendaraan listrik) jika digunakan dengan baik dan sesuai standar, seharusnya tidak menimbulkan masalah apapun. Ini adalah aspek yang kami galakkan,” terang Rian.<br /><br />Dalam kesempatan yang sama, Dannif Danusaputro, Ketua Umum AEML mengapresiasi kebijakan pemerintah seperti pembebasan aturan ganjil-genap untuk mobil listrik di Jakarta.<br /><br />Dannif menilai kebijakan tersebut sangat efektif mendorong penggunaan kendaraan listrik.<br /><br />“Saya sendiri sebagai pemilik mobil listrik merasakan manfaat langsung dari kebijakan tersebut. Ini adalah langkah tepat untuk meningkatkan demand kendaraan listrik di Indonesia,” tutup Dannif.<br /><br />Pada kesempatan yang sama AEML pun meluncurkan sebuah platform edukasi publik berbasis website Infomolis.id mengenai mobilitas listrik di Indonesia.<br /><br />Pembuatan platform ini merupakan hasil kerja sama AEML dengan Institute For Essential Services Reform (IESR) sebagai lembaga yang memiliki tujuan keberlanjutan ekologi dan Grab.<br /><br />Penulis: Nadya Andari (Carmudi)<br />Editor: Santo/Dimas",
+        "images": [
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1762053110/image/auxb7uxdoyatpcmftypr.jpg"
+        ],
+        "type": "kegiatan",
+        "linkDownload": null,
+        "isDeleted": false,
+        "isShowed": true,
+        "tenant_id": "AemlAdmin",
+        "createdAt": {
+          "_seconds": 1724284800,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1762053111,
+          "_nanoseconds": 0
+        },
+        "tags": "Kegiatan"
+      },
+      "30": {
+        "id": 30,
+        "title": "Resmi! Asosiasi Ekosistem Mobilitas Listrik (AEML) Terbentuk di RI",
+        "subtitle": "Pertamina dan PLN bersama pihak swasta sepakat membentuk Asosiasi Ekosistem Mobilitas Listrik (AEML) di Indonesia.",
+        "body": "Bisnis.com, JAKARTA - Sejumlah BUMN seperti Pertamina dan PLN bersama pihak swasta resmi membentuk Asosiasi Ekosistem Mobilitas Listrik (AEML) di Indonesia. <br /><br />Ketua AEML, Dannif Danusaputro mengatakan pembentukan asosiasi dilakukan seiring dengan tingginya minat masyarakat menggunakan Kendaraan Bermotor Listrik Berbasis Baterai (KBLBB). <br /><br />\"Kami percaya dengan peran aktif berbagai pihak, dukungan penuh pemerintah dan masyarakat ekosistern KBLBB akan segera dapat tumbuh dan berkembang dan proses transisi energi akan semakin lancar\" kata <br /><br />Dannif di Jakarta, Senin (5/6/2023). Dannif menjelaskan AEML didirikan sebagai wadah bagi para pionir di industri kendaraan bermotor listrik berbasis baterai dan industri pendukung ekosistem mobilitas listrik di Indonesia.<br /><br />Menurutnya, upaya percepatan adopsi KBLBB di Indonesia memerlukan pembangunan infrastruktur mobilitas listrik yang merata.<br /><br />\"Kami percaya bahwa percepatan adopsi kendaraan listrik harus sejalan dengan pertumbuhan infrastruktur pendukungnya. Dengan keamanan dan kemudahan sebagai fokus utama, kita dapat mendorong adopsi oleh masyarakat,\" ujar Dannif, yang juga CEO dari Pertamina New & Renewable Energy.<br /><br />Saat ini, KBLBB telah menjadi fokus baru dari berbagai instansi, salah satunya Kementerian BUMN. Melalui Pertamina dan Sub Holding-nya, Pertamina New & Renewable Energy terus mengkampanyekan serta melakukan berbagai upaya strategis dalam pengembangan battery pack dan fasilitas pendukung EV ecosystem lainnya.<br /><br />Selain itu, Pertamina memiliki lebih dari 7.400 SPBU, 6.100 Pertashop, dan 63.000 outlet LPG yang siap dikolaborasikan dengan pihak lain dari berbagai negara untuk mengoptimalkan infrastruktur yang dimiliki dalam mendukung terwujudnya ekosistem kendaraan listrik di Indonesia.<br /><br />Senada dengan hal tersebut, Ketua Umum Kamar Dagang dan Industri Indonesia (Kadin), Arsjad Rasjid, yang juga merupakan Ketua Dewan Pengawas AEML, menyambut baik pembentukan asosiasi ini.<br /><br />“Saya mengapresiasi AEML sebagai wadah inklusif bagi pelaku usaha di industri kendaraan listrik, serta pelaku usaha pendukung seperti perusahaan baterai, komponen kendaraan listrik, stasiun pengisian, dan penukaran baterai umum,” ujar Arsjad.<br /><br />Arsjad menambahkan, dengan adanya AEML diharapkan dapat mendukung penggunaan 1 juta kendaraan listrik roda empat dan 3 juta kendaraan listrik roda dua pada tahun 2035.<br />Ia juga menilai dampak penggunaan kendaraan listrik akan sangat positif bagi lingkungan karena dapat mengurangi emisi karbon di Indonesia.<br /><br />Sebagai informasi, Indonesia menargetkan untuk mencapai Net Zero Emission pada tahun 2060 atau bahkan lebih awal. Salah satu langkah strategis untuk mencapai target tersebut adalah dengan mengembangkan ekosistem kendaraan listrik nasional melalui AEML.<br /><br />(bisnis.com)",
+        "images": [
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1762056789/image/yqenrfhwz5aaes1zxl7c.jpg"
+        ],
+        "type": "kegiatan",
+        "linkDownload": null,
+        "isDeleted": false,
+        "isShowed": true,
+        "tenant_id": "AemlAdmin",
+        "createdAt": {
+          "_seconds": 1685923200,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1762056791,
+          "_nanoseconds": 0
+        },
+        "tags": "Pengumuman"
+      },
+      "31": {
+        "id": 31,
+        "title": "AC Ventures and AEML release top report on Indonesia’s EV outlook",
+        "subtitle": "Indonesia’s leading early-stage venture capital firm AC Ventures (ACV) and AEML released the most in-depth and authoritative report to date on Indonesia’s budding electric vehicle sector",
+        "body": "Indonesia’s leading early-stage venture capital firm AC Ventures (ACV) and the Electric Mobility Ecosystem Association (AEML) released the most in-depth and authoritative report to date on Indonesia’s budding electric vehicle sector. The report’s exclusive launch took place at ACV’s headquarters in downtown Jakarta, with a variety of international media, prominent investors, and entrepreneurs, as well as government and institutional stakeholders in attendance.<br /><br />The report, titled “Indonesia’s Electric Vehicle Outlook: Supercharging Tomorrow’s Mobility,” features a series of high-profile forewords from Indonesia’s Coordinating Minister of Maritime and Investment Affairs Luhut Binsar Pandjaitan, Minister of Industry Agus Gumiwang Kartasasmita, Minister of Transportation Budi Karya Sumadi, and Pertamina New and Renewable Energy CEO Dannif Utojo Danusaputro, who also served as General Chairman of AEML.  <br /><br />The report reveals a burgeoning market for electric vehicles (EVs) in Indonesia, with a total addressable market already surpassing US$20 billion, despite minimal adoption to date. The study explores and analyzes multiple key topics, including major industry players, infrastructure development, localized production, sales, public sentiment, industry and supply chain dynamics, and policy and regulation, as well as what public and private actors can do to build a more conducive EV economy in ASEAN’s single largest market.<br /><br />Indonesia has set ambitious renewable energy goals, intending to augment the proportion of renewables to 23% of the country’s energy composition by 2025. This marks a significant rise from the approximately 9% established in mid-2020. The country envisions a broader nationwide energy transition to be completed by 2056. These initiatives are consistent with Indonesia’s obligations under the Paris Agreement to decrease emissions by 29% by 2030 and to attain a net-zero emissions target by 2060 or earlier.<br /><br />The report by ACV and AEML showcases a coalition of vital factors setting the stage for exponential growth in the nation’s EV market. These include a surge in consumer demand, supportive government policies, and advancements in technology that enhance performance while reducing production and ownership costs.<br /><br />EVs in Indonesia promise 75% greater efficiency and significantly lower operating costs for businesses. This offers the potential for the country’s electric mobility market to grow at a remarkable CAGR of 58.5% until 2030. Further, EVs also have the capacity to substantially reduce the nation’s energy imports, which currently total US$35 billion annually.<br /><br />Currently, EV motorbikes account for a mere 0.2% of Indonesia’s two-wheeler market. However, the report suggests an opportunity for this to exceed 10% over the next five years, assuming that public and private stakeholders collaborate effectively to nurture a conducive local EV sector.<br /><br />Encouragingly, considerable capital and resource investments are already in progress. Local brands and venture investors are actively forging deals and strategic partnerships, and the sector has already ushered in global automotive giants such as Hyundai, Honda, Toyota, Mitsubishi, Wuling, and others.<br /><br />While the Indonesian EV market is still nascent, it presents enormous potential. Entrepreneurs, stakeholders, investors, and policymakers who strategically position themselves today will reap substantial benefits from this burgeoning market in the coming years.<br /><br />AC Ventures Managing Partner Helen Wong explained, “The report’s revelations about Indonesia’s rapidly evolving electric vehicle market affirm the immense investment opportunity we’re witnessing. At ACV, we’re excited to be at the forefront of this green energy transition, catalyzing sustainable growth. The current surge and trajectory in electric two-wheelers speak to the market’s clear demand and potential for remarkable returns. As a pioneering investment firm in this sector, we’re committed to fostering strategic collaborations to exceed Indonesia’s renewable energy targets, promising a future of reduced emissions and enhanced sustainability.”<br /><br />AEML General Chairman Dannif Utojo Danusaputro added, “We partner with the government of Indonesia, international organizations, key actors in the EV ecosystem, as well as other associations, to reach out to more people and promote a positive campaign for EVs. Our mission of electrifying mobility in Indonesia is based on a calling to protect the environment by reducing pollution for future generations. AEML is committed to supporting the adoption of EVs and fostering the creation of a globally competitive EV ecosystem. We are proud to release this comprehensive report with AC Ventures.”",
+        "images": [
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1762401347/image/ssusimpefbctqkqymafo.png"
+        ],
+        "type": "kegiatan",
+        "linkDownload": "https://drive.google.com/file/d/1PlgDopcFq2F3uhTF2b90y157k0-W8zo9/view?usp=drive_link",
+        "isDeleted": false,
+        "isShowed": true,
+        "tenant_id": "AemlAdmin",
+        "createdAt": {
+          "_seconds": 1688342400,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1762401816,
+          "_nanoseconds": 0
+        },
+        "tags": "berita"
+      },
+      "32": {
+        "id": 32,
+        "title": "AEML Rilis Portal Informasi Industri EV di Indonesia",
+        "subtitle": "AEML kembali memperkuat komitmennya dalam mendukung pertumbuhan mobilitas listrik dengan meluncurkan Infomolis.id ",
+        "body": "<b>JAKARTA</b> - Asosiasi Ekosistem Mobilitas Listrik (AEML) kembali memperkuat komitmennya dalam mendukung pertumbuhan mobilitas listrik dengan meluncurkan Infomolis.id yang merupakan hasil kerja sama dengan Institute For Essential Service Reform (IESR) dan Grab.<br /><br />Peluncuran tersebut berlangsung dalam acara AEML Knowledge Exchange Forum (AKEF) 2024, sebuah ajang forum diskusi lintas industri yang hadir dalam mendorong percepatan mobilitas listrik di Indonesia bertajuk “Navigating The EV Ecosystem and Financing Innovations In Indonesia”.<br /><br />Penyelenggaraan tersebut merupakan bagian dari inisiatif Kementerian Maritim dan Investasi (Kemenkomarves) Republik Indonesia (RI) bertajuk Indonesia International Sustainability Forum (ISF).<br /><br />Ketua Umum AEML Dannif Danusaputro mengatakan bahwa laman ini dihadirkan sebagai wadah informasi bagi masyarakat Indonesia untuk mempelajari lebih lanjut mengenai kendaraan listrik yang dapat berperan dalam kemajuan ekosistem hijau.<br /><br />“Bersama IESR dan Grab, kami menghadirkan Infomolis.id sebagai wadah informasi bagi masyarakat Indonesia untuk mempelajari lebih lanjut berbagai kendaraan listrik yang berkontribusi untuk mobilitas ramah lingkungan,” kata Dannif saat pemaparannya kepada media di The Energy Building, SCBD, Jakarta, Kamis, 22 Agustus.<br /><br />Ia mengharapkan inisiatif tersebut dapat mendorong publik untuk beralih dan merasakan manfaat langsung dari kendaraan bertenaga listrik.<br /><br />“Kami berharap inisiatif ini dapat mendorong publik untuk beralih dan merasakan manfaat langsung dari kendaraan serta moda transportasi bertenaga listrik,” jelas Dannif.<br /><br />Laman Infomolis.id memberikan sejumlah informasi terkait kendaraan listrik, seperti berita-berita industri elektrifikasi di dalam negeri, infrastruktur pendukung seperti Stasiun Pengisian Kendaraan Listrik Umum (SPKLU) dan Stasiun Penukaran Baterai Kendaraan Listrik Umum (SPBKLU), dan hadir dengan kuis interaktif untuk menguju pemahaman masyarakat terkait mobilitas listrik.<br /><br />Portal tersebut dirancang tidak berbayar dan dibuka untuk kepentingan umum sebagai medium penyedia informasi bagi publik mengenai mobilitas listrik di tanah air.<br /><br /><i>Foto: Peluncuran Infomolid.id yang berlangsung di The Energy Building, Soehanna Hall, SCBD, Jakarta (sumber: Bagus Muhammad Hafizh/VOI)</i>",
+        "images": [
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1762401632/image/rwaz82qq7amaz4qwaquk.jpg"
+        ],
+        "type": "kegiatan",
+        "linkDownload": "",
+        "isDeleted": false,
+        "isShowed": true,
+        "tenant_id": "AemlAdmin",
+        "createdAt": {
+          "_seconds": 1724371200,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1762401773,
+          "_nanoseconds": 0
+        },
+        "tags": "berita"
+      }
+    },
+    "AemlUsers": {
+      "1": {
+        "id": 1,
+        "username": "Kathlyn.Steuber8",
+        "email": "aemltest@gmail.com",
+        "password": "$2a$10$244VwVsUbDaa1as5gSlr3ehZjWNpGKrY2Umfmeg/ZMDWt1eikbYmG",
+        "fullName": "Audie_Morar",
+        "isActive": true,
+        "tenant_id": "AemlAdmin",
+        "createdAt": {
+          "_seconds": 1757066385,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1757066385,
+          "_nanoseconds": 0
+        }
+      },
+      "2": {
+        "id": 2,
+        "username": "Admin Aeml",
+        "email": "admin@aeml.or.id",
+        "password": "$2a$10$kOJgf1XISPBCAd.dL6/EheJ5rqsUI8PDQfwUFF7EjY9bXrGG9gwxS",
+        "fullName": "Admin Aeml",
+        "isActive": true,
+        "tenant_id": "AemlAdmin",
+        "createdAt": {
+          "_seconds": 1762446669,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1762446669,
+          "_nanoseconds": 0
+        }
+      }
+    },
+    "PolaPrograms": {
+      "4": {
+        "id": 4,
+        "title": "The Future of Political Campaigning: Strategic Insights from Prabowo’s TikTok Success",
+        "subtitle": "By Yoga Susatyo, Public Relations Strategist",
+        "body": "By Yoga Susatyo, Public Relations Strategist<br /><br /><b> The Digital Transformation of Political Campaigning </b> <br /><br />The 2024 political landscape underscored a pivotal shift: social media—particularly TikTok—has become an indispensable tool for shaping public perception. Politicians worldwide have adapted, leveraging viral content, strategic public engagements, and meticulously curated digital narratives to bolster their image. Among them, Prabowo Subianto distinguished himself—not merely as a participant but as a strategist who harnessed TikTok to optimize his political outreach.<br /><br />His success was not incidental; it was the product of a well-structured digital communication strategy. This article examines the key principles behind Prabowo’s approach and explores how future political campaigns can leverage similar tactics to remain competitive in the evolving digital arena.<br /><br /><b>Key Strategic Takeaways for Future Campaigns</b><br /><br />Prabowo’s TikTok dominance extended beyond viral dances or unconventional debate rhetoric. His team executed a calculated and methodical digital strategy, offering a valuable framework for future political campaigns. The following insights highlight essential strategies for effective digital engagement:<br /><br />1. Cultivate Exclusivity to Drive Demand<br /><br />One of the most common pitfalls in modern political campaigns is content oversaturation. Prabowo took a distinct approach—limiting his presence to create anticipation. Instead of frequently engaging on his party’s official TikTok, he strategically minimized his appearances to ensure maximum impact.<br /><br />Between May and June 2024, Prabowo’s party posted only five times on TikTok—three of which centered exclusively on him. In contrast, the opposing PDIP party published 56 posts within the same timeframe. This deliberate scarcity heightened public interest, transforming each appearance into a highly anticipated event.<br /><br />2. Strategic Content Timing for Maximum Engagement<br /><br />Prabowo’s campaign capitalized on the psychology of anticipation. Rather than adhering to a daily posting routine, his digital strategy prioritized timing over frequency. The unpredictability of his social media presence kept audiences engaged, with each new post generating significant traction and viral momentum.<br /><br />3. Utilizing Third-Party Advocacy for Organic Amplification<br /><br />Unlike traditional campaign strategies that emphasize self-promotion, Prabowo’s team relied on decentralized advocacy. Instead of consistently posting through official party accounts, they empowered fan communities, influencers, and coalition allies to disseminate campaign narratives.<br /><br />For instance, a clip from an interview with Fahri Hamzah on the Total Politik podcast—shared via Prabowo’s party—accumulated 427,600 views overnight. This illustrates the effectiveness of leveraging independent voices to reinforce political messaging, fostering authenticity and enhancing engagement.<br /><br />4. Redefining Crisis Management Through Entertainment<br /><br />Political campaigns inevitably encounter criticism. The manner in which candidates respond to controversy can significantly influence public perception. Prabowo’s strategy—dubbed the ‘IDGAF’ approach—prioritized humor, levity, and entertainment. Instead of engaging in defensive rhetoric, he utilized music, memes, and lighthearted content to reshape narratives in his favor, rendering him more relatable and impervious to attacks.<br /><br /><b> Recommendations for Future Political Campaigns </b> <br /><br />As social media continues to dictate the dynamics of political engagement, campaign strategies must evolve accordingly. Below are three key recommendations for political teams aiming to enhance their digital impact:<br /><br />1. Optimize Digital Presence: Avoid excessive content dissemination. Instead, adopt a selective posting strategy that enhances anticipation and maximizes engagement.<br />2. Leverage Networked Advocacy: Foster a robust digital ecosystem by encouraging organic promotion through fan bases, coalition partners, and influential voices.<br />3. Transform Challenges into Opportunities: In the era of viral media, strategic humor and engaging content can mitigate criticism, turning potential setbacks into advantages.<br /><br />Prabowo’s campaign exemplifies how digital strategy, when executed with precision, can redefine political engagement. Moving forward, politicians who master strategic digital communication, controlled visibility, and audience-driven advocacy will hold a distinct advantage in the competitive landscape of modern political campaigning.",
+        "images": [
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1742599175/image/a2ljqcqvbalhd3jxs8e5.jpg"
+        ],
+        "type": "article",
+        "isDeleted": false,
+        "isShowed": true,
+        "createdAt": {
+          "_seconds": 1742599176,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1742599282,
+          "_nanoseconds": 0
+        }
+      },
+      "7": {
+        "id": 7,
+        "title": "Jiva Svastha Nusantara Foundation: Indonesia Sehat, Mulai Dari Air Bermutu 2025",
+        "subtitle": "In Indonesia, access to clean and safe water remains a pressing issue.",
+        "body": "In Indonesia, access to clean and safe water remains a pressing issue. In many areas, particularly West Java, there is a lack of awareness about the importance of water quality. Contaminated water is a leading cause of malnutrition and stunting, especially in children, and has a direct impact on both physical and cognitive development. Boiling water is often seen as a solution, but it does not always eliminate harmful pathogens, leaving families at risk of waterborne diseases.<br /><br />The health consequences of unsafe water go beyond illness—they also impose emotional and financial burdens on families. Conditions such as chronic diarrhea, urinary tract infections, and kidney failure place a strain on household resources and perpetuate cycles of poverty and poor health.<br /><br />To address this issue, the Jiva Svastha Nusantara Foundation is launching the program “Indonesia Sehat, Mulai Dari Air Bermutu.” This initiative aligns with the government’s goal of providing universal access to safe drinking water and reducing stunting rates. The foundation’s efforts will begin in West Java, focusing on education and community outreach with the message “Cermat Memilih Air Higenis”. The program will empower families to make informed decisions about water sources and hygiene practices.<br /><br />By prioritizing clean water, the foundation aims to contribute to a healthier and more sustainable future for Indonesia’s next generation. This initiative underscores the critical role of safe water not just as a basic necessity, but as a cornerstone of public health and national development.<br />",
+        "images": [
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1742977977/image/mepejgejfapdfamntsr6.jpg",
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1742977981/image/sx0mopjxdjsukvdrhjcy.jpg",
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1742978009/image/qhnoalbqrz849zlwufqx.jpg"
+        ],
+        "type": "portfolio",
+        "isDeleted": false,
+        "isShowed": true,
+        "createdAt": {
+          "_seconds": 1742978010,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1742978010,
+          "_nanoseconds": 0
+        }
+      },
+      "8": {
+        "id": 8,
+        "title": "Expectancy Violation Theory (EVT) in Branding: The Khong Guan Case",
+        "subtitle": "How Expectations Shape Brand Perception",
+        "body": "<b> <i>By Yoga Susatyo, Public Relations Strategist </i></b><br /><br /><b> How Expectations Shape Brand Perception </b><br /><br />During festive seasons, the Khong Guan biscuit tin is a familiar sight in many households. Yet, over time, a surprising cultural shift has occurred—when opened, these tins often contain rengginang or other traditional snacks instead of biscuits.<br />While humorous, this phenomenon is a compelling case study in Expectancy Violation Theory (EVT) and its implications for branding and consumer perception.<br /><br /><b> What is Expectancy Violation Theory (EVT)? </b><br /><br />EVT is a communication framework that explores how individuals react when their expectations are disrupted. In the case of Khong Guan, consumer expectations have gradually evolved:<br /><br />✅ The established association: Khong Guan tin ≠ biscuits<br />✅ The reality: Finding actual biscuits inside feels unexpected. <br />✅ The response: Amusement (as a cultural inside joke) or disappointment (expectation<br /><br />This reaction demonstrates how brand perception is shaped by repeated consumer experiences and collective narratives.<br /><br /><b> The Branding Shift: From Biscuits to Multipurpose Storage </b><br /><br />This phenomenon is more than a cultural meme—it highlights a strategic branding challenge. Over time, Khong Guan has undergone a semantic shift, where its brand identity has been informally redefined by consumer behavior.<br /><br />📌 <b> Generification of Trademark & Semantic Shift </b><br />Originally a premium biscuit brand, Khong Guan tins have become synonymous with repurposed storage containers, overshadowing their intended purpose. This type of brand dilution is a critical issue for companies looking to preserve their core identity.<br /><br /><b> Strategic Communication Implications </b><br /><br />For brands and communication strategists, the Khong Guan case underscores several key takeaways:<br /><br />🔹 Brand perception is dynamic—it evolves based on consumer behavior and cultural narratives.<br /> 🔹 Once public perception shifts, reclaiming a brand’s original meaning is challenging.<br /> 🔹 Social media accelerates brand transformations, making proactive narrative management essential.<br /><br /><b>The Bigger Question for Brands</b><br /><br />How can brands navigate and leverage evolving consumer perceptions in an era driven by digital culture and viral narratives?<br /><br />The answer lies in adaptive brand strategy, proactive messaging, and audience engagement—ensuring that brand identity remains relevant and aligned with its intended positioning.",
+        "images": [
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1742978936/image/jtskirzvbesayrdcrgfs.jpg"
+        ],
+        "type": "article",
+        "isDeleted": false,
+        "isShowed": true,
+        "createdAt": {
+          "_seconds": 1742978937,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1742978937,
+          "_nanoseconds": 0
+        }
+      },
+      "9": {
+        "id": 9,
+        "title": "Conclave (2024): A PR Masterclass in Reframing Institutional Identity",
+        "subtitle": "How do institutions rebuild their image in an era of skepticism?",
+        "body": "<i>By Yoga Susatyo, Public Relations Strategist</i><br /><br />How do institutions rebuild their image in an era of skepticism? Conclave (2024) offers a compelling case study in reputation management, using high-stakes drama to shift public perception of one of the world’s oldest and most scrutinized institutions—the Catholic Church.<br /><br />The film’s premise is bold: the Vatican elects Cardinal Benitez as the new pope, only for the world to later discover a shocking truth—Benitez is intersex. Uncovered by Cardinal Thomas Lawrence, Dean of the College of Cardinals, this revelation sparks internal conflict, power struggles, and an intense battle between tradition and progress. But beyond its gripping narrative, Conclave serves as a powerful reflection on how organizations—especially those bound by centuries-old traditions—navigate modern identity crises in the public eye.<br /><br /><b>Reframing Public Perception Through Storytelling</b><br /><br />Institutions, particularly religious and governmental ones, often face PR challenges when dealing with controversies or the need for modernization. Conclave aligns with a growing trend in media where cinematic storytelling humanizes institutions, allowing them to be seen as evolving rather than stagnant.<br /><br />Much like The Two Popes (2019) and Habemus Papam (2011), which portrayed the Vatican through a more personal and introspective lens, Conclave steps away from rigid portrayals of the Church as archaic or authoritarian. Instead, it presents a deeply divided institution grappling with its own contradictions—mirroring the real-world struggle of legacy organizations seeking relevance in a rapidly changing society.<br /><br /><b>Crisis, Reputation, and the Power of Controlled Narratives</b><br /><br />Where Conclave truly excels is in its strategic narrative approach. Unlike HBO’s The Young Pope (2016) and The New Pope (2020), which magnified Vatican scandals and moral ambiguity, Conclave takes a different PR-friendly route. Instead of dwelling on corruption, it tells a story of internal reform, integrity, and the pursuit of justice.<br /><br />From a public relations standpoint, this approach is crucial. Organizations facing scrutiny often find themselves caught between transparency and damage control. Conclave offers a model of how institutions can acknowledge internal challenges while demonstrating a commitment to reform—an essential strategy for maintaining credibility in the eyes of the public.<br /><br /><b>PR Lessons from Conclave</b><br /><br />For PR professionals, Conclave provides key takeaways on how media representation shapes institutional reputation:<br /><br />📌Narrative Framing Matters – Institutions don’t need to erase controversy; they need to control the conversation. Conclave doesn’t ignore internal Vatican struggles—it refocuses them on themes of faith, leadership, and resilience.<br /><br />📌Humanization is Key – Public trust is built through relatability. The film’s characters, despite their high-ranking positions, are portrayed as deeply human, grappling with dilemmas that audiences can connect with.<br /><br />📌Strategic Storytelling Can Shift Perception – By portraying the Church as an evolving institution rather than a relic of the past, Conclave transforms an organization often seen as rigid into one capable of introspection and change.<br /><br /><b>Final Thoughts: Conclave as a PR Blueprint</b><br /><br />In an age where reputation can be reshaped overnight, Conclave highlights the power of storytelling in institutional branding. Whether in politics, business, or religion, the ability to control narratives, humanize leadership, and address controversy with authenticity is key to maintaining relevance and trust.<br /><br />For PR professionals, the film isn’t just entertainment—it’s a case study in how legacy institutions can adapt their image while staying true to their core values.<br />",
+        "images": [
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1742979282/image/dsplpjxat3xfcv2zt0v6.jpg"
+        ],
+        "type": "article",
+        "isDeleted": false,
+        "isShowed": true,
+        "createdAt": {
+          "_seconds": 1742979282,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1742979790,
+          "_nanoseconds": 0
+        }
+      },
+      "10": {
+        "id": 10,
+        "title": "The Strategic Importance of Public Relations in Today’s Business Landscape",
+        "subtitle": "Why businesses and organizations must integrate PR as a core component of their strategy?",
+        "body": "<i>By Yoga Susatyo, Public Relations Strategist</i><br /><br />In an increasingly competitive and rapidly evolving market, Public Relations (PR) has become an indispensable tool for organizations seeking to establish credibility, maintain reputation, and drive long-term success. Whether for government institutions, multinational corporations, or emerging businesses, PR is no longer just about visibility—it is a strategic function that shapes public perception, builds trust, and mitigates reputational risks.<br /><br />A well-executed PR strategy involves comprehensive research, market analysis, competitive benchmarking, and the implementation of both tactical and strategic communication initiatives. Here’s why businesses and organizations must integrate PR as a core component of their strategy:<br /><br /><b>Key Functions of Public Relations in Business Strategy</b><br /><br />1. Establishing Brand Credibility and Trust<br /><br />Reputation is a company’s most valuable asset. Consumers, investors, and stakeholders gravitate toward brands they trust. A robust PR strategy ensures that an organization is positioned as an industry leader, leveraging media placements, thought leadership, and expert-driven narratives to reinforce credibility and authority.<br /><br />2. Enhancing Brand Visibility and Awareness<br /><br />In an oversaturated market, consistent and strategic brand positioning is critical. PR ensures that an organization remains top-of-mind by securing media coverage, managing digital presence, and fostering engagement across multiple communication channels.<br /><br />3. Crisis Management and Reputation Protection<br /><br />In the digital age, reputational risks can escalate rapidly. Negative media coverage, misinformation, or crisis events can significantly impact public perception. A strategic PR consultant proactively mitigates risks, manages crises efficiently, and implements reputation recovery strategies to ensure brand resilience in the face of adversity.<br /><br />4. Strengthening Consumer Engagement and Brand Loyalty<br /><br />Modern PR is not just about broadcasting messages—it is about fostering meaningful relationships with audiences. Through compelling storytelling, corporate social responsibility initiatives, and authentic brand communication, PR enhances consumer trust and long-term loyalty.<br /><br />5. Gaining a Competitive Advantage in an Evolving Market<br /><br />Public Relations serves as a differentiation strategy by:<br /><br />✅ Crafting unique value propositions that set brands apart from competitors<br /> ✅ Anticipating and responding effectively to industry trends and challenges<br /> ✅ Enhancing corporate reputation to strengthen stakeholder confidence<br /><br /><b>Public Relations: A Business Imperative, Not an Option</b> <br /><br />In today’s complex and dynamic business environment, PR is not just about generating publicity—it is about sustaining brand equity, managing public perception, and ensuring long-term business viability. Organizations that invest in strategic public relations consulting gain a significant advantage in navigating uncertainty, enhancing reputation, and achieving sustainable growth.<br /><br />How well is your organization managing its public perception? <b>A well-crafted PR strategy can help you strengthen brand positioning, mitigate risks, and build enduring trust with your audience.</b><br />",
+        "images": [
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1742979687/image/l8vilo2hq05djwryyku8.jpg"
+        ],
+        "type": "article",
+        "isDeleted": false,
+        "isShowed": true,
+        "createdAt": {
+          "_seconds": 1742979687,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1742979746,
+          "_nanoseconds": 0
+        }
+      },
+      "11": {
+        "id": 11,
+        "title": "The Winning Formula Behind “Bocor Alus Politik” by Tempo",
+        "subtitle": "What makes “Bocor Alus Politik” so compelling?",
+        "body": "<i>By Yoga Susatyo, Public Relations Strategist</i><br /><br />In the evolving landscape of political journalism, Tempo’s “Bocor Alus Politik” has emerged as a game-changer. Led by the dynamic trio—Uncle Pram, Cica, and Husen—this program masterfully blends sharp political insights with an engaging, conversational approach.<br /><br />But what makes “Bocor Alus Politik” so compelling? How does it keep audiences hooked while navigating serious political discourse with a fresh, entertaining style? Let’s break down its winning formula.<br /><br /><b>The Secret Ingredients of “Bocor Alus Politik”</b><br /><br />Casual Yet Provocative Opening<br /><br />🔍The infamous question from Uncle Pram, “Main apa kita hari ini?”, sets a lighthearted tone before diving into hard-hitting political topics.<br /><br />Authentic Newsroom Setting<br /><br />🔍Filmed directly from Tempo’s office, the setting reinforces journalistic credibility while maintaining a relaxed, informal vibe—blurring the line between work and banter.<br /><br />Intriguing Insider Clues<br /><br />🔍The show’s signature “Tebak-tebakan Manggis” technique teases audiences with cryptic initials and coded references, sparking speculation and social media buzz.<br /><br />Pop Culture References<br /><br />From film-inspired nicknames to pop culture analogies, the show makes complex political narratives relatable and engaging for a wider audience.<br /><br /><b>Redefining Political Journalism</b><br /><br />The “Bocor Alus Politik” approach is a strategic evolution in media engagement. By humanizing political discourse, Tempo successfully transforms news into content that feels accessible, interactive, and even daring.<br /><br />This shift reflects the new era of political content strategy—where journalistic integrity meets entertainment, and where audience participation fuels the narrative. In an age where media consumption habits are changing, “Bocor Alus Politik” proves that a well-crafted content formula can redefine the way we engage with political news.<br /><br /><b>Insight for Communication Strategists</b><br />For political and corporate communicators, this format presents a compelling case study on how to balance credibility with approachability. Whether shaping public perception or managing crisis communications, engagement-driven storytelling is the key to staying relevant in today’s digital media landscape.",
+        "images": [
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1742980520/image/xes6ck1sbanqjgds7cr8.jpg"
+        ],
+        "type": "article",
+        "isDeleted": false,
+        "isShowed": true,
+        "createdAt": {
+          "_seconds": 1742980409,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1742980520,
+          "_nanoseconds": 0
+        }
+      },
+      "12": {
+        "id": 12,
+        "title": "When Clean Water Isn't Clean: Uncovering the Invisible Crisis in Refillable Water Depots",
+        "subtitle": "In many urban areas across Indonesia, refillable water depots have become a go-to solution for families seeking affordable drinking water. But what if the very water we trust is quietly making us sick?",
+        "body": "By Yoga Susatyo, Public Relations Strategist<br /><br />In many urban areas across Indonesia, refillable water depots have become a go-to solution for families seeking affordable drinking water. But what if the very water we trust is quietly making us sick?<br /><br />A recent study conducted by Jiva Svastha Nusantara Foundation in East Bandung has revealed an alarming fact: 74% of the primary water sources tested were contaminated — with the highest contamination levels found at refillable depots.<br /><br />This isn’t a distant, hypothetical risk. It’s a real and present threat to health, particularly among vulnerable groups like children, the elderly, and low-income households.<br /><br /><b>The Problem is Invisible — But Widespread</b><br /><br />The issue is not that these water sources are visibly dirty. In fact, many appear clean to the naked eye. The problem lies in the presence of dangerous bacteria, often caused by poor sanitation at depots, improper storage conditions, and the mishandling of water gallons.<br /><br />These pathogens, undetectable without lab testing, can lead to diarrhea, typhoid, and other waterborne illnesses — diseases that are preventable with basic hygiene and better system oversight.<br /><br />Despite government regulations issued by the Indonesian Ministry of Health, enforcement at the community level remains inconsistent. This gap between policy and practice has left many consumers exposed — unknowingly putting their health at risk every time they fill a gallon.<br /><br /><b>A Call from the Experts</b><br /><br />To address this growing concern, Jiva Svastha Nusantara held a public event titled “Addressing Hidden Dangers: The Importance of Contamination-Free Drinking Water” in Bandung. The discussion, led by Felicia Annelinde, Chair of the Foundation, was joined by dr. Ardini Raksanagara and Nilla Avianty — public health experts deeply involved in water safety and hygiene education.<br /><br />Together, they underscored a shared message: ensuring safe water is not just a matter of infrastructure, but also behavior and accountability.<br /><br />They highlighted how everyday habits — such as how water gallons are cleaned and stored — play a crucial role in preventing contamination. More importantly, they emphasized that consumers need to be better informed and empowered to question depot practices and demand safe handling.<br /><br />Strengthening Action Through Collaboration<br /><br />This is not a problem any single institution can solve alone. That’s why Jiva Svastha Nusantara is working in close collaboration with:<br />Bandung City Health Office<br />The Indonesian Public Health Association (IAKMI)<br />Bandung City Government<br /><br /><br />The focus is twofold: to develop stronger local policy implementation and to raise public awareness about the hidden dangers in everyday water consumption.<br />Educational outreach, grassroots engagement, and depot monitoring are being scaled to ensure that safety regulations are not just written — but actively enforced and understood by the communities that need them most.<br /><br /><b>Why This Matters — Now More Than Ever</b><br /><br />In a country where waterborne illness still affects thousands each year, this kind of data-driven advocacy is crucial. Access to safe water is the foundation of all other health outcomes — from child development to disease prevention to national productivity.<br /><br />When families can’t trust the water they drink, the implications ripple across education, labor, and healthcare systems. And while technology and infrastructure are important, the most powerful tool in this fight is public knowledge.<br /><br /><b>Take Action: What You Can Do</b><br /><br />Whether you’re a policymaker, health worker, parent, or business owner, here are three small ways to help:<br /><br />1. Check Your Source – Ask your local water depot if they are certified and compliant with Ministry of Health standards.<br />2. Demand Transparency – Encourage clear labeling and visible hygiene protocols in refill stations.<br />3. Share the Knowledge – Raise awareness in your family and community; most people don’t know the risks until it’s too late.<br />",
+        "images": [
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1747063465/image/tlxmjctdgy5rbn4v4g5x.jpg"
+        ],
+        "type": "article",
+        "isDeleted": false,
+        "isShowed": true,
+        "createdAt": {
+          "_seconds": 1747063465,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1747063465,
+          "_nanoseconds": 0
+        }
+      },
+      "13": {
+        "id": 13,
+        "title": "Viral Content Isn’t the Endgame: The Power of Lasting Impact",
+        "subtitle": "",
+        "body": "In today’s digital age, every content creator dreams of going viral. Whether it’s a clever meme, an emotional video, or a trending hashtag, virality promises instant fame and massive reach. But is that really the end goal? Is going viral the key to long-term success and influence?<br /><br />The answer might surprise you.<br /><br /><b> The Truth About Virality</b><br /><br />Going viral can be thrilling. It’s a quick way to grab attention and boost engagement, sometimes to an overwhelming degree. But here’s the thing: virality doesn’t always lead to meaningful or lasting impact.<br /><br />As Rich Leigh points out in his book On PR (2017), the pursuit of fame for its own sake is often shallow and unsustainable. Viral content can provide a short burst of visibility, but few brands or creators can build a long-lasting reputation based on a single viral moment.<br /><br />While some viral hits turn into defining moments for brands, most are fleeting. Once the buzz fades, it can be hard to keep the momentum going. So, what’s the alternative?<br /><b>The Power of Authenticity and Consistency</b><br /><br />True influence doesn’t come from chasing the next viral trend. It comes from authenticity, consistency, and delivering real value to your audience.<br /><br />Take a moment to think about public figures like Sir David Attenborough, Mads Mikkelsen, or Muhammad Ali. Their global recognition didn’t come from fleeting viral moments. Instead, it came from a consistent, authentic presence that resonated deeply with audiences over time.<br /><br />The takeaway? <b>Meaningful popularity</b> often emerges organically as a byproduct of genuine, sustained efforts. When you focus on delivering true value rather than trying to “go viral,” you’re building something far more durable — a reputation that endures.<br /><br /><b>3 Key Takeaways for Content Creators</b><br />Whether you’re a solo creator or managing a brand’s digital presence, here are three essential principles for building content that lasts beyond a viral flash:<br /><br /><b>1. Know Your Limits</b><br />While big ideas can capture attention, forcing content beyond your creative limits often leads to lackluster results. Instead of chasing virality, focus on creating content that’s authentic and aligned with your capabilities. Great content is more about quality and timing than sheer volume.<br /><br /><b>2. Be Strategic with Trends</b><br />Not every trend is worth jumping on. It’s essential to identify which trends align with your brand’s values, voice, and goals. Staying true to your unique strengths will build more authentic connections with your audience than simply following the latest viral craze.<br /><br /><b>3. Fame vs. Reputation</b><br />Not all publicity is good publicity. Short-term fame might provide a boost, but without a strong, positive reputation, it can harm your long-term brand image. Focus on building credibility and meaningful recognition that aligns with your core values and resonates with your target audience.<br /><br /><b>What Really Matters: Creating Lasting Impact</b><br />Virality can be exciting, but it’s not a sustainable strategy for building influence. Instead, aim for something more profound — a lasting impact.<br /><br />True, meaningful content creates connections that resonate long after the initial excitement fades. It stands the test of time, earns respect, and builds a reputation that outlasts the next viral trend.<br /><br />So, next time you’re tempted to chase after the viral spotlight, remember: quality, authenticity, and purpose are what will keep you relevant in the long run. It’s not about getting noticed — it’s about creating content that speaks to your audience and leaves a lasting impression.<br /><br />Let’s start aiming for something bigger than virality.<br /><br /><b>Conclusion: Building a Brand That Resonates</b><br />The goal for content creators should never just be about reaching as many people as possible. Instead, the focus should be on creating content that has a deep, lasting impact. By staying true to your values, engaging authentically with your audience, and focusing on quality over quantity, you can build a reputation that stands the test of time.<br /><br />Are you ready to build content that lasts? Let’s make sure your efforts aren’t just about chasing the next viral moment — but about creating something truly unforgettable.<br /><br />",
+        "images": [],
+        "type": "article",
+        "isDeleted": false,
+        "isShowed": true,
+        "createdAt": {
+          "_seconds": 1747063693,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1747063693,
+          "_nanoseconds": 0
+        }
+      },
+      "14": {
+        "id": 14,
+        "title": "Politics with a Playlist: How PR Jakarta is Redefining Campaign Strategy",
+        "subtitle": "When you think of political campaigns, chances are your mind jumps to speeches, press conferences, and a flood of posters or social media ads. But what if a campaign didn’t feel like a campaign at all? ",
+        "body": "By Yoga Susatyo, Public Relations Strategist<br /><br />When you think of political campaigns, chances are your mind jumps to speeches, press conferences, and a flood of posters or social media ads. But what if a campaign didn’t feel like a campaign at all? What if it felt more like scrolling through a well-curated playlist that just gets your daily life?<br /><br />That’s exactly what PR Jakarta is doing for Pramono Anung and Rano Karno’s bid for Jakarta’s governorship — and it’s turning heads for all the right reasons.<br /><br /><b>Campaigning in the Attention Economy</b><br />Today’s voters, especially younger ones, aren’t just looking for promises or credentials — they’re looking for authenticity and relatability. They’re navigating crowded timelines and noisy news cycles, and traditional political content often feels out of sync with the digital spaces they inhabit.<br /><br />Instead of trying to shout louder, PR Jakarta is taking a different route:<br /> Curated pop playlists, culturally rich storytelling, and platform-native content that speaks in the language of everyday Jakarta.<br />It’s politics reimagined — and it’s surprisingly effective.<br /><br /><b>Why This Strategy Works</b><br />Let’s break down what makes this approach so compelling:<br /><br /><b>1. Meeting People Where They Are</b><br />This campaign understands that different platforms serve different moods. Rather than recycling the same political message across channels, the team tailors content to the vibe of each space. A pop playlist inspired by Sudirman’s rush hour? Instantly more engaging than another policy statement.<br /><br /><b>2. From Political Pitches to Emotional Resonance</b><br />By using music and cultural cues, the campaign builds an emotional bridge — one rooted in shared memories, city rhythms, and personal nostalgia. It’s not about manufacturing loyalty; it’s about sparking recognition.<br /><br /><b>3. Low-Key, High Impact</b><br />With PR Jakarta’s YouTube channel, you won’t find lengthy speeches or overproduced ads. You’ll find soundtracks that feel like the heartbeat of the city. It’s soft power at work — light, digestible content that lingers.<br /><br /><b>Platform Strategy: One Message, Many Tones</b><br />What makes this campaign smart isn’t just its creativity — it’s how that creativity plays out across multiple platforms:<br /><br />* Instagram serves as a sleek PR tool, offering campaign updates in a clean, informative style.<br />* TikTok leans into bold visuals and storytelling — quick, emotional hits that keep things real.<br />* YouTube stands out by leaning away from traditional political content and embracing vibe-driven playlists that echo Jakarta’s urban pulse.<br /><br />Each platform has its own voice, but they all work together to tell the same bigger story: Jakarta, through the eyes (and ears) of its people.<br /><br /><b>Final Thoughts: The Future of Political Storytelling?</b> <br />PR Jakarta’s strategy signals a larger shift in how political communication can — and should — evolve. In an age where attention is fleeting and skepticism is high, campaigns that feel genuine, human, and culturally aware are the ones that break through.<br /><br />This isn’t just a clever tactic. It’s a potential blueprint for a new kind of political engagement — one that doesn’t just ask for votes, but earns trust by understanding the vibe of its audience.<br /><br />And sometimes, that starts with just the right song.<br />",
+        "images": [
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1747064432/image/icsaxz9uldymes18iiv8.png"
+        ],
+        "type": "article",
+        "isDeleted": false,
+        "isShowed": true,
+        "createdAt": {
+          "_seconds": 1747064328,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1747064432,
+          "_nanoseconds": 0
+        }
+      },
+      "15": {
+        "id": 15,
+        "title": "Not Just Apologies: What Fuji TV’s  Scandal Teaches Us About Branding Failure and Victim-Centered Crisis Response",
+        "subtitle": "The Fuji TV Crisis: A Public Reckoning",
+        "body": "By Anindita R , Director and Consultant<br /><br /><b>The Fuji TV Crisis: A Public Reckoning</b><br /><br />In early 2025, Fuji Television, one of Japan’s most trusted media institutions, came under intense public scrutiny after serious sexual harassment allegations involving celebrity presenter Masahiro Nakai resurfaced — this time with proof of an internal cover-up.<br /><br />What made the case especially damaging wasn’t just the misconduct itself. It was the fact that Fuji TV had known about it as early as 2023. Reports revealed that executives were aware of complaints made by female staff, but instead of opening an internal investigation or making disciplinary moves, they chose silence.<br /><br />When the story eventually broke through a whistleblower, it not only unleashed public outrage, but exposed an entrenched culture of impunity and silence within Fuji’s leadership ranks.<br /><br />Within weeks, Fuji TV’s top executives, including President Koichi Minato and Board Chairwoman Keiko Murakami, resigned under pressure. Major advertisers — including long-time sponsors from the automotive and consumer goods sectors — suspended or terminated their partnerships. An independent probe concluded that Fuji had no effective compliance framework and failed to provide a safe working environment for employees.<br /><br />Fuji TV, once seen as a pillar of post-war Japanese broadcast integrity, had undone decades of public trust in a matter of weeks.<br /><br /><b>Why This Is More Than a Scandal — It’s a Branding Collapse</b><br /><br />Let’s be clear: scandals involving misconduct are, unfortunately, not rare. What distinguishes brand survivors from brand casualties is how the organization chooses to respond when the truth surfaces.<br /><br />Fuji TV responded with:<br />- Silence in the critical early days of the news cycle.<br />- A heavily sanitized press statement that avoided acknowledging victims.<br />- A slow, reluctant move toward leadership accountability — only after national backlash.<br /><br />This is where the real branding failure happened. The problem wasn’t just Nakai’s behavior. The problem was organizational cowardice — a deliberate prioritization of short-term brand image over long-term ethical positioning.<br />In doing so, Fuji TV forgot a crucial truth about branding today:<br /><br /><i>“In the age of social trust, your brand isn’t what you say it is. It’s what people believe you actually stand for.” </i><br /><br /><b>Crisis as an Ethical Test, Not Just a PR Battle</b><br /><br />Modern audiences are highly sensitive to hypocrisy. They are no longer passive consumers of information. Today’s viewers, employees, and stakeholders expect ethical consistency, not polished PR spins.<br /><br />A brand’s reaction to crisis reveals its values with piercing clarity:<br />- Who do you protect first — victims or executives?<br />- Do you offer platitudes or systemic change?<br />- Is your priority managing perception or leading reform?<br /><br />In Fuji TV’s case, it became painfully evident that protecting its institutional hierarchy mattered more than restoring justice or initiating change. The brand’s silence was seen not as strategy, but as complicity.<br /><br /><b>Why Traditional Crisis Playbooks No Longer Work</b><br /><br />Historically, brands have relied on the so-called “contain and control” method:<br />1. Minimize the issue publicly.<br />2. Settle quietly behind the scenes.<br />3. Hope for the news cycle to move on.<br /><br />But this framework is outdated — and dangerous. In the digital era:<br />- Whistleblowers have platforms.<br />- Public memory is archived and searchable.<br />- Stakeholders expect transparency and transformation.<br /><br />When your audience has access to real-time information and lived experiences, your brand’s response is judged in public, by public standards — not internal policy memos. Fuji TV clung to an obsolete framework. And it cost them everything.<br /><br /><b>Introducing the VCT Crisis Response Framework</b><br /><br />To help brands navigate the reputational crisis ethically and effectively, I propose the VCT Framework — a model grounded not in optics, but in integrity.<br /><br /><b>1. Victim</b><br />In any crisis involving harm to individuals — whether harassment, abuse, discrimination, or negligence — the most urgent priority must be to recognize and support the victim.<br /><br />This means:<br />- Acknowledging that harm occurred — clearly, without euphemisms.<br />- Expressing genuine empathy and responsibility.<br />- Offering resources, safety assurances, and a visible platform for affected individuals.<br /><br />Fuji TV failed here by centering the organization, not the survivor. Their statements emphasized reputation management and legal technicalities, rather than accountability and healing.<br /><br /><b>2. Culture</b><br />Scandals are often treated as “isolated incidents.” But if one person was able to cause harm without consequences, chances are the organizational culture enabled it. Culture audits, staff training, leadership turnover, and structural reforms are not optional. They are non-negotiable steps to rebuild trust.<br /><br />Fuji TV's refusal to address the culture of silence and sexism in its workplace allowed the public to assume — rightly — that this behavior may be more widespread than one case.<br /><br /><b>3. Transparency</b><br />Reputation is not protected by secrecy — it is earned through clarity and consistency. Transparency doesn’t mean revealing everything at once. It means:<br /><br />- Communicating the process, not just the outcome.<br />- Publishing independent findings.<br />- Reporting progress on reforms over time.<br /><br />Had Fuji TV led with transparency, invited an external investigator early, and provided regular reform updates, it might have changed the trajectory of its fall.<br /><br /><b>Why VCT Works</b><br /><br />Unlike traditional PR-based frameworks, the VCT approach doesn’t treat the crisis as a communications problem. It treats it as a leadership and values problem.<br /><br />It forces brands to:<br />- Re-center their purpose.<br />- Acknowledge harm authentically.<br />- Rebuild trust structurally, not cosmetically.<br /><br /><br />The goal is not to \"move past the crisis\" — it's to emerge from it as a better, braver, and more credible organization. And yes, audiences can tell the difference.<br /><br /><b>Brands Don’t Fail Because They Make Mistakes. They Fail Because They Deny Them.</b><br /><br />Brand trust is not built on perfection. It is built on courageous truth-telling.<br />Every organization — from media companies to startups to legacy brands — will face a reputational crisis at some point. But it is how leadership responds that determines whether the brand survives, evolves, or disappears.<br /><br />Fuji TV’s fall from grace offers a cautionary tale: if your brand chooses silence over integrity, the public will speak for you.<br /><br /><br /><b>Sources</b><br />Japan Times, “Fuji TV Executives Resign Over Mishandled Harassment Case”<br />https://www.japantimes.co.jp/news/2025/03/01/national/crime-legal/fuji-tv-harassment-scandal<br />Mainichi Shimbun, “Internal Investigation Reveals Fuji TV’s Broken Compliance Culture”<br /> https://mainichi.jp/english/articles/20250301<br />Fuji Media Holdings Corporate Disclosures<br /> https://www.fujimediahd.co.jp/en<br /><br /><br />",
+        "images": [
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1752657105/image/wecjvkztq8bvesoonhwl.png"
+        ],
+        "type": "article",
+        "isDeleted": false,
+        "isShowed": true,
+        "createdAt": {
+          "_seconds": 1752635926,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1752657106,
+          "_nanoseconds": 0
+        }
+      },
+      "16": {
+        "id": 16,
+        "title": "Understanding \"Junk Science\" in Public Discourse — and How PR Helps Respond",
+        "subtitle": "In the fast-paced world of digital communication and real-time public opinion, brands are increasingly exposed to scrutiny — sometimes fair, sometimes not. ",
+        "body": "By Yoga Susatyo, Public Relations Strategist<br /><br />In the fast-paced world of digital communication and real-time public opinion, brands are increasingly exposed to scrutiny — sometimes fair, sometimes not. One of the most strategic challenges today’s communicators face is navigating the impact of \"junk science.\"<br /><br />While the term might sound like it refers to flawed experiments or incorrect data, in public discourse, “junk science” is often used as a rhetorical tool to discredit a theory, product, or policy — sometimes without properly evaluating the underlying science itself.<br /><br />Understanding how this concept functions — and how public relations professionals can effectively respond — is essential in protecting brand trust and guiding public understanding.<br /><br /><b>What Is “Junk Science”?</b><br />“Junk science” refers to the accusation that a scientific claim is unreliable, exaggerated, or intentionally misleading. However, in practice, it is often used selectively and strategically, not necessarily because the science is wrong, but because the claim challenges a group’s political view, economic interest, or ideology.<br /><br />In crisis situations, this label can be used to:<br />- Create public doubt about a brand’s product or service.<br />- Undermine trust in a competing business or sector.<br />- Slow down or block a policy decision.<br />- Stir controversy in industries with high public engagement, such as food & beverage, healthcare, or cosmetics.<br /><br />In sectors where products are highly substitutable — such as bottled drinks, coffee, pharmaceuticals, or skincare — junk science accusations can easily gain traction.<br /><br /><b>Case Study: Junk Science and the COVID-19 Vaccine Debate</b><br /><br />During the global COVID-19 pandemic, vaccine development was met with an unprecedented wave of misinformation and politically driven narratives. In Indonesia, for example, some vaccine brands became targets of junk science claims — many of which cited misleading interpretations of statements from institutions like the WHO or Reuters.<br /><br />These claims weren’t always based on false data, but rather on selective use of real facts taken out of context, creating doubt about the safety, efficacy, or origin of certain vaccines. Some narratives even tied vaccine hesitancy to broader political or religious movements.<br /><br />As a result, according to Indonesia’s Central Statistics Agency (BPS, 2024), the national immunization rate dropped by 3.05% between 2020 and 2021 — a seemingly small but potentially dangerous trend that could impact the long-term health of the population.<br /><br /><b>What Can PR Do? Three Strategic Responses</b><br /><br />In times of confusion or misinformation, the role of public relations becomes especially vital. PR professionals help organizations respond to junk science claims not with emotion or defensiveness, but with clarity, credibility, and empathy.<br /><br />Here are three key approaches:<br /><br /><b>1. Partner with Trusted Third Parties</b><br />Credibility matters. When facing scientific or technical allegations, companies should collaborate with:<br />- External PR consultants.<br />- Subject matter experts (SMEs).<br />- Medical professionals or scientists.<br />- Well-regarded media and academic institutions.<br /><br />By elevating voices beyond the brand, the response appears more neutral and informed — which builds trust.<br /><br /><b>2. Educate the Public Clearly and Consistently</b><br />Jargon and technical explanations often alienate the public. A strong PR strategy will include public education campaigns that:<br /><br />- Break down scientific findings in simple, relatable language.<br />- Use infographics, videos, and social media to engage various audiences.<br />- Address common misconceptions with clarity.<br /><br />The goal is not to overwhelm people with data — it’s to guide them toward understanding.<br /><br /><b>3. Address Allegations Respectfully and Calmly</b><br />An emotional or defensive response to junk science claims can backfire. Instead, PR professionals help organizations:<br /><br />- Acknowledge concerns respectfully.<br />- Reaffirm commitment to transparency.<br />- Present verifiable facts in a neutral tone.<br /><br />The aim is to rebuild confidence, not escalate conflict.<br /><br /><b>Final Thoughts: Managing Reputation in a Complex Information Ecosystem</b><br /><br />In the age of viral content and fast-moving narratives, \"junk science\" isn’t just a label — it’s a communication challenge. Whether used strategically by competitors or unintentionally spread by the public, such claims can harm brand reputation and public health outcomes.<br /><br />But with the right communication strategy, organizations can stay ahead. Good public relations is not just about controlling the narrative — it’s about creating trust through honesty, clarity, and collaboration.<br /><br />Whether you’re in healthcare, F&B, tech, or policy — responding to misinformation with credible, well-managed PR can make all the difference.<br />Need help navigating public discourse and building a credible brand voice?<br /><br /><b>Our PR team is here to help you translate science into stories people trust.</b><br /><br />",
+        "images": [
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1752652981/image/cepggw7efhtt20uo6dzh.png"
+        ],
+        "type": "article",
+        "isDeleted": false,
+        "isShowed": true,
+        "createdAt": {
+          "_seconds": 1752652981,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1752652981,
+          "_nanoseconds": 0
+        }
+      }
+    },
+    "Programs": {
+      "1": {
+        "id": 1,
+        "title": "Tentang Kami",
+        "subtitle": "",
+        "body": "test",
+        "images": [
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1740496220/image/ioofkufm3cosb3lnghs8.jpg",
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1740496235/image/l3tlxarjdkuw0mzd9fg3.jpg",
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1740496213/image/q5doyi1uurasgpvtgeh4.jpg",
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1740496295/image/yokdcrrtfosg3ya2zgzg.jpg",
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1740496318/image/bnwya129bzhylarkztj1.jpg",
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1740496304/image/mibaxwfw1cf3dtoj9ket.jpg"
+        ],
+        "type": "about-us",
+        "isDeleted": false,
+        "isShowed": true,
+        "createdAt": {
+          "_seconds": 1738037521,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1740496319,
+          "_nanoseconds": 0
+        },
+        "linkDownload": null
+      },
+      "24": {
+        "id": 24,
+        "title": "The Flow of Life: Tackling Water Health and Safety in Indonesia",
+        "subtitle": "For the people of Indonesia, water is more than a resource—it’s life itself. Flowing through its vast rivers and surrounding its 17,000 islands, water connects families, sustains livelihoods, and nourishes entire communities",
+        "body": "For the people of Indonesia, water is more than a resource—it’s life itself. Flowing through its vast rivers and surrounding its 17,000 islands, water connects families, sustains livelihoods, and nourishes entire communities. Yet, for many Indonesians, the promise of clean, safe water remains heartbreakingly out of reach.<br /><br />Picture a mother in a small rural village, gathering water from a nearby stream for her family’s daily needs. The water is cloudy, laced with pollutants she can’t see but knows are there. She boils it carefully, hoping it will be safe enough to drink. For her, clean water isn’t just a convenience; it’s a lifeline she constantly has to fight for.<br /><br />A Growing Crisis<br /><br />Indonesia’s water crisis isn’t due to scarcity—there’s plenty of water to go around. But the real battle lies in keeping it clean and ensuring it reaches those who need it most. In urban areas, rapid population growth has overwhelmed aging pipelines, causing frequent interruptions in water supply. In rural areas, rivers and lakes, once teeming with life, have become polluted with waste, pesticides, and untreated sewage.<br />Take the Citarum River in West Java, for example. Once a source of life for nearby communities, it has now earned the title of one of the most polluted rivers in the world. Plastic waste floats on its surface while toxic chemicals seep into its depths, endangering not just aquatic life but the people who depend on it.<br />This isn’t just an environmental issue—it’s a human one. More than 30 million Indonesians lack access to safe drinking water, while 70 million live without proper sanitation. The consequences ripple through families and communities, leading to outbreaks of waterborne diseases like diarrhea and cholera that disproportionately affect children.<br /><br />Stories of Struggle and Hope<br /><br />Despite the scale of the challenge, there are glimmers of hope across the archipelago. In small, remote villages, low-cost water filters are changing lives. Imagine a father seeing his children drink clear water for the first time, knowing they are safe from harm. In bustling cities, non-profit organizations are teaching families how to store and treat water at home, empowering them to protect their health.<br /><br />The Indonesian government has also taken bold steps to turn the tide. Through initiatives like \"100-0-100\"—a vision for 100% clean water access, 0% slums, and 100% sanitation by 2030—new treatment plants are being built, pipelines repaired, and communities uplifted. But success will take time, effort, and the collective will of an entire nation.",
+        "images": [
+          "https://res.cloudinary.com/dfftdvxy6/image/upload/v1738214632/image/rtjpnccvyn7n1fugzsje.jpg"
+        ],
+        "type": "article",
+        "isDeleted": false,
+        "isShowed": true,
+        "createdAt": {
+          "_seconds": 1738214632,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1738214632,
+          "_nanoseconds": 0
+        },
+        "linkDownload": null
+      },
+      "25": {
+        "id": 25,
+        "title": "Penyuluhan & Pengawasan Mutu Air Sehat",
+        "subtitle": "program",
+        "body": "program",
+        "images": [
+          "https://res.cloudinary.com/dfftdvxy6/image/upload/v1738216188/image/ol7hnv72md5jrplrkbyd.png"
+        ],
+        "type": "program",
+        "isDeleted": false,
+        "isShowed": true,
+        "createdAt": {
+          "_seconds": 1738216189,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1738216297,
+          "_nanoseconds": 0
+        },
+        "linkDownload": null
+      },
+      "46": {
+        "id": 46,
+        "title": "Indonesia’s Role in the World Water Forum: Leading the Global Fight for Clean Water Access",
+        "subtitle": "Imagine a child in a remote Indonesian village, smiling as she fills her cup with clear, fresh water from a newly installed tap. For her family, this moment is more than just a simple drink—it’s hope for a healthier future",
+        "body": "Imagine a child in a remote Indonesian village, smiling as she fills her cup with clear, fresh water from a newly installed tap. For her family, this moment is more than just a simple drink—it’s hope for a healthier future. Across Indonesia, stories like hers are becoming more common as the country steps up its efforts to ensure clean water for everyone, both at home and around the world.<br /><br />Through its active involvement in the World Water Forum (WWF) and bold domestic and global initiatives, Indonesia is making waves in the fight for equitable access to water—a resource we often take for granted, but one that millions still struggle to obtain.<br /><br />Water Diplomacy: Indonesia and the World Water Forum<br /><br />The World Water Forum, held every three years, is the largest global platform where leaders, innovators, and changemakers come together to tackle the planet’s most pressing water issues. For Indonesia, the forum is more than just a stage—it’s an opportunity to lead.<br />Indonesia’s relationship with the WWF dates back to 2000 when it hosted the 2nd World Water Forum. The event not only highlighted Asia’s unique water challenges but also showcased Indonesia’s determination to address them. Since then, Indonesia has remained a key contributor, advocating for solutions that are inclusive and sustainable. From its focus on community-led water management to its emphasis on disaster resilience, Indonesia has positioned itself as a voice for developing nations navigating complex water challenges.<br /><br />A Nation Committed to Clean Water<br />Back home, Indonesia has turned its global commitments into tangible action, pursuing the dream of clean and healthy water for every citizen. Here’s how the nation is tackling the issue:<br /><br />Policies That Make a Difference<br />Indonesia’s “100-0-100” initiative is one of its most ambitious policies to date. It aims for:<br />- 100% clean water access<br />- 0% slums<br />- 100% sanitation coverage<br />This framework is a lifeline for millions, especially in underserved communities where access to clean water has long been a challenge. The goal is clear: no child, family, or community left behind.<br /><br /><br />Building the Infrastructure of Tomorrow<br />Think about the vast archipelago of Indonesia—spanning thousands of islands. Reaching everyone with clean water is no easy feat. That’s why the government has invested heavily in pipelines, water treatment plants, and innovative solutions like rainwater harvesting systems in drought-prone regions. These projects not only provide water but also create a sense of security for communities constantly battling the impacts of climate change.<br /><br />People Power: Communities Taking the Lead<br />In Indonesia, water solutions don’t just come from the top—they’re rooted in communities. Villages are building their own wells, installing affordable filtration systems, and learning about hygiene practices that save lives. These grassroots initiatives, often supported by local governments and NGOs, are empowering communities to be part of the solution.<br /><br />Restoring Our Rivers<br />One of Indonesia’s most inspiring success stories is the cleanup of the Bengawan Solo River, Java’s longest river. For years, it suffered from heavy pollution caused by industrial waste and untreated sewage. Today, thanks to government efforts and community partnerships, the river is being restored. From tree planting along its banks to waste treatment facilities, this effort is giving the river—and the people who depend on it—a second chance.<br /><br />Global Impact: Indonesia’s Voice on the World Stage<br />Beyond its borders, Indonesia is championing water diplomacy as a global issue. Its leadership in programs like the Global Water Partnership has made it a key player in international efforts to ensure water access for all.<br /><br />One of the nation’s most passionate advocates is Retno Marsudi, Indonesia’s Ex-Minister of Foreign Affairs. As a UN Special Envoy for Water, she has helped elevate water access to the global agenda.<br /><br />Marsudi often reminds the world that water is more than just a resource—it’s a human right. Her efforts have strengthened cross-border collaborations, especially in regions where water sources are shared between countries. Under her leadership, Indonesia has sent a clear message: solving the global water crisis requires collective action, and no nation can do it alone.<br /><br />Challenges on the Horizon<br />Despite its achievements, Indonesia still faces an uphill battle. Millions of people still lack access to clean water, and pollution remains a persistent issue. Urbanization, industrial waste, and climate change continue to challenge progress. But with its unwavering commitment and leadership in the global water community, Indonesia is proving that no challenge is too big to overcome.<br /><br />A Future Flowing with Promise<br />Water is life, and Indonesia is ensuring that life flows freely for its people and beyond. Whether it’s through a child’s first sip of clean water in a remote village or a leader’s voice echoing at a global forum, the country’s impact is undeniable.<br /><br />As Indonesia marches toward its “2030 Sustainable Development Goals”, it offers the world a powerful reminder: the fight for clean water isn’t just about science or policy—it’s about people. It’s about the mother who no longer has to worry about her children falling ill, the community rebuilding its rivers, and the global partnerships that turn dreams of clean water into reality.<br /><br />*Dokumentasi: Kemlu RI",
+        "images": [
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1740664434/image/tqdwh2lrypkvfwzbpsnm.png"
+        ],
+        "type": "article",
+        "isDeleted": false,
+        "isShowed": true,
+        "createdAt": {
+          "_seconds": 1740664435,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1740664435,
+          "_nanoseconds": 0
+        },
+        "linkDownload": null
+      },
+      "50": {
+        "id": 50,
+        "title": "President Prabowo’s Vision for Water : Building a Sustainable Future for Indonesia",
+        "subtitle": "In Indonesia, water is more than a resource—it’s life. It nourishes crops, sustains families, and drives the economy. Yet, for millions of Indonesians, accessing clean and safe water remains a daily challenge.",
+        "body": "In Indonesia, water is more than a resource—it’s life. It nourishes crops, sustains families, and drives the economy. Yet, for millions of Indonesians, accessing clean and safe water remains a daily challenge. Recognizing this, President Prabowo Subianto has made water infrastructure a cornerstone of his administration, aiming to transform lives and secure Indonesia’s water future.  <br /><br />From large-scale dams to river restoration projects, Prabowo’s policies prioritize people, sustainability, and resilience. His vision is clear: to ensure that every household, farmer, and community has access to clean water by 2030.  <br /><br />Tackling Indonesia’s Unique Water Challenges<br /><br />As the world’s largest archipelago, Indonesia faces extraordinary water challenges. Its geography, with over 17,000 islands, makes delivering clean water to remote regions complex. Urban areas like Jakarta grapple with aging infrastructure, while rural communities often rely on polluted rivers and streams.  <br />Climate change adds another layer of difficulty, with rising sea levels, prolonged droughts, and unpredictable rainfall threatening water security across the nation. President Prabowo has stepped up to address these issues with comprehensive policies and an unrelenting focus on creating sustainable solutions.<br />  <br /><br /><b>President Prabowo’s Water Infrastructure Policies</b><br /><br />President Prabowo’s plans are not just about solving immediate problems; they are designed to future-proof Indonesia’s water systems. Here’s how his administration is taking action:  <br /><br /><br />Expanding Water Infrastructure<br /><br />Prabowo’s administration is building a network of dams, reservoirs, and pipelines to provide clean water to millions. These projects aim to:  <br />- Store water during the dry season, ensuring farmers have access to irrigation year-round.  <br />- Deliver piped water to remote villages, eliminating the need for families to fetch water from unsafe sources.  <br />One of the government’s key goals is to complete 20 new large-scale dams by the end of Prabowo’s term, securing water for agriculture and communities in drought-prone regions.<br />  <br /><br />Restoring Rivers and Protecting Water Sources<br /><br />Rivers are vital for Indonesia’s water supply, but pollution has turned many into hazards. Under Prabowo’s leadership, the government has prioritized cleaning and restoring rivers like the Brantas River in East Java. This effort includes:  <br />- Building waste treatment facilities to prevent industrial and household waste from polluting the river.  <br />- Reforesting riverbanks to reduce erosion and improve water quality.  <br />- Mobilizing communities for clean-up campaigns, fostering a sense of shared responsibility.<br />  <br /><br />Climate-Resilient Water Systems<br /><br />With climate change posing a significant threat, Prabowo’s administration is investing in infrastructure that can withstand environmental challenges. This includes:  <br />- Flood management systems in cities like Jakarta to protect homes and businesses from heavy rains.  <br />- Rainwater harvesting systems in regions facing water scarcity.  <br />- Seawalls and desalination plants to address the impact of rising sea levels on coastal communities.<br /><br />  <br />Empowering Local Communities<br /><br />Recognizing that water solutions must be sustainable and inclusive, Prabowo’s policies actively involve local communities. Villages are being equipped with low-cost water filters, schools are promoting water hygiene, and farmers are receiving training on efficient irrigation techniques. These grassroots efforts ensure long-term success by empowering people to take charge of their water needs.<br /><br />  <br />A Human-Centered Approach<br />  <br />For President Prabowo, water policies are more than infrastructure—they’re about people. It’s about the farmer who can now irrigate his fields without fear of drought. It’s about the mother who no longer has to worry about her children falling ill from contaminated water. And it’s about the students who can focus on their education instead of spending hours fetching water for their families.<br />  <br />By investing in clean water systems, Prabowo is investing in the health, safety, and prosperity of every Indonesian. His policies don’t just tackle today’s challenges—they lay the groundwork for a stronger, more resilient future.<br /><br /> <br />Building Hope, One Drop at a Time<br />  <br />President Prabowo Subianto’s vision for water infrastructure is bold, ambitious, and deeply personal. His leadership offers a pathway to a water-secure Indonesia where no one is left behind.<br />  <br />As new dams rise, rivers are cleaned, and water flows into homes and farms, Prabowo’s administration is not just building infrastructure—it’s building hope. Together, with the support of communities, private partners, and international allies, Indonesia is on track to become a global model for sustainable water management.  <br />Water is life, and under President Prabowo’s leadership, Indonesia is ensuring that life flows freely to every corner of the nation.  ",
+        "images": [
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1741021826/image/ynpf4gjocmljnqkuinls.png",
+          "https://res.cloudinary.com/dwcbcgccc/image/upload/v1741040323/image/l2t2c7xnrgnkbbvrw0gd.png"
+        ],
+        "type": "article",
+        "isDeleted": false,
+        "isShowed": true,
+        "createdAt": {
+          "_seconds": 1741021826,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1741040324,
+          "_nanoseconds": 0
+        },
+        "linkDownload": null
+      }
+    },
+    "Users": {
+      "1": {
+        "id": 1,
+        "username": "Ayden60",
+        "fullName": "Emile84",
+        "isActive": true,
+        "email": "jivatest@gmail.com",
+        "password": "$2a$10$9guSlLqV8BEyan0ZPjdybuMjmw/Sa2aFo88EVHlBum9spjibUwE1u",
+        "otp": null,
+        "otpExpires": null,
+        "phone_number": null,
+        "avatar": null,
+        "createdAt": {
+          "_seconds": 1737996224,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1737996224,
+          "_nanoseconds": 0
+        },
+        "tenant_id": null
+      },
+      "2": {
+        "id": 2,
+        "username": "Wilfredo_Konopelski",
+        "fullName": "Hanna88",
+        "isActive": true,
+        "email": "polatest@gmail.com",
+        "password": "$2a$10$2PiIluD9yNvkPkoJJjPGPelT2Vn2gkj8lOjPfLuFpSWf3VDk7wZv.",
+        "otp": null,
+        "otpExpires": null,
+        "phone_number": null,
+        "avatar": null,
+        "createdAt": {
+          "_seconds": 1739901018,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1739901018,
+          "_nanoseconds": 0
+        },
+        "tenant_id": "PolaUser"
+      },
+      "3": {
+        "id": 3,
+        "username": "Admin 1",
+        "fullName": "Jiva Svastha Nusantara (Admin 1)",
+        "isActive": true,
+        "email": "admin@jivasvastha.or.id",
+        "password": "$2a$10$AEBG32LVCCLRh59y4oUSsOgQx.vPpbQL7DwLLm933H0Fjz3hcPiDu",
+        "otp": null,
+        "otpExpires": null,
+        "phone_number": null,
+        "avatar": null,
+        "createdAt": {
+          "_seconds": 1740559468,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1740559468,
+          "_nanoseconds": 0
+        },
+        "tenant_id": "JivasAdmin"
+      },
+      "4": {
+        "id": 4,
+        "username": "Admin 2",
+        "fullName": "Jiva Svastha Nusantara (Admin 2)",
+        "isActive": true,
+        "email": "admin2@jivasvastha.or.id",
+        "password": "$2a$10$kK9RoRXuGaN.KzuH9HDtzuO0Q6DLh.bW6KhPvxJ1nmarB2WOg3AGW",
+        "otp": null,
+        "otpExpires": null,
+        "phone_number": null,
+        "avatar": null,
+        "createdAt": {
+          "_seconds": 1740559556,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1740559556,
+          "_nanoseconds": 0
+        },
+        "tenant_id": "JivasAdmin"
+      },
+      "5": {
+        "id": 5,
+        "username": "Dev Admin",
+        "fullName": "Jiva Svastha Nusantara (Dev Admin)",
+        "isActive": true,
+        "email": "dev@jivasvastha.or.id",
+        "password": "$2a$10$ZqGV7dIQacFljCuKlVeA6elyA4oT.QwPzYsNMb8EjvO.vad6mNESi",
+        "otp": null,
+        "otpExpires": null,
+        "phone_number": null,
+        "avatar": null,
+        "createdAt": {
+          "_seconds": 1740559622,
+          "_nanoseconds": 0
+        },
+        "updatedAt": {
+          "_seconds": 1740559622,
+          "_nanoseconds": 0
+        },
+        "tenant_id": "JivasAdmin"
+      }
+    }
+  }
+}

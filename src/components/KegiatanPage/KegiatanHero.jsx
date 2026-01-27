@@ -20,8 +20,8 @@ const KegiatanHero = ({
     newestActivities.length > 0
       ? newestActivities[0]
       : activities.length > 0
-      ? activities[0]
-      : null;
+        ? activities[0]
+        : null;
 
   // Handle navigation to detail page
   const handleReadMore = () => {

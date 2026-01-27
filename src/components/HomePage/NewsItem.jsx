@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./homepage.module.css";
-import { getArticles } from "../../helpers/apiService";
-import { useTranslation, Trans } from "react-i18next";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from "../../firebase/config";
+import { useTranslation } from "react-i18next";
 
 const NewsItem = () => {
   const [newsItems, setNewsItems] = useState([]);
@@ -12,14 +13,63 @@ const NewsItem = () => {
   const navigate = useNavigate();
   const featuredRef = useRef(null);
   const cardRefs = useRef([]);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const loadArticles = async () => {
       try {
         setLoading(true);
         setError(null);
-        const articles = await getArticles();
+
+        // Query sederhana - filter lainnya di client side
+        const q = query(
+          collection(db, "AemlPrograms"),
+          where("type", "==", "kegiatan"),
+        );
+
+        const querySnapshot = await getDocs(q);
+
+        const articles = querySnapshot.docs
+          .map((doc) => {
+            const data = doc.data();
+
+            // Format tanggal
+            let formattedDate = "";
+            if (data.createdAt) {
+              const date = data.createdAt.toDate();
+              formattedDate = date.toLocaleDateString("id-ID", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              });
+            }
+
+            return {
+              id: data.id || doc.id,
+              title: data.title || "Untitled",
+              subtitle: data.subtitle || "",
+              preview: data.subtitle || "",
+              date: formattedDate,
+              image:
+                data.images && data.images.length > 0
+                  ? data.images[0]
+                  : "https://picsum.photos/id/1011/800/500",
+              tags: data.tags || "",
+              linkDownload: data.linkDownload || "",
+              body: data.body || null,
+              isDeleted: data.isDeleted || false,
+              isShowed: data.isShowed !== false,
+              createdAt: data.createdAt || null,
+            };
+          })
+          // Filter di client-side
+          .filter((item) => !item.isDeleted && item.isShowed)
+          // Sort berdasarkan createdAt
+          .sort((a, b) => {
+            if (!a.createdAt || !b.createdAt) return 0;
+            return b.createdAt.toDate() - a.createdAt.toDate();
+          });
+
         setNewsItems(articles);
       } catch (err) {
         setError("Failed to load articles");
@@ -52,12 +102,10 @@ const NewsItem = () => {
       });
     }, observerOptions);
 
-    // Observe featured article
     if (featuredRef.current) {
       observer.observe(featuredRef.current);
     }
 
-    // Observe regular cards
     cardRefs.current.forEach((card) => {
       if (card) observer.observe(card);
     });
@@ -76,6 +124,7 @@ const NewsItem = () => {
     navigate(`/kegiatan/${itemId}`);
   };
 
+  // Loading state
   if (loading) {
     return (
       <div className={styles.containerNews}>
@@ -89,20 +138,8 @@ const NewsItem = () => {
     );
   }
 
-  if (error) {
-    return (
-      <div className={styles.containerNews}>
-        <div className={styles.header}>
-          <h1 className={styles.titleNews}>{t("activities.title")}</h1>
-        </div>
-        <div className={styles.errorContainer}>
-          <p>{t("home.failedLoad")}</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!newsItems.length) {
+  // Empty state - PENTING: Cek ini dulu sebelum render newsItems[0]
+  if (!newsItems || newsItems.length === 0) {
     return (
       <div className={styles.containerNews}>
         <div className={styles.header}>
@@ -115,6 +152,7 @@ const NewsItem = () => {
     );
   }
 
+  // Main render - Aman karena sudah dicek newsItems.length > 0
   return (
     <div className={styles.containerNews}>
       <div className={styles.header}>

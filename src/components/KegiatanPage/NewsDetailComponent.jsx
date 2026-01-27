@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import styles from "./NewsDetail.module.css";
-import { getArticleById } from "../../helpers/apiService";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from "../../firebase/config";
 import ReadAnother from "./ReadAnother";
 import { motion } from "framer-motion";
 
@@ -30,78 +31,89 @@ const NewsDetailComponent = () => {
 
   useEffect(() => {
     const fetchArticle = async () => {
-      setLoading(true);
-      const result = await getArticleById(id);
-      setArticle(result);
-      setLoading(false);
+      try {
+        setLoading(true);
+
+        // Query Firestore untuk mengambil artikel berdasarkan ID
+        const q = query(
+          collection(db, "AemlPrograms"),
+          where("id", "==", parseInt(id)),
+        );
+
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+          const doc = querySnapshot.docs[0];
+          const data = doc.data();
+
+          // PENTING: Convert Timestamp ke string SEBELUM set state
+          let formattedDate = "";
+          let formattedDateEN = "";
+          if (data.createdAt) {
+            const date = data.createdAt.toDate();
+
+            // Format Indonesian
+            const monthsID = [
+              "Januari",
+              "Februari",
+              "Maret",
+              "April",
+              "Mei",
+              "Juni",
+              "Juli",
+              "Agustus",
+              "September",
+              "Oktober",
+              "November",
+              "Desember",
+            ];
+            formattedDate = `${date.getDate()} ${monthsID[date.getMonth()]} ${date.getFullYear()}`;
+
+            // Format English
+            const monthsEN = [
+              "January",
+              "February",
+              "March",
+              "April",
+              "May",
+              "June",
+              "July",
+              "August",
+              "September",
+              "October",
+              "November",
+              "December",
+            ];
+            formattedDateEN = `${monthsEN[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+          }
+
+          const articleData = {
+            id: data.id || doc.id,
+            title: data.title || "Untitled",
+            subtitle: data.subtitle || "",
+            dateID: formattedDate, // Sudah dalam format string
+            dateEN: formattedDateEN, // Sudah dalam format string
+            images: data.images || [],
+            tags: data.tags || "",
+            body: data.body || null,
+            linkDownload: data.linkDownload || "",
+            type: data.type || "",
+          };
+
+          setArticle(articleData);
+        } else {
+          setArticle(null);
+        }
+      } catch (error) {
+        console.error("Error fetching article:", error);
+        setArticle(null);
+      } finally {
+        setLoading(false);
+      }
     };
+
     fetchArticle();
   }, [id]);
-
-  // Format date based on language
-  const formatDate = (dateString) => {
-    if (!dateString) return "";
-
-    // If date is already formatted (contains month names), return as is
-    if (
-      typeof dateString === "string" &&
-      (dateString.includes("Januari") ||
-        dateString.includes("January") ||
-        dateString.includes("Juli") ||
-        dateString.includes("July"))
-    ) {
-      return dateString;
-    }
-
-    try {
-      const date = new Date(dateString);
-
-      // Check if date is valid
-      if (isNaN(date.getTime())) {
-        return dateString;
-      }
-
-      if (currentLang === "id") {
-        const monthsID = [
-          "Januari",
-          "Februari",
-          "Maret",
-          "April",
-          "Mei",
-          "Juni",
-          "Juli",
-          "Agustus",
-          "September",
-          "Oktober",
-          "November",
-          "Desember",
-        ];
-        return `${date.getDate()} ${
-          monthsID[date.getMonth()]
-        } ${date.getFullYear()}`;
-      } else {
-        const monthsEN = [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-          "August",
-          "September",
-          "October",
-          "November",
-          "December",
-        ];
-        return `${
-          monthsEN[date.getMonth()]
-        } ${date.getDate()}, ${date.getFullYear()}`;
-      }
-    } catch (e) {
-      return dateString;
-    }
-  };
 
   // Translate tag
   const translateTag = (tagKey) => {
@@ -120,16 +132,50 @@ const NewsDetailComponent = () => {
   };
 
   if (loading) {
-    return <div className={styles.loading}>{t("home.load")}</div>;
+    return (
+      <motion.div
+        variants={fadeUp}
+        initial="hidden"
+        animate="visible"
+        className="space-y-9"
+      >
+        <div className={styles.loading}>{t("home.load")}</div>
+      </motion.div>
+    );
   }
 
   if (!article) {
     return (
-      <div className={styles.error}>
-        {currentLang === "id"
-          ? "Artikel tidak ditemukan."
-          : "Article not found."}
-      </div>
+      <motion.div
+        variants={fadeUp}
+        initial="hidden"
+        animate="visible"
+        className="space-y-9"
+      >
+        <div className={styles.error}>
+          <h2>
+            {currentLang === "id"
+              ? "Artikel tidak ditemukan."
+              : "Article not found."}
+          </h2>
+          <button
+            onClick={() => navigate("/kegiatan")}
+            style={{
+              marginTop: "20px",
+              padding: "10px 20px",
+              background: "#0C4FD3",
+              color: "white",
+              border: "none",
+              borderRadius: "8px",
+              cursor: "pointer",
+            }}
+          >
+            {currentLang === "id"
+              ? "Kembali ke Kegiatan"
+              : "Back to Activities"}
+          </button>
+        </div>
+      </motion.div>
     );
   }
 
@@ -158,7 +204,8 @@ const NewsDetailComponent = () => {
               <h1 className={styles.articleTitle}>{article.title}</h1>
               <div className={styles.articleMeta}>
                 <span className={styles.articleDate}>
-                  {formatDate(article.createdAt || article.date)}
+                  {/* Gunakan string yang sudah di-format, sesuai bahasa */}
+                  {currentLang === "id" ? article.dateID : article.dateEN}
                 </span>
                 <span className={styles.articleCategory}>
                   {translateTag(article.tags)}

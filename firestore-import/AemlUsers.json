@@ -1,0 +1,36 @@
+{
+  "1": {
+    "id": 1,
+    "username": "Kathlyn.Steuber8",
+    "email": "aemltest@gmail.com",
+    "password": "$2a$10$244VwVsUbDaa1as5gSlr3ehZjWNpGKrY2Umfmeg/ZMDWt1eikbYmG",
+    "fullName": "Audie_Morar",
+    "isActive": true,
+    "tenant_id": "AemlAdmin",
+    "createdAt": {
+      "_seconds": 1757066385,
+      "_nanoseconds": 0
+    },
+    "updatedAt": {
+      "_seconds": 1757066385,
+      "_nanoseconds": 0
+    }
+  },
+  "2": {
+    "id": 2,
+    "username": "Admin Aeml",
+    "email": "admin@aeml.or.id",
+    "password": "$2a$10$kOJgf1XISPBCAd.dL6/EheJ5rqsUI8PDQfwUFF7EjY9bXrGG9gwxS",
+    "fullName": "Admin Aeml",
+    "isActive": true,
+    "tenant_id": "AemlAdmin",
+    "createdAt": {
+      "_seconds": 1762446669,
+      "_nanoseconds": 0
+    },
+    "updatedAt": {
+      "_seconds": 1762446669,
+      "_nanoseconds": 0
+    }
+  }
+}

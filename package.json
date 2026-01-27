@@ -13,6 +13,7 @@
     "@studio-freight/lenis": "^1.0.42",
     "animate.css": "^4.1.1",
     "firebase": "^12.4.0",
+    "firebase-admin": "^13.6.0",
     "framer-motion": "^12.23.22",
     "i18next": "^25.7.4",
     "locomotive-scroll": "^4.1.4",

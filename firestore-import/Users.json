@@ -1,0 +1,107 @@
+{
+  "1": {
+    "id": 1,
+    "username": "Ayden60",
+    "fullName": "Emile84",
+    "isActive": true,
+    "email": "jivatest@gmail.com",
+    "password": "$2a$10$9guSlLqV8BEyan0ZPjdybuMjmw/Sa2aFo88EVHlBum9spjibUwE1u",
+    "otp": null,
+    "otpExpires": null,
+    "phone_number": null,
+    "avatar": null,
+    "createdAt": {
+      "_seconds": 1737996224,
+      "_nanoseconds": 0
+    },
+    "updatedAt": {
+      "_seconds": 1737996224,
+      "_nanoseconds": 0
+    },
+    "tenant_id": null
+  },
+  "2": {
+    "id": 2,
+    "username": "Wilfredo_Konopelski",
+    "fullName": "Hanna88",
+    "isActive": true,
+    "email": "polatest@gmail.com",
+    "password": "$2a$10$2PiIluD9yNvkPkoJJjPGPelT2Vn2gkj8lOjPfLuFpSWf3VDk7wZv.",
+    "otp": null,
+    "otpExpires": null,
+    "phone_number": null,
+    "avatar": null,
+    "createdAt": {
+      "_seconds": 1739901018,
+      "_nanoseconds": 0
+    },
+    "updatedAt": {
+      "_seconds": 1739901018,
+      "_nanoseconds": 0
+    },
+    "tenant_id": "PolaUser"
+  },
+  "3": {
+    "id": 3,
+    "username": "Admin 1",
+    "fullName": "Jiva Svastha Nusantara (Admin 1)",
+    "isActive": true,
+    "email": "admin@jivasvastha.or.id",
+    "password": "$2a$10$AEBG32LVCCLRh59y4oUSsOgQx.vPpbQL7DwLLm933H0Fjz3hcPiDu",
+    "otp": null,
+    "otpExpires": null,
+    "phone_number": null,
+    "avatar": null,
+    "createdAt": {
+      "_seconds": 1740559468,
+      "_nanoseconds": 0
+    },
+    "updatedAt": {
+      "_seconds": 1740559468,
+      "_nanoseconds": 0
+    },
+    "tenant_id": "JivasAdmin"
+  },
+  "4": {
+    "id": 4,
+    "username": "Admin 2",
+    "fullName": "Jiva Svastha Nusantara (Admin 2)",
+    "isActive": true,
+    "email": "admin2@jivasvastha.or.id",
+    "password": "$2a$10$kK9RoRXuGaN.KzuH9HDtzuO0Q6DLh.bW6KhPvxJ1nmarB2WOg3AGW",
+    "otp": null,
+    "otpExpires": null,
+    "phone_number": null,
+    "avatar": null,
+    "createdAt": {
+      "_seconds": 1740559556,
+      "_nanoseconds": 0
+    },
+    "updatedAt": {
+      "_seconds": 1740559556,
+      "_nanoseconds": 0
+    },
+    "tenant_id": "JivasAdmin"
+  },
+  "5": {
+    "id": 5,
+    "username": "Dev Admin",
+    "fullName": "Jiva Svastha Nusantara (Dev Admin)",
+    "isActive": true,
+    "email": "dev@jivasvastha.or.id",
+    "password": "$2a$10$ZqGV7dIQacFljCuKlVeA6elyA4oT.QwPzYsNMb8EjvO.vad6mNESi",
+    "otp": null,
+    "otpExpires": null,
+    "phone_number": null,
+    "avatar": null,
+    "createdAt": {
+      "_seconds": 1740559622,
+      "_nanoseconds": 0
+    },
+    "updatedAt": {
+      "_seconds": 1740559622,
+      "_nanoseconds": 0
+    },
+    "tenant_id": "JivasAdmin"
+  }
+}

@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import styles from "./read.module.css";
 import styleGrid from "./read.module.css";
-import { getArticles } from "../../helpers/apiService";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from "../../firebase/config";
 
 const ReadAnother = ({ excludeId }) => {
   const { t, i18n } = useTranslation();
@@ -19,15 +20,59 @@ const ReadAnother = ({ excludeId }) => {
       try {
         setLoading(true);
         setError(null);
-        const publicationsData = await getArticles();
 
-        // Filter out the one that's currently opened
-        const filtered = publicationsData.filter(
-          (item) => String(item.id) !== String(excludeId)
+        // Query Firestore untuk mengambil dokumen dengan type "kegiatan"
+        const q = query(
+          collection(db, "AemlPrograms"),
+          where("type", "==", "kegiatan"),
         );
 
-        // Limit to maximum 3 articles
-        setPublications(filtered.slice(0, 3));
+        const querySnapshot = await getDocs(q);
+
+        const publicationsData = querySnapshot.docs
+          .map((doc) => {
+            const data = doc.data();
+
+            // Format tanggal
+            let formattedDate = "";
+            if (data.createdAt) {
+              const date = data.createdAt.toDate();
+              formattedDate = date.toLocaleDateString("id-ID", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              });
+            }
+
+            return {
+              id: data.id || doc.id,
+              title: data.title || "Untitled",
+              subtitle: data.subtitle || "",
+              date: formattedDate,
+              image:
+                data.images && data.images.length > 0
+                  ? data.images[0]
+                  : "https://picsum.photos/id/1011/800/500",
+              tags: data.tags || "",
+              body: data.body || null,
+              isDeleted: data.isDeleted || false,
+              isShowed: data.isShowed !== false,
+              createdAt: data.createdAt || null,
+            };
+          })
+          // Filter di client-side
+          .filter((item) => !item.isDeleted && item.isShowed)
+          // Filter out the one that's currently opened
+          .filter((item) => String(item.id) !== String(excludeId))
+          // Sort berdasarkan createdAt
+          .sort((a, b) => {
+            if (!a.createdAt || !b.createdAt) return 0;
+            return b.createdAt.toDate() - a.createdAt.toDate();
+          })
+          // Limit to maximum 3 articles
+          .slice(0, 3);
+
+        setPublications(publicationsData);
       } catch (err) {
         setError("Failed to load publications");
         console.error("Error loading publications:", err);

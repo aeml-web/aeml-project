@@ -1,0 +1,145 @@
+{
+  "4": {
+    "id": 4,
+    "answer": "This is the first sample answer",
+    "aemlAdminQuestionId": 1,
+    "createdAt": {
+      "_seconds": 1757520493,
+      "_nanoseconds": 0
+    },
+    "updatedAt": {
+      "_seconds": 1757520493,
+      "_nanoseconds": 0
+    }
+  },
+  "5": {
+    "id": 5,
+    "answer": "Another example answer related to question 1",
+    "aemlAdminQuestionId": 1,
+    "createdAt": {
+      "_seconds": 1757520493,
+      "_nanoseconds": 0
+    },
+    "updatedAt": {
+      "_seconds": 1757520493,
+      "_nanoseconds": 0
+    }
+  },
+  "6": {
+    "id": 6,
+    "answer": "Answer for question 2",
+    "aemlAdminQuestionId": 2,
+    "createdAt": {
+      "_seconds": 1757520493,
+      "_nanoseconds": 0
+    },
+    "updatedAt": {
+      "_seconds": 1757520493,
+      "_nanoseconds": 0
+    }
+  },
+  "7": {
+    "id": 7,
+    "answer": "csdfsdfsdfsdf",
+    "aemlAdminQuestionId": 4,
+    "createdAt": {
+      "_seconds": 1758566699,
+      "_nanoseconds": 0
+    },
+    "updatedAt": {
+      "_seconds": 1758566699,
+      "_nanoseconds": 0
+    }
+  },
+  "8": {
+    "id": 8,
+    "answer": "ini coba jawab ya",
+    "aemlAdminQuestionId": 5,
+    "createdAt": {
+      "_seconds": 1758642200,
+      "_nanoseconds": 0
+    },
+    "updatedAt": {
+      "_seconds": 1758642200,
+      "_nanoseconds": 0
+    }
+  },
+  "9": {
+    "id": 9,
+    "answer": "jawab lagi 123",
+    "aemlAdminQuestionId": 5,
+    "createdAt": {
+      "_seconds": 1758642206,
+      "_nanoseconds": 0
+    },
+    "updatedAt": {
+      "_seconds": 1758642206,
+      "_nanoseconds": 0
+    }
+  },
+  "10": {
+    "id": 10,
+    "answer": "jawab algi deh coba",
+    "aemlAdminQuestionId": 5,
+    "createdAt": {
+      "_seconds": 1758642212,
+      "_nanoseconds": 0
+    },
+    "updatedAt": {
+      "_seconds": 1758642212,
+      "_nanoseconds": 0
+    }
+  },
+  "11": {
+    "id": 11,
+    "answer": "asdasdas",
+    "aemlAdminQuestionId": 5,
+    "createdAt": {
+      "_seconds": 1758729288,
+      "_nanoseconds": 0
+    },
+    "updatedAt": {
+      "_seconds": 1758729288,
+      "_nanoseconds": 0
+    }
+  },
+  "12": {
+    "id": 12,
+    "answer": "sadas",
+    "aemlAdminQuestionId": 5,
+    "createdAt": {
+      "_seconds": 1758729298,
+      "_nanoseconds": 0
+    },
+    "updatedAt": {
+      "_seconds": 1758729298,
+      "_nanoseconds": 0
+    }
+  },
+  "13": {
+    "id": 13,
+    "answer": "satu tambah satu",
+    "aemlAdminQuestionId": 5,
+    "createdAt": {
+      "_seconds": 1759142555,
+      "_nanoseconds": 0
+    },
+    "updatedAt": {
+      "_seconds": 1759142555,
+      "_nanoseconds": 0
+    }
+  },
+  "14": {
+    "id": 14,
+    "answer": "test sharing EML",
+    "aemlAdminQuestionId": 4,
+    "createdAt": {
+      "_seconds": 1764037913,
+      "_nanoseconds": 0
+    },
+    "updatedAt": {
+      "_seconds": 1764037913,
+      "_nanoseconds": 0
+    }
+  }
+}
