@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import styles from "./FeedbackModalHome.module.css";
+import { submitContactUsAnswer } from "../../helpers/apiService";
+import { useTranslation } from "react-i18next";
 import {
-  getActiveQuestion,
-  submitAnswer,
-  submitContactUsAnswer,
-} from "../../helpers/apiService";
-import { useTranslation, Trans } from "react-i18next";
+  collection,
+  query,
+  where,
+  getDocs,
+  addDoc,
+  serverTimestamp,
+} from "firebase/firestore";
+import { db } from "../../firebase/config"; // Adjust the import path to your firebase config
 
 const FeedbackHome = () => {
   const [feedback, setFeedback] = useState("");
@@ -14,7 +19,7 @@ const FeedbackHome = () => {
   const [question, setQuestion] = useState(null);
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   // Fetch active question on component mount
   useEffect(() => {
@@ -26,17 +31,67 @@ const FeedbackHome = () => {
     setError("");
 
     try {
-      const activeQuestion = await getActiveQuestion();
-      if (activeQuestion) {
-        setQuestion(activeQuestion);
+      // Simplified query - only filter by isActive
+      const q = query(
+        collection(db, "AemlAdminQuestions"),
+        where("isActive", "==", true),
+      );
+
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        // Sort on client-side and get the most recent
+        const questions = querySnapshot.docs
+          .map((doc) => {
+            const data = doc.data();
+            return {
+              id: data.id, // Use the numeric id field from document data
+              docId: doc.id, // Keep the document ID for reference
+              question: data.question || data.text || "",
+              isActive: data.isActive !== false,
+              createdAt: data.createdAt || null,
+            };
+          })
+          .filter((q) => q.isActive)
+          .sort((a, b) => {
+            if (!a.createdAt || !b.createdAt) return 0;
+            return b.createdAt.toDate() - a.createdAt.toDate();
+          });
+
+        if (questions.length > 0) {
+          setQuestion(questions[0]); // Get the most recent one
+        } else {
+          setError("Tidak ada pertanyaan aktif saat ini.");
+        }
       } else {
-        setError("Gagal memuat pertanyaan. Silakan coba lagi.");
+        setError("Tidak ada pertanyaan aktif saat ini.");
       }
     } catch (err) {
       console.error("Error fetching question:", err);
       setError("Gagal memuat pertanyaan. Silakan coba lagi.");
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const getNextAnswerId = async () => {
+    try {
+      const answersRef = collection(db, "AemlAnswers");
+      const querySnapshot = await getDocs(answersRef);
+
+      if (querySnapshot.empty) {
+        return 1;
+      }
+
+      // Get the highest id
+      const maxId = Math.max(
+        ...querySnapshot.docs.map((doc) => doc.data().id || 0),
+      );
+      return maxId + 1;
+    } catch (error) {
+      console.error("Error getting next ID:", error);
+      // Fallback to timestamp-based ID
+      return Date.now();
     }
   };
 
@@ -50,12 +105,37 @@ const FeedbackHome = () => {
     setSuccessMessage("");
 
     try {
-      await submitAnswer(feedback.trim(), question.id);
-      await submitContactUsAnswer(
-        feedback.trim(),
-        question.id,
-        question.question // Pass the actual question text
-      );
+      // Get next ID for the answer
+      const nextId = await getNextAnswerId();
+
+      // Submit answer to Firestore with exact field structure
+      const answerData = {
+        aemlAdminQuestionId: question.id, // Use the numeric id from question
+        answer: feedback.trim(),
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+        id: nextId,
+      };
+
+      // Add to Firestore answers collection
+      const answersRef = collection(db, "AemlAnswers");
+      await addDoc(answersRef, answerData);
+
+      // Also submit via API if needed (optional)
+      try {
+        await submitContactUsAnswer(
+          feedback.trim(),
+          question.id,
+          question.question,
+        );
+      } catch (apiError) {
+        console.warn(
+          "API submission failed, but Firestore succeeded:",
+          apiError,
+        );
+        // Continue anyway since Firestore submission succeeded
+      }
+
       // Success feedback
       console.log("Feedback submitted successfully");
       setSuccessMessage("Terima kasih! Jawaban Anda telah berhasil dikirim.");
@@ -72,6 +152,7 @@ const FeedbackHome = () => {
 
   const handleRetry = () => {
     setSuccessMessage("");
+    setError("");
     fetchActiveQuestion();
   };
 

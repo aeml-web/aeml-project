@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from "react";
 import styles from "./FeedbackModal.module.css";
-import { getActiveQuestion, submitAnswer } from "../../helpers/apiService"; // Adjust the import path as needed
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  addDoc,
+  serverTimestamp,
+} from "firebase/firestore";
+import { db } from "../../firebase/config"; // Adjust the import path to your firebase config
 
 const Feedback = ({ isOpen, onClose }) => {
   const [feedback, setFeedback] = useState("");
@@ -21,11 +29,40 @@ const Feedback = ({ isOpen, onClose }) => {
     setError("");
 
     try {
-      const activeQuestion = await getActiveQuestion();
-      if (activeQuestion) {
-        setQuestion(activeQuestion);
+      // Query Firestore for active questions
+      const q = query(
+        collection(db, "questions"),
+        where("isActive", "==", true),
+      );
+
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        // Sort on client-side and get the most recent
+        const questions = querySnapshot.docs
+          .map((doc) => {
+            const data = doc.data();
+            return {
+              id: data.id, // Use the id field from document data
+              docId: doc.id, // Keep the document ID for reference
+              question: data.question || data.text || "",
+              isActive: data.isActive !== false,
+              createdAt: data.createdAt || null,
+            };
+          })
+          .filter((q) => q.isActive)
+          .sort((a, b) => {
+            if (!a.createdAt || !b.createdAt) return 0;
+            return b.createdAt.toDate() - a.createdAt.toDate();
+          });
+
+        if (questions.length > 0) {
+          setQuestion(questions[0]);
+        } else {
+          setError("Tidak ada pertanyaan aktif saat ini.");
+        }
       } else {
-        setError("Gagal memuat pertanyaan. Silakan coba lagi.");
+        setError("Tidak ada pertanyaan aktif saat ini.");
       }
     } catch (err) {
       console.error("Error fetching question:", err);
@@ -34,6 +71,27 @@ const Feedback = ({ isOpen, onClose }) => {
       setIsLoading(false);
     }
   };
+
+  // const getNextAnswerId = async () => {
+  //   try {
+  //     const answersRef = collection(db, "answers");
+  //     const querySnapshot = await getDocs(answersRef);
+
+  //     if (querySnapshot.empty) {
+  //       return 1;
+  //     }
+
+  //     // Get the highest id
+  //     const maxId = Math.max(
+  //       ...querySnapshot.docs.map((doc) => doc.data().id || 0),
+  //     );
+  //     return maxId + 1;
+  //   } catch (error) {
+  //     console.error("Error getting next ID:", error);
+  //     // Fallback to timestamp-based ID
+  //     return Date.now();
+  //   }
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,17 +102,30 @@ const Feedback = ({ isOpen, onClose }) => {
     setError("");
 
     try {
-      await submitAnswer(feedback.trim(), question.id);
+      // Get next ID for the answer
+      // const nextId = await getNextAnswerId();
+
+      // Submit answer to Firestore with exact field structure
+      const answerData = {
+        aemlAdminQuestionId: question.id, // Use the numeric id from question
+        answer: feedback.trim(),
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+        id: nextId,
+      };
+
+      // Add to Firestore answers collection
+      const answersRef = collection(db, "AemlAnswers");
+      await addDoc(answersRef, answerData);
 
       // Success feedback
-      console.log("Feedback submitted successfully");
+      console.log("Feedback submitted successfully to Firestore");
 
       // Reset form and close modal
       setFeedback("");
       onClose();
 
       // Optional: Show success message to user
-      // You can replace this with a proper toast/notification system
       alert("Terima kasih! Jawaban Anda telah berhasil dikirim.");
     } catch (error) {
       console.error("Error submitting feedback:", error);
@@ -110,7 +181,7 @@ const Feedback = ({ isOpen, onClose }) => {
                 <div className={styles.spinner}></div>
                 <p>Memuat pertanyaan...</p>
               </div>
-            ) : error ? (
+            ) : error && !question ? (
               <div className={styles.errorState}>
                 <p className={styles.errorMessage}>{error}</p>
                 <button
